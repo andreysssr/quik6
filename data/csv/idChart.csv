@@ -1,0 +1,306 @@
+тикер;название;id графика
+MGNT;Магнит ао;MGNT
+PHOR;ФосАгро ао;PHOR
+SBER;Сбербанк;SBER
+GAZP;ГАЗПРОМ ао;GAZP
+LKOH;ЛУКОЙЛ;LKOH
+TCSG;TCS-гдр;TCSG
+NVTK;Новатэк ао;NVTK
+SPBE;СПБ Биржа;SPBE
+POLY;Polymetal;POLY
+BSPB;БСП ао;BSPB
+GMKN;ГМКНорНик;GMKN
+NLMK;НЛМК ао;NLMK
+PLZL;Полюс;PLZL
+MTSS;МТС-ао;MTSS
+YNDX;Yandex clA;YNDX
+ROSN;Роснефть;ROSN
+VTBR;ВТБ ао;VTBR
+MOEX;МосБиржа;MOEX
+ISKJ;iИСКЧ ао;ISKJ
+SBERP;Сбербанк-п;SBERP
+MAGN;ММК;MAGN
+CBOM;МКБ ао;CBOM
+ALRS;АЛРОСА ао;ALRS
+CHMF;СевСт-ао;CHMF
+MTLR;Мечел ао;MTLR
+AFKS;Система ао;AFKS
+SELG;Селигдар;SELG
+RUAL;РУСАЛ ао;RUAL
+VKCO;VK-гдр;VKCO
+TATN;Татнфт 3ао;TATN
+OZON;OZON-адр;OZON
+IRAO;ИнтерРАОао;IRAO
+SNGS;Сургнфгз;SNGS
+AKRN;Акрон;AKRN
+FESH;ДВМП ао;FESH
+GLTR;GLTR-гдр;GLTR
+LNZL;Лензолото;LNZL
+BELU;Белуга ао;BELU
+SNGSP;Сургнфгз-п;SNGSP
+MTLRP;Мечел ап;MTLRP
+RASP;Распадская;RASP
+DSKY;ДетскийМир;DSKY
+SGZH;Сегежа;SGZH
+FIVE;FIVE-гдр;FIVE
+POSI;iПозитив;POSI
+AGRO;AGRO-гдр;AGRO
+CIAN;CIAN-адр;CIAN
+LNZLP;Лензол. ап;LNZLP
+PIKK;ПИК ао;PIKK
+TRMK;ТМК ао;TRMK
+TATNP;Татнфт 3ап;TATNP
+MVID;М.видео;MVID
+SMLT;Самолет ао;SMLT
+RENI;Ренессанс;RENI
+TRNFP;Транснф ап;TRNFP
+SFTL;iSFTL-гдр;SFTL
+ENPG;ЭН+ГРУП ао;ENPG
+AFLT;Аэрофлот;AFLT
+HYDR;РусГидро;HYDR
+KROT;КрасОкт-ао;KROT
+SIBN;Газпрнефть;SIBN
+MDMG;MDMG-гдр;MDMG
+AQUA;РусАква ао;AQUA
+ETLN;ETLN-гдр;ETLN
+FLOT;Совкомфлот;FLOT
+RSTI;Россети ао;RSTI
+OGKB;ОГК-2 ао;OGKB
+RUGR;Русгрэйн;RUGR
+ZVEZ;ЗВЕЗДА ао;ZVEZ
+FEES;ФСК ЕЭС ао;FEES
+GEMC;GEMC-гдр;GEMC
+IRKT;ИРКУТ-3;IRKT
+ROST;РОСИНТЕРао;ROST
+LIFE;iФармсинтз;LIFE
+KZOS;ОргСинт ао;KZOS
+OKEY;OKEY-гдр;OKEY
+RNFT;РуссНфт ао;RNFT
+RTKM;Ростел -ао;RTKM
+ENRU;ЭнелРос ао;ENRU
+BANEP;Башнефт ап;BANEP
+GTRK;ГТМ ао;GTRK
+GCHE;ЧеркизГ-ао;GCHE
+FIXP;FIXP-гдр;FIXP
+INGR;ИНГРАД ао;INGR
+UPRO;Юнипро ао;UPRO
+TGKA;ТГК-1;TGKA
+QIWI;iQIWI;QIWI
+LENT;Лента ао;LENT
+ABRD;АбрауДюрсо;ABRD
+DVEC;ДЭК ао;DVEC
+NMTP;НМТП ао;NMTP
+TGKB;ТГК-2;TGKB
+KMAZ;КАМАЗ;KMAZ
+LSNGP;РСетиЛЭ-п;LSNGP
+LSRG;ЛСР ао;LSRG
+VSMO;ВСМПО-АВСМ;VSMO
+KAZT;Куйбазот;KAZT
+NKNCP;НКНХ ап;NKNCP
+NKNC;НКНХ ао;NKNC
+SVAV;СОЛЛЕРС;SVAV
+HHRU;iHHRU-адр;HHRU
+MRKP;РСетиЦП ао;MRKP
+AMEZ;АшинскийМЗ;AMEZ
+KZOSP;ОргСинт ап;KZOSP
+RTKMP;Ростел -ап;RTKMP
+TTLK;Таттел. ао;TTLK
+MRKC;РоссЦентр;MRKC
+UNAC;iАвиастКао;UNAC
+USBN;УралСиб ао;USBN
+RSTIP;Россети ап;RSTIP
+BANE;Башнефт ао;BANE
+MSNG;#ИМЯ?;MSNG
+CHMK;ЧМК ао;CHMK
+MGTSP;МГТС-4ап;MGTSP
+MGNZ;СМЗ-ао;MGNZ
+KROTP;КрасОкт-1п;KROTP
+BSPBP;БСП ап;BSPBP
+ROLO;Русолово;ROLO
+ZILL;ЗИЛ ао;ZILL
+VSYD;ВыбСудЗ ао;VSYD
+KAZTP;Куйбазот-п;KAZTP
+VSYDP;ВыбСудЗ ап;VSYDP
+GEMA;iММЦБ ао;GEMA
+KRKNP;СаратНПЗ-п;KRKNP
+PMSB;ПермьЭнСб;PMSB
+URKZ;УрКузница;URKZ
+SVET;Светофор;SVET
+YAKG;ЯТЭК ао;YAKG
+TGKBP;ТГК-2 ап;TGKBP
+BLNG;Белон ао;BLNG
+APTK;Аптеки36и6;APTK
+RKKE;ЭнергияРКК;RKKE
+RGSS;РГС СК ао;RGSS
+ELTZ;Электрцинк;ELTZ
+TGKN;ТГК-14;TGKN
+ARSA;Арсагера;ARSA
+CNTLP;Телеграф-п;CNTLP
+RZSB;РязЭнСб;RZSB
+MRKV;РсетВол ао;MRKV
+LSNG;РСетиЛЭ;LSNG
+DIOD;ЗаводДИОД;DIOD
+NFAZ;НЕФАЗ;NFAZ
+KUBE;РСетКубань;KUBE
+MRKZ;РСетиСЗ ао;MRKZ
+HIMCP;Химпром ап;HIMCP
+RDRB;РДБанк ао;RDRB
+NSVZ;iНаукаСвяз;NSVZ
+MRKU;МРСК Ур;MRKU
+GAZAP;ГАЗ ап;GAZAP
+VLHZ;ВХЗ-ао;VLHZ
+KRKOP;ТКЗКК ап;KRKOP
+STSBP;СтаврЭнСбп;STSBP
+PMSBP;ПермьЭнС-п;PMSBP
+MSRS;РСетиМР ао;MSRS
+VEON-RX;VEON;VEON-RX
+UTAR;ЮТэйр ао;UTAR
+VRSB;ТНСэнВорон;VRSB
+OMZZP;ОМЗ-ап;OMZZP
+VJGZP;Варьеган-п;VJGZP
+NKHP;НКХП ао;NKHP
+TASBP;ТамбЭнСб-п;TASBP
+GAZA;ГАЗ ао;GAZA
+KOGK;КоршГОК ао;KOGK
+PRMB;Приморье;PRMB
+ASSB;АстрЭнСб;ASSB
+TGKD;Квадра;TGKD
+MRKY;РоссЮг ао;MRKY
+TUZA;ТЗА ао;TUZA
+BISVP;БашИнСв ап;BISVP
+VRSBP;ТНСэнВор-п;VRSBP
+KMEZ;КМЗ;KMEZ
+ROSB;Росбанк ао;ROSB
+MRSB;МордЭнСб;MRSB
+BRZL;БурЗолото;BRZL
+UCSS;ОКС ао;UCSS
+SFIN;ЭсЭфАй ао;SFIN
+MSTT;Мостотрест;MSTT
+HMSG;HMSG-гдр;HMSG
+STSB;СтаврЭнСб;STSB
+KCHE;КамчатЭ ао;KCHE
+IGST;Ижсталь2ао;IGST
+VGSB;ВолгЭнСб;VGSB
+KMTZ;КосогМЗ ао;KMTZ
+MAGEP;МагадЭн ап;MAGEP
+LVHK;Левенгук;LVHK
+JNOSP;Слав-ЯНОСп;JNOSP
+NAUK;iНПОНаука;NAUK
+KLSB;КалужскСК;KLSB
+MRKS;РсетСиб ао;MRKS
+AVAN;Авангрд-ао;AVAN
+TASB;ТамбЭнСб;TASB
+NKSH;Нижкамшина;NKSH
+WTCMP;ЦМТ ап;WTCMP
+KUZB;КузнецкийБ;KUZB
+TORS;ТРК ао;TORS
+KRSBP;Красэсб ап;KRSBP
+KBSB;ТНСэКубань;KBSB
+DZRDP;ДонскЗР п;DZRDP
+MISBP;ТНСэМаЭл-п;MISBP
+UNKL;ЮУНК ао;UNKL
+RUSI;ИКРУСС-ИНВ;RUSI
+CHGZ;РН-ЗапСиб;CHGZ
+RTSBP;ТНСэнРст-п;RTSBP
+RBCM;РБК ао;RBCM
+LPSB;ЛЭСК ао;LPSB
+MRKK;Россети СК;MRKK
+TGKDP;Квадра-п;TGKDP
+IGSTP;Ижсталь ап;IGSTP
+RTGZ;ГазпРнД ао;RTGZ
+KRSB;Красэсб ао;KRSB
+CHKZ;ЧКПЗ ао;CHKZ
+UKUZ;ЮжКузб. ао;UKUZ
+KGKC;КурганГКао;KGKC
+SARE;СаратЭн-ао;SARE
+MFGSP;Мегион-ап;MFGSP
+PAZA;ПавлАвт ао;PAZA
+KRKN;СаратНПЗ;KRKN
+YRSBP;ТНСэнЯр-п;YRSBP
+CNTL;Телеграф;CNTL
+KGKCP;КурганГКап;KGKCP
+MFGS;Мегион-ао;MFGS
+YKEN;Якутскэнрг;YKEN
+YKENP;Якутскэн-п;YKENP
+EELT;ЕвроЭлтех;EELT
+VJGZ;Варьеган;VJGZ
+WTCM;ЦМТ ао;WTCM
+SLEN;Сахэнер ао;SLEN
+MISB;ТНСэнМарЭл;MISB
+MAGE;МагадЭн ао;MAGE
+KTSBP;КСБ ап;KTSBP
+JNOS;Славн-ЯНОС;JNOS
+TORSP;ТРК ап;TORSP
+KTSB;КСБ ао;KTSB
+NNSBP;ТНСэнНН ап;NNSBP
+VGSBP;ВолгЭнСб-п;VGSBP
+RTSB;ТНСэнРст;RTSB
+TNSE;ТНСэнрг ао;TNSE
+DZRD;ДонскЗР;DZRD
+SAGO;СамарЭн-ао;SAGO
+MGTS;МГТС-5ао;MGTS
+SAREP;СаратЭн-ап;SAREP
+YRSB;ТНСэнЯр;YRSB
+NNSB;ТНСэнНН ао;NNSB
+SAGOP;СамарЭн-ап;SAGOP
+HIMC;Химпром ао;HIMC
+NPOF;Физика ао;NPOF
+URKA;Уркалий-ао;URKA
+TRFM;ТрансФ ао;TRFM
+TRCN;ТрансК ао;TRCN
+KRKO;ТКЗКК ао;KRKO
+MORI;Морион ао;MORI
+MFON;МегаФон ао;MFON
+KSGR;Кокс ао;KSGR
+KCHEP;КамчатЭ ап;KCHEP
+KZMS;КЗМС ао;KZMS
+IRGZ;ИркЭнерго;IRGZ
+DERZP;Держава ап;DERZP
+GTSS;ГЕОТЕК ао;GTSS
+GAZC;ГАЗКОН-ао;GAZC
+GAZS;ГАЗ-сервис;GAZS
+GAZT;ГАЗ-Тек ао;GAZT
+BISV;БашИнСв ао;BISV
+ACKO;АСКО ао;ACKO
+EM44;EM44-гдр;EM44
+POGR;Petropavl;POGR
+SiU2;Si-9.22;Si
+RIU2;RTS-9.22;RI
+BRU2;BR-9.22;BR
+BRV2;BR-10.22;BR
+SFU2;SPYF-9.22;SF
+NGQ2;NG-8.22;NG
+NGU2;NG-9.22;NG
+EDU2;ED-9.22;ED
+EuU2;Eu-9.22;Eu
+GDU2;GOLD-9.22;GD
+RMU2;RTSM-9.22;RM
+SVU2;SILV-9.22;SV
+VBU2;VTBR-9.22;VB
+SRU2;SBRF-9.22;SR
+GZU2;GAZR-9.22;GZ
+CRU2;CNY-9.22;CR
+USD000UTSTOM;USDRUB_TOM;USD000UTSTOM
+USD000000TOD;USDRUB_TOD;USD000000TOD
+EUR_RUB__TOM;EURRUB_TOM;EUR_RUB__TOM
+EUR_RUB__TOD;EURRUB_TOD;EUR_RUB__TOD
+CNYRUB_TOM;CNYRUB_TOM;CNYRUB_TOM
+CNY000000TOD;CNYRUB_TOD;CNY000000TOD
+SiZ2;Si-9.22;Si
+RIZ2;RTS-9.22;RI
+BRZ2;BR-9.22;BR
+BRV2;BR-10.22;BR
+BRX2;BR-11.22;BR
+SFZ2;SPYF-9.22;SF
+NGQ2;NG-8.22;NG
+NGZ2;NG-9.22;NG
+NGV2;NG-10.22;NG
+EDZ2;ED-9.22;ED
+EuZ2;Eu-9.22;Eu
+GDZ2;GOLD-9.22;GD
+RMZ2;RTSM-9.22;RM
+SVZ2;SILV-9.22;SV
+VBZ2;VTBR-9.22;VB
+SRZ2;SBRF-9.22;SR
+GZZ2;GAZR-9.22;GZ
+CRZ2;CNY-9.22;CR

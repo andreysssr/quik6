@@ -1,0 +1,307 @@
+CODE;SHORTNAME;CLASS;ACCOUNT
+SBER;Сбербанк;TQBR;stock
+GAZP;ГАЗПРОМ ао;TQBR;stock
+LKOH;ЛУКОЙЛ;TQBR;stock
+ROSN;Роснефть;TQBR;stock
+GMKN;ГМКНорНик;TQBR;stock
+NVTK;Новатэк ао;TQBR;stock
+PHOR;ФосАгро ао;TQBR;stock
+MAGN;ММК;TQBR;stock
+SNGSP;Сургнфгз-п;TQBR;stock
+MGNT;Магнит ао;TQBR;stock
+BSPB;БСП ао;TQBR;stock
+TATN;Татнфт 3ао;TQBR;stock
+VTBR;ВТБ ао;TQBR;stock
+CHMF;СевСт-ао;TQBR;stock
+SBERP;Сбербанк-п;TQBR;stock
+ALRS;АЛРОСА ао;TQBR;stock
+YNDX;Yandex clA;TQBR;stock
+IRAO;ИнтерРАОао;TQBR;stock
+MTSS;МТС-ао;TQBR;stock
+AKRN;Акрон;TQBR;stock
+IRKT;ИРКУТ-3;TQBR;stock
+PLZL;Полюс;TQBR;stock
+AFKS;Система ао;TQBR;stock
+SNGS;Сургнфгз;TQBR;stock
+NLMK;НЛМК ао;TQBR;stock
+TCSG;TCS-гдр;TQBR;stock
+OZON;OZON-адр;TQBR;stock
+SGZH;Сегежа;TQBR;stock
+BSPB;БСП ао;TQBR;stock
+RUAL;РУСАЛ ао;TQBR;stock
+RASP;Распадская;TQBR;stock
+POLY;Polymetal;TQBR;stock
+PIKK;ПИК ао;TQBR;stock
+CBOM;МКБ ао;TQBR;stock
+MOEX;МосБиржа;TQBR;stock
+MTLR;Мечел ао;TQBR;stock
+RSTI;Россети ао;TQBR;stock
+SMLT;Самолет ао;TQBR;stock
+TRMK;ТМК ао;TQBR;stock
+VKCO;VK-гдр;TQBR;stock
+BANEP;Башнефт ап;TQBR;stock
+RTKM;Ростел -ао;TQBR;stock
+SIBN;Газпрнефть;TQBR;stock
+TATNP;Татнфт 3ап;TQBR;stock
+BELU;Белуга ао;TQBR;stock
+MTLRP;Мечел ап;TQBR;stock
+AGRO;AGRO-гдр;TQBR;stock
+AFLT;Аэрофлот;TQBR;stock
+DSKY;ДетскийМир;TQBR;stock
+OGKB;ОГК-2 ао;TQBR;stock
+TRNFP;Транснф ап;TQBR;stock
+UPRO;Юнипро ао;TQBR;stock
+ENPG;ЭН+ГРУП ао;TQBR;stock
+FIVE;FIVE-гдр;TQBR;stock
+HYDR;РусГидро;TQBR;stock
+LSRG;ЛСР ао;TQBR;stock
+FLOT;Совкомфлот;TQBR;stock
+SPBE;СПБ Биржа;TQBR;stock
+LSNGP;РСетиЛЭ-п;TQBR;stock
+FEES;ФСК ЕЭС ао;TQBR;stock
+LIFE;iФармсинтз;TQBR;stock
+FESH;ДВМП ао;TQBR;stock
+RTKMP;Ростел -ап;TQBR;stock
+QIWI;iQIWI;TQBR;stock
+GLTR;GLTR-гдр;TQBR;stock
+MVID;М.видео;TQBR;stock
+SELG;Селигдар;TQBR;stock
+KMAZ;КАМАЗ;TQBR;stock
+RNFT;РуссНфт ао;TQBR;stock
+VSMO;ВСМПО-АВСМ;TQBR;stock
+TGKA;ТГК-1;TQBR;stock
+POSI;iПозитив;TQBR;stock
+SFIN;ЭсЭфАй ао;TQBR;stock
+SFTL;iSFTL-гдр;TQBR;stock
+AMEZ;АшинскийМЗ;TQBR;stock
+INGR;ИНГРАД ао;TQBR;stock
+MSNG;МосЭнерго;TQBR;stock
+MDMG;MDMG-гдр;TQBR;stock
+NMTP;НМТП ао;TQBR;stock
+KAZT;Куйбазот;TQBR;stock
+NKNCP;НКНХ ап;TQBR;stock
+BANE;Башнефт ао;TQBR;stock
+LNZL;Лензолото;TQBR;stock
+ENRU;ЭнелРос ао;TQBR;stock
+FIXP;FIXP-гдр;TQBR;stock
+GCHE;ЧеркизГ-ао;TQBR;stock
+ISKJ;iИСКЧ ао;TQBR;stock
+BSPBP;БСП ап;TQBR;stock
+MRKP;РСетиЦП ао;TQBR;stock
+KZOSP;ОргСинт ап;TQBR;stock
+AQUA;РусАква ао;TQBR;stock
+UTAR;ЮТэйр ао;TQBR;stock
+ETLN;ETLN-гдр;TQBR;stock
+UNAC;iАвиастКао;TQBR;stock
+LNZLP;Лензол. ап;TQBR;stock
+VLHZ;ВХЗ-ао;TQBR;stock
+KZOS;ОргСинт ао;TQBR;stock
+CIAN;CIAN-адр;TQBR;stock
+MSRS;РСетиМР ао;TQBR;stock
+APTK;Аптеки36и6;TQBR;stock
+RSTIP;Россети ап;TQBR;stock
+SVET;Светофор;TQBR;stock
+ABRD;АбрауДюрсо;TQBR;stock
+MRKK;Россети СК;TQBR;stock
+MRKC;РоссЦентр;TQBR;stock
+CHMK;ЧМК ао;TQBR;stock
+VRSB;ТНСэнВорон;TQBR;stock
+KAZTP;Куйбазот-п;TQBR;stock
+RUGR;Русгрэйн;TQBR;stock
+LENT;Лента ао;TQBR;stock
+ROLO;Русолово;TQBR;stock
+UCSS;ОКС ао;TQBR;stock
+RENI;Ренессанс;TQBR;stock
+KRKNP;СаратНПЗ-п;TQBR;stock
+VRSBP;ТНСэнВор-п;TQBR;stock
+MRKZ;РСетиСЗ ао;TQBR;stock
+GEMC;GEMC-гдр;TQBR;stock
+MRKU;МРСК Ур;TQBR;stock
+UKUZ;ЮжКузб. ао;TQBR;stock
+LSNG;РСетиЛЭ;TQBR;stock
+NKNC;НКНХ ао;TQBR;stock
+CNTLP;Телеграф-п;TQBR;stock
+RBCM;РБК ао;TQBR;stock
+TTLK;Таттел. ао;TQBR;stock
+CNTL;Телеграф;TQBR;stock
+RKKE;ЭнергияРКК;TQBR;stock
+GTRK;ГТМ ао;TQBR;stock
+OKEY;OKEY-гдр;TQBR;stock
+SARE;СаратЭн-ао;TQBR;stock
+YKENP;Якутскэн-п;TQBR;stock
+HHRU;iHHRU-адр;TQBR;stock
+MGNZ;СМЗ-ао;TQBR;stock
+TUZA;ТЗА ао;TQBR;stock
+MRKV;РсетВол ао;TQBR;stock
+NKHP;НКХП ао;TQBR;stock
+MGTSP;МГТС-4ап;TQBR;stock
+DVEC;ДЭК ао;TQBR;stock
+CHGZ;РН-ЗапСиб;TQBR;stock
+UNKL;ЮУНК ао;TQBR;stock
+KGKCP;КурганГКап;TQBR;stock
+YAKG;ЯТЭК ао;TQBR;stock
+VEON-RX;VEON;TQBR;stock
+NSVZ;iНаукаСвяз;TQBR;stock
+HIMCP;Химпром ап;TQBR;stock
+SVAV;СОЛЛЕРС;TQBR;stock
+MISBP;ТНСэМаЭл-п;TQBR;stock
+MSTT;Мостотрест;TQBR;stock
+USBN;УралСиб ао;TQBR;stock
+BRZL;БурЗолото;TQBR;stock
+TGKBP;ТГК-2 ап;TQBR;stock
+TGKB;ТГК-2;TQBR;stock
+GAZA;ГАЗ ао;TQBR;stock
+PMSBP;ПермьЭнС-п;TQBR;stock
+KGKC;КурганГКао;TQBR;stock
+PMSB;ПермьЭнСб;TQBR;stock
+VJGZ;Варьеган;TQBR;stock
+RGSS;РГС СК ао;TQBR;stock
+KOGK;КоршГОК ао;TQBR;stock
+KRSB;Красэсб ао;TQBR;stock
+NFAZ;НЕФАЗ;TQBR;stock
+BLNG;Белон ао;TQBR;stock
+IGSTP;Ижсталь ап;TQBR;stock
+YKEN;Якутскэнрг;TQBR;stock
+GEMA;iММЦБ ао;TQBR;stock
+STSBP;СтаврЭнСбп;TQBR;stock
+KUZB;КузнецкийБ;TQBR;stock
+KLSB;КалужскСК;TQBR;stock
+STSB;СтаврЭнСб;TQBR;stock
+MRKY;РоссЮг ао;TQBR;stock
+WTCM;ЦМТ ао;TQBR;stock
+RDRB;РДБанк ао;TQBR;stock
+ZILL;ЗИЛ ао;TQBR;stock
+TGKD;Квадра;TQBR;stock
+TORS;ТРК ао;TQBR;stock
+BISVP;БашИнСв ап;TQBR;stock
+VJGZP;Варьеган-п;TQBR;stock
+RZSB;РязЭнСб;TQBR;stock
+MRSB;МордЭнСб;TQBR;stock
+KMTZ;КосогМЗ ао;TQBR;stock
+ROST;РОСИНТЕРао;TQBR;stock
+RTSBP;ТНСэнРст-п;TQBR;stock
+URKZ;УрКузница;TQBR;stock
+TASBP;ТамбЭнСб-п;TQBR;stock
+ZVEZ;ЗВЕЗДА ао;TQBR;stock
+RTSB;ТНСэнРст;TQBR;stock
+SLEN;Сахэнер ао;TQBR;stock
+HMSG;HMSG-гдр;TQBR;stock
+DIOD;ЗаводДИОД;TQBR;stock
+RUSI;ИКРУСС-ИНВ;TQBR;stock
+NKSH;Нижкамшина;TQBR;stock
+IGST;Ижсталь2ао;TQBR;stock
+TGKN;ТГК-14;TQBR;stock
+KROTP;КрасОкт-1п;TQBR;stock
+SAGO;СамарЭн-ао;TQBR;stock
+TGKDP;Квадра-п;TQBR;stock
+AVAN;Авангрд-ао;TQBR;stock
+OMZZP;ОМЗ-ап;TQBR;stock
+LVHK;Левенгук;TQBR;stock
+CHKZ;ЧКПЗ ао;TQBR;stock
+WTCMP;ЦМТ ап;TQBR;stock
+KBSB;ТНСэКубань;TQBR;stock
+MRKS;РсетСиб ао;TQBR;stock
+MISB;ТНСэнМарЭл;TQBR;stock
+KRKN;СаратНПЗ;TQBR;stock
+NAUK;iНПОНаука;TQBR;stock
+ROSB;Росбанк ао;TQBR;stock
+KROT;КрасОкт-ао;TQBR;stock
+PRMB;Приморье;TQBR;stock
+GAZAP;ГАЗ ап;TQBR;stock
+VSYD;ВыбСудЗ ао;TQBR;stock
+KRKOP;ТКЗКК ап;TQBR;stock
+KMEZ;КМЗ;TQBR;stock
+ARSA;Арсагера;TQBR;stock
+SAGOP;СамарЭн-ап;TQBR;stock
+KUBE;РСетКубань;TQBR;stock
+KRSBP;Красэсб ап;TQBR;stock
+MAGEP;МагадЭн ап;TQBR;stock
+VGSBP;ВолгЭнСб-п;TQBR;stock
+NNSB;ТНСэнНН ао;TQBR;stock
+JNOSP;Слав-ЯНОСп;TQBR;stock
+DZRD;ДонскЗР;TQBR;stock
+TASB;ТамбЭнСб;TQBR;stock
+SAREP;СаратЭн-ап;TQBR;stock
+EELT;ЕвроЭлтех;TQBR;stock
+LPSB;ЛЭСК ао;TQBR;stock
+DZRDP;ДонскЗР п;TQBR;stock
+TORSP;ТРК ап;TQBR;stock
+JNOS;Славн-ЯНОС;TQBR;stock
+TNSE;ТНСэнрг ао;TQBR;stock
+ELTZ;Электрцинк;TQBR;stock
+ASSB;АстрЭнСб;TQBR;stock
+NNSBP;ТНСэнНН ап;TQBR;stock
+VSYDP;ВыбСудЗ ап;TQBR;stock
+MAGE;МагадЭн ао;TQBR;stock
+MGTS;МГТС-5ао;TQBR;stock
+PAZA;ПавлАвт ао;TQBR;stock
+KTSB;КСБ ао;TQBR;stock
+VGSB;ВолгЭнСб;TQBR;stock
+MFGSP;Мегион-ап;TQBR;stock
+YRSB;ТНСэнЯр;TQBR;stock
+KCHE;КамчатЭ ао;TQBR;stock
+YRSBP;ТНСэнЯр-п;TQBR;stock
+HIMC;Химпром ао;TQBR;stock
+NPOF;Физика ао;TQBR;stock
+URKA;Уркалий-ао;TQBR;stock
+TRFM;ТрансФ ао;TQBR;stock
+TRCN;ТрансК ао;TQBR;stock
+KRKO;ТКЗКК ао;TQBR;stock
+MORI;Морион ао;TQBR;stock
+MFGS;Мегион-ао;TQBR;stock
+MFON;МегаФон ао;TQBR;stock
+KSGR;Кокс ао;TQBR;stock
+KCHEP;КамчатЭ ап;TQBR;stock
+KTSBP;КСБ ап;TQBR;stock
+KZMS;КЗМС ао;TQBR;stock
+IRGZ;ИркЭнерго;TQBR;stock
+DERZP;Держава ап;TQBR;stock
+RTGZ;ГазпРнД ао;TQBR;stock
+GTSS;ГЕОТЕК ао;TQBR;stock
+GAZC;ГАЗКОН-ао;TQBR;stock
+GAZS;ГАЗ-сервис;TQBR;stock
+GAZT;ГАЗ-Тек ао;TQBR;stock
+BISV;БашИнСв ао;TQBR;stock
+ACKO;АСКО ао;TQBR;stock
+POGR;Petropavl;TQBR;stock
+EM44;EM44-гдр;TQBR;stock
+SiU2;Si-9.22;SPBFUT;futures
+BRU2;BR-9.22;SPBFUT;futures
+BRV2;BR-10.22;SPBFUT;futures
+NGQ2;NG-8.22;SPBFUT;futures
+NGU2;NG-9.22;SPBFUT;futures
+EuU2;Eu-9.22;SPBFUT;futures
+RIU2;RTS-9.22;SPBFUT;futures
+EDU2;ED-9.22;SPBFUT;futures
+GDU2;GOLD-9.22;SPBFUT;futures
+SFU2;SPYF-9.22;SPBFUT;futures
+SVU2;SILV-9.22;SPBFUT;futures
+RMU2;RTSM-9.22;SPBFUT;futures
+VBU2;VTBR-9.22;SPBFUT;futures
+SRU2;SBRF-9.22;SPBFUT;futures
+GZU2;GAZR-9.22;SPBFUT;futures
+CRU2;CNY-9.22;SPBFUT;futures
+USD000UTSTOM;USDRUB_TOM;CETS;currency
+USD000000TOD;USDRUB_TOD;CETS;currency
+EUR_RUB__TOM;EURRUB_TOM;CETS;currency
+EUR_RUB__TOD;EURRUB_TOD;CETS;currency
+CNYRUB_TOM;CNYRUB_TOM;CETS;currency
+CNY000000TOD;CNYRUB_TOD;CETS;currency
+SiZ2;Si-9.22;SPBFUT;futures
+BRZ2;BR-9.22;SPBFUT;futures
+BRV2;BR-10.22;SPBFUT;futures
+BRX2;BR-11.22;SPBFUT;futures
+NGQ2;NG-8.22;SPBFUT;futures
+NGZ2;NG-9.22;SPBFUT;futures
+NGV2;NG-10.22;SPBFUT;futures
+EuZ2;Eu-9.22;SPBFUT;futures
+RIZ2;RTS-9.22;SPBFUT;futures
+EDZ2;ED-9.22;SPBFUT;futures
+GDZ2;GOLD-9.22;SPBFUT;futures
+SFZ2;SPYF-9.22;SPBFUT;futures
+SVZ2;SILV-9.22;SPBFUT;futures
+RMZ2;RTSM-9.22;SPBFUT;futures
+VBZ2;VTBR-9.22;SPBFUT;futures
+SRZ2;SBRF-9.22;SPBFUT;futures
+GZZ2;GAZR-9.22;SPBFUT;futures
+CRZ2;CNY-9.22;SPBFUT;futures
