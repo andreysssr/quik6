@@ -3,56 +3,56 @@
 isRun = true
 
 function OnInit()
-    -- определяем базовый путь проекта
+    -- РѕРїСЂРµРґРµР»СЏРµРј Р±Р°Р·РѕРІС‹Р№ РїСѓС‚СЊ РїСЂРѕРµРєС‚Р°
     basePath = string.gsub(getScriptPath(), "public", "");
 end
 
 function main()
-    -- название директории приложения
+    -- РЅР°Р·РІР°РЅРёРµ РґРёСЂРµРєС‚РѕСЂРёРё РїСЂРёР»РѕР¶РµРЅРёСЏ
     appDir = "tradePanel\\"
 
-    -- подключаем стартовый файл
+    -- РїРѕРґРєР»СЋС‡Р°РµРј СЃС‚Р°СЂС‚РѕРІС‹Р№ С„Р°Р№Р»
     dofile(basePath .. "bootstrap\\bootstrap.lua")
 
-    -- создание приложения
+    -- СЃРѕР·РґР°РЅРёРµ РїСЂРёР»РѕР¶РµРЅРёСЏ
     app = Container:get("Application")
 
-    -- подключение файла с middleware
+    -- РїРѕРґРєР»СЋС‡РµРЅРёРµ С„Р°Р№Р»Р° СЃ middleware
     Autoload:get("configApp_middleware")
 
-    -- подключение файла с подписчиками
+    -- РїРѕРґРєР»СЋС‡РµРЅРёРµ С„Р°Р№Р»Р° СЃ РїРѕРґРїРёСЃС‡РёРєР°РјРё
     Autoload:get("configApp_listeners")
     Autoload:get("configApp_listenersKey")
 
-    -- запуск приложения или app:runDev()
+    -- Р·Р°РїСѓСЃРє РїСЂРёР»РѕР¶РµРЅРёСЏ РёР»Рё app:runDev()
     app:run()
 end
 
--- функция вызывается перед закрытием терминала QUIK.
+-- С„СѓРЅРєС†РёСЏ РІС‹Р·С‹РІР°РµС‚СЃСЏ РїРµСЂРµРґ Р·Р°РєСЂС‹С‚РёРµРј С‚РµСЂРјРёРЅР°Р»Р° QUIK.
 function OnClose()
-    -- остановка приложения
+    -- РѕСЃС‚Р°РЅРѕРІРєР° РїСЂРёР»РѕР¶РµРЅРёСЏ
     isRun = false
 end;
 
--- остановка работы панели
+-- РѕСЃС‚Р°РЅРѕРІРєР° СЂР°Р±РѕС‚С‹ РїР°РЅРµР»Рё
 function OnStop()
-    -- остановка приложения
+    -- РѕСЃС‚Р°РЅРѕРІРєР° РїСЂРёР»РѕР¶РµРЅРёСЏ
     isRun = false
 
-    -- по умолчанию таймаут задается в 3 секунды
+    -- РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ С‚Р°Р№РјР°СѓС‚ Р·Р°РґР°РµС‚СЃСЏ РІ 3 СЃРµРєСѓРЅРґС‹
     return 3000
 end
 
--- вызывается при выставлении, исполнении, удалении
+-- РІС‹Р·С‹РІР°РµС‚СЃСЏ РїСЂРё РІС‹СЃС‚Р°РІР»РµРЅРёРё, РёСЃРїРѕР»РЅРµРЅРёРё, СѓРґР°Р»РµРЅРёРё
 function OnOrder(order)
-    -- Заявка активна/удалена/исполнена (posted/deleted/executed)
+    -- Р—Р°СЏРІРєР° Р°РєС‚РёРІРЅР°/СѓРґР°Р»РµРЅР°/РёСЃРїРѕР»РЅРµРЅР° (posted/deleted/executed)
     local _status = ""
 
-    -- заявка активна
+    -- Р·Р°СЏРІРєР° Р°РєС‚РёРІРЅР°
     if checkBit(order.flags, 0) then
         _status = "posted"
     else
-        -- заявка не активна (удалена или исполнена)
+        -- Р·Р°СЏРІРєР° РЅРµ Р°РєС‚РёРІРЅР° (СѓРґР°Р»РµРЅР° РёР»Рё РёСЃРїРѕР»РЅРµРЅР°)
         if checkBit(order.flags, 1) then
             _status = "deleted"
         else
@@ -60,7 +60,7 @@ function OnOrder(order)
         end
     end
 
-    -- заявка на продажу/покупку (buy/sell)
+    -- Р·Р°СЏРІРєР° РЅР° РїСЂРѕРґР°Р¶Сѓ/РїРѕРєСѓРїРєСѓ (buy/sell)
     local _operation = ""
 
     if checkBit(order.flags, 2) then
@@ -69,7 +69,7 @@ function OnOrder(order)
         _operation = "buy"
     end
 
-    -- заявка лимитная или рыночная (limit/market)
+    -- Р·Р°СЏРІРєР° Р»РёРјРёС‚РЅР°СЏ РёР»Рё СЂС‹РЅРѕС‡РЅР°СЏ (limit/market)
     local _typeTrade = ""
 
     if checkBit(order.flags, 3) then
@@ -81,18 +81,18 @@ function OnOrder(order)
     local _order = {
         typeSending = "order",
 
-        status = _status, -- статус заявки (posted/deleted/executed)
-        operation = _operation, -- направление операции (buy/sell)
-        typeTrade = _typeTrade, -- тип заявки (limit/market)
+        status = _status, -- СЃС‚Р°С‚СѓСЃ Р·Р°СЏРІРєРё (posted/deleted/executed)
+        operation = _operation, -- РЅР°РїСЂР°РІР»РµРЅРёРµ РѕРїРµСЂР°С†РёРё (buy/sell)
+        typeTrade = _typeTrade, -- С‚РёРї Р·Р°СЏРІРєРё (limit/market)
 
-        sec_code = order.sec_code, -- код бумаги - тикер
-        class_code = order.class_code, -- класс бумаги
+        sec_code = order.sec_code, -- РєРѕРґ Р±СѓРјР°РіРё - С‚РёРєРµСЂ
+        class_code = order.class_code, -- РєР»Р°СЃСЃ Р±СѓРјР°РіРё
 
-        trans_id = order.trans_id, -- номер транзакции
-        order_num = order.order_num, -- номер заявки
+        trans_id = order.trans_id, -- РЅРѕРјРµСЂ С‚СЂР°РЅР·Р°РєС†РёРё
+        order_num = order.order_num, -- РЅРѕРјРµСЂ Р·Р°СЏРІРєРё
 
-        price = order.price, -- цена
-        qty = order.qty, -- количество лотов
+        price = order.price, -- С†РµРЅР°
+        qty = order.qty, -- РєРѕР»РёС‡РµСЃС‚РІРѕ Р»РѕС‚РѕРІ
 
         firmid = order.firmid,
     }
@@ -100,16 +100,16 @@ function OnOrder(order)
     app:enQueue("order", _order)
 end
 
--- вызывается при выставлении, исполнении, удалении
+-- РІС‹Р·С‹РІР°РµС‚СЃСЏ РїСЂРё РІС‹СЃС‚Р°РІР»РµРЅРёРё, РёСЃРїРѕР»РЅРµРЅРёРё, СѓРґР°Р»РµРЅРёРё
 function OnStopOrder(stopOrder)
-    -- стоп-заявка активна/удалена/исполнена (posted/deleted/executed)
+    -- СЃС‚РѕРї-Р·Р°СЏРІРєР° Р°РєС‚РёРІРЅР°/СѓРґР°Р»РµРЅР°/РёСЃРїРѕР»РЅРµРЅР° (posted/deleted/executed)
     local _status = ""
 
-    -- заявка активна
+    -- Р·Р°СЏРІРєР° Р°РєС‚РёРІРЅР°
     if checkBit(stopOrder.flags, 0) then
         _status = "posted"
     else
-        -- заявка не активна (удалении или исполнена)
+        -- Р·Р°СЏРІРєР° РЅРµ Р°РєС‚РёРІРЅР° (СѓРґР°Р»РµРЅРёРё РёР»Рё РёСЃРїРѕР»РЅРµРЅР°)
         if checkBit(stopOrder.flags, 1) then
             _status = "deleted"
         else
@@ -117,7 +117,7 @@ function OnStopOrder(stopOrder)
         end
     end
 
-    -- заявка на продажу/покупку (buy/sell)
+    -- Р·Р°СЏРІРєР° РЅР° РїСЂРѕРґР°Р¶Сѓ/РїРѕРєСѓРїРєСѓ (buy/sell)
     local _operation = ""
 
     if checkBit(stopOrder.flags, 2) then
@@ -126,7 +126,7 @@ function OnStopOrder(stopOrder)
         _operation = "buy"
     end
 
-    -- заявка лимитная или рыночная (limit/market)
+    -- Р·Р°СЏРІРєР° Р»РёРјРёС‚РЅР°СЏ РёР»Рё СЂС‹РЅРѕС‡РЅР°СЏ (limit/market)
     local _typeTrade = ""
 
     if checkBit(stopOrder.flags, 3) then
@@ -135,7 +135,7 @@ function OnStopOrder(stopOrder)
         _typeTrade = "market"
     end
 
-    -- тип стоп-ордера
+    -- С‚РёРї СЃС‚РѕРї-РѕСЂРґРµСЂР°
     local _typeStopOrder = "stopOne"
 
     if stopOrder.stop_order_type == "3" or stopOrder.stop_order_type == 3 then
@@ -145,44 +145,44 @@ function OnStopOrder(stopOrder)
     local _stopOrder = {
         typeSending = "stopOrder",
 
-        status = _status, -- статус заявки (posted/deleted/executed)
-        operation = _operation, -- направление операции (buy/sell)
-        typeTrade = _typeTrade, -- тип заявки (limit/market)
+        status = _status, -- СЃС‚Р°С‚СѓСЃ Р·Р°СЏРІРєРё (posted/deleted/executed)
+        operation = _operation, -- РЅР°РїСЂР°РІР»РµРЅРёРµ РѕРїРµСЂР°С†РёРё (buy/sell)
+        typeTrade = _typeTrade, -- С‚РёРї Р·Р°СЏРІРєРё (limit/market)
 
-        sec_code = stopOrder.sec_code, -- код бумаги - тикер
-        class_code = stopOrder.class_code, -- класс бумаги
+        sec_code = stopOrder.sec_code, -- РєРѕРґ Р±СѓРјР°РіРё - С‚РёРєРµСЂ
+        class_code = stopOrder.class_code, -- РєР»Р°СЃСЃ Р±СѓРјР°РіРё
 
-        trans_id = stopOrder.trans_id, -- номер транзакции
-        order_num = stopOrder.order_num, -- номер заявки
+        trans_id = stopOrder.trans_id, -- РЅРѕРјРµСЂ С‚СЂР°РЅР·Р°РєС†РёРё
+        order_num = stopOrder.order_num, -- РЅРѕРјРµСЂ Р·Р°СЏРІРєРё
 
-        price = stopOrder.price, -- цена
-        qty = stopOrder.qty, -- количество лотов
-        stopPrice = stopOrder.condition_price, -- стоп цена
+        price = stopOrder.price, -- С†РµРЅР°
+        qty = stopOrder.qty, -- РєРѕР»РёС‡РµСЃС‚РІРѕ Р»РѕС‚РѕРІ
+        stopPrice = stopOrder.condition_price, -- СЃС‚РѕРї С†РµРЅР°
 
-        -- связанная заявка - номер связанной заявки
+        -- СЃРІСЏР·Р°РЅРЅР°СЏ Р·Р°СЏРІРєР° - РЅРѕРјРµСЂ СЃРІСЏР·Р°РЅРЅРѕР№ Р·Р°СЏРІРєРё
         link_order_num = stopOrder.co_order_num,
         link_price = stopOrder.co_order_price,
 
-        -- Вид стоп заявки
-        -- "1" – стоп-лимит,
-        -- "2" – условие по другому инструменту,
-        -- "3" – со связанной заявкой,
+        -- Р’РёРґ СЃС‚РѕРї Р·Р°СЏРІРєРё
+        -- "1" вЂ“ СЃС‚РѕРї-Р»РёРјРёС‚,
+        -- "2" вЂ“ СѓСЃР»РѕРІРёРµ РїРѕ РґСЂСѓРіРѕРјСѓ РёРЅСЃС‚СЂСѓРјРµРЅС‚Сѓ,
+        -- "3" вЂ“ СЃРѕ СЃРІСЏР·Р°РЅРЅРѕР№ Р·Р°СЏРІРєРѕР№,
         typeStopOrder = _typeStopOrder
     }
 
     app:enQueue("stopOrder", _stopOrder)
 end
 
--- Функция вызывается терминалом QUIK при получении сделки (Таблица сделок).
+-- Р¤СѓРЅРєС†РёСЏ РІС‹Р·С‹РІР°РµС‚СЃСЏ С‚РµСЂРјРёРЅР°Р»РѕРј QUIK РїСЂРё РїРѕР»СѓС‡РµРЅРёРё СЃРґРµР»РєРё (РўР°Р±Р»РёС†Р° СЃРґРµР»РѕРє).
 function OnTrade(trade)
-    -- сделка активна/удалена/исполнена (posted/deleted/executed)
+    -- СЃРґРµР»РєР° Р°РєС‚РёРІРЅР°/СѓРґР°Р»РµРЅР°/РёСЃРїРѕР»РЅРµРЅР° (posted/deleted/executed)
     local _status = ""
 
-    -- заявка активна
+    -- Р·Р°СЏРІРєР° Р°РєС‚РёРІРЅР°
     if checkBit(trade.flags, 0) then
         _status = "posted"
     else
-        -- заявка не активна (удалена или исполнена)
+        -- Р·Р°СЏРІРєР° РЅРµ Р°РєС‚РёРІРЅР° (СѓРґР°Р»РµРЅР° РёР»Рё РёСЃРїРѕР»РЅРµРЅР°)
         if checkBit(trade.flags, 1) then
             _status = "deleted"
         else
@@ -190,7 +190,7 @@ function OnTrade(trade)
         end
     end
 
-    -- заявка на продажу/покупку (buy/sell)
+    -- Р·Р°СЏРІРєР° РЅР° РїСЂРѕРґР°Р¶Сѓ/РїРѕРєСѓРїРєСѓ (buy/sell)
     local _operation = ""
 
     if checkBit(trade.flags, 2) then
@@ -199,7 +199,7 @@ function OnTrade(trade)
         _operation = "buy"
     end
 
-    -- заявка лимитная или рыночная (limit/market)
+    -- Р·Р°СЏРІРєР° Р»РёРјРёС‚РЅР°СЏ РёР»Рё СЂС‹РЅРѕС‡РЅР°СЏ (limit/market)
     local _typeTrade = ""
 
     if checkBit(trade.flags, 3) then
@@ -209,36 +209,36 @@ function OnTrade(trade)
     end
 
     local _trade = {
-        status = _status, -- статус заявки (posted/deleted/executed)
-        operation = _operation, -- направление операции (buy/sell)
-        typeTrade = _typeTrade, -- тип заявки (limit/market)
+        status = _status, -- СЃС‚Р°С‚СѓСЃ Р·Р°СЏРІРєРё (posted/deleted/executed)
+        operation = _operation, -- РЅР°РїСЂР°РІР»РµРЅРёРµ РѕРїРµСЂР°С†РёРё (buy/sell)
+        typeTrade = _typeTrade, -- С‚РёРї Р·Р°СЏРІРєРё (limit/market)
 
-        sec_code = trade.sec_code, -- код бумаги - тикер
-        class_code = trade.class_code, -- класс бумаги
+        sec_code = trade.sec_code, -- РєРѕРґ Р±СѓРјР°РіРё - С‚РёРєРµСЂ
+        class_code = trade.class_code, -- РєР»Р°СЃСЃ Р±СѓРјР°РіРё
 
-        trans_id = trade.trans_id, -- номер транзакции
-        order_num = trade.order_num, -- номер заявки
+        trans_id = trade.trans_id, -- РЅРѕРјРµСЂ С‚СЂР°РЅР·Р°РєС†РёРё
+        order_num = trade.order_num, -- РЅРѕРјРµСЂ Р·Р°СЏРІРєРё
 
-        price = trade.price, -- цена
-        qty = trade.qty, -- количество лотов
+        price = trade.price, -- С†РµРЅР°
+        qty = trade.qty, -- РєРѕР»РёС‡РµСЃС‚РІРѕ Р»РѕС‚РѕРІ
     }
 
     app:enQueue("trade", _trade)
 end
 
--- Функция вызывается терминалом QUIK при получении ответа на транзакцию пользователя (Таблица транзакций).
+-- Р¤СѓРЅРєС†РёСЏ РІС‹Р·С‹РІР°РµС‚СЃСЏ С‚РµСЂРјРёРЅР°Р»РѕРј QUIK РїСЂРё РїРѕР»СѓС‡РµРЅРёРё РѕС‚РІРµС‚Р° РЅР° С‚СЂР°РЅР·Р°РєС†РёСЋ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ (РўР°Р±Р»РёС†Р° С‚СЂР°РЅР·Р°РєС†РёР№).
 function OnTransReply(trans_reply)
     local _transReply = {
         trans_status = trans_reply.status,
 
-        sec_code = trans_reply.sec_code, -- код бумаги - тикер
-        class_code = trans_reply.class_code, -- класс бумаги
+        sec_code = trans_reply.sec_code, -- РєРѕРґ Р±СѓРјР°РіРё - С‚РёРєРµСЂ
+        class_code = trans_reply.class_code, -- РєР»Р°СЃСЃ Р±СѓРјР°РіРё
 
-        trans_id = trans_reply.trans_id, -- номер транзакции
-        order_num = trans_reply.order_num, -- номер заявки
+        trans_id = trans_reply.trans_id, -- РЅРѕРјРµСЂ С‚СЂР°РЅР·Р°РєС†РёРё
+        order_num = trans_reply.order_num, -- РЅРѕРјРµСЂ Р·Р°СЏРІРєРё
 
-        price = trans_reply.price, -- цена
-        qty = trans_reply.qty, -- количество лотов
+        price = trans_reply.price, -- С†РµРЅР°
+        qty = trans_reply.qty, -- РєРѕР»РёС‡РµСЃС‚РІРѕ Р»РѕС‚РѕРІ
     }
 
     app:enQueue("transReply", _transReply)

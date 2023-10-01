@@ -75,11 +75,11 @@ local UseCase = {
         return result
     end,
 
-    -- удаляет все заявки и стоп-заявки по инструменту
+    -- СѓРґР°Р»СЏРµС‚ РІСЃРµ Р·Р°СЏРІРєРё Рё СЃС‚РѕРї-Р·Р°СЏРІРєРё РїРѕ РёРЅСЃС‚СЂСѓРјРµРЅС‚Сѓ
     delete = function(self, id)
         self.validator:checkId(id)
 
-        -- получаем класс инструмента
+        -- РїРѕР»СѓС‡Р°РµРј РєР»Р°СЃСЃ РёРЅСЃС‚СЂСѓРјРµРЅС‚Р°
         local class = self.storage:getClassToId(id)
 
         local orders = self:find("orders", id, class)

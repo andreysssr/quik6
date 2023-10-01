@@ -40,7 +40,7 @@ local EventHandler = {
     --
     showAll = function(self)
         for i = 1, #self.arrayStock do
-            -- добавляем на график уровни и линии
+            -- РґРѕР±Р°РІР»СЏРµРј РЅР° РіСЂР°С„РёРє СѓСЂРѕРІРЅРё Рё Р»РёРЅРёРё
             self.levelsToChart:addLevelToId(self.arrayStock[i])
         end
     end,
@@ -63,14 +63,14 @@ local EventHandler = {
         end
     end,
 
-    -- перерисовка (сдвиг линий в право)
+    -- РїРµСЂРµСЂРёСЃРѕРІРєР° (СЃРґРІРёРі Р»РёРЅРёР№ РІ РїСЂР°РІРѕ)
     updateLocation = function(self)
-        -- таймер
+        -- С‚Р°Р№РјРµСЂ
         if self.timer:allows(self.timerName) and self.status then
-            -- обновление 1 раз в установленное время
+            -- РѕР±РЅРѕРІР»РµРЅРёРµ 1 СЂР°Р· РІ СѓСЃС‚Р°РЅРѕРІР»РµРЅРЅРѕРµ РІСЂРµРјСЏ
             self.timer:set(self.timerName, self.timerPause)
 
-            -- обновить уровни
+            -- РѕР±РЅРѕРІРёС‚СЊ СѓСЂРѕРІРЅРё
             self.levelsToChart:updateLocation()
         end
     end,

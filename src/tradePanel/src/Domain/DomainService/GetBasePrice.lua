@@ -14,7 +14,7 @@ local DomainService = {
         return self
     end,
 
-    -- возвращает текущие данные basePrice для инструмента
+    -- РІРѕР·РІСЂР°С‰Р°РµС‚ С‚РµРєСѓС‰РёРµ РґР°РЅРЅС‹Рµ basePrice РґР»СЏ РёРЅСЃС‚СЂСѓРјРµРЅС‚Р°
     getBasePrice = function(self, id)
         return self.entityService:getBasePrice(id)
     end,

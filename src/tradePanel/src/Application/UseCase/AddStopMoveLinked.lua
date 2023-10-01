@@ -53,28 +53,28 @@ local UseCase = {
     addStop = function(self, idStock, idParams)
         self.validator:checkId(idStock)
 
-        -- порядковый номер для транзакции
+        -- РїРѕСЂСЏРґРєРѕРІС‹Р№ РЅРѕРјРµСЂ РґР»СЏ С‚СЂР°РЅР·Р°РєС†РёРё
         local idTransact = self.nextId:getId()
 
-        -- получаем параметры стопа
+        -- РїРѕР»СѓС‡Р°РµРј РїР°СЂР°РјРµС‚СЂС‹ СЃС‚РѕРїР°
         local stop = self.entityServiceTradeParams:getParamsStopMove(idStock, idParams)
 
-        -- устанавливаем направление для выставления стопа
+        -- СѓСЃС‚Р°РЅР°РІР»РёРІР°РµРј РЅР°РїСЂР°РІР»РµРЅРёРµ РґР»СЏ РІС‹СЃС‚Р°РІР»РµРЅРёСЏ СЃС‚РѕРїР°
         local operation = stop.operation
 
-        -- получаем установленный размер тейка
+        -- РїРѕР»СѓС‡Р°РµРј СѓСЃС‚Р°РЅРѕРІР»РµРЅРЅС‹Р№ СЂР°Р·РјРµСЂ С‚РµР№РєР°
         local takeSize = self.entityServiceStock:getTakeSize(idStock)
 
-        -- получаем параметры тейка
+        -- РїРѕР»СѓС‡Р°РµРј РїР°СЂР°РјРµС‚СЂС‹ С‚РµР№РєР°
         local take = self.entityServiceTradeParams:getParamsTake(idStock, idParams)
 
-        -- получаем цену тейка
+        -- РїРѕР»СѓС‡Р°РµРј С†РµРЅСѓ С‚РµР№РєР°
         local takePrice = take[takeSize]
 
-        -- получаем класс инструмента
+        -- РїРѕР»СѓС‡Р°РµРј РєР»Р°СЃСЃ РёРЅСЃС‚СЂСѓРјРµРЅС‚Р°
         local class = self.storage:getClassToId(idStock)
 
-        -- подготавливаем данные для транзакции
+        -- РїРѕРґРіРѕС‚Р°РІР»РёРІР°РµРј РґР°РЅРЅС‹Рµ РґР»СЏ С‚СЂР°РЅР·Р°РєС†РёРё
         if operation == "buy" then
 
             local stopOrder = {
@@ -93,10 +93,10 @@ local UseCase = {
                 linkedPrice = takePrice,
             }
 
-            -- отправляем транзакцию в диспетчер
+            -- РѕС‚РїСЂР°РІР»СЏРµРј С‚СЂР°РЅР·Р°РєС†РёСЋ РІ РґРёСЃРїРµС‚С‡РµСЂ
             self.dispatcher:StopOrderMarketBuyLink(stopOrder)
 
-            -- добавляем данные
+            -- РґРѕР±Р°РІР»СЏРµРј РґР°РЅРЅС‹Рµ
             self.entityServiceTransact:create(idTransact, {
                 idStock = idStock,
                 idParams = idTransact,
@@ -125,10 +125,10 @@ local UseCase = {
                 linkedPrice = take.price,
             }
 
-            -- отправляем транзакцию в диспетчер
+            -- РѕС‚РїСЂР°РІР»СЏРµРј С‚СЂР°РЅР·Р°РєС†РёСЋ РІ РґРёСЃРїРµС‚С‡РµСЂ
             self.dispatcher:StopOrderMarketSellLink(stopOrder)
 
-            -- добавляем данные
+            -- РґРѕР±Р°РІР»СЏРµРј РґР°РЅРЅС‹Рµ
             self.entityServiceTransact:create(idTransact, {
                 idStock = idStock,
                 idParams = idTransact,

@@ -1,4 +1,4 @@
---- EventHandler AddToPanelAlert - описание
+--- EventHandler AddToPanelAlert - РѕРїРёСЃР°РЅРёРµ
 
 local EventHandler = {
     --
@@ -13,10 +13,10 @@ local EventHandler = {
     --
     panelAlert = {},
 
-    -- номер строки = idStock
+    -- РЅРѕРјРµСЂ СЃС‚СЂРѕРєРё = idStock
     rowLinkId = {},
 
-    -- idStock = номер строки
+    -- idStock = РЅРѕРјРµСЂ СЃС‚СЂРѕРєРё
     idLinkRow = {},
 
     --
@@ -31,7 +31,7 @@ local EventHandler = {
         return self
     end,
 
-    -- подготавливаем массив с ключами idStock и в значении номер строки в торговой панели
+    -- РїРѕРґРіРѕС‚Р°РІР»РёРІР°РµРј РјР°СЃСЃРёРІ СЃ РєР»СЋС‡Р°РјРё idStock Рё РІ Р·РЅР°С‡РµРЅРёРё РЅРѕРјРµСЂ СЃС‚СЂРѕРєРё РІ С‚РѕСЂРіРѕРІРѕР№ РїР°РЅРµР»Рё
     prepareIdLinkRow = function(self)
         for row, idStock in pairs(self.rowLinkId) do
             self.idLinkRow[idStock] = row
@@ -47,13 +47,13 @@ local EventHandler = {
         return ""
     end,
 
-    -- добавить событие в панель Alert - открыта позиция
+    -- РґРѕР±Р°РІРёС‚СЊ СЃРѕР±С‹С‚РёРµ РІ РїР°РЅРµР»СЊ Alert - РѕС‚РєСЂС‹С‚Р° РїРѕР·РёС†РёСЏ
     openedPosition = function(self, event)
         local idStock = event:getParam("idStock")
         local name = self.storage:getNameToId(idStock)
         local operation = event:getParam("operation")
 
-        -- если заявка на шорт была выставлена но шорт по бумаге запрещён и сделки нет
+        -- РµСЃР»Рё Р·Р°СЏРІРєР° РЅР° С€РѕСЂС‚ Р±С‹Р»Р° РІС‹СЃС‚Р°РІР»РµРЅР° РЅРѕ С€РѕСЂС‚ РїРѕ Р±СѓРјР°РіРµ Р·Р°РїСЂРµС‰С‘РЅ Рё СЃРґРµР»РєРё РЅРµС‚
         if operation == "" then
             return
         end
@@ -61,7 +61,7 @@ local EventHandler = {
         local dto = {
             idStock = idStock,
             name = self:getNumRow(idStock) .. name,
-            message = "Открыта позиция",
+            message = "РћС‚РєСЂС‹С‚Р° РїРѕР·РёС†РёСЏ",
             color = "default"
         }
 
@@ -74,7 +74,7 @@ local EventHandler = {
         self.panelAlert:addAlert(dto)
     end,
 
-    -- добавить событие в панель Alert - открыта позиция
+    -- РґРѕР±Р°РІРёС‚СЊ СЃРѕР±С‹С‚РёРµ РІ РїР°РЅРµР»СЊ Alert - РѕС‚РєСЂС‹С‚Р° РїРѕР·РёС†РёСЏ
     closedPosition = function(self, event)
         local idStock = event:getParam("idStock")
         local name = self.storage:getNameToId(idStock)
@@ -82,7 +82,7 @@ local EventHandler = {
         local dto = {
             idStock = idStock,
             name = self:getNumRow(idStock) .. name,
-            message = "Закрыта позиция",
+            message = "Р—Р°РєСЂС‹С‚Р° РїРѕР·РёС†РёСЏ",
             color = "default"
         }
 

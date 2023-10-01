@@ -1,4 +1,4 @@
---- EventHandler ChangeConditionEntityStock - поменялся статус транзакции (состояние заявок)
+--- EventHandler ChangeConditionEntityStock - РїРѕРјРµРЅСЏР»СЃСЏ СЃС‚Р°С‚СѓСЃ С‚СЂР°РЅР·Р°РєС†РёРё (СЃРѕСЃС‚РѕСЏРЅРёРµ Р·Р°СЏРІРѕРє)
 
 local EventHandler = {
     --

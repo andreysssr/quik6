@@ -1,4 +1,4 @@
---- Queue - класс для работы с очередями
+--- Queue - РєР»Р°СЃСЃ РґР»СЏ СЂР°Р±РѕС‚С‹ СЃ РѕС‡РµСЂРµРґСЏРјРё
 
 local Queue = {
     --
@@ -15,7 +15,7 @@ local Queue = {
         return self
     end,
 
-    -- поместить значение в очередь
+    -- РїРѕРјРµСЃС‚РёС‚СЊ Р·РЅР°С‡РµРЅРёРµ РІ РѕС‡РµСЂРµРґСЊ
     enqueue = function(self, value)
         local index_num = self.last + 1;
 
@@ -24,7 +24,7 @@ local Queue = {
         self.last = index_num;
     end,
 
-    -- получить самое старое значение и удалить его из очереди
+    -- РїРѕР»СѓС‡РёС‚СЊ СЃР°РјРѕРµ СЃС‚Р°СЂРѕРµ Р·РЅР°С‡РµРЅРёРµ Рё СѓРґР°Р»РёС‚СЊ РµРіРѕ РёР· РѕС‡РµСЂРµРґРё
     dequeue = function(self)
         local index_num = self.first;
 
@@ -40,12 +40,12 @@ local Queue = {
         end
     end,
 
-    -- получить размер очереди
+    -- РїРѕР»СѓС‡РёС‚СЊ СЂР°Р·РјРµСЂ РѕС‡РµСЂРµРґРё
     size = function(self)
         return self.last - self.first + 1;
     end,
 
-    -- проверить пустая очередь или нет
+    -- РїСЂРѕРІРµСЂРёС‚СЊ РїСѓСЃС‚Р°СЏ РѕС‡РµСЂРµРґСЊ РёР»Рё РЅРµС‚
     isEmpty = function(self)
         if (self.last - self.first + 1 == 0) then
             return true;

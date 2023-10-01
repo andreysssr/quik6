@@ -18,70 +18,70 @@ local EntityService = {
         return self
     end,
 
-    -- проверка наличия открытых позиции
+    -- РїСЂРѕРІРµСЂРєР° РЅР°Р»РёС‡РёСЏ РѕС‚РєСЂС‹С‚С‹С… РїРѕР·РёС†РёРё
     hasPosition = function(self, id)
-        -- получаем из репозитория нужный Entity
+        -- РїРѕР»СѓС‡Р°РµРј РёР· СЂРµРїРѕР·РёС‚РѕСЂРёСЏ РЅСѓР¶РЅС‹Р№ Entity
         local entity = self.repository:get(id)
 
         --
         return entity:hasPosition()
     end,
 
-    -- вернуть статус активности бумаги
+    -- РІРµСЂРЅСѓС‚СЊ СЃС‚Р°С‚СѓСЃ Р°РєС‚РёРІРЅРѕСЃС‚Рё Р±СѓРјР°РіРё
     getStatus = function(self, id)
-        -- получаем из репозитория нужный Entity
+        -- РїРѕР»СѓС‡Р°РµРј РёР· СЂРµРїРѕР·РёС‚РѕСЂРёСЏ РЅСѓР¶РЅС‹Р№ Entity
         local entity = self.repository:get(id)
 
         if is_nil(entity) then
-            error("\n" .. "Error: Отсутствует EntityStock для тикера (" .. tostring(id) .. ")", 2)
+            error("\n" .. "Error: РћС‚СЃСѓС‚СЃС‚РІСѓРµС‚ EntityStock РґР»СЏ С‚РёРєРµСЂР° (" .. tostring(id) .. ")", 2)
         end
 
         return entity:getStatus()
     end,
 
-    -- вернуть доступное количество лотов
+    -- РІРµСЂРЅСѓС‚СЊ РґРѕСЃС‚СѓРїРЅРѕРµ РєРѕР»РёС‡РµСЃС‚РІРѕ Р»РѕС‚РѕРІ
     getLots = function(self, id)
-        -- получаем из репозитория нужный Entity
+        -- РїРѕР»СѓС‡Р°РµРј РёР· СЂРµРїРѕР·РёС‚РѕСЂРёСЏ РЅСѓР¶РЅС‹Р№ Entity
         local entity = self.repository:get(id)
 
         return entity:getLots()
     end,
 
-    -- вернуть максимальное количество лотов
+    -- РІРµСЂРЅСѓС‚СЊ РјР°РєСЃРёРјР°Р»СЊРЅРѕРµ РєРѕР»РёС‡РµСЃС‚РІРѕ Р»РѕС‚РѕРІ
     getMaxLots = function(self, id)
-        -- получаем из репозитория нужный Entity
+        -- РїРѕР»СѓС‡Р°РµРј РёР· СЂРµРїРѕР·РёС‚РѕСЂРёСЏ РЅСѓР¶РЅС‹Р№ Entity
         local entity = self.repository:get(id)
 
         return entity:getMaxLots()
     end,
 
-    -- вернуть параметры поизиции
+    -- РІРµСЂРЅСѓС‚СЊ РїР°СЂР°РјРµС‚СЂС‹ РїРѕРёР·РёС†РёРё
     getPositionParams = function(self, id)
-        -- получаем из репозитория нужный Entity
+        -- РїРѕР»СѓС‡Р°РµРј РёР· СЂРµРїРѕР·РёС‚РѕСЂРёСЏ РЅСѓР¶РЅС‹Р№ Entity
         local entity = self.repository:get(id)
 
         return entity:getPositionParams()
     end,
 
-    -- вернуть количество поизиции
+    -- РІРµСЂРЅСѓС‚СЊ РєРѕР»РёС‡РµСЃС‚РІРѕ РїРѕРёР·РёС†РёРё
     getPositionQty = function(self, id)
-        -- получаем из репозитория нужный Entity
+        -- РїРѕР»СѓС‡Р°РµРј РёР· СЂРµРїРѕР·РёС‚РѕСЂРёСЏ РЅСѓР¶РЅС‹Р№ Entity
         local entity = self.repository:get(id)
 
         return entity:getPositionQty()
     end,
 
-    -- вернуть параметры запроса
+    -- РІРµСЂРЅСѓС‚СЊ РїР°СЂР°РјРµС‚СЂС‹ Р·Р°РїСЂРѕСЃР°
     getZaprosParams = function(self, id)
-        -- получаем из репозитория нужный Entity
+        -- РїРѕР»СѓС‡Р°РµРј РёР· СЂРµРїРѕР·РёС‚РѕСЂРёСЏ РЅСѓР¶РЅС‹Р№ Entity
         local entity = self.repository:get(id)
 
         return entity:getZaprosParams()
     end,
 
-    -- вернуть запрос (если он есть)
+    -- РІРµСЂРЅСѓС‚СЊ Р·Р°РїСЂРѕСЃ (РµСЃР»Рё РѕРЅ РµСЃС‚СЊ)
     getZapros = function(self, id)
-        -- получаем из репозитория нужный Entity
+        -- РїРѕР»СѓС‡Р°РµРј РёР· СЂРµРїРѕР·РёС‚РѕСЂРёСЏ РЅСѓР¶РЅС‹Р№ Entity
         local entity = self.repository:get(id)
 
         return entity:getZapros()
@@ -89,136 +89,136 @@ local EntityService = {
 
     -- stop
     getStop = function(self, id)
-        -- получаем из репозитория нужный Entity
+        -- РїРѕР»СѓС‡Р°РµРј РёР· СЂРµРїРѕР·РёС‚РѕСЂРёСЏ РЅСѓР¶РЅС‹Р№ Entity
         local entity = self.repository:get(id)
 
         return entity:getStop()
     end,
 
-    -- вернуть параметры стопа
+    -- РІРµСЂРЅСѓС‚СЊ РїР°СЂР°РјРµС‚СЂС‹ СЃС‚РѕРїР°
     getStopParams = function(self, id)
-        -- получаем из репозитория нужный Entity
+        -- РїРѕР»СѓС‡Р°РµРј РёР· СЂРµРїРѕР·РёС‚РѕСЂРёСЏ РЅСѓР¶РЅС‹Р№ Entity
         local entity = self.repository:get(id)
 
         return entity:getStopParams()
     end,
 
-    -- вернуть параметры стопа для переноса в безубыток
+    -- РІРµСЂРЅСѓС‚СЊ РїР°СЂР°РјРµС‚СЂС‹ СЃС‚РѕРїР° РґР»СЏ РїРµСЂРµРЅРѕСЃР° РІ Р±РµР·СѓР±С‹С‚РѕРє
     getStopMoveParams = function(self, id)
-        -- получаем из репозитория нужный Entity
+        -- РїРѕР»СѓС‡Р°РµРј РёР· СЂРµРїРѕР·РёС‚РѕСЂРёСЏ РЅСѓР¶РЅС‹Р№ Entity
         local entity = self.repository:get(id)
 
         return entity:getStopMoveParams()
     end,
 
-    -- возвращает добавленный idParams последнего добавленного стопа
-    -- для резервного восстановления стопа при случайном удалении
+    -- РІРѕР·РІСЂР°С‰Р°РµС‚ РґРѕР±Р°РІР»РµРЅРЅС‹Р№ idParams РїРѕСЃР»РµРґРЅРµРіРѕ РґРѕР±Р°РІР»РµРЅРЅРѕРіРѕ СЃС‚РѕРїР°
+    -- РґР»СЏ СЂРµР·РµСЂРІРЅРѕРіРѕ РІРѕСЃСЃС‚Р°РЅРѕРІР»РµРЅРёСЏ СЃС‚РѕРїР° РїСЂРё СЃР»СѓС‡Р°Р№РЅРѕРј СѓРґР°Р»РµРЅРёРё
     getRecoveryIdParams = function(self, idStock)
-        -- получаем из репозитория нужный Entity
+        -- РїРѕР»СѓС‡Р°РµРј РёР· СЂРµРїРѕР·РёС‚РѕСЂРёСЏ РЅСѓР¶РЅС‹Р№ Entity
         local entity = self.repository:get(idStock)
 
         return entity:getRecoveryIdParams()
     end,
 
     -- take
-    -- вернуть параметры тейка
+    -- РІРµСЂРЅСѓС‚СЊ РїР°СЂР°РјРµС‚СЂС‹ С‚РµР№РєР°
     getTakeParams = function(self, id)
-        -- получаем из репозитория нужный Entity
+        -- РїРѕР»СѓС‡Р°РµРј РёР· СЂРµРїРѕР·РёС‚РѕСЂРёСЏ РЅСѓР¶РЅС‹Р№ Entity
         local entity = self.repository:get(id)
 
         return entity:getTakeParams()
     end,
 
-    -- смена размера тейка, влючение и отключение
+    -- СЃРјРµРЅР° СЂР°Р·РјРµСЂР° С‚РµР№РєР°, РІР»СЋС‡РµРЅРёРµ Рё РѕС‚РєР»СЋС‡РµРЅРёРµ
     changeTake = function(self, id, selectSize)
         local entity = self.repository:get(id)
 
-        -- вызываем проверку
+        -- РІС‹Р·С‹РІР°РµРј РїСЂРѕРІРµСЂРєСѓ
         entity:changeTake(selectSize)
 
-        -- получаем события из Entity и передаём их в диспетчер событий
+        -- РїРѕР»СѓС‡Р°РµРј СЃРѕР±С‹С‚РёСЏ РёР· Entity Рё РїРµСЂРµРґР°С‘Рј РёС… РІ РґРёСЃРїРµС‚С‡РµСЂ СЃРѕР±С‹С‚РёР№
         self.dispatcher:dispatchEvents(entity:releaseEvents())
     end,
 
-    -- активен ли тейк
+    -- Р°РєС‚РёРІРµРЅ Р»Рё С‚РµР№Рє
     isActiveTake = function(self, id)
-        -- получаем из репозитория нужный Entity
+        -- РїРѕР»СѓС‡Р°РµРј РёР· СЂРµРїРѕР·РёС‚РѕСЂРёСЏ РЅСѓР¶РЅС‹Р№ Entity
         local entity = self.repository:get(id)
 
         return entity:isActiveTake()
     end,
 
-    -- вернуть выбранный параметр тейка
+    -- РІРµСЂРЅСѓС‚СЊ РІС‹Р±СЂР°РЅРЅС‹Р№ РїР°СЂР°РјРµС‚СЂ С‚РµР№РєР°
     getTakeSize = function(self, idStock)
-        -- получаем из репозитория нужный Entity
+        -- РїРѕР»СѓС‡Р°РµРј РёР· СЂРµРїРѕР·РёС‚РѕСЂРёСЏ РЅСѓР¶РЅС‹Р№ Entity
         local entity = self.repository:get(idStock)
 
         return entity:getTakeSize()
     end,
 
-    -- обновить параметры по значениям исходя из basePrice
+    -- РѕР±РЅРѕРІРёС‚СЊ РїР°СЂР°РјРµС‚СЂС‹ РїРѕ Р·РЅР°С‡РµРЅРёСЏРј РёСЃС…РѕРґСЏ РёР· basePrice
     updateParams = function(self, id, operation, range)
-        -- получаем из репозитория нужный Entity
+        -- РїРѕР»СѓС‡Р°РµРј РёР· СЂРµРїРѕР·РёС‚РѕСЂРёСЏ РЅСѓР¶РЅС‹Р№ Entity
         local entity = self.repository:get(id)
 
-        -- вызываем проверку
+        -- РІС‹Р·С‹РІР°РµРј РїСЂРѕРІРµСЂРєСѓ
         entity:updateParams(operation, range)
 
-        -- получаем события из Entity и передаём их в диспетчер событий
+        -- РїРѕР»СѓС‡Р°РµРј СЃРѕР±С‹С‚РёСЏ РёР· Entity Рё РїРµСЂРµРґР°С‘Рј РёС… РІ РґРёСЃРїРµС‚С‡РµСЂ СЃРѕР±С‹С‚РёР№
         self.dispatcher:dispatchEvents(entity:releaseEvents())
     end,
 
-    -- обновить параметры по значениям
+    -- РѕР±РЅРѕРІРёС‚СЊ РїР°СЂР°РјРµС‚СЂС‹ РїРѕ Р·РЅР°С‡РµРЅРёСЏРј
     updateParamsTo = function(self, id, operation, range, price)
-        -- получаем из репозитория нужный Entity
+        -- РїРѕР»СѓС‡Р°РµРј РёР· СЂРµРїРѕР·РёС‚РѕСЂРёСЏ РЅСѓР¶РЅС‹Р№ Entity
         local entity = self.repository:get(id)
 
-        -- вызываем проверку
+        -- РІС‹Р·С‹РІР°РµРј РїСЂРѕРІРµСЂРєСѓ
         entity:updateParamsTo(operation, range, price)
 
-        -- получаем события из Entity и передаём их в диспетчер событий
+        -- РїРѕР»СѓС‡Р°РµРј СЃРѕР±С‹С‚РёСЏ РёР· Entity Рё РїРµСЂРµРґР°С‘Рј РёС… РІ РґРёСЃРїРµС‚С‡РµСЂ СЃРѕР±С‹С‚РёР№
         self.dispatcher:dispatchEvents(entity:releaseEvents())
     end,
 
-    -- рассчитать максимальное количество лотов
+    -- СЂР°СЃСЃС‡РёС‚Р°С‚СЊ РјР°РєСЃРёРјР°Р»СЊРЅРѕРµ РєРѕР»РёС‡РµСЃС‚РІРѕ Р»РѕС‚РѕРІ
     calculateMaxLots = function(self, id)
-        -- получаем из репозитория нужный Entity
+        -- РїРѕР»СѓС‡Р°РµРј РёР· СЂРµРїРѕР·РёС‚РѕСЂРёСЏ РЅСѓР¶РЅС‹Р№ Entity
         local entity = self.repository:get(id)
 
-        -- вызываем проверку
+        -- РІС‹Р·С‹РІР°РµРј РїСЂРѕРІРµСЂРєСѓ
         entity:calculateMaxLots()
 
-        -- получаем события из Entity и передаём их в диспетчер событий
+        -- РїРѕР»СѓС‡Р°РµРј СЃРѕР±С‹С‚РёСЏ РёР· Entity Рё РїРµСЂРµРґР°С‘Рј РёС… РІ РґРёСЃРїРµС‚С‡РµСЂ СЃРѕР±С‹С‚РёР№
         self.dispatcher:dispatchEvents(entity:releaseEvents())
     end,
 
-    -- изменить позиции
+    -- РёР·РјРµРЅРёС‚СЊ РїРѕР·РёС†РёРё
     changePosition = function(self, id, trade)
-        -- получаем из репозитория нужный Entity
+        -- РїРѕР»СѓС‡Р°РµРј РёР· СЂРµРїРѕР·РёС‚РѕСЂРёСЏ РЅСѓР¶РЅС‹Р№ Entity
         local entity = self.repository:get(id)
 
-        -- вызываем проверку
+        -- РІС‹Р·С‹РІР°РµРј РїСЂРѕРІРµСЂРєСѓ
         entity:changePosition(trade)
 
-        -- получаем события из Entity и передаём их в диспетчер событий
+        -- РїРѕР»СѓС‡Р°РµРј СЃРѕР±С‹С‚РёСЏ РёР· Entity Рё РїРµСЂРµРґР°С‘Рј РёС… РІ РґРёСЃРїРµС‚С‡РµСЂ СЃРѕР±С‹С‚РёР№
         self.dispatcher:dispatchEvents(entity:releaseEvents())
     end,
 
-    -- изменить состояние
+    -- РёР·РјРµРЅРёС‚СЊ СЃРѕСЃС‚РѕСЏРЅРёРµ
     changeCondition = function(self, id, params)
-        -- получаем из репозитория нужный Entity
+        -- РїРѕР»СѓС‡Р°РµРј РёР· СЂРµРїРѕР·РёС‚РѕСЂРёСЏ РЅСѓР¶РЅС‹Р№ Entity
         local entity = self.repository:get(id)
 
-        -- вызываем проверку
+        -- РІС‹Р·С‹РІР°РµРј РїСЂРѕРІРµСЂРєСѓ
         entity:changeCondition(params)
 
-        -- получаем события из Entity и передаём их в диспетчер событий
+        -- РїРѕР»СѓС‡Р°РµРј СЃРѕР±С‹С‚РёСЏ РёР· Entity Рё РїРµСЂРµРґР°С‘Рј РёС… РІ РґРёСЃРїРµС‚С‡РµСЂ СЃРѕР±С‹С‚РёР№
         self.dispatcher:dispatchEvents(entity:releaseEvents())
     end,
 
-    -- по параметрам пытаемся определить роль
+    -- РїРѕ РїР°СЂР°РјРµС‚СЂР°Рј РїС‹С‚Р°РµРјСЃСЏ РѕРїСЂРµРґРµР»РёС‚СЊ СЂРѕР»СЊ
     getRole = function(self, id, params)
-        -- получаем из репозитория нужный Entity
+        -- РїРѕР»СѓС‡Р°РµРј РёР· СЂРµРїРѕР·РёС‚РѕСЂРёСЏ РЅСѓР¶РЅС‹Р№ Entity
         local entity = self.repository:get(id)
 
         return entity:getRole(params)

@@ -2,13 +2,13 @@
 
 return {
     dependencies = {
-        -- фабрики
+        -- С„Р°Р±СЂРёРєРё
         factories = {
-            -- получение параметров настроек для получения открытых позиций по бумагам
+            -- РїРѕР»СѓС‡РµРЅРёРµ РїР°СЂР°РјРµС‚СЂРѕРІ РЅР°СЃС‚СЂРѕРµРє РґР»СЏ РїРѕР»СѓС‡РµРЅРёСЏ РѕС‚РєСЂС‹С‚С‹С… РїРѕР·РёС†РёР№ РїРѕ Р±СѓРјР°РіР°Рј
             ["Config_positionSetting"] = function(container)
                 local broker = container:get("config").broker
                 if is_nil(broker) then
-                    error("\r\n\r\n" .. "Error: В (configApp.lua) не указан (broker)")
+                    error("\r\n\r\n" .. "Error: Р’ (configApp.lua) РЅРµ СѓРєР°Р·Р°РЅ (broker)")
                 end
 
                 local configName = broker .. "PositionSetting"
@@ -18,13 +18,13 @@ return {
                     return positionSetting
                 end
 
-                error("\r\n\r\n" .. "Error: В (configApp.lua) отсутствуют настройки для брокера (" .. broker .. ")")
+                error("\r\n\r\n" .. "Error: Р’ (configApp.lua) РѕС‚СЃСѓС‚СЃС‚РІСѓСЋС‚ РЅР°СЃС‚СЂРѕР№РєРё РґР»СЏ Р±СЂРѕРєРµСЂР° (" .. broker .. ")")
             end,
 
             ["Config_stock"] = function(container)
                 local broker = container:get("config").broker
                 if is_nil(broker) then
-                    error("\r\n\r\n" .. "Error: В (configApp.lua) не указан (broker)")
+                    error("\r\n\r\n" .. "Error: Р’ (configApp.lua) РЅРµ СѓРєР°Р·Р°РЅ (broker)")
                 end
 
                 local configName = broker .. "Stock"
@@ -34,13 +34,13 @@ return {
                     return config_stock
                 end
 
-                error("\r\n\r\n" .. "Error: В (configApp.lua) отсутствуют настройки для брокера (" .. broker .. ")")
+                error("\r\n\r\n" .. "Error: Р’ (configApp.lua) РѕС‚СЃСѓС‚СЃС‚РІСѓСЋС‚ РЅР°СЃС‚СЂРѕР№РєРё РґР»СЏ Р±СЂРѕРєРµСЂР° (" .. broker .. ")")
             end,
 
             ["Config_futures"] = function(container)
                 local broker = container:get("config").broker
                 if is_nil(broker) then
-                    error("\r\n\r\n" .. "Error: В (configApp.lua) не указан (broker)")
+                    error("\r\n\r\n" .. "Error: Р’ (configApp.lua) РЅРµ СѓРєР°Р·Р°РЅ (broker)")
                 end
 
                 local configName = broker .. "Futures"
@@ -50,13 +50,13 @@ return {
                     return config_futures
                 end
 
-                error("\r\n\r\n" .. "Error: В (configApp.lua) отсутствуют настройки для брокера (" .. broker .. ")")
+                error("\r\n\r\n" .. "Error: Р’ (configApp.lua) РѕС‚СЃСѓС‚СЃС‚РІСѓСЋС‚ РЅР°СЃС‚СЂРѕР№РєРё РґР»СЏ Р±СЂРѕРєРµСЂР° (" .. broker .. ")")
             end,
 
             ["Config_currency"] = function(container)
                 local broker = container:get("config").broker
                 if is_nil(broker) then
-                    error("\r\n\r\n" .. "Error: В (configApp.lua) не указан (broker)")
+                    error("\r\n\r\n" .. "Error: Р’ (configApp.lua) РЅРµ СѓРєР°Р·Р°РЅ (broker)")
                 end
 
                 local configName = broker .. "Currency"
@@ -66,13 +66,13 @@ return {
                     return config_currency
                 end
 
-                error("\r\n\r\n" .. "Error: В (configApp.lua) отсутствуют настройки для брокера (" .. broker .. ")")
+                error("\r\n\r\n" .. "Error: Р’ (configApp.lua) РѕС‚СЃСѓС‚СЃС‚РІСѓСЋС‚ РЅР°СЃС‚СЂРѕР№РєРё РґР»СЏ Р±СЂРѕРєРµСЂР° (" .. broker .. ")")
             end,
 
             ["Config_firmId"] = function(container)
                 local broker = container:get("config").broker
                 if is_nil(broker) then
-                    error("\r\n\r\n" .. "Error: В (configApp.lua) не указан (broker)")
+                    error("\r\n\r\n" .. "Error: Р’ (configApp.lua) РЅРµ СѓРєР°Р·Р°РЅ (broker)")
                 end
 
                 local firmIdName = broker .. "Firm_id"
@@ -82,13 +82,13 @@ return {
                     return firm_id
                 end
 
-                error("\r\n\r\n" .. "Error: В (configApp.lua) отсутствуют настройки для брокера (" .. broker .. ")")
+                error("\r\n\r\n" .. "Error: Р’ (configApp.lua) РѕС‚СЃСѓС‚СЃС‚РІСѓСЋС‚ РЅР°СЃС‚СЂРѕР№РєРё РґР»СЏ Р±СЂРѕРєРµСЂР° (" .. broker .. ")")
             end,
 
             ["Config_trade"] = function(container)
                 local modeTrade = container:get("config").modeTrade
                 if is_nil(modeTrade) then
-                    error("\r\n\r\n" .. "Error: В (configApp.lua) не указан (modeTrade) для параметров (trade)")
+                    error("\r\n\r\n" .. "Error: Р’ (configApp.lua) РЅРµ СѓРєР°Р·Р°РЅ (modeTrade) РґР»СЏ РїР°СЂР°РјРµС‚СЂРѕРІ (trade)")
                 end
 
                 local nameTrade = modeTrade .. "Trade"
@@ -99,7 +99,7 @@ return {
                     return config_trade
                 end
 
-                error("\r\n\r\n" .. "Error: В (configApp.lua) отсутствуют настройки для modeTrade (" .. modeTrade .. ")")
+                error("\r\n\r\n" .. "Error: Р’ (configApp.lua) РѕС‚СЃСѓС‚СЃС‚РІСѓСЋС‚ РЅР°СЃС‚СЂРѕР№РєРё РґР»СЏ modeTrade (" .. modeTrade .. ")")
 
             end,
 
@@ -107,9 +107,9 @@ return {
 
     },
 
-    --- выбор аккаунта
-    -- demo - режим разработчика - используются счета (demo Quik),
-    -- vtb - режим торговли - используются счета (Quik VTB)
+    --- РІС‹Р±РѕСЂ Р°РєРєР°СѓРЅС‚Р°
+    -- demo - СЂРµР¶РёРј СЂР°Р·СЂР°Р±РѕС‚С‡РёРєР° - РёСЃРїРѕР»СЊР·СѓСЋС‚СЃСЏ СЃС‡РµС‚Р° (demo Quik),
+    -- vtb - СЂРµР¶РёРј С‚РѕСЂРіРѕРІР»Рё - РёСЃРїРѕР»СЊР·СѓСЋС‚СЃСЏ СЃС‡РµС‚Р° (Quik VTB)
 
     broker = "demo",
     --broker = "vtb",
@@ -117,38 +117,38 @@ return {
     demoFirm_id = "",
     vtbFirm_id = "",
 
-    -- container:get("Config_account") - зависит он настройки (broker)
-    -- настройки счетов (Quik demo)
-    -- имя: U0203083 и пароль: 33233902
+    -- container:get("Config_account") - Р·Р°РІРёСЃРёС‚ РѕРЅ РЅР°СЃС‚СЂРѕР№РєРё (broker)
+    -- РЅР°СЃС‚СЂРѕР№РєРё СЃС‡РµС‚РѕРІ (Quik demo)
+    -- РёРјСЏ: U0203083 Рё РїР°СЂРѕР»СЊ: 33233902
     demoFutures = {
         account = "SPBFUT000a4",
         client_code = "SPBFUT000a4",
     },
 
     demoStock = {
-        account = "NL0011100043", -- счёт депо
+        account = "NL0011100043", -- СЃС‡С‘С‚ РґРµРїРѕ
         client_code = "10178",
     },
 
     demoCurrency = {
-        account = "MB1000100002", -- счёт депо
+        account = "MB1000100002", -- СЃС‡С‘С‚ РґРµРїРѕ
         client_code = "10178",
     },
 
-    -- container:get("Config_account") - зависит он настройки (broker)
-    -- настройки счетов (Quik VTB)
+    -- container:get("Config_account") - Р·Р°РІРёСЃРёС‚ РѕРЅ РЅР°СЃС‚СЂРѕР№РєРё (broker)
+    -- РЅР°СЃС‚СЂРѕР№РєРё СЃС‡РµС‚РѕРІ (Quik VTB)
     vtbFutures = {
         account = "",
         client_code = "",
     },
 
     vtbStock = {
-        account = "", -- счёт депо
+        account = "", -- СЃС‡С‘С‚ РґРµРїРѕ
         client_code = "",
     },
 
     vtbCurrency = {
-        account = "", -- счёт депо
+        account = "", -- СЃС‡С‘С‚ РґРµРїРѕ
         client_code = "",
     },
 
@@ -156,16 +156,16 @@ return {
         futures = {
             account = "",
             client_code = "",
-            -- Тип отображения баланса в таблице "Таблица лимитов по денежным средствам" (1 - в лотах, 2 - с учетом количества в лоте)
-            -- Например, при покупке 1 лота USDRUB одни брокеры в поле "Баланс" транслируют 1, другие 1000
-            -- 1 лот акций Сбербанка может отображаться в таблице "Позиции по инструментов" в поле "Текущий остаток" как 1, или 10
+            -- РўРёРї РѕС‚РѕР±СЂР°Р¶РµРЅРёСЏ Р±Р°Р»Р°РЅСЃР° РІ С‚Р°Р±Р»РёС†Рµ "РўР°Р±Р»РёС†Р° Р»РёРјРёС‚РѕРІ РїРѕ РґРµРЅРµР¶РЅС‹Рј СЃСЂРµРґСЃС‚РІР°Рј" (1 - РІ Р»РѕС‚Р°С…, 2 - СЃ СѓС‡РµС‚РѕРј РєРѕР»РёС‡РµСЃС‚РІР° РІ Р»РѕС‚Рµ)
+            -- РќР°РїСЂРёРјРµСЂ, РїСЂРё РїРѕРєСѓРїРєРµ 1 Р»РѕС‚Р° USDRUB РѕРґРЅРё Р±СЂРѕРєРµСЂС‹ РІ РїРѕР»Рµ "Р‘Р°Р»Р°РЅСЃ" С‚СЂР°РЅСЃР»РёСЂСѓСЋС‚ 1, РґСЂСѓРіРёРµ 1000
+            -- 1 Р»РѕС‚ Р°РєС†РёР№ РЎР±РµСЂР±Р°РЅРєР° РјРѕР¶РµС‚ РѕС‚РѕР±СЂР°Р¶Р°С‚СЊСЃСЏ РІ С‚Р°Р±Р»РёС†Рµ "РџРѕР·РёС†РёРё РїРѕ РёРЅСЃС‚СЂСѓРјРµРЅС‚РѕРІ" РІ РїРѕР»Рµ "РўРµРєСѓС‰РёР№ РѕСЃС‚Р°С‚РѕРє" РєР°Рє 1, РёР»Рё 10
             positionType = "lots",
         },
 
         stock = {
             account = "",
             client_code = "",
-            limit_kind = 2, -- Тип лимита (акции), для демо счета должно быть 0, для реального 2
+            limit_kind = 2, -- РўРёРї Р»РёРјРёС‚Р° (Р°РєС†РёРё), РґР»СЏ РґРµРјРѕ СЃС‡РµС‚Р° РґРѕР»Р¶РЅРѕ Р±С‹С‚СЊ 0, РґР»СЏ СЂРµР°Р»СЊРЅРѕРіРѕ 2
             positionType = "lots",
         },
 
@@ -199,9 +199,9 @@ return {
         }
     },
 
-    --- режим торговли
-    -- test - режим торговли 1 лотом + соблюдение риска на стоп
-    -- norm - режим торговли соблюдение риска на 1 стоп
+    --- СЂРµР¶РёРј С‚РѕСЂРіРѕРІР»Рё
+    -- test - СЂРµР¶РёРј С‚РѕСЂРіРѕРІР»Рё 1 Р»РѕС‚РѕРј + СЃРѕР±Р»СЋРґРµРЅРёРµ СЂРёСЃРєР° РЅР° СЃС‚РѕРї
+    -- norm - СЂРµР¶РёРј С‚РѕСЂРіРѕРІР»Рё СЃРѕР±Р»СЋРґРµРЅРёРµ СЂРёСЃРєР° РЅР° 1 СЃС‚РѕРї
 
     modeTrade = "norm",
 

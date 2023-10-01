@@ -1,6 +1,6 @@
 ---
 
 return {
-    -- хандлер заглушка для middleware
+    -- С…Р°РЅРґР»РµСЂ Р·Р°РіР»СѓС€РєР° РґР»СЏ middleware
     middlewareHandler = "Middleware_Stopper",
 }

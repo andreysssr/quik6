@@ -21,7 +21,7 @@ local Handler = {
             volume2_condition = "default",
         }
 
-        -- значения hi и low последних 3 баров
+        -- Р·РЅР°С‡РµРЅРёСЏ hi Рё low РїРѕСЃР»РµРґРЅРёС… 3 Р±Р°СЂРѕРІ
         local volume = self.entityServiceDs:getVolume(idStock)
 
         if volume == "notBar" then

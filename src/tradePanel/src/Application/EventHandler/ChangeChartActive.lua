@@ -1,4 +1,4 @@
---- EventHandler ChangeChartActive - добавляет/удаляет маркер Active на графеке
+--- EventHandler ChangeChartActive - РґРѕР±Р°РІР»СЏРµС‚/СѓРґР°Р»СЏРµС‚ РјР°СЂРєРµСЂ Active РЅР° РіСЂР°С„РµРєРµ
 
 local EventHandler = {
     --

@@ -33,12 +33,12 @@ local Factory = {
         self.repositoryTradeParams = container:get("Repository_TradeParams")
         self.entityServiceStock = container:get("EntityService_Stock")
         self.entityServiceParams = container:get("EntityService_TradeParams")
-        self.cache = container:get("Cache") -- написать, папка хранилища постоянная
+        self.cache = container:get("Cache") -- РЅР°РїРёСЃР°С‚СЊ, РїР°РїРєР° С…СЂР°РЅРёР»РёС‰Р° РїРѕСЃС‚РѕСЏРЅРЅР°СЏ
 
         return self
     end,
 
-    -- создание Entity_TradeParams и сохранение его в репозиторий
+    -- СЃРѕР·РґР°РЅРёРµ Entity_TradeParams Рё СЃРѕС…СЂР°РЅРµРЅРёРµ РµРіРѕ РІ СЂРµРїРѕР·РёС‚РѕСЂРёР№
     createEntity = function(self, idStock)
         local id = idStock
         local class = self.storage:getClassToId(id)
@@ -47,16 +47,16 @@ local Factory = {
         params.idStock = id
         params.class = class
 
-        -- получаем класс Entity TradeParams
+        -- РїРѕР»СѓС‡Р°РµРј РєР»Р°СЃСЃ Entity TradeParams
         local classEntityTradeParams = self.container:get("Entity_TradeParams")
 
-        -- получаем entity
+        -- РїРѕР»СѓС‡Р°РµРј entity
         local entity = classEntityTradeParams:newChild(params)
 
-        -- сохраняем созданный entity TradeParams
+        -- СЃРѕС…СЂР°РЅСЏРµРј СЃРѕР·РґР°РЅРЅС‹Р№ entity TradeParams
         self.repositoryTradeParams:save(entity)
 
-        -- восстановить данные если есть открытые позиции по бумаге
+        -- РІРѕСЃСЃС‚Р°РЅРѕРІРёС‚СЊ РґР°РЅРЅС‹Рµ РµСЃР»Рё РµСЃС‚СЊ РѕС‚РєСЂС‹С‚С‹Рµ РїРѕР·РёС†РёРё РїРѕ Р±СѓРјР°РіРµ
         if self.entityServiceStock:hasPosition(idStock) then
             if self.cache:has(idStock .. "_params") then
                 local cacheParams = self.cache:getFile(idStock .. "_params")

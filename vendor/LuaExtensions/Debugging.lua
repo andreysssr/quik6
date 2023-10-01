@@ -1,10 +1,10 @@
---- функция для отладки - просмотр данных
+--- С„СѓРЅРєС†РёСЏ РґР»СЏ РѕС‚Р»Р°РґРєРё - РїСЂРѕСЃРјРѕС‚СЂ РґР°РЅРЅС‹С…
 
---- функции для отладки
--- посылает данные в программу - "DebugView"
+--- С„СѓРЅРєС†РёРё РґР»СЏ РѕС‚Р»Р°РґРєРё
+-- РїРѕСЃС‹Р»Р°РµС‚ РґР°РЅРЅС‹Рµ РІ РїСЂРѕРіСЂР°РјРјСѓ - "DebugView"
 
--- dd(value) - распечатать содержимое переменной
--- ! ddt(tab) - распечатать содержимое таблицы
+-- dd(value) - СЂР°СЃРїРµС‡Р°С‚Р°С‚СЊ СЃРѕРґРµСЂР¶РёРјРѕРµ РїРµСЂРµРјРµРЅРЅРѕР№
+-- ! ddt(tab) - СЂР°СЃРїРµС‡Р°С‚Р°С‚СЊ СЃРѕРґРµСЂР¶РёРјРѕРµ С‚Р°Р±Р»РёС†С‹
 
 function table_val_to_str (v)
     if "string" == type(v) then
@@ -32,7 +32,7 @@ function table_key_to_str (k)
     return "[" .. table_val_to_str(k) .. "]"
 end
 
--- Преобразование таблицы или массива в текстовое представление в соответствии с синтаксисом языка lua
+-- РџСЂРµРѕР±СЂР°Р·РѕРІР°РЅРёРµ С‚Р°Р±Р»РёС†С‹ РёР»Рё РјР°СЃСЃРёРІР° РІ С‚РµРєСЃС‚РѕРІРѕРµ РїСЂРµРґСЃС‚Р°РІР»РµРЅРёРµ РІ СЃРѕРѕС‚РІРµС‚СЃС‚РІРёРё СЃ СЃРёРЅС‚Р°РєСЃРёСЃРѕРј СЏР·С‹РєР° lua
 function table_tostring(tbl)
     local result, done = {}, {}
 
@@ -50,7 +50,7 @@ function table_tostring(tbl)
     return "{" .. table.concat(result, ", ") .. "}"
 end
 
--- распечатка таблицы в зависимости от выбранного варианта
+-- СЂР°СЃРїРµС‡Р°С‚РєР° С‚Р°Р±Р»РёС†С‹ РІ Р·Р°РІРёСЃРёРјРѕСЃС‚Рё РѕС‚ РІС‹Р±СЂР°РЅРЅРѕРіРѕ РІР°СЂРёР°РЅС‚Р°
 function ddPrint(value, nested)
     local print = nested or 0
 
@@ -64,10 +64,10 @@ function ddPrint(value, nested)
         else
             if is_table(val) then
                 PrintDbgStr("[dd] ");
-                PrintDbgStr("[dd] [НАЧАЛО ВН.ТАБЛ.] =======================================");
-                PrintDbgStr("[dd] Индекс таблицы: [ " .. tostring(key) .. " ]");
+                PrintDbgStr("[dd] [РќРђР§РђР›Рћ Р’Рќ.РўРђР‘Р›.] =======================================");
+                PrintDbgStr("[dd] РРЅРґРµРєСЃ С‚Р°Р±Р»РёС†С‹: [ " .. tostring(key) .. " ]");
                 str = ddPrint(val)
-                PrintDbgStr("[dd] [КОНЕЦ ВН.ТАБЛ.] =======================================");
+                PrintDbgStr("[dd] [РљРћРќР•Р¦ Р’Рќ.РўРђР‘Р›.] =======================================");
                 PrintDbgStr("[dd]");
             end
         end
@@ -86,7 +86,7 @@ function ddPrint(value, nested)
         end
 
         if not is_nil(str) then
-            PrintDbgStr("[dd] строка таблицы: " .. tostring(str));
+            PrintDbgStr("[dd] СЃС‚СЂРѕРєР° С‚Р°Р±Р»РёС†С‹: " .. tostring(str));
         end
     end
 end
@@ -112,54 +112,54 @@ function view(value)
         end
 
         if not is_nil(str) then
-            PrintDbgStr("[dd] строка таблицы: " .. tostring(str));
+            PrintDbgStr("[dd] СЃС‚СЂРѕРєР° С‚Р°Р±Р»РёС†С‹: " .. tostring(str));
         end
     end
 end
 
---- функция проверки отладчика
--- @param mixed value - переменную для вывода в программе
--- nested - уровень вложенности
+--- С„СѓРЅРєС†РёСЏ РїСЂРѕРІРµСЂРєРё РѕС‚Р»Р°РґС‡РёРєР°
+-- @param mixed value - РїРµСЂРµРјРµРЅРЅСѓСЋ РґР»СЏ РІС‹РІРѕРґР° РІ РїСЂРѕРіСЂР°РјРјРµ
+-- nested - СѓСЂРѕРІРµРЅСЊ РІР»РѕР¶РµРЅРЅРѕСЃС‚Рё
 function dd(value, key)
 
     if is_table(value) and key == "v" then
-        PrintDbgStr("[dd] [НАЧАЛО ТАБЛИЦЫ] =======================================");
+        PrintDbgStr("[dd] [РќРђР§РђР›Рћ РўРђР‘Р›РР¦Р«] =======================================");
         view(value)
-        PrintDbgStr("[dd] [КОНЕЦ ТАБЛИЦЫ]  ========================================");
+        PrintDbgStr("[dd] [РљРћРќР•Р¦ РўРђР‘Р›РР¦Р«]  ========================================");
 
         return
     end
 
     if is_table(value) then
-        PrintDbgStr("[dd] [НАЧАЛО ТАБЛИЦЫ] =======================================");
+        PrintDbgStr("[dd] [РќРђР§РђР›Рћ РўРђР‘Р›РР¦Р«] =======================================");
         ddPrint(value, key)
-        PrintDbgStr("[dd] [КОНЕЦ ТАБЛИЦЫ]  ========================================");
+        PrintDbgStr("[dd] [РљРћРќР•Р¦ РўРђР‘Р›РР¦Р«]  ========================================");
     end
 
     if is_string(value) then
-        PrintDbgStr("[dd] передана строка: " .. '"' .. value .. '"');
+        PrintDbgStr("[dd] РїРµСЂРµРґР°РЅР° СЃС‚СЂРѕРєР°: " .. '"' .. value .. '"');
     end
 
     if is_function(value) then
-        PrintDbgStr("[dd] передана функция");
+        PrintDbgStr("[dd] РїРµСЂРµРґР°РЅР° С„СѓРЅРєС†РёСЏ");
     end
 
     if is_number(value) then
-        PrintDbgStr("[dd] передано число: " .. value);
+        PrintDbgStr("[dd] РїРµСЂРµРґР°РЅРѕ С‡РёСЃР»Рѕ: " .. value);
     end
 
     if is_boolean(value) then
         local res = tostring(value);
-        PrintDbgStr("[dd] передано булево значение: " .. res);
+        PrintDbgStr("[dd] РїРµСЂРµРґР°РЅРѕ Р±СѓР»РµРІРѕ Р·РЅР°С‡РµРЅРёРµ: " .. res);
     end
 
     if is_nil(value) then
-        PrintDbgStr("[dd] передано пустое значение: [ nil ]");
+        PrintDbgStr("[dd] РїРµСЂРµРґР°РЅРѕ РїСѓСЃС‚РѕРµ Р·РЅР°С‡РµРЅРёРµ: [ nil ]");
     end
 end
 
 function ddCl(value)
-    PrintDbgStr("[dd] [НАЧАЛО КЛАССА] =======================================");
+    PrintDbgStr("[dd] [РќРђР§РђР›Рћ РљР›РђРЎРЎРђ] =======================================");
 
     for key, val in pairs(value) do
         local str = ""
@@ -182,15 +182,15 @@ function ddCl(value)
         end
 
         if not is_nil(str) then
-            PrintDbgStr("[dd] строка таблицы: " .. tostring(str));
+            PrintDbgStr("[dd] СЃС‚СЂРѕРєР° С‚Р°Р±Р»РёС†С‹: " .. tostring(str));
         end
     end
 
-    PrintDbgStr("[dd] [КОНЕЦ КЛАССА]  ========================================");
+    PrintDbgStr("[dd] [РљРћРќР•Р¦ РљР›РђРЎРЎРђ]  ========================================");
     PrintDbgStr("[dd]");
 
     if is_nil(value.name) then
-        PrintDbgStr("[dd] [! ВНИМАНИЕ] В КЛАССЕ НЕТ ПАРАМЕТРА - \"name\"");
+        PrintDbgStr("[dd] [! Р’РќРРњРђРќРР•] Р’ РљР›РђРЎРЎР• РќР•Рў РџРђР РђРњР•РўР Рђ - \"name\"");
         PrintDbgStr("[dd]");
     end
 end
@@ -242,5 +242,5 @@ function debug.traceback(msg, level)
 end
 
 stop = function()
-    error("Остановка приложения - метод stop()")
+    error("РћСЃС‚Р°РЅРѕРІРєР° РїСЂРёР»РѕР¶РµРЅРёСЏ - РјРµС‚РѕРґ stop()")
 end

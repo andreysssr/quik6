@@ -8,7 +8,7 @@ local Trait = {
         return self
     end,
 
-    -- возвращает противоположное значение операции
+    -- РІРѕР·РІСЂР°С‰Р°РµС‚ РїСЂРѕС‚РёРІРѕРїРѕР»РѕР¶РЅРѕРµ Р·РЅР°С‡РµРЅРёРµ РѕРїРµСЂР°С†РёРё
     getReverseOperation = function(self, operation)
         if operation == "sell" then
             return "buy"
@@ -21,7 +21,7 @@ local Trait = {
         return operation
     end,
 
-    -- вернуть абсолютное значение позиции
+    -- РІРµСЂРЅСѓС‚СЊ Р°Р±СЃРѕР»СЋС‚РЅРѕРµ Р·РЅР°С‡РµРЅРёРµ РїРѕР·РёС†РёРё
     getAbsoluteQty = function(self, qty)
         return math.abs(qty)
     end,

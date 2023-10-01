@@ -6,19 +6,19 @@ local Storage = {
 
     container = {},
 
-    -- данные о классе, аккаунте бумаг
+    -- РґР°РЅРЅС‹Рµ Рѕ РєР»Р°СЃСЃРµ, Р°РєРєР°СѓРЅС‚Рµ Р±СѓРјР°Рі
     dataClassAccount = {},
 
-    -- данные из домашки
+    -- РґР°РЅРЅС‹Рµ РёР· РґРѕРјР°С€РєРё
     dataHomework = {},
 
-    -- содержит все id домашки по порядку (численный массив от 1 - до конца)
+    -- СЃРѕРґРµСЂР¶РёС‚ РІСЃРµ id РґРѕРјР°С€РєРё РїРѕ РїРѕСЂСЏРґРєСѓ (С‡РёСЃР»РµРЅРЅС‹Р№ РјР°СЃСЃРёРІ РѕС‚ 1 - РґРѕ РєРѕРЅС†Р°)
     dataFullHomework = {},
 
-    -- данные шортах
+    -- РґР°РЅРЅС‹Рµ С€РѕСЂС‚Р°С…
     dataAllowedShort = {},
 
-    -- id графиков по id бумаги
+    -- id РіСЂР°С„РёРєРѕРІ РїРѕ id Р±СѓРјР°РіРё
     dataIdCharts = {},
 
     --
@@ -32,10 +32,10 @@ local Storage = {
         return self
     end,
 
-    -- возвращает массив данных из файла
+    -- РІРѕР·РІСЂР°С‰Р°РµС‚ РјР°СЃСЃРёРІ РґР°РЅРЅС‹С… РёР· С„Р°Р№Р»Р°
     getData = function(self, dataPath)
         if is_nil(dataPath) then
-            error("\n" .. "Error: В Storage:getData(dataPath) передан параметр dataPath = nil", 2)
+            error("\n" .. "Error: Р’ Storage:getData(dataPath) РїРµСЂРµРґР°РЅ РїР°СЂР°РјРµС‚СЂ dataPath = nil", 2)
         end
 
         local name = Autoload:getPathFile(dataPath)
@@ -45,23 +45,23 @@ local Storage = {
     end,
 
     init = function(self)
-        -- разбор данных из classAccount
+        -- СЂР°Р·Р±РѕСЂ РґР°РЅРЅС‹С… РёР· classAccount
         self:parseClassAccount()
 
-        -- разбор данных из домашки
+        -- СЂР°Р·Р±РѕСЂ РґР°РЅРЅС‹С… РёР· РґРѕРјР°С€РєРё
         self:parseHomework()
 
-        -- разбор данных из разрешённых инструментов для шорта
+        -- СЂР°Р·Р±РѕСЂ РґР°РЅРЅС‹С… РёР· СЂР°Р·СЂРµС€С‘РЅРЅС‹С… РёРЅСЃС‚СЂСѓРјРµРЅС‚РѕРІ РґР»СЏ С€РѕСЂС‚Р°
         self:parseAllowedToShort()
 
-        -- разбор данных id графиков для бумаг
+        -- СЂР°Р·Р±РѕСЂ РґР°РЅРЅС‹С… id РіСЂР°С„РёРєРѕРІ РґР»СЏ Р±СѓРјР°Рі
         self:parseIdCharts()
 
-        -- добавить в хранилище базу данных уровней
+        -- РґРѕР±Р°РІРёС‚СЊ РІ С…СЂР°РЅРёР»РёС‰Рµ Р±Р°Р·Сѓ РґР°РЅРЅС‹С… СѓСЂРѕРІРЅРµР№
         self:addDbLevels()
     end,
 
-    -- разбор данных id графиков для бумаг
+    -- СЂР°Р·Р±РѕСЂ РґР°РЅРЅС‹С… id РіСЂР°С„РёРєРѕРІ РґР»СЏ Р±СѓРјР°Рі
     parseIdCharts = function(self)
         local idChart = self.container:get("config").dataPath.idChart
         local data = self:getData(idChart)
@@ -73,66 +73,66 @@ local Storage = {
         end
     end,
 
-    -- разбор данных classAccount
+    -- СЂР°Р·Р±РѕСЂ РґР°РЅРЅС‹С… classAccount
     parseClassAccount = function(self)
-        -- настройки account счетов для подключения
+        -- РЅР°СЃС‚СЂРѕР№РєРё account СЃС‡РµС‚РѕРІ РґР»СЏ РїРѕРґРєР»СЋС‡РµРЅРёСЏ
         local val = {
             stock = self.container:get("Config_stock"),
             futures = self.container:get("Config_futures"),
             currency = self.container:get("Config_currency"),
         }
 
-        -- список классов и аккаунтов по бумагам
+        -- СЃРїРёСЃРѕРє РєР»Р°СЃСЃРѕРІ Рё Р°РєРєР°СѓРЅС‚РѕРІ РїРѕ Р±СѓРјР°РіР°Рј
         local classAccountPath = self.container:get("config").dataPath.stockClassAccount
         local data = self:getData(classAccountPath)
 
         for i = 2, #data do
             if data[i][1] ~= "" then
-                -- если в self.data нет массива с индексом тикера - тогда создаём
+                -- РµСЃР»Рё РІ self.data РЅРµС‚ РјР°СЃСЃРёРІР° СЃ РёРЅРґРµРєСЃРѕРј С‚РёРєРµСЂР° - С‚РѕРіРґР° СЃРѕР·РґР°С‘Рј
                 if not_isset(self.dataClassAccount[data[i][1]]) then
                     self.dataClassAccount[data[i][1]] = {}
                 end
 
-                -- название - (Сбербанк)
+                -- РЅР°Р·РІР°РЅРёРµ - (РЎР±РµСЂР±Р°РЅРє)
                 self.dataClassAccount[data[i][1]]["name"] = data[i][2]
 
-                -- class бумаги
+                -- class Р±СѓРјР°РіРё
                 self.dataClassAccount[data[i][1]]["class"] = data[i][3]
 
-                -- account - счёт депо для бумаги (для акций, фьючерсов, валюты)
+                -- account - СЃС‡С‘С‚ РґРµРїРѕ РґР»СЏ Р±СѓРјР°РіРё (РґР»СЏ Р°РєС†РёР№, С„СЊСЋС‡РµСЂСЃРѕРІ, РІР°Р»СЋС‚С‹)
                 self.dataClassAccount[data[i][1]]["account"] = val[data[i][4]].account
 
-                -- код клиента - для бумаги (для акций, фьючерсов, валюты)
+                -- РєРѕРґ РєР»РёРµРЅС‚Р° - РґР»СЏ Р±СѓРјР°РіРё (РґР»СЏ Р°РєС†РёР№, С„СЊСЋС‡РµСЂСЃРѕРІ, РІР°Р»СЋС‚С‹)
                 self.dataClassAccount[data[i][1]]["client_code"] = val[data[i][4]].client_code
             end
         end
     end,
 
-    -- разбор данных из домашки
+    -- СЂР°Р·Р±РѕСЂ РґР°РЅРЅС‹С… РёР· РґРѕРјР°С€РєРё
     parseHomework = function(self)
         local homeworkPath = self.container:get("config").dataPath.homework
         local data = self:getData(homeworkPath)
 
         for i = 2, #data do
             if data[i][1] ~= "" then
-                -- если в self.data нет массива с индексом тикера - тогда создаём
+                -- РµСЃР»Рё РІ self.data РЅРµС‚ РјР°СЃСЃРёРІР° СЃ РёРЅРґРµРєСЃРѕРј С‚РёРєРµСЂР° - С‚РѕРіРґР° СЃРѕР·РґР°С‘Рј
                 if not_isset(self.dataHomework[data[i][1]]) then
                     self.dataHomework[data[i][1]] = {}
                 end
 
-                -- название бумаги
+                -- РЅР°Р·РІР°РЅРёРµ Р±СѓРјР°РіРё
                 self.dataHomework[data[i][1]]["name"] = data[i][2]
 
-                -- интервал
+                -- РёРЅС‚РµСЂРІР°Р»
                 if data[i][3] == "" then
-                    error("\r\n" .. "Error: В файле (homework.csv) для инструмента (" .. data[i][1] .. ") отсутсвует (интервал)")
+                    error("\r\n" .. "Error: Р’ С„Р°Р№Р»Рµ (homework.csv) РґР»СЏ РёРЅСЃС‚СЂСѓРјРµРЅС‚Р° (" .. data[i][1] .. ") РѕС‚СЃСѓС‚СЃРІСѓРµС‚ (РёРЅС‚РµСЂРІР°Р»)")
                 else
                     self.dataHomework[data[i][1]]["interval"] = tonumber(data[i][3])
                 end
 
-                -- если поле не пусто
+                -- РµСЃР»Рё РїРѕР»Рµ РЅРµ РїСѓСЃС‚Рѕ
                 if data[i][4] ~= "" then
-                    -- сильный уровень
+                    -- СЃРёР»СЊРЅС‹Р№ СѓСЂРѕРІРµРЅСЊ
                     local strongLevel = explode("|", data[i][4])
                     for k = 1, #strongLevel do
                         strongLevel[k] = tonumber(strongLevel[k])
@@ -144,26 +144,26 @@ local Storage = {
                 self.dataHomework[data[i][1]]["trend"] = data[i][5]
                 self.dataHomework[data[i][1]]["comment"] = data[i][6]
 
-                -- формируем другой массив - dataFullHomework
+                -- С„РѕСЂРјРёСЂСѓРµРј РґСЂСѓРіРѕР№ РјР°СЃСЃРёРІ - dataFullHomework
                 self.dataFullHomework[#self.dataFullHomework + 1] = data[i][1]
             end
         end
     end,
 
-    -- разбор данных из разрешённых инструментов для шорта
+    -- СЂР°Р·Р±РѕСЂ РґР°РЅРЅС‹С… РёР· СЂР°Р·СЂРµС€С‘РЅРЅС‹С… РёРЅСЃС‚СЂСѓРјРµРЅС‚РѕРІ РґР»СЏ С€РѕСЂС‚Р°
     parseAllowedToShort = function(self)
         local allowedToShortPath = self.container:get("config").dataPath.stockAllowedToShort
         local data = self:getData(allowedToShortPath)
 
-        -- добавляем весь массив
+        -- РґРѕР±Р°РІР»СЏРµРј РІРµСЃСЊ РјР°СЃСЃРёРІ
         for i = 2, #data do
             self.dataAllowedShort[data[i][1]] = true
         end
     end,
 
-    -- добавляет в хранилище базу данных для расчёта уровней
+    -- РґРѕР±Р°РІР»СЏРµС‚ РІ С…СЂР°РЅРёР»РёС‰Рµ Р±Р°Р·Сѓ РґР°РЅРЅС‹С… РґР»СЏ СЂР°СЃС‡С‘С‚Р° СѓСЂРѕРІРЅРµР№
     addDbLevels = function(self)
-        --подключаем базу данных с параметрами
+        --РїРѕРґРєР»СЋС‡Р°РµРј Р±Р°Р·Сѓ РґР°РЅРЅС‹С… СЃ РїР°СЂР°РјРµС‚СЂР°РјРё
         local levelsNameFile = self.container:get("config").dbPath.dbLevels
 
         local dbPath = Autoload:getPathFile(levelsNameFile)
@@ -171,7 +171,7 @@ local Storage = {
         self.dbLevels = dofile(dbPath):new()
     end,
 
-    -- вернуть сильные уровни
+    -- РІРµСЂРЅСѓС‚СЊ СЃРёР»СЊРЅС‹Рµ СѓСЂРѕРІРЅРё
     getStrongLevel = function(self, idStock)
         if isset(self.dataHomework[idStock]["strongLevel"]) then
             return self.dataHomework[idStock]["strongLevel"]
@@ -180,7 +180,7 @@ local Storage = {
         return 0
     end,
 
-    -- проверить есть ли сильные уровни
+    -- РїСЂРѕРІРµСЂРёС‚СЊ РµСЃС‚СЊ Р»Рё СЃРёР»СЊРЅС‹Рµ СѓСЂРѕРІРЅРё
     hasStrongLevel = function(self, idStock)
         if isset(self.dataHomework[idStock]["strongLevel"]) then
             return true
@@ -189,37 +189,37 @@ local Storage = {
         return false
     end,
 
-    -- вернуть класс бумаги по id
+    -- РІРµСЂРЅСѓС‚СЊ РєР»Р°СЃСЃ Р±СѓРјР°РіРё РїРѕ id
     getClassToId = function(self, id)
         if not_isset(self.dataClassAccount[id]) then
-            error("\r\n" .. "Error: Из (Storage) в ( getClassToId() ) запрошен не существующий тикер (" .. tostring(id) .. ")", 2)
+            error("\r\n" .. "Error: РР· (Storage) РІ ( getClassToId() ) Р·Р°РїСЂРѕС€РµРЅ РЅРµ СЃСѓС‰РµСЃС‚РІСѓСЋС‰РёР№ С‚РёРєРµСЂ (" .. tostring(id) .. ")", 2)
         end
 
         return self.dataClassAccount[id]["class"]
     end,
 
-    -- вернуть счёт бумаги по id
+    -- РІРµСЂРЅСѓС‚СЊ СЃС‡С‘С‚ Р±СѓРјР°РіРё РїРѕ id
     getAccountToId = function(self, id)
         if not_isset(self.dataClassAccount[id]) then
-            error("\r\n" .. "Error: Из (Storage) в ( getAccountToId() ) запрошен не существующий тикер (" .. id .. ")", 2)
+            error("\r\n" .. "Error: РР· (Storage) РІ ( getAccountToId() ) Р·Р°РїСЂРѕС€РµРЅ РЅРµ СЃСѓС‰РµСЃС‚РІСѓСЋС‰РёР№ С‚РёРєРµСЂ (" .. id .. ")", 2)
         end
 
         return self.dataClassAccount[id]["account"]
     end,
 
-    -- вернуть код клиента
+    -- РІРµСЂРЅСѓС‚СЊ РєРѕРґ РєР»РёРµРЅС‚Р°
     getClientCodeToId = function(self, id)
         if not_isset(self.dataClassAccount[id]) then
-            error("\r\n" .. "Error: Из (Storage) в ( getClientCodeToId() ) запрошен не существующий тикер (" .. id .. ")", 2)
+            error("\r\n" .. "Error: РР· (Storage) РІ ( getClientCodeToId() ) Р·Р°РїСЂРѕС€РµРЅ РЅРµ СЃСѓС‰РµСЃС‚РІСѓСЋС‰РёР№ С‚РёРєРµСЂ (" .. id .. ")", 2)
         end
 
         return self.dataClassAccount[id]["client_code"]
     end,
 
-    -- вернуть интервал бумаги по id
+    -- РІРµСЂРЅСѓС‚СЊ РёРЅС‚РµСЂРІР°Р» Р±СѓРјР°РіРё РїРѕ id
     getIntervalToId = function(self, id)
         if not_isset(self.dataHomework[id]) then
-            error("\r\n" .. "Error: Из (Storage) в ( getIntervalToId() ) запрошен не существующий тикер (" .. id .. ")", 2)
+            error("\r\n" .. "Error: РР· (Storage) РІ ( getIntervalToId() ) Р·Р°РїСЂРѕС€РµРЅ РЅРµ СЃСѓС‰РµСЃС‚РІСѓСЋС‰РёР№ С‚РёРєРµСЂ (" .. id .. ")", 2)
         end
 
         local class = self:getClassToId(id)
@@ -228,47 +228,47 @@ local Storage = {
         return interval
     end,
 
-    -- вернуть название бумаги по её id (тикеру)
+    -- РІРµСЂРЅСѓС‚СЊ РЅР°Р·РІР°РЅРёРµ Р±СѓРјР°РіРё РїРѕ РµС‘ id (С‚РёРєРµСЂСѓ)
     getNameToId = function(self, id)
         if not_isset(self.dataHomework[id]) then
-            error("\r\n" .. "Error: Из (Storage) в ( getNameToId() ) запрошен не существующий тикер (" .. id .. ")", 2)
+            error("\r\n" .. "Error: РР· (Storage) РІ ( getNameToId() ) Р·Р°РїСЂРѕС€РµРЅ РЅРµ СЃСѓС‰РµСЃС‚РІСѓСЋС‰РёР№ С‚РёРєРµСЂ (" .. id .. ")", 2)
         end
 
         return self.dataHomework[id]["name"]
     end,
 
-    -- возвращает результат проверки существования id, class
+    -- РІРѕР·РІСЂР°С‰Р°РµС‚ СЂРµР·СѓР»СЊС‚Р°С‚ РїСЂРѕРІРµСЂРєРё СЃСѓС‰РµСЃС‚РІРѕРІР°РЅРёСЏ id, class
     levelsExist = function(self, id, class)
         return self.dbLevels:exist(id, class)
     end,
 
-    -- вернуть уровни
+    -- РІРµСЂРЅСѓС‚СЊ СѓСЂРѕРІРЅРё
     getLevels = function(self, id, class, lastPrice, countInterval)
         return self.dbLevels:getParamsLevel(id, class, lastPrice, countInterval)
     end,
 
-    -- вернуть комментарий
+    -- РІРµСЂРЅСѓС‚СЊ РєРѕРјРјРµРЅС‚Р°СЂРёР№
     getCommentToId = function(self, id)
         if not_isset(self.dataHomework[id]) then
-            error("\r\n" .. "Error: Из (Storage) в ( getCommentToId() ) запрошен не существующий тикер (" .. id .. ")", 2)
+            error("\r\n" .. "Error: РР· (Storage) РІ ( getCommentToId() ) Р·Р°РїСЂРѕС€РµРЅ РЅРµ СЃСѓС‰РµСЃС‚РІСѓСЋС‰РёР№ С‚РёРєРµСЂ (" .. id .. ")", 2)
         end
 
         return self.dataHomework[id]["comment"]
     end,
 
-    -- вернуть комментарий
+    -- РІРµСЂРЅСѓС‚СЊ РєРѕРјРјРµРЅС‚Р°СЂРёР№
     getTrendToId = function(self, id)
         if not_isset(self.dataHomework[id]) then
-            error("\r\n" .. "Error: Из (Storage) в ( getTrendToId() ) запрошен не существующий тикер (" .. id .. ")", 2)
+            error("\r\n" .. "Error: РР· (Storage) РІ ( getTrendToId() ) Р·Р°РїСЂРѕС€РµРЅ РЅРµ СЃСѓС‰РµСЃС‚РІСѓСЋС‰РёР№ С‚РёРєРµСЂ (" .. id .. ")", 2)
         end
 
         return self.dataHomework[id]["trend"]
     end,
 
-    -- вернуть разрешение бумаги к шорту по id
+    -- РІРµСЂРЅСѓС‚СЊ СЂР°Р·СЂРµС€РµРЅРёРµ Р±СѓРјР°РіРё Рє С€РѕСЂС‚Сѓ РїРѕ id
     getAllowedShortToId = function(self, id)
         if not_isset(self.dataClassAccount[id]) then
-            error("\r\n" .. "Error: Из (Storage) в ( getAllowedShortToId() ) запрошен не существующий тикер (" .. tostring(id) .. ")", 2)
+            error("\r\n" .. "Error: РР· (Storage) РІ ( getAllowedShortToId() ) Р·Р°РїСЂРѕС€РµРЅ РЅРµ СЃСѓС‰РµСЃС‚РІСѓСЋС‰РёР№ С‚РёРєРµСЂ (" .. tostring(id) .. ")", 2)
         end
 
         if isset(self.dataAllowedShort[id]) then
@@ -278,15 +278,15 @@ local Storage = {
         return false
     end,
 
-    -- вернуть все тикеры домашки в том порядке - в котором в домашке
+    -- РІРµСЂРЅСѓС‚СЊ РІСЃРµ С‚РёРєРµСЂС‹ РґРѕРјР°С€РєРё РІ С‚РѕРј РїРѕСЂСЏРґРєРµ - РІ РєРѕС‚РѕСЂРѕРј РІ РґРѕРјР°С€РєРµ
     getHomeworkId = function(self)
         return copy(self.dataFullHomework)
     end,
 
-    -- вернуть id графика по id бумаги
+    -- РІРµСЂРЅСѓС‚СЊ id РіСЂР°С„РёРєР° РїРѕ id Р±СѓРјР°РіРё
     getIdChart = function(self, id)
         if not_isset(self.dataIdCharts[id]) then
-            error("\r\n" .. "Error: Из (Storage) в ( getIdChart() ) запрошен не существующий тикер (" .. tostring(id) .. ")", 2)
+            error("\r\n" .. "Error: РР· (Storage) РІ ( getIdChart() ) Р·Р°РїСЂРѕС€РµРЅ РЅРµ СЃСѓС‰РµСЃС‚РІСѓСЋС‰РёР№ С‚РёРєРµСЂ (" .. tostring(id) .. ")", 2)
         end
 
         return self.dataIdCharts[id]

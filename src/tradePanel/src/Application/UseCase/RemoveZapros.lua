@@ -45,16 +45,16 @@ local UseCase = {
         return self
     end,
 
-    -- удалить запрос
+    -- СѓРґР°Р»РёС‚СЊ Р·Р°РїСЂРѕСЃ
     removeZapros = function(self, idStock, idNum)
         self.validator:checkId(idStock)
 
-        -- получаем класс инструмента
+        -- РїРѕР»СѓС‡Р°РµРј РєР»Р°СЃСЃ РёРЅСЃС‚СЂСѓРјРµРЅС‚Р°
         local class = self.storage:getClassToId(idStock)
 
         local order_num = 0
 
-        -- получаем параметры запроса
+        -- РїРѕР»СѓС‡Р°РµРј РїР°СЂР°РјРµС‚СЂС‹ Р·Р°РїСЂРѕСЃР°
         local zapros = self.entityServiceStock:getZapros(idStock)
 
         if idNum then
@@ -63,16 +63,16 @@ local UseCase = {
             order_num = zapros.order_num
         end
 
-        -- если стопа нет - останавливаем выполнение
+        -- РµСЃР»Рё СЃС‚РѕРїР° РЅРµС‚ - РѕСЃС‚Р°РЅР°РІР»РёРІР°РµРј РІС‹РїРѕР»РЅРµРЅРёРµ
         if not_number(order_num) then
             return
         end
 
-        -- порядковый номер для транзакции
+        -- РїРѕСЂСЏРґРєРѕРІС‹Р№ РЅРѕРјРµСЂ РґР»СЏ С‚СЂР°РЅР·Р°РєС†РёРё
         local idTransact = self.nextId:getId()
 
-        -- подготавливаем данные для транзакции
-        -- если запрос был выставлен ордером
+        -- РїРѕРґРіРѕС‚Р°РІР»РёРІР°РµРј РґР°РЅРЅС‹Рµ РґР»СЏ С‚СЂР°РЅР·Р°РєС†РёРё
+        -- РµСЃР»Рё Р·Р°РїСЂРѕСЃ Р±С‹Р» РІС‹СЃС‚Р°РІР»РµРЅ РѕСЂРґРµСЂРѕРј
         if zapros.typeSending == "order" then
             local order = {
                 trans_id = idTransact,
@@ -81,17 +81,17 @@ local UseCase = {
                 order_num = order_num,
             }
 
-            -- отправляем транзакцию в диспетчер
+            -- РѕС‚РїСЂР°РІР»СЏРµРј С‚СЂР°РЅР·Р°РєС†РёСЋ РІ РґРёСЃРїРµС‚С‡РµСЂ
             self.dispatcher:OrderDelete(order)
         else
-            -- если запрос был выставлен стоп-ордером
+            -- РµСЃР»Рё Р·Р°РїСЂРѕСЃ Р±С‹Р» РІС‹СЃС‚Р°РІР»РµРЅ СЃС‚РѕРї-РѕСЂРґРµСЂРѕРј
             local stopOrder = {
                 trans_id = idTransact,
                 class = class,
                 order_num = order_num,
             }
 
-            -- отправляем транзакцию в диспетчер
+            -- РѕС‚РїСЂР°РІР»СЏРµРј С‚СЂР°РЅР·Р°РєС†РёСЋ РІ РґРёСЃРїРµС‚С‡РµСЂ
             self.dispatcher:StopOrderDelete(stopOrder)
         end
     end,

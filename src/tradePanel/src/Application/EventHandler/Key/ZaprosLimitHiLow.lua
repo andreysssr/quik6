@@ -18,12 +18,12 @@ local EventHandler = {
         return self
     end,
 
-    -- получить активный инструмент
+    -- РїРѕР»СѓС‡РёС‚СЊ Р°РєС‚РёРІРЅС‹Р№ РёРЅСЃС‚СЂСѓРјРµРЅС‚
     getCurrentId = function(self)
         return self.microservice:getCurrentIdStock()
     end,
 
-    -- купить по hi
+    -- РєСѓРїРёС‚СЊ РїРѕ hi
     buy = function(self, event)
         local idStock = self:getCurrentId()
 
@@ -34,7 +34,7 @@ local EventHandler = {
         self.useCase:addZapros(idStock, "buy")
     end,
 
-    -- продать по low
+    -- РїСЂРѕРґР°С‚СЊ РїРѕ low
     sell = function(self, event)
         local idStock = self:getCurrentId()
 

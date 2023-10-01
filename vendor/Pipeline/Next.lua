@@ -20,7 +20,7 @@ local Next = {
         return self
     end,
 
-    -- сохраняем полученную очередь
+    -- СЃРѕС…СЂР°РЅСЏРµРј РїРѕР»СѓС‡РµРЅРЅСѓСЋ РѕС‡РµСЂРµРґСЊ
     fakeNew = function(self, queue, handler)
         self.queue = queue
         self.middlewareHandler = handler

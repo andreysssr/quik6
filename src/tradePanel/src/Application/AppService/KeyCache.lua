@@ -1,4 +1,4 @@
---- возращает ключ кеша - чтобы не придумывать ключи - они записаны в конфике
+--- РІРѕР·СЂР°С‰Р°РµС‚ РєР»СЋС‡ РєРµС€Р° - С‡С‚РѕР±С‹ РЅРµ РїСЂРёРґСѓРјС‹РІР°С‚СЊ РєР»СЋС‡Рё - РѕРЅРё Р·Р°РїРёСЃР°РЅС‹ РІ РєРѕРЅС„РёРєРµ
 
 local KeyCache = {
 
@@ -16,15 +16,15 @@ local KeyCache = {
 
     getKey = function(self, id, namesCache)
         if not_string(id) then
-            error("Error: id для кеша должен быть строкой. Получено: (" .. getType(namesCache) .. ") -  (" .. tostring(namesCache) .. ")", 2)
+            error("Error: id РґР»СЏ РєРµС€Р° РґРѕР»Р¶РµРЅ Р±С‹С‚СЊ СЃС‚СЂРѕРєРѕР№. РџРѕР»СѓС‡РµРЅРѕ: (" .. getType(namesCache) .. ") -  (" .. tostring(namesCache) .. ")", 2)
         end
 
         if not_string(namesCache) then
-            error("Error: Ключ для кеша должен быть строкой. Получено: (" .. getType(namesCache) .. ") -  (" .. tostring(namesCache) .. ")", 2)
+            error("Error: РљР»СЋС‡ РґР»СЏ РєРµС€Р° РґРѕР»Р¶РµРЅ Р±С‹С‚СЊ СЃС‚СЂРѕРєРѕР№. РџРѕР»СѓС‡РµРЅРѕ: (" .. getType(namesCache) .. ") -  (" .. tostring(namesCache) .. ")", 2)
         end
 
         if not_key_exists(self.config, namesCache) then
-            error("Error: В (config) в именах для кешей (namesCache) отсутствует ключ: (" .. namesCache .. ")", 2)
+            error("Error: Р’ (config) РІ РёРјРµРЅР°С… РґР»СЏ РєРµС€РµР№ (namesCache) РѕС‚СЃСѓС‚СЃС‚РІСѓРµС‚ РєР»СЋС‡: (" .. namesCache .. ")", 2)
         end
 
         return id .. "_" .. self.config[namesCache]

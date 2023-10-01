@@ -23,7 +23,7 @@ local Pipeline = {
         return self.container:get("Pipeline_Next"):fakeNew(clone(self.pipeline), handler):handle(request)
     end,
 
-    -- добавляет middleware в текущий pipeline
+    -- РґРѕР±Р°РІР»СЏРµС‚ middleware РІ С‚РµРєСѓС‰РёР№ pipeline
     pipe = function(self, middleware)
         self.pipeline:enqueue(middleware)
     end

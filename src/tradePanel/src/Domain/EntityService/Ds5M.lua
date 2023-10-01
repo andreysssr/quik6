@@ -1,4 +1,4 @@
---- EntityService Ds5M - описание
+--- EntityService Ds5M - РѕРїРёСЃР°РЅРёРµ
 
 local EntityService = {
     --
@@ -18,48 +18,48 @@ local EntityService = {
         return self
     end,
 
-    -- удаляет источник данных, отписывается от получения данных
+    -- СѓРґР°Р»СЏРµС‚ РёСЃС‚РѕС‡РЅРёРє РґР°РЅРЅС‹С…, РѕС‚РїРёСЃС‹РІР°РµС‚СЃСЏ РѕС‚ РїРѕР»СѓС‡РµРЅРёСЏ РґР°РЅРЅС‹С…
     removeDs = function(self, idStock)
         local entity = self.repository:get(idStock)
 
         entity:removeDs()
     end,
 
-    -- проверяет - обновился ли бар
-    -- если бар обновился - создаётся событие
+    -- РїСЂРѕРІРµСЂСЏРµС‚ - РѕР±РЅРѕРІРёР»СЃСЏ Р»Рё Р±Р°СЂ
+    -- РµСЃР»Рё Р±Р°СЂ РѕР±РЅРѕРІРёР»СЃСЏ - СЃРѕР·РґР°С‘С‚СЃСЏ СЃРѕР±С‹С‚РёРµ
     checkNewBar = function(self, idStock)
         local entity = self.repository:get(idStock)
 
         entity:checkNewBar()
 
-        -- получаем события из Entity и передаём их в диспетчер событий
+        -- РїРѕР»СѓС‡Р°РµРј СЃРѕР±С‹С‚РёСЏ РёР· Entity Рё РїРµСЂРµРґР°С‘Рј РёС… РІ РґРёСЃРїРµС‚С‡РµСЂ СЃРѕР±С‹С‚РёР№
         self.dispatcher:dispatchEvents(entity:releaseEvents())
     end,
 
-    -- вернуть Atr последнего бара
-    -- (текущий Hi) - (текущий Low)
+    -- РІРµСЂРЅСѓС‚СЊ Atr РїРѕСЃР»РµРґРЅРµРіРѕ Р±Р°СЂР°
+    -- (С‚РµРєСѓС‰РёР№ Hi) - (С‚РµРєСѓС‰РёР№ Low)
     getAtrBarCurrent = function(self, idStock)
         local entity = self.repository:get(idStock)
 
         return entity:getAtrBarCurrent()
     end,
 
-    -- вернуть Atr предыдущего бара
-    -- (предыдущий Hi) - (предыдущий low)
+    -- РІРµСЂРЅСѓС‚СЊ Atr РїСЂРµРґС‹РґСѓС‰РµРіРѕ Р±Р°СЂР°
+    -- (РїСЂРµРґС‹РґСѓС‰РёР№ Hi) - (РїСЂРµРґС‹РґСѓС‰РёР№ low)
     getAtrBarPrev = function(self, idStock)
         local entity = self.repository:get(idStock)
 
         return entity:getAtrBarPrev()
     end,
 
-    -- вернуть hi low последних 3 баров
+    -- РІРµСЂРЅСѓС‚СЊ hi low РїРѕСЃР»РµРґРЅРёС… 3 Р±Р°СЂРѕРІ
     getHiLow = function(self, idStock)
         local entity = self.repository:get(idStock)
 
         return entity:getHiLow()
     end,
 
-    -- вернуть объём последних 3 баров
+    -- РІРµСЂРЅСѓС‚СЊ РѕР±СЉС‘Рј РїРѕСЃР»РµРґРЅРёС… 3 Р±Р°СЂРѕРІ
     getVolume = function(self, idStock)
         local entity = self.repository:get(idStock)
 

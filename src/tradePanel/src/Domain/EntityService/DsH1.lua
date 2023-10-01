@@ -1,4 +1,4 @@
---- EntityService DsH1 - описание
+--- EntityService DsH1 - РѕРїРёСЃР°РЅРёРµ
 
 local EntityService = {
     --
@@ -18,21 +18,21 @@ local EntityService = {
         return self
     end,
 
-    -- удаляет источник данных, отписывается от получения данных
+    -- СѓРґР°Р»СЏРµС‚ РёСЃС‚РѕС‡РЅРёРє РґР°РЅРЅС‹С…, РѕС‚РїРёСЃС‹РІР°РµС‚СЃСЏ РѕС‚ РїРѕР»СѓС‡РµРЅРёСЏ РґР°РЅРЅС‹С…
     removeDs = function(self, idStock)
         local entity = self.repository:get(idStock)
 
         entity:removeDs()
     end,
 
-    -- вернуть hi, low, одного часа - 10 часов
+    -- РІРµСЂРЅСѓС‚СЊ hi, low, РѕРґРЅРѕРіРѕ С‡Р°СЃР° - 10 С‡Р°СЃРѕРІ
     getHiLowBarHour10 = function(self, idStock)
         local entity = self.repository:get(idStock)
 
         return entity:getHiLowBarHour10()
     end,
 
-    -- вернуть hi, low, двух часов - 9 и 10
+    -- РІРµСЂРЅСѓС‚СЊ hi, low, РґРІСѓС… С‡Р°СЃРѕРІ - 9 Рё 10
     getHiLowBarHour9 = function(self, idStock)
         local entity = self.repository:get(idStock)
 

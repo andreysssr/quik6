@@ -1,7 +1,7 @@
 ---
 
 local aggregator = Autoload:get("ConfigAggregator"):new({
-    Dir:getListFiles(basePath .. "config\\autoload"), -- добавляет все файлы в директории
+    Dir:getListFiles(basePath .. "config\\autoload"), -- РґРѕР±Р°РІР»СЏРµС‚ РІСЃРµ С„Р°Р№Р»С‹ РІ РґРёСЂРµРєС‚РѕСЂРёРё
     Dir:getListFiles(basePath .. "src\\" .. appDir .. "config\\autoload"),
 })
 

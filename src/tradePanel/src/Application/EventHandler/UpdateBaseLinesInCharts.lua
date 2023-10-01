@@ -23,7 +23,7 @@ local EventHandler = {
         local listStock = self.storage:getHomeworkId()
 
         for i = 1, #listStock do
-            -- меняем положение линии basePrice
+            -- РјРµРЅСЏРµРј РїРѕР»РѕР¶РµРЅРёРµ Р»РёРЅРёРё basePrice
             self.basePriceToChart:updateLocationToId(listStock[i])
         end
     end,

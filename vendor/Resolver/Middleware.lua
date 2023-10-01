@@ -15,14 +15,14 @@ local ResolverMiddleware = {
     resolve = function(self, middleware)
         local handlerObj = self.container:get(middleware)
 
-        -- объект не вернул себя из метода (new)
+        -- РѕР±СЉРµРєС‚ РЅРµ РІРµСЂРЅСѓР» СЃРµР±СЏ РёР· РјРµС‚РѕРґР° (new)
         if not handlerObj then
-            error("\r\n\r\n" .. "Error: Объект (" .. tostring(middleware) .. ") не вернул себя из метода (new), в методе отсутствует [return self]")
+            error("\r\n\r\n" .. "Error: РћР±СЉРµРєС‚ (" .. tostring(middleware) .. ") РЅРµ РІРµСЂРЅСѓР» СЃРµР±СЏ РёР· РјРµС‚РѕРґР° (new), РІ РјРµС‚РѕРґРµ РѕС‚СЃСѓС‚СЃС‚РІСѓРµС‚ [return self]")
         end
 
-        -- отсутствует метод (handle) и метод (process)
+        -- РѕС‚СЃСѓС‚СЃС‚РІСѓРµС‚ РјРµС‚РѕРґ (handle) Рё РјРµС‚РѕРґ (process)
         if not_method_exists(handlerObj, "handle") and not_method_exists(handlerObj, "process") then
-            error("\r\n\r\n" .. "Error: У объекта (" .. middleware .. ") отсутствует метод (handle) и (process)", 2)
+            error("\r\n\r\n" .. "Error: РЈ РѕР±СЉРµРєС‚Р° (" .. middleware .. ") РѕС‚СЃСѓС‚СЃС‚РІСѓРµС‚ РјРµС‚РѕРґ (handle) Рё (process)", 2)
         end
 
         return handlerObj

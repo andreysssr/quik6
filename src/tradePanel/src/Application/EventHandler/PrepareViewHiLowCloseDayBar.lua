@@ -66,7 +66,7 @@ local EventHandler = {
         --
         local interval = self.storage:getIntervalToId(idStock)
 
-        -- шаг интервала
+        -- С€Р°Рі РёРЅС‚РµСЂРІР°Р»Р°
         local stepInterval = interval / 6
 
         local paramsBarDay = self.entityServiceDSD:getHiLowClosePreviousBar(idStock)

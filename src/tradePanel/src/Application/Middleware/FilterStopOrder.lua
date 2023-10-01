@@ -4,7 +4,7 @@ local Middleware = {
     --
     name = "Middleware_FilterStopOrder",
 
-    -- хранилище id номеров
+    -- С…СЂР°РЅРёР»РёС‰Рµ id РЅРѕРјРµСЂРѕРІ
     data = {},
 
     --
@@ -20,7 +20,7 @@ local Middleware = {
 
         local key = tostring(order_num) .. "_" .. status
 
-        -- запрос пришёл первый раз и trans_id не нулевой
+        -- Р·Р°РїСЂРѕСЃ РїСЂРёС€С‘Р» РїРµСЂРІС‹Р№ СЂР°Р· Рё trans_id РЅРµ РЅСѓР»РµРІРѕР№
         if not self.data[key] then
             self.data[key] = 1
 
@@ -30,21 +30,21 @@ local Middleware = {
         return false
     end,
 
-    -- обработка stopOrder
+    -- РѕР±СЂР°Р±РѕС‚РєР° stopOrder
     process = function(self, request, handler)
-        -- для stopOrder
+        -- РґР»СЏ stopOrder
         if request.name == "stopOrder" then
-            -- если разрешить передачу дальше
+            -- РµСЃР»Рё СЂР°Р·СЂРµС€РёС‚СЊ РїРµСЂРµРґР°С‡Сѓ РґР°Р»СЊС€Рµ
             if self:allowNext(request) then
 
-                -- передаём обработку дальше
+                -- РїРµСЂРµРґР°С‘Рј РѕР±СЂР°Р±РѕС‚РєСѓ РґР°Р»СЊС€Рµ
                 handler:handle(request)
             end
 
             return
         end
 
-        -- если name ~= stopOrder
+        -- РµСЃР»Рё name ~= stopOrder
         handler:handle(request)
     end,
 }

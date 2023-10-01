@@ -4,11 +4,11 @@ local Entity_Stock = {
     --
     name = "Entity_Stock",
 
-    -- расчёт доступного количества лотов
+    -- СЂР°СЃС‡С‘С‚ РґРѕСЃС‚СѓРїРЅРѕРіРѕ РєРѕР»РёС‡РµСЃС‚РІР° Р»РѕС‚РѕРІ
     serviceMaxLots = {},
 
-    -- коэффициент для увеличения количества лотов
-    -- при сравнении с максимальным количеством лотов для покупки
+    -- РєРѕСЌС„С„РёС†РёРµРЅС‚ РґР»СЏ СѓРІРµР»РёС‡РµРЅРёСЏ РєРѕР»РёС‡РµСЃС‚РІР° Р»РѕС‚РѕРІ
+    -- РїСЂРё СЃСЂР°РІРЅРµРЅРёРё СЃ РјР°РєСЃРёРјР°Р»СЊРЅС‹Рј РєРѕР»РёС‡РµСЃС‚РІРѕРј Р»РѕС‚РѕРІ РґР»СЏ РїРѕРєСѓРїРєРё
     ratio = 0,
 
     --
@@ -17,19 +17,19 @@ local Entity_Stock = {
     --
     serviceCorrectPrice = {},
 
-    -- настройки для запроса
+    -- РЅР°СЃС‚СЂРѕР№РєРё РґР»СЏ Р·Р°РїСЂРѕСЃР°
     settingZapros = {},
 
-    -- настройки для стопа запроса для - StopOrderLimit
+    -- РЅР°СЃС‚СЂРѕР№РєРё РґР»СЏ СЃС‚РѕРїР° Р·Р°РїСЂРѕСЃР° РґР»СЏ - StopOrderLimit
     settingZaprosOffset = {},
 
-    -- настройки для стопа
+    -- РЅР°СЃС‚СЂРѕР№РєРё РґР»СЏ СЃС‚РѕРїР°
     settingStop = {},
 
-    -- настройки для переноса стопа
+    -- РЅР°СЃС‚СЂРѕР№РєРё РґР»СЏ РїРµСЂРµРЅРѕСЃР° СЃС‚РѕРїР°
     settingStopMove = {},
 
-    -- настройки для тейка
+    -- РЅР°СЃС‚СЂРѕР№РєРё РґР»СЏ С‚РµР№РєР°
     settingTake = {},
 
     --
@@ -60,17 +60,17 @@ local Entity_Stock = {
         return self
     end,
 
-    -- вернуть id
+    -- РІРµСЂРЅСѓС‚СЊ id
     getId = function(self)
         return self.id
     end,
 
-    -- вернуть класс
+    -- РІРµСЂРЅСѓС‚СЊ РєР»Р°СЃСЃ
     getClass = function(self)
         return self.class
     end,
 
-    -- возвращает противоположное значение операции
+    -- РІРѕР·РІСЂР°С‰Р°РµС‚ РїСЂРѕС‚РёРІРѕРїРѕР»РѕР¶РЅРѕРµ Р·РЅР°С‡РµРЅРёРµ РѕРїРµСЂР°С†РёРё
     getReverseOperation = function(self, operation)
         self.validator:check_buy_sell(operation)
 
@@ -85,43 +85,43 @@ local Entity_Stock = {
         return operation
     end,
 
-    -- меняем статус бумаги
+    -- РјРµРЅСЏРµРј СЃС‚Р°С‚СѓСЃ Р±СѓРјР°РіРё
     changeStatus = function(self, typeStatus)
-        -- если текущий статус бумаги не изменился
+        -- РµСЃР»Рё С‚РµРєСѓС‰РёР№ СЃС‚Р°С‚СѓСЃ Р±СѓРјР°РіРё РЅРµ РёР·РјРµРЅРёР»СЃСЏ
         if self.trade.status == typeStatus then
             return
         end
 
-        -- меняем значение статуса
+        -- РјРµРЅСЏРµРј Р·РЅР°С‡РµРЅРёРµ СЃС‚Р°С‚СѓСЃР°
         self.trade.status = typeStatus
 
-        -- регистрация события
+        -- СЂРµРіРёСЃС‚СЂР°С†РёСЏ СЃРѕР±С‹С‚РёСЏ
         self:registerEvent("EntityStock_ChangedStatus", {
             id = self.id,
             status = self.trade.status
         })
     end,
 
-    -- проверка статуса инструмента
+    -- РїСЂРѕРІРµСЂРєР° СЃС‚Р°С‚СѓСЃР° РёРЅСЃС‚СЂСѓРјРµРЅС‚Р°
     checkStatus = function(self)
-        -- если лотов не, но есть позиции или выставлен запрос
+        -- РµСЃР»Рё Р»РѕС‚РѕРІ РЅРµ, РЅРѕ РµСЃС‚СЊ РїРѕР·РёС†РёРё РёР»Рё РІС‹СЃС‚Р°РІР»РµРЅ Р·Р°РїСЂРѕСЃ
         if self.trade.lots == 0 and (self:hasPosition() or self:hasZapros()) then
             self:changeStatus("limitedActive")
 
             return
         end
 
-        -- если лотов не, и нет позиций
+        -- РµСЃР»Рё Р»РѕС‚РѕРІ РЅРµ, Рё РЅРµС‚ РїРѕР·РёС†РёР№
         if self.trade.lots == 0 then
             self:changeStatus("notActive")
 
             return
         end
 
-        -- MaxLots < Lots И ((есть позиции) ИЛИ (есть заявки))
-        -- становится частично активным:
-        --		можно снять заявки
-        --		закрыть позиции
+        -- MaxLots < Lots Р ((РµСЃС‚СЊ РїРѕР·РёС†РёРё) РР›Р (РµСЃС‚СЊ Р·Р°СЏРІРєРё))
+        -- СЃС‚Р°РЅРѕРІРёС‚СЃСЏ С‡Р°СЃС‚РёС‡РЅРѕ Р°РєС‚РёРІРЅС‹Рј:
+        --		РјРѕР¶РЅРѕ СЃРЅСЏС‚СЊ Р·Р°СЏРІРєРё
+        --		Р·Р°РєСЂС‹С‚СЊ РїРѕР·РёС†РёРё
         if self.trade.maxLots <= (self.trade.lots * self.ratio) and (self:hasPosition() or self:hasZapros()) then
             self:changeStatus("limitedActive")
 
@@ -129,7 +129,7 @@ local Entity_Stock = {
         end
 
         -- MaxLots < Lots
-        -- 		становится не активным
+        -- 		СЃС‚Р°РЅРѕРІРёС‚СЃСЏ РЅРµ Р°РєС‚РёРІРЅС‹Рј
         if self.trade.maxLots < (self.trade.lots * self.ratio) then
             self:changeStatus("notActive")
 
@@ -137,7 +137,7 @@ local Entity_Stock = {
         end
 
         -- MaxLots > Lots
-        -- 		становится активным (если был частично активен или не активен)
+        -- 		СЃС‚Р°РЅРѕРІРёС‚СЃСЏ Р°РєС‚РёРІРЅС‹Рј (РµСЃР»Рё Р±С‹Р» С‡Р°СЃС‚РёС‡РЅРѕ Р°РєС‚РёРІРµРЅ РёР»Рё РЅРµ Р°РєС‚РёРІРµРЅ)
         if self.trade.maxLots >= (self.trade.lots * self.ratio) then
             self:changeStatus("active")
 
@@ -145,41 +145,41 @@ local Entity_Stock = {
         end
     end,
 
-    -- вернуть статус бумаги
+    -- РІРµСЂРЅСѓС‚СЊ СЃС‚Р°С‚СѓСЃ Р±СѓРјР°РіРё
     getStatus = function(self)
         return self.trade.status
     end,
 
-    -- прибавляем полученную позицию к текущей
+    -- РїСЂРёР±Р°РІР»СЏРµРј РїРѕР»СѓС‡РµРЅРЅСѓСЋ РїРѕР·РёС†РёСЋ Рє С‚РµРєСѓС‰РµР№
     addPosition = function(self, qty)
         self.validator:checkParamNumber(qty, "qty")
 
-        -- получаем количество лотов в позиции
+        -- РїРѕР»СѓС‡Р°РµРј РєРѕР»РёС‡РµСЃС‚РІРѕ Р»РѕС‚РѕРІ РІ РїРѕР·РёС†РёРё
         local result = self.position.qty + qty
 
-        -- удаляем нули - чтобы число было целым
+        -- СѓРґР°Р»СЏРµРј РЅСѓР»Рё - С‡С‚РѕР±С‹ С‡РёСЃР»Рѕ Р±С‹Р»Рѕ С†РµР»С‹Рј
         self.position.qty = d0(result)
 
-        -- если позиция была закрыта
+        -- РµСЃР»Рё РїРѕР·РёС†РёСЏ Р±С‹Р»Р° Р·Р°РєСЂС‹С‚Р°
         if self.position.qty == 0 then
             self.position.operation = ""
             return
         end
 
-        -- если позиция была в лонг
+        -- РµСЃР»Рё РїРѕР·РёС†РёСЏ Р±С‹Р»Р° РІ Р»РѕРЅРі
         if self.position.qty > 0 then
             self.position.operation = "buy"
             return
         end
 
-        -- если позиция была в шорт
+        -- РµСЃР»Рё РїРѕР·РёС†РёСЏ Р±С‹Р»Р° РІ С€РѕСЂС‚
         if self.position.qty < 0 then
             self.position.operation = "sell"
             return
         end
     end,
 
-    -- проверка наличия открытых позиции
+    -- РїСЂРѕРІРµСЂРєР° РЅР°Р»РёС‡РёСЏ РѕС‚РєСЂС‹С‚С‹С… РїРѕР·РёС†РёРё
     hasPosition = function(self)
         if self.position.qty == 0 then
             return false
@@ -188,27 +188,27 @@ local Entity_Stock = {
         return true
     end,
 
-    -- вернуть параметры поизиции
+    -- РІРµСЂРЅСѓС‚СЊ РїР°СЂР°РјРµС‚СЂС‹ РїРѕРёР·РёС†РёРё
     getPositionParams = function(self)
         return self.position
     end,
 
-    -- вернуть количество лотов в наличии
+    -- РІРµСЂРЅСѓС‚СЊ РєРѕР»РёС‡РµСЃС‚РІРѕ Р»РѕС‚РѕРІ РІ РЅР°Р»РёС‡РёРё
     getPositionQty = function(self)
         return self.position.qty
     end,
 
-    -- вернуть количество лотов для открытия позиции
+    -- РІРµСЂРЅСѓС‚СЊ РєРѕР»РёС‡РµСЃС‚РІРѕ Р»РѕС‚РѕРІ РґР»СЏ РѕС‚РєСЂС‹С‚РёСЏ РїРѕР·РёС†РёРё
     getLots = function(self)
         return self.trade.lots
     end,
 
-    -- вернуть максимально возможное количество лотов для всего депозита
+    -- РІРµСЂРЅСѓС‚СЊ РјР°РєСЃРёРјР°Р»СЊРЅРѕ РІРѕР·РјРѕР¶РЅРѕРµ РєРѕР»РёС‡РµСЃС‚РІРѕ Р»РѕС‚РѕРІ РґР»СЏ РІСЃРµРіРѕ РґРµРїРѕР·РёС‚Р°
     getMaxLots = function(self)
         return self.trade.maxLots
     end,
 
-    -- вернуть параметры запроса
+    -- РІРµСЂРЅСѓС‚СЊ РїР°СЂР°РјРµС‚СЂС‹ Р·Р°РїСЂРѕСЃР°
     getZaprosParams = function(self)
         local params = self.zapros.zaprosParams
         params.lots = self.trade.lots
@@ -216,7 +216,7 @@ local Entity_Stock = {
         return params
     end,
 
-    -- добавить запрос
+    -- РґРѕР±Р°РІРёС‚СЊ Р·Р°РїСЂРѕСЃ
     addZapros = function(self, zapros)
         self.validator:checkParamNotNil(zapros, "zapros")
 
@@ -228,21 +228,21 @@ local Entity_Stock = {
         })
     end,
 
-    -- вернуть запрос (если он есть)
+    -- РІРµСЂРЅСѓС‚СЊ Р·Р°РїСЂРѕСЃ (РµСЃР»Рё РѕРЅ РµСЃС‚СЊ)
     getZapros = function(self)
         local numLastZapros = #self.zapros.list
 
-        -- если массив целый не нарушен исполнением первых запросов
-        -- тогда будет возвращать начиная с последнего запроса
-        -- если было добавлено 2 элемента и первый удалён - тогда он не отработает
-        -- если было добавлено больше 2 элементов и один из первых удалён - тогда он отработает,
-        -- но отдаст не последний
+        -- РµСЃР»Рё РјР°СЃСЃРёРІ С†РµР»С‹Р№ РЅРµ РЅР°СЂСѓС€РµРЅ РёСЃРїРѕР»РЅРµРЅРёРµРј РїРµСЂРІС‹С… Р·Р°РїСЂРѕСЃРѕРІ
+        -- С‚РѕРіРґР° Р±СѓРґРµС‚ РІРѕР·РІСЂР°С‰Р°С‚СЊ РЅР°С‡РёРЅР°СЏ СЃ РїРѕСЃР»РµРґРЅРµРіРѕ Р·Р°РїСЂРѕСЃР°
+        -- РµСЃР»Рё Р±С‹Р»Рѕ РґРѕР±Р°РІР»РµРЅРѕ 2 СЌР»РµРјРµРЅС‚Р° Рё РїРµСЂРІС‹Р№ СѓРґР°Р»С‘РЅ - С‚РѕРіРґР° РѕРЅ РЅРµ РѕС‚СЂР°Р±РѕС‚Р°РµС‚
+        -- РµСЃР»Рё Р±С‹Р»Рѕ РґРѕР±Р°РІР»РµРЅРѕ Р±РѕР»СЊС€Рµ 2 СЌР»РµРјРµРЅС‚РѕРІ Рё РѕРґРёРЅ РёР· РїРµСЂРІС‹С… СѓРґР°Р»С‘РЅ - С‚РѕРіРґР° РѕРЅ РѕС‚СЂР°Р±РѕС‚Р°РµС‚,
+        -- РЅРѕ РѕС‚РґР°СЃС‚ РЅРµ РїРѕСЃР»РµРґРЅРёР№
         if isset(self.zapros.list[numLastZapros]) then
             return self.zapros.list[numLastZapros]
         end
 
-        -- вернёт любой из найденных
-        -- если было добавлено 2 запроса и первый исполнился - вернёт второй (и псоледний)
+        -- РІРµСЂРЅС‘С‚ Р»СЋР±РѕР№ РёР· РЅР°Р№РґРµРЅРЅС‹С…
+        -- РµСЃР»Рё Р±С‹Р»Рѕ РґРѕР±Р°РІР»РµРЅРѕ 2 Р·Р°РїСЂРѕСЃР° Рё РїРµСЂРІС‹Р№ РёСЃРїРѕР»РЅРёР»СЃСЏ - РІРµСЂРЅС‘С‚ РІС‚РѕСЂРѕР№ (Рё РїСЃРѕР»РµРґРЅРёР№)
         for i, _ in pairs(self.zapros.list) do
             return self.zapros.list[i]
         end
@@ -250,7 +250,7 @@ local Entity_Stock = {
         return {}
     end,
 
-    -- удалить zapros по номеру
+    -- СѓРґР°Р»РёС‚СЊ zapros РїРѕ РЅРѕРјРµСЂСѓ
     removeZapros = function(self, orderNum)
         self.validator:checkParamNumber(orderNum, "orderNum")
 
@@ -261,10 +261,10 @@ local Entity_Stock = {
         end
     end,
 
-    -- проверить наличие запроса
+    -- РїСЂРѕРІРµСЂРёС‚СЊ РЅР°Р»РёС‡РёРµ Р·Р°РїСЂРѕСЃР°
     hasZapros = function(self, order_num)
 
-        -- есть ли хотя бы 1 запрос
+        -- РµСЃС‚СЊ Р»Рё С…РѕС‚СЏ Р±С‹ 1 Р·Р°РїСЂРѕСЃ
         if is_nil(order_num) then
             if empty(self.zapros.list) then
                 return false
@@ -273,18 +273,18 @@ local Entity_Stock = {
             return true
         end
 
-        -- если был передан номер и номер найден
+        -- РµСЃР»Рё Р±С‹Р» РїРµСЂРµРґР°РЅ РЅРѕРјРµСЂ Рё РЅРѕРјРµСЂ РЅР°Р№РґРµРЅ
         for i, _ in pairs(self.zapros.list) do
             if self.zapros.list[i].order_num == order_num then
                 return true
             end
         end
 
-        -- запрос с таким номером не существует
+        -- Р·Р°РїСЂРѕСЃ СЃ С‚Р°РєРёРј РЅРѕРјРµСЂРѕРј РЅРµ СЃСѓС‰РµСЃС‚РІСѓРµС‚
         return false
     end,
 
-    -- вернуть параметры стопа
+    -- РІРµСЂРЅСѓС‚СЊ РїР°СЂР°РјРµС‚СЂС‹ СЃС‚РѕРїР°
     getStopParams = function(self)
         local params = self.stop.stopParams
         params.lots = self.trade.lots
@@ -292,7 +292,7 @@ local Entity_Stock = {
         return params
     end,
 
-    -- вернуть параметры стопа для переноса в безубыток
+    -- РІРµСЂРЅСѓС‚СЊ РїР°СЂР°РјРµС‚СЂС‹ СЃС‚РѕРїР° РґР»СЏ РїРµСЂРµРЅРѕСЃР° РІ Р±РµР·СѓР±С‹С‚РѕРє
     getStopMoveParams = function(self)
         local params = self.stop.moveParams
         params.lots = self.trade.lots
@@ -300,21 +300,21 @@ local Entity_Stock = {
         return params
     end,
 
-    -- возвращает добавленный idParams последнего добавленного стопа
-    -- либо вернёт 0 - если было закрытие позиции - то произошло обнуление
+    -- РІРѕР·РІСЂР°С‰Р°РµС‚ РґРѕР±Р°РІР»РµРЅРЅС‹Р№ idParams РїРѕСЃР»РµРґРЅРµРіРѕ РґРѕР±Р°РІР»РµРЅРЅРѕРіРѕ СЃС‚РѕРїР°
+    -- Р»РёР±Рѕ РІРµСЂРЅС‘С‚ 0 - РµСЃР»Рё Р±С‹Р»Рѕ Р·Р°РєСЂС‹С‚РёРµ РїРѕР·РёС†РёРё - С‚Рѕ РїСЂРѕРёР·РѕС€Р»Рѕ РѕР±РЅСѓР»РµРЅРёРµ
     getRecoveryIdParams = function(self)
         return self.stop.recoveryIdParams
     end,
 
-    -- добавить стоп
+    -- РґРѕР±Р°РІРёС‚СЊ СЃС‚РѕРї
     addStop = function(self, stop)
         self.validator:checkParamNotNil(stop, "stop")
 
-        -- добавляем стоп в массив стопов
+        -- РґРѕР±Р°РІР»СЏРµРј СЃС‚РѕРї РІ РјР°СЃСЃРёРІ СЃС‚РѕРїРѕРІ
         self.stop.list[#self.stop.list + 1] = stop
 
-        -- сохранить idParams последнего добавленного стопа в резервную ячейку
-        -- чтобы можно было востановить стоп (клавишей L) при случайном удалении (клавишей D)
+        -- СЃРѕС…СЂР°РЅРёС‚СЊ idParams РїРѕСЃР»РµРґРЅРµРіРѕ РґРѕР±Р°РІР»РµРЅРЅРѕРіРѕ СЃС‚РѕРїР° РІ СЂРµР·РµСЂРІРЅСѓСЋ СЏС‡РµР№РєСѓ
+        -- С‡С‚РѕР±С‹ РјРѕР¶РЅРѕ Р±С‹Р»Рѕ РІРѕСЃС‚Р°РЅРѕРІРёС‚СЊ СЃС‚РѕРї (РєР»Р°РІРёС€РµР№ L) РїСЂРё СЃР»СѓС‡Р°Р№РЅРѕРј СѓРґР°Р»РµРЅРёРё (РєР»Р°РІРёС€РµР№ D)
         self.stop.recoveryIdParams = stop.idParams
 
         self:registerEvent("EntityStock_AddedStop", {
@@ -323,21 +323,21 @@ local Entity_Stock = {
         })
     end,
 
-    -- вернуть стоп (если он есть)
+    -- РІРµСЂРЅСѓС‚СЊ СЃС‚РѕРї (РµСЃР»Рё РѕРЅ РµСЃС‚СЊ)
     getStop = function(self)
         local numLastStop = #self.stop.list
 
-        -- если массив целый не нарушен исполнением первых запросов
-        -- тогда будет возвращать начиная с последнего запроса
-        -- если было добавлено 2 элемента и первый удалён - тогда он не отработает
-        -- если было добавлено больше 2 элементов и один из первых удалён - тогда он отработает,
-        -- но отдаст не последний
+        -- РµСЃР»Рё РјР°СЃСЃРёРІ С†РµР»С‹Р№ РЅРµ РЅР°СЂСѓС€РµРЅ РёСЃРїРѕР»РЅРµРЅРёРµРј РїРµСЂРІС‹С… Р·Р°РїСЂРѕСЃРѕРІ
+        -- С‚РѕРіРґР° Р±СѓРґРµС‚ РІРѕР·РІСЂР°С‰Р°С‚СЊ РЅР°С‡РёРЅР°СЏ СЃ РїРѕСЃР»РµРґРЅРµРіРѕ Р·Р°РїСЂРѕСЃР°
+        -- РµСЃР»Рё Р±С‹Р»Рѕ РґРѕР±Р°РІР»РµРЅРѕ 2 СЌР»РµРјРµРЅС‚Р° Рё РїРµСЂРІС‹Р№ СѓРґР°Р»С‘РЅ - С‚РѕРіРґР° РѕРЅ РЅРµ РѕС‚СЂР°Р±РѕС‚Р°РµС‚
+        -- РµСЃР»Рё Р±С‹Р»Рѕ РґРѕР±Р°РІР»РµРЅРѕ Р±РѕР»СЊС€Рµ 2 СЌР»РµРјРµРЅС‚РѕРІ Рё РѕРґРёРЅ РёР· РїРµСЂРІС‹С… СѓРґР°Р»С‘РЅ - С‚РѕРіРґР° РѕРЅ РѕС‚СЂР°Р±РѕС‚Р°РµС‚,
+        -- РЅРѕ РѕС‚РґР°СЃС‚ РЅРµ РїРѕСЃР»РµРґРЅРёР№
         if isset(self.stop.list[numLastStop]) then
             return self.stop.list[numLastStop]
         end
 
-        -- вернёт любой из найденных
-        -- если было добавлено 2 запроса и первый исполнился - вернёт второй (и последний)
+        -- РІРµСЂРЅС‘С‚ Р»СЋР±РѕР№ РёР· РЅР°Р№РґРµРЅРЅС‹С…
+        -- РµСЃР»Рё Р±С‹Р»Рѕ РґРѕР±Р°РІР»РµРЅРѕ 2 Р·Р°РїСЂРѕСЃР° Рё РїРµСЂРІС‹Р№ РёСЃРїРѕР»РЅРёР»СЃСЏ - РІРµСЂРЅС‘С‚ РІС‚РѕСЂРѕР№ (Рё РїРѕСЃР»РµРґРЅРёР№)
         for i, _ in pairs(self.stop.list) do
             return self.stop.list[i]
         end
@@ -345,7 +345,7 @@ local Entity_Stock = {
         return {}
     end,
 
-    -- удалить стоп по номеру
+    -- СѓРґР°Р»РёС‚СЊ СЃС‚РѕРї РїРѕ РЅРѕРјРµСЂСѓ
     removeStop = function(self, orderNum)
         self.validator:checkParamNumber(orderNum, "orderNum")
 
@@ -356,7 +356,7 @@ local Entity_Stock = {
         end
     end,
 
-    -- проверить наличие стопа
+    -- РїСЂРѕРІРµСЂРёС‚СЊ РЅР°Р»РёС‡РёРµ СЃС‚РѕРїР°
     hasStop = function(self)
         if empty(self.stop.list) then
             return false
@@ -365,7 +365,7 @@ local Entity_Stock = {
         return true
     end,
 
-    -- вернуть параметры тейка
+    -- РІРµСЂРЅСѓС‚СЊ РїР°СЂР°РјРµС‚СЂС‹ С‚РµР№РєР°
     getTakeParams = function(self)
         local params = self.take.takeParams
         params.lots = self.trade.lots
@@ -373,7 +373,7 @@ local Entity_Stock = {
         return params
     end,
 
-    -- добавить тейк
+    -- РґРѕР±Р°РІРёС‚СЊ С‚РµР№Рє
     addTake = function(self, take)
         self.validator:checkParamNotNil(take, "take")
 
@@ -385,21 +385,21 @@ local Entity_Stock = {
         })
     end,
 
-    -- вернуть тейк (если он есть)
+    -- РІРµСЂРЅСѓС‚СЊ С‚РµР№Рє (РµСЃР»Рё РѕРЅ РµСЃС‚СЊ)
     getTake = function(self)
         local numLastTake = #self.take.list
 
-        -- если массив целый не нарушен исполнением первых запросов
-        -- тогда будет возвращать начиная с последнего запроса
-        -- если было добавлено 2 элемента и первый удалён - тогда он не отработает
-        -- если было добавлено больше 2 элементов и один из первых удалён - тогда он отработает,
-        -- но отдаст не последний
+        -- РµСЃР»Рё РјР°СЃСЃРёРІ С†РµР»С‹Р№ РЅРµ РЅР°СЂСѓС€РµРЅ РёСЃРїРѕР»РЅРµРЅРёРµРј РїРµСЂРІС‹С… Р·Р°РїСЂРѕСЃРѕРІ
+        -- С‚РѕРіРґР° Р±СѓРґРµС‚ РІРѕР·РІСЂР°С‰Р°С‚СЊ РЅР°С‡РёРЅР°СЏ СЃ РїРѕСЃР»РµРґРЅРµРіРѕ Р·Р°РїСЂРѕСЃР°
+        -- РµСЃР»Рё Р±С‹Р»Рѕ РґРѕР±Р°РІР»РµРЅРѕ 2 СЌР»РµРјРµРЅС‚Р° Рё РїРµСЂРІС‹Р№ СѓРґР°Р»С‘РЅ - С‚РѕРіРґР° РѕРЅ РЅРµ РѕС‚СЂР°Р±РѕС‚Р°РµС‚
+        -- РµСЃР»Рё Р±С‹Р»Рѕ РґРѕР±Р°РІР»РµРЅРѕ Р±РѕР»СЊС€Рµ 2 СЌР»РµРјРµРЅС‚РѕРІ Рё РѕРґРёРЅ РёР· РїРµСЂРІС‹С… СѓРґР°Р»С‘РЅ - С‚РѕРіРґР° РѕРЅ РѕС‚СЂР°Р±РѕС‚Р°РµС‚,
+        -- РЅРѕ РѕС‚РґР°СЃС‚ РЅРµ РїРѕСЃР»РµРґРЅРёР№
         if isset(self.take.list[numLastTake]) then
             return self.take.list[numLastTake]
         end
 
-        -- вернёт любой из найденных
-        -- если было добавлено 2 запроса и первый исполнился - вернёт второй (и псоледний)
+        -- РІРµСЂРЅС‘С‚ Р»СЋР±РѕР№ РёР· РЅР°Р№РґРµРЅРЅС‹С…
+        -- РµСЃР»Рё Р±С‹Р»Рѕ РґРѕР±Р°РІР»РµРЅРѕ 2 Р·Р°РїСЂРѕСЃР° Рё РїРµСЂРІС‹Р№ РёСЃРїРѕР»РЅРёР»СЃСЏ - РІРµСЂРЅС‘С‚ РІС‚РѕСЂРѕР№ (Рё РїСЃРѕР»РµРґРЅРёР№)
         for i, _ in pairs(self.take.list) do
             return self.take.list[i]
         end
@@ -407,7 +407,7 @@ local Entity_Stock = {
         return {}
     end,
 
-    -- удалить take по номеру
+    -- СѓРґР°Р»РёС‚СЊ take РїРѕ РЅРѕРјРµСЂСѓ
     removeTake = function(self, orderNum)
         self.validator:checkParamNumber(orderNum, "orderNum")
 
@@ -418,7 +418,7 @@ local Entity_Stock = {
         end
     end,
 
-    -- проверить наличие тейка
+    -- РїСЂРѕРІРµСЂРёС‚СЊ РЅР°Р»РёС‡РёРµ С‚РµР№РєР°
     hasTake = function(self)
         if empty(self.take.list) then
             return false
@@ -427,8 +427,8 @@ local Entity_Stock = {
         return true
     end,
 
-    -- вернуть idParams выставленных стопов
-    -- обычно стоп один, но если использовать по 2 заявки (10%, 5%) - стопов будет 2
+    -- РІРµСЂРЅСѓС‚СЊ idParams РІС‹СЃС‚Р°РІР»РµРЅРЅС‹С… СЃС‚РѕРїРѕРІ
+    -- РѕР±С‹С‡РЅРѕ СЃС‚РѕРї РѕРґРёРЅ, РЅРѕ РµСЃР»Рё РёСЃРїРѕР»СЊР·РѕРІР°С‚СЊ РїРѕ 2 Р·Р°СЏРІРєРё (10%, 5%) - СЃС‚РѕРїРѕРІ Р±СѓРґРµС‚ 2
     getAllStopParams = function(self)
         local arrIdParams = {}
 
@@ -439,25 +439,25 @@ local Entity_Stock = {
         return arrIdParams
     end,
 
-    -- смена размера тейка, включение и отключение
+    -- СЃРјРµРЅР° СЂР°Р·РјРµСЂР° С‚РµР№РєР°, РІРєР»СЋС‡РµРЅРёРµ Рё РѕС‚РєР»СЋС‡РµРЅРёРµ
     changeTake = function(self, selectSize)
         -- 2, 3, 4, 5, 6, 7, 8
         self.validator:checkTake(selectSize)
 
-        -- если тейк был включен и его выключили
+        -- РµСЃР»Рё С‚РµР№Рє Р±С‹Р» РІРєР»СЋС‡РµРЅ Рё РµРіРѕ РІС‹РєР»СЋС‡РёР»Рё
         if self.take.selectSize == selectSize and self.take.status then
-            -- отключаем тейк
+            -- РѕС‚РєР»СЋС‡Р°РµРј С‚РµР№Рє
             self.take.status = false
 
-            -- массив с ключами idParams
+            -- РјР°СЃСЃРёРІ СЃ РєР»СЋС‡Р°РјРё idParams
             local arrIdParams = self:getAllStopParams()
 
-            -- удаляем стоп
+            -- СѓРґР°Р»СЏРµРј СЃС‚РѕРї
             self:registerEvent("Command_DeleteOrdersAndStopOrders", {
                 idStock = self.id,
             })
 
-            -- добавляем обычный стоп
+            -- РґРѕР±Р°РІР»СЏРµРј РѕР±С‹С‡РЅС‹Р№ СЃС‚РѕРї
             for numIdParams, v in pairs(arrIdParams) do
                 self:registerEvent("Command_AddStop", {
                     idStock = self.id,
@@ -465,7 +465,7 @@ local Entity_Stock = {
                 })
             end
 
-            -- используется для переключения в торговой панели
+            -- РёСЃРїРѕР»СЊР·СѓРµС‚СЃСЏ РґР»СЏ РїРµСЂРµРєР»СЋС‡РµРЅРёСЏ РІ С‚РѕСЂРіРѕРІРѕР№ РїР°РЅРµР»Рё
             self:registerEvent("EntityStock_ChangedTake", {
                 idStock = self.id,
             })
@@ -473,20 +473,20 @@ local Entity_Stock = {
             return
         end
 
-        -- если тейк был выключен и его включили
+        -- РµСЃР»Рё С‚РµР№Рє Р±С‹Р» РІС‹РєР»СЋС‡РµРЅ Рё РµРіРѕ РІРєР»СЋС‡РёР»Рё
         if self.take.selectSize == selectSize and not self.take.status then
-            -- включаем тейк
+            -- РІРєР»СЋС‡Р°РµРј С‚РµР№Рє
             self.take.status = true
 
-            -- массив с ключами idParams
+            -- РјР°СЃСЃРёРІ СЃ РєР»СЋС‡Р°РјРё idParams
             local arrIdParams = self:getAllStopParams()
 
-            -- удаляем стоп
+            -- СѓРґР°Р»СЏРµРј СЃС‚РѕРї
             self:registerEvent("Command_DeleteOrdersAndStopOrders", {
                 idStock = self.id,
             })
 
-            -- добавляем стоп со связанной заявкой
+            -- РґРѕР±Р°РІР»СЏРµРј СЃС‚РѕРї СЃРѕ СЃРІСЏР·Р°РЅРЅРѕР№ Р·Р°СЏРІРєРѕР№
             for numIdParams, v in pairs(arrIdParams) do
                 self:registerEvent("Command_AddStopLinked", {
                     idStock = self.id,
@@ -494,7 +494,7 @@ local Entity_Stock = {
                 })
             end
 
-            -- используется для переключения в торговой панели
+            -- РёСЃРїРѕР»СЊР·СѓРµС‚СЃСЏ РґР»СЏ РїРµСЂРµРєР»СЋС‡РµРЅРёСЏ РІ С‚РѕСЂРіРѕРІРѕР№ РїР°РЅРµР»Рё
             self:registerEvent("EntityStock_ChangedTake", {
                 idStock = self.id,
             })
@@ -502,22 +502,22 @@ local Entity_Stock = {
             return
         end
 
-        -- если выбран другой размер тейка
+        -- РµСЃР»Рё РІС‹Р±СЂР°РЅ РґСЂСѓРіРѕР№ СЂР°Р·РјРµСЂ С‚РµР№РєР°
         if self.take.selectSize ~= selectSize then
             self.take.selectSize = selectSize
 
-            -- включаем тейк
+            -- РІРєР»СЋС‡Р°РµРј С‚РµР№Рє
             self.take.status = true
 
-            -- массив с ключами idParams
+            -- РјР°СЃСЃРёРІ СЃ РєР»СЋС‡Р°РјРё idParams
             local arrIdParams = self:getAllStopParams()
 
-            -- удаляем стоп
+            -- СѓРґР°Р»СЏРµРј СЃС‚РѕРї
             self:registerEvent("Command_DeleteOrdersAndStopOrders", {
                 idStock = self.id,
             })
 
-            -- добавляем стоп со связанной заявкой
+            -- РґРѕР±Р°РІР»СЏРµРј СЃС‚РѕРї СЃРѕ СЃРІСЏР·Р°РЅРЅРѕР№ Р·Р°СЏРІРєРѕР№
             for numIdParams, v in pairs(arrIdParams) do
                 self:registerEvent("Command_AddStopLinked", {
                     idStock = self.id,
@@ -525,7 +525,7 @@ local Entity_Stock = {
                 })
             end
 
-            -- используется для переключения в торговой панели
+            -- РёСЃРїРѕР»СЊР·СѓРµС‚СЃСЏ РґР»СЏ РїРµСЂРµРєР»СЋС‡РµРЅРёСЏ РІ С‚РѕСЂРіРѕРІРѕР№ РїР°РЅРµР»Рё
             self:registerEvent("EntityStock_ChangedTake", {
                 idStock = self.id,
             })
@@ -534,22 +534,22 @@ local Entity_Stock = {
         end
     end,
 
-    -- активен ли тейк
+    -- Р°РєС‚РёРІРµРЅ Р»Рё С‚РµР№Рє
     isActiveTake = function(self)
         return self.take.status
     end,
 
-    -- вернуть выбранный размер тейка - selectSize
+    -- РІРµСЂРЅСѓС‚СЊ РІС‹Р±СЂР°РЅРЅС‹Р№ СЂР°Р·РјРµСЂ С‚РµР№РєР° - selectSize
     getTakeSize = function(self)
         return self.take.selectSize
     end,
 
-    -- разбираем зарос
+    -- СЂР°Р·Р±РёСЂР°РµРј Р·Р°СЂРѕСЃ
     parseRoleZapros = function(self, params)
-        -- добавляем запрос в zapros.list
+        -- РґРѕР±Р°РІР»СЏРµРј Р·Р°РїСЂРѕСЃ РІ zapros.list
         if params.status == "posted" then
             self:addZapros({
-                idParams = params.idParams, -- используется только при отладке для сверки номера
+                idParams = params.idParams, -- РёСЃРїРѕР»СЊР·СѓРµС‚СЃСЏ С‚РѕР»СЊРєРѕ РїСЂРё РѕС‚Р»Р°РґРєРµ РґР»СЏ СЃРІРµСЂРєРё РЅРѕРјРµСЂР°
                 typeSending = params.typeSending,
                 order_num = params.order_num,
             })
@@ -557,33 +557,33 @@ local Entity_Stock = {
             return
         end
 
-        -- удаляем запрос
+        -- СѓРґР°Р»СЏРµРј Р·Р°РїСЂРѕСЃ
         if params.status == "deleted" then
             self:removeZapros(params.order_num)
 
             return
         end
 
-        -- запрос исполнился - выставляем стоп
+        -- Р·Р°РїСЂРѕСЃ РёСЃРїРѕР»РЅРёР»СЃСЏ - РІС‹СЃС‚Р°РІР»СЏРµРј СЃС‚РѕРї
         if params.status == "executed" then
-            -- если есть запрос с таким номером и он был исполнен (значит была выставлена заявка)
-            -- если заявка была по рынку - то заявки с таким номером не существует - сразу приходит (executed)
+            -- РµСЃР»Рё РµСЃС‚СЊ Р·Р°РїСЂРѕСЃ СЃ С‚Р°РєРёРј РЅРѕРјРµСЂРѕРј Рё РѕРЅ Р±С‹Р» РёСЃРїРѕР»РЅРµРЅ (Р·РЅР°С‡РёС‚ Р±С‹Р»Р° РІС‹СЃС‚Р°РІР»РµРЅР° Р·Р°СЏРІРєР°)
+            -- РµСЃР»Рё Р·Р°СЏРІРєР° Р±С‹Р»Р° РїРѕ СЂС‹РЅРєСѓ - С‚Рѕ Р·Р°СЏРІРєРё СЃ С‚Р°РєРёРј РЅРѕРјРµСЂРѕРј РЅРµ СЃСѓС‰РµСЃС‚РІСѓРµС‚ - СЃСЂР°Р·Сѓ РїСЂРёС…РѕРґРёС‚ (executed)
             if self:hasZapros(params.order_num) and params.typeSending == "order" then
                 if self.take.status then
-                    -- добавляем стоп со связанной заявкой
+                    -- РґРѕР±Р°РІР»СЏРµРј СЃС‚РѕРї СЃРѕ СЃРІСЏР·Р°РЅРЅРѕР№ Р·Р°СЏРІРєРѕР№
                     self:registerEvent("Command_AddStopLinked", {
                         idStock = self.id,
                         idParams = params.idParams
                     })
                 else
-                    -- добавляем обычный стоп
+                    -- РґРѕР±Р°РІР»СЏРµРј РѕР±С‹С‡РЅС‹Р№ СЃС‚РѕРї
                     self:registerEvent("Command_AddStop", {
                         idStock = self.id,
                         idParams = params.idParams
                     })
                 end
 
-                -- создаём событье позиция открыта
+                -- СЃРѕР·РґР°С‘Рј СЃРѕР±С‹С‚СЊРµ РїРѕР·РёС†РёСЏ РѕС‚РєСЂС‹С‚Р°
                 self:registerEvent("EntityStock_OpenedPosition", {
                     idStock = self.id,
                     idParams = params.idParams,
@@ -592,13 +592,13 @@ local Entity_Stock = {
                 })
             end
 
-            -- удаляем из списка активных ордеров исполненный ордер
+            -- СѓРґР°Р»СЏРµРј РёР· СЃРїРёСЃРєР° Р°РєС‚РёРІРЅС‹С… РѕСЂРґРµСЂРѕРІ РёСЃРїРѕР»РЅРµРЅРЅС‹Р№ РѕСЂРґРµСЂ
             self:removeZapros(params.order_num)
         end
     end,
 
-    -- сохраняем idParams удаляемого стопа
-    -- если был удалён случайно - чтобы можно было выставить заново
+    -- СЃРѕС…СЂР°РЅСЏРµРј idParams СѓРґР°Р»СЏРµРјРѕРіРѕ СЃС‚РѕРїР°
+    -- РµСЃР»Рё Р±С‹Р» СѓРґР°Р»С‘РЅ СЃР»СѓС‡Р°Р№РЅРѕ - С‡С‚РѕР±С‹ РјРѕР¶РЅРѕ Р±С‹Р»Рѕ РІС‹СЃС‚Р°РІРёС‚СЊ Р·Р°РЅРѕРІРѕ
     saveLastStopDeletedIdParams = function(self, order_num)
         for i, _ in pairs(self.stop.list) do
             if self.stop.list[i].order_num == order_num then
@@ -607,15 +607,15 @@ local Entity_Stock = {
         end
     end,
 
-    -- обнуляем последний удалённый idParams стопа
-    -- удаляется при исполнении стопа
+    -- РѕР±РЅСѓР»СЏРµРј РїРѕСЃР»РµРґРЅРёР№ СѓРґР°Р»С‘РЅРЅС‹Р№ idParams СЃС‚РѕРїР°
+    -- СѓРґР°Р»СЏРµС‚СЃСЏ РїСЂРё РёСЃРїРѕР»РЅРµРЅРёРё СЃС‚РѕРїР°
     resetLastStopDeletedIdParams = function(self)
         self.stop.lastRemovedIdParams = 0
     end,
 
-    -- разбираем стоп
+    -- СЂР°Р·Р±РёСЂР°РµРј СЃС‚РѕРї
     parseRoleStop = function(self, params)
-        -- добавляем запрос в stop.list
+        -- РґРѕР±Р°РІР»СЏРµРј Р·Р°РїСЂРѕСЃ РІ stop.list
         if params.status == "posted" then
             self:addStop({
                 idParams = params.idParams,
@@ -626,7 +626,7 @@ local Entity_Stock = {
             return
         end
 
-        -- удаляем запрос
+        -- СѓРґР°Р»СЏРµРј Р·Р°РїСЂРѕСЃ
         if params.status == "deleted" then
             self:saveLastStopDeletedIdParams(params.order_num)
             self:removeStop(params.order_num)
@@ -634,7 +634,7 @@ local Entity_Stock = {
             return
         end
 
-        -- удаляем запрос
+        -- СѓРґР°Р»СЏРµРј Р·Р°РїСЂРѕСЃ
         if params.status == "executed" then
             self:removeStop(params.order_num)
 
@@ -642,9 +642,9 @@ local Entity_Stock = {
         end
     end,
 
-    -- разбираем тейк
+    -- СЂР°Р·Р±РёСЂР°РµРј С‚РµР№Рє
     parseRoleTake = function(self, params)
-        -- добавляем запрос в take.list
+        -- РґРѕР±Р°РІР»СЏРµРј Р·Р°РїСЂРѕСЃ РІ take.list
         if params.status == "posted" then
             self:addTake({
                 idParams = params.idParams,
@@ -655,14 +655,14 @@ local Entity_Stock = {
             return
         end
 
-        -- удаляем запрос
+        -- СѓРґР°Р»СЏРµРј Р·Р°РїСЂРѕСЃ
         if params.status == "deleted" then
             self:removeTake(params.order_num)
 
             return
         end
 
-        -- удаляем запрос
+        -- СѓРґР°Р»СЏРµРј Р·Р°РїСЂРѕСЃ
         if params.status == "executed" then
             self:removeTake(params.order_num)
 
@@ -670,11 +670,11 @@ local Entity_Stock = {
         end
     end,
 
-    -- изменить состояние
+    -- РёР·РјРµРЅРёС‚СЊ СЃРѕСЃС‚РѕСЏРЅРёРµ
     changeCondition = function(self, params)
-        self.validator:checkParamNotNil(params, " params для changeStage(params) ")
+        self.validator:checkParamNotNil(params, " params РґР»СЏ changeStage(params) ")
 
-        -- если есть роль - тогда разбираем параметры по роли
+        -- РµСЃР»Рё РµСЃС‚СЊ СЂРѕР»СЊ - С‚РѕРіРґР° СЂР°Р·Р±РёСЂР°РµРј РїР°СЂР°РјРµС‚СЂС‹ РїРѕ СЂРѕР»Рё
         if isset(params.role) and params.role ~= "" then
             if params.role == "zapros" then
                 self:parseRoleZapros(params)
@@ -696,9 +696,9 @@ local Entity_Stock = {
         end
     end,
 
-    -- изменить позиции
+    -- РёР·РјРµРЅРёС‚СЊ РїРѕР·РёС†РёРё
     changePosition = function(self)
-        -- количество лотов
+        -- РєРѕР»РёС‡РµСЃС‚РІРѕ Р»РѕС‚РѕРІ
         local qty = self.servicePosition:getPosition(self.id)
 
         self.position.qty = qty
@@ -711,66 +711,66 @@ local Entity_Stock = {
             self.position.operation = "buy"
         end
 
-        -- регистрируем событие
+        -- СЂРµРіРёСЃС‚СЂРёСЂСѓРµРј СЃРѕР±С‹С‚РёРµ
         self:registerEvent("EntityStock_ChangedPosition", {
             idStock = self.id,
             operation = self.position.operation,
             qty = self.position.qty,
         })
 
-        -- если позиция закрыта посылаем команду на удаление order и stopOrder
+        -- РµСЃР»Рё РїРѕР·РёС†РёСЏ Р·Р°РєСЂС‹С‚Р° РїРѕСЃС‹Р»Р°РµРј РєРѕРјР°РЅРґСѓ РЅР° СѓРґР°Р»РµРЅРёРµ order Рё stopOrder
         if not self:hasPosition() then
-            -- обнуляем резевный idParams
+            -- РѕР±РЅСѓР»СЏРµРј СЂРµР·РµРІРЅС‹Р№ idParams
             self.stop.recoveryIdParams = 0
 
-            -- отдаём команду удалить все order и stopOrder
+            -- РѕС‚РґР°С‘Рј РєРѕРјР°РЅРґСѓ СѓРґР°Р»РёС‚СЊ РІСЃРµ order Рё stopOrder
             self:registerEvent("Command_DeleteOrdersAndStopOrders", {
                 idStock = self.id,
             })
 
-            -- создаём событие - позиция закрыта
+            -- СЃРѕР·РґР°С‘Рј СЃРѕР±С‹С‚РёРµ - РїРѕР·РёС†РёСЏ Р·Р°РєСЂС‹С‚Р°
             self:registerEvent("EntityStock_ClosedPosition", {
                 idStock = self.id,
             })
         end
     end,
 
-    -- рассчитать максимальное количество лотов
+    -- СЂР°СЃСЃС‡РёС‚Р°С‚СЊ РјР°РєСЃРёРјР°Р»СЊРЅРѕРµ РєРѕР»РёС‡РµСЃС‚РІРѕ Р»РѕС‚РѕРІ
     calculateMaxLots = function(self)
-        -- направление операции для расчёта максимального количества лотов
+        -- РЅР°РїСЂР°РІР»РµРЅРёРµ РѕРїРµСЂР°С†РёРё РґР»СЏ СЂР°СЃС‡С‘С‚Р° РјР°РєСЃРёРјР°Р»СЊРЅРѕРіРѕ РєРѕР»РёС‡РµСЃС‚РІР° Р»РѕС‚РѕРІ
         local operation = "buy"
 
-        -- если есть позиции или есть запрос
-        -- тогда MaxLots нужно расчитывать в ту же сторону
+        -- РµСЃР»Рё РµСЃС‚СЊ РїРѕР·РёС†РёРё РёР»Рё РµСЃС‚СЊ Р·Р°РїСЂРѕСЃ
+        -- С‚РѕРіРґР° MaxLots РЅСѓР¶РЅРѕ СЂР°СЃС‡РёС‚С‹РІР°С‚СЊ РІ С‚Сѓ Р¶Рµ СЃС‚РѕСЂРѕРЅСѓ
         if self:hasPosition() then
             if self.position.operation == "sell" then
                 operation = "sell"
             end
         end
 
-        -- получаем новое значение maxLots
+        -- РїРѕР»СѓС‡Р°РµРј РЅРѕРІРѕРµ Р·РЅР°С‡РµРЅРёРµ maxLots
         local maxLots = self.serviceMaxLots:getMaxLots(self.id, self.class, operation)
 
         if is_nil(maxLots) then
-            error("\r\n" .. "Error: Не получен (maxLots) от ( serviceMaxLots:getMaxLots() ) для инструмента (" .. self.id .. ")")
+            error("\r\n" .. "Error: РќРµ РїРѕР»СѓС‡РµРЅ (maxLots) РѕС‚ ( serviceMaxLots:getMaxLots() ) РґР»СЏ РёРЅСЃС‚СЂСѓРјРµРЅС‚Р° (" .. self.id .. ")")
         end
 
         if not_number(maxLots) then
-            error("\r\n" .. "Error: (maxLots) должен быть числом для инструмента (" .. self.id .. ")")
+            error("\r\n" .. "Error: (maxLots) РґРѕР»Р¶РµРЅ Р±С‹С‚СЊ С‡РёСЃР»РѕРј РґР»СЏ РёРЅСЃС‚СЂСѓРјРµРЅС‚Р° (" .. self.id .. ")")
         end
 
-        -- если текущее значение не равно новому расчётному
+        -- РµСЃР»Рё С‚РµРєСѓС‰РµРµ Р·РЅР°С‡РµРЅРёРµ РЅРµ СЂР°РІРЅРѕ РЅРѕРІРѕРјСѓ СЂР°СЃС‡С‘С‚РЅРѕРјСѓ
         if self.trade.maxLots ~= maxLots then
-            -- обновляем текущий maxLots
+            -- РѕР±РЅРѕРІР»СЏРµРј С‚РµРєСѓС‰РёР№ maxLots
             self.trade.maxLots = maxLots
 
-            -- регистрируем событие - изменился максимальный размер лотов возможных к покупке/продаже
+            -- СЂРµРіРёСЃС‚СЂРёСЂСѓРµРј СЃРѕР±С‹С‚РёРµ - РёР·РјРµРЅРёР»СЃСЏ РјР°РєСЃРёРјР°Р»СЊРЅС‹Р№ СЂР°Р·РјРµСЂ Р»РѕС‚РѕРІ РІРѕР·РјРѕР¶РЅС‹С… Рє РїРѕРєСѓРїРєРµ/РїСЂРѕРґР°Р¶Рµ
             self:registerEvent("EntityStock_ChangedMaxLots", {
                 idStock = self.id,
                 maxLots = self.trade.maxLots,
             })
 
-            -- проверить статус инструмента
+            -- РїСЂРѕРІРµСЂРёС‚СЊ СЃС‚Р°С‚СѓСЃ РёРЅСЃС‚СЂСѓРјРµРЅС‚Р°
             self:checkStatus()
         end
     end,

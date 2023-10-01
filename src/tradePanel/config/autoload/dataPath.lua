@@ -1,7 +1,7 @@
 ---
 
 return {
-    -- пути к исходникам данных
+    -- РїСѓС‚Рё Рє РёСЃС…РѕРґРЅРёРєР°Рј РґР°РЅРЅС‹С…
     dataPath = {
         homework = "data_csv_homework.csv",
 
@@ -12,7 +12,7 @@ return {
         keyboardKeys = "data_lua_keyboardKeys.lua",
     },
 
-    -- пути к базам данных
+    -- РїСѓС‚Рё Рє Р±Р°Р·Р°Рј РґР°РЅРЅС‹С…
     dbPath = {
         dbLevels = "db_levels.lua"
     },
@@ -39,7 +39,7 @@ return {
         lowHour = "data_img_lowHour.jpg",
     },
 
-    -- пути к структурам для панелей
+    -- РїСѓС‚Рё Рє СЃС‚СЂСѓРєС‚СѓСЂР°Рј РґР»СЏ РїР°РЅРµР»РµР№
     panelsPath = {
         alert = "data_lua_structurePanelAlert.lua",
         system = "data_lua_structurePanelSystem.lua",

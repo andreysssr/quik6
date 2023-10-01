@@ -26,39 +26,39 @@ local Factory = {
         return self
     end,
 
-    -- создание Entity_BasePrice и сохранение его в репозиторий
+    -- СЃРѕР·РґР°РЅРёРµ Entity_BasePrice Рё СЃРѕС…СЂР°РЅРµРЅРёРµ РµРіРѕ РІ СЂРµРїРѕР·РёС‚РѕСЂРёР№
     createEntity = function(self, idTicker)
         local id = idTicker
         local class = self.storage:getClassToId(id)
 
-        -- последняя цена инстурмента
+        -- РїРѕСЃР»РµРґРЅСЏСЏ С†РµРЅР° РёРЅСЃС‚СѓСЂРјРµРЅС‚Р°
         local lastPrice = self.quik:getLastPrice(id, class)
 
-        -- проверка последней цены для инструмента
+        -- РїСЂРѕРІРµСЂРєР° РїРѕСЃР»РµРґРЅРµР№ С†РµРЅС‹ РґР»СЏ РёРЅСЃС‚СЂСѓРјРµРЅС‚Р°
         if not_number(lastPrice) then
-            error("\r\n" .. "Error: Последняя цена должна быть числом. Получено: (" .. type(lastPrice) .. ")")
+            error("\r\n" .. "Error: РџРѕСЃР»РµРґРЅСЏСЏ С†РµРЅР° РґРѕР»Р¶РЅР° Р±С‹С‚СЊ С‡РёСЃР»РѕРј. РџРѕР»СѓС‡РµРЅРѕ: (" .. type(lastPrice) .. ")")
         end
 
-        -- количество интервалов для расчёта
+        -- РєРѕР»РёС‡РµСЃС‚РІРѕ РёРЅС‚РµСЂРІР°Р»РѕРІ РґР»СЏ СЂР°СЃС‡С‘С‚Р°
         local countInterval = self.container:get("config").basePrice.countInterval
 
-        -- параметры расчёта интервала
+        -- РїР°СЂР°РјРµС‚СЂС‹ СЂР°СЃС‡С‘С‚Р° РёРЅС‚РµСЂРІР°Р»Р°
         local params = self.storage:getLevels(id, class, lastPrice, countInterval)
 
         if not_nil(params) then
             params.id = id
             params.class = class
 
-            -- получаем класс Entity BasePrice
+            -- РїРѕР»СѓС‡Р°РµРј РєР»Р°СЃСЃ Entity BasePrice
             local classEntityBase = self.container:get("Entity_BasePrice")
 
-            -- получаем entity
+            -- РїРѕР»СѓС‡Р°РµРј entity
             local entity = classEntityBase:newChild(params)
 
-            -- запускаем инициализацию - расчёт данных
+            -- Р·Р°РїСѓСЃРєР°РµРј РёРЅРёС†РёР°Р»РёР·Р°С†РёСЋ - СЂР°СЃС‡С‘С‚ РґР°РЅРЅС‹С…
             entity:init()
 
-            -- освобождаем блок событий
+            -- РѕСЃРІРѕР±РѕР¶РґР°РµРј Р±Р»РѕРє СЃРѕР±С‹С‚РёР№
             local event = entity:releaseEvents()
 
             self.repositoryBasePrice:save(entity)
@@ -66,8 +66,8 @@ local Factory = {
             return
         end
 
-        -- выбрасываем ошибку - параметра для id не найдено
-        error("\r\n" .. "Error: параметра для тикера с id - (" .. tostring(id) .. ") не найдено")
+        -- РІС‹Р±СЂР°СЃС‹РІР°РµРј РѕС€РёР±РєСѓ - РїР°СЂР°РјРµС‚СЂР° РґР»СЏ id РЅРµ РЅР°Р№РґРµРЅРѕ
+        error("\r\n" .. "Error: РїР°СЂР°РјРµС‚СЂР° РґР»СЏ С‚РёРєРµСЂР° СЃ id - (" .. tostring(id) .. ") РЅРµ РЅР°Р№РґРµРЅРѕ")
     end,
 }
 

@@ -7,10 +7,10 @@ local Middleware = {
     --
     container = {},
 
-    -- хранилище id номеров
+    -- С…СЂР°РЅРёР»РёС‰Рµ id РЅРѕРјРµСЂРѕРІ
     data = {},
 
-    -- хранилище id номеров
+    -- С…СЂР°РЅРёР»РёС‰Рµ id РЅРѕРјРµСЂРѕРІ
     tmp = {},
 
     --
@@ -20,44 +20,44 @@ local Middleware = {
         return self
     end,
 
-    -- разрешить отправку сообщения дальше или нет
-    -- пропускаем только второе сообщение
+    -- СЂР°Р·СЂРµС€РёС‚СЊ РѕС‚РїСЂР°РІРєСѓ СЃРѕРѕР±С‰РµРЅРёСЏ РґР°Р»СЊС€Рµ РёР»Рё РЅРµС‚
+    -- РїСЂРѕРїСѓСЃРєР°РµРј С‚РѕР»СЊРєРѕ РІС‚РѕСЂРѕРµ СЃРѕРѕР±С‰РµРЅРёРµ
     allowNextPosted = function(self, request)
         local order_num = request.data.order_num
         local status = request.data.status
 
         local key = tostring(order_num) .. "_" .. status
 
-        -- запрос пришёл первый раз (номер транзакции бдует равен 0)
+        -- Р·Р°РїСЂРѕСЃ РїСЂРёС€С‘Р» РїРµСЂРІС‹Р№ СЂР°Р· (РЅРѕРјРµСЂ С‚СЂР°РЅР·Р°РєС†РёРё Р±РґСѓРµС‚ СЂР°РІРµРЅ 0)
         if not self.tmp[key] then
             self.tmp[key] = 1
 
             return false
         end
 
-        -- запрос пришёл второй раз (номер транзакции бдует заполнен)
+        -- Р·Р°РїСЂРѕСЃ РїСЂРёС€С‘Р» РІС‚РѕСЂРѕР№ СЂР°Р· (РЅРѕРјРµСЂ С‚СЂР°РЅР·Р°РєС†РёРё Р±РґСѓРµС‚ Р·Р°РїРѕР»РЅРµРЅ)
         if self.tmp[key] and not self.data[key] then
             self.data[key] = 1
 
             return true
         end
 
-        -- запрос пришёл третий и более раз
+        -- Р·Р°РїСЂРѕСЃ РїСЂРёС€С‘Р» С‚СЂРµС‚РёР№ Рё Р±РѕР»РµРµ СЂР°Р·
         if self.tmp[key] and self.data[key] then
 
             return false
         end
     end,
 
-    -- разрешить отправку сообщения дальше или нет
-    -- пропускаем только второе сообщение
+    -- СЂР°Р·СЂРµС€РёС‚СЊ РѕС‚РїСЂР°РІРєСѓ СЃРѕРѕР±С‰РµРЅРёСЏ РґР°Р»СЊС€Рµ РёР»Рё РЅРµС‚
+    -- РїСЂРѕРїСѓСЃРєР°РµРј С‚РѕР»СЊРєРѕ РІС‚РѕСЂРѕРµ СЃРѕРѕР±С‰РµРЅРёРµ
     allowNextExecuted = function(self, request)
         local order_num = request.data.order_num
         local status = request.data.status
 
         local key = tostring(order_num) .. "_" .. status
 
-        -- первый раз и есть trans_id
+        -- РїРµСЂРІС‹Р№ СЂР°Р· Рё РµСЃС‚СЊ trans_id
         if not self.tmp[key] and request.data.trans_id ~= 0 then
             self.tmp[key] = 1
             self.data[key] = 1
@@ -65,91 +65,91 @@ local Middleware = {
             return true
         end
 
-        -- запрос пришёл 1 раз (номер транзакции пустой)
+        -- Р·Р°РїСЂРѕСЃ РїСЂРёС€С‘Р» 1 СЂР°Р· (РЅРѕРјРµСЂ С‚СЂР°РЅР·Р°РєС†РёРё РїСѓСЃС‚РѕР№)
         if not self.tmp[key] and request.data.trans_id == 0 then
             self.tmp[key] = 1
 
             return false
         end
 
-        -- запрос пришёл второй раз (номер транзакции будет заполнен)
+        -- Р·Р°РїСЂРѕСЃ РїСЂРёС€С‘Р» РІС‚РѕСЂРѕР№ СЂР°Р· (РЅРѕРјРµСЂ С‚СЂР°РЅР·Р°РєС†РёРё Р±СѓРґРµС‚ Р·Р°РїРѕР»РЅРµРЅ)
         if self.tmp[key] and not self.data[key] then
             self.data[key] = 1
 
             return true
         end
 
-        -- запрос пришёл третий раз
+        -- Р·Р°РїСЂРѕСЃ РїСЂРёС€С‘Р» С‚СЂРµС‚РёР№ СЂР°Р·
         if self.tmp[key] and self.data[key] then
 
-            -- запрос пришёл 3 раз
+            -- Р·Р°РїСЂРѕСЃ РїСЂРёС€С‘Р» 3 СЂР°Р·
             return false
         end
 
         return true
     end,
 
-    -- разрешить отправку сообщения дальше или нет
-    -- пропускаем только первое сообщение
+    -- СЂР°Р·СЂРµС€РёС‚СЊ РѕС‚РїСЂР°РІРєСѓ СЃРѕРѕР±С‰РµРЅРёСЏ РґР°Р»СЊС€Рµ РёР»Рё РЅРµС‚
+    -- РїСЂРѕРїСѓСЃРєР°РµРј С‚РѕР»СЊРєРѕ РїРµСЂРІРѕРµ СЃРѕРѕР±С‰РµРЅРёРµ
     allowNextDeleted = function(self, request)
         local order_num = request.data.order_num
         local status = request.data.status
 
         local key = tostring(order_num) .. "_" .. status
 
-        -- запрос пришёл 1 раз
+        -- Р·Р°РїСЂРѕСЃ РїСЂРёС€С‘Р» 1 СЂР°Р·
         if not self.tmp[key] then
             self.tmp[key] = 1
 
             return true
         end
 
-        -- запрос пришёл 2 раз
+        -- Р·Р°РїСЂРѕСЃ РїСЂРёС€С‘Р» 2 СЂР°Р·
         if self.tmp[key] then
 
             return false
         end
     end,
 
-    -- обработка order
+    -- РѕР±СЂР°Р±РѕС‚РєР° order
     process = function(self, request, handler)
-        -- для order
+        -- РґР»СЏ order
         if request.name == "order" then
 
             if request.data.status == "posted" then
-                -- если разрешена передача сообщения дальше
+                -- РµСЃР»Рё СЂР°Р·СЂРµС€РµРЅР° РїРµСЂРµРґР°С‡Р° СЃРѕРѕР±С‰РµРЅРёСЏ РґР°Р»СЊС€Рµ
                 if self:allowNextPosted(request) then
 
-                    -- передаём обработку дальше
+                    -- РїРµСЂРµРґР°С‘Рј РѕР±СЂР°Р±РѕС‚РєСѓ РґР°Р»СЊС€Рµ
                     handler:handle(request)
                 end
 
-                -- останавливаем обработку
+                -- РѕСЃС‚Р°РЅР°РІР»РёРІР°РµРј РѕР±СЂР°Р±РѕС‚РєСѓ
                 return
             elseif request.data.status == "executed" then
-                -- если разрешена передача сообщения дальше
+                -- РµСЃР»Рё СЂР°Р·СЂРµС€РµРЅР° РїРµСЂРµРґР°С‡Р° СЃРѕРѕР±С‰РµРЅРёСЏ РґР°Р»СЊС€Рµ
                 if self:allowNextExecuted(request) then
 
-                    -- передаём обработку дальше
+                    -- РїРµСЂРµРґР°С‘Рј РѕР±СЂР°Р±РѕС‚РєСѓ РґР°Р»СЊС€Рµ
                     handler:handle(request)
                 end
 
-                -- останавливаем обработку
+                -- РѕСЃС‚Р°РЅР°РІР»РёРІР°РµРј РѕР±СЂР°Р±РѕС‚РєСѓ
                 return
             elseif request.data.status == "deleted" then
-                -- если разрешена передача сообщения дальше
+                -- РµСЃР»Рё СЂР°Р·СЂРµС€РµРЅР° РїРµСЂРµРґР°С‡Р° СЃРѕРѕР±С‰РµРЅРёСЏ РґР°Р»СЊС€Рµ
                 if self:allowNextDeleted(request) then
 
-                    -- передаём обработку дальше
+                    -- РїРµСЂРµРґР°С‘Рј РѕР±СЂР°Р±РѕС‚РєСѓ РґР°Р»СЊС€Рµ
                     handler:handle(request)
                 end
 
-                -- останавливаем обработку
+                -- РѕСЃС‚Р°РЅР°РІР»РёРІР°РµРј РѕР±СЂР°Р±РѕС‚РєСѓ
                 return
             end
         end
 
-        -- если name ~= order
+        -- РµСЃР»Рё name ~= order
         handler:handle(request)
     end,
 }

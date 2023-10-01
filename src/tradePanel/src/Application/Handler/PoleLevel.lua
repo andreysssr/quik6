@@ -41,10 +41,10 @@ local Handler = {
             return {}
         end
 
-        -- отступ цены от цены уровня интервала
+        -- РѕС‚СЃС‚СѓРї С†РµРЅС‹ РѕС‚ С†РµРЅС‹ СѓСЂРѕРІРЅСЏ РёРЅС‚РµСЂРІР°Р»Р°
         local offset = math.abs(lastPrice - price)
 
-        -- отступ цены от цены уровня интервала в %
+        -- РѕС‚СЃС‚СѓРї С†РµРЅС‹ РѕС‚ С†РµРЅС‹ СѓСЂРѕРІРЅСЏ РёРЅС‚РµСЂРІР°Р»Р° РІ %
         local range = 0
 
         if basePrice.type == "level" then
@@ -55,10 +55,10 @@ local Handler = {
                 return result
             end
 
-            -- находим отступ в %
+            -- РЅР°С…РѕРґРёРј РѕС‚СЃС‚СѓРї РІ %
             range = offset / (basePrice.interval / 100)
 
-            -- округляем до целого большего числа
+            -- РѕРєСЂСѓРіР»СЏРµРј РґРѕ С†РµР»РѕРіРѕ Р±РѕР»СЊС€РµРіРѕ С‡РёСЃР»Р°
             range = math.ceil(range)
 
             result.level_data = range

@@ -22,12 +22,12 @@ local EventHandler = {
         return self
     end,
 
-    -- получить активный инструмент
+    -- РїРѕР»СѓС‡РёС‚СЊ Р°РєС‚РёРІРЅС‹Р№ РёРЅСЃС‚СЂСѓРјРµРЅС‚
     getCurrentId = function(self)
         return self.microservice:getCurrentIdStock()
     end,
 
-    -- купить на 0%
+    -- РєСѓРїРёС‚СЊ РЅР° 0%
     buy0 = function(self, event)
         local idStock = self:getCurrentId()
 
@@ -38,7 +38,7 @@ local EventHandler = {
         self.useCase:addZapros(idStock, "buy", 0)
     end,
 
-    -- купить на 5% выше
+    -- РєСѓРїРёС‚СЊ РЅР° 5% РІС‹С€Рµ
     buy5 = function(self, event)
         local idStock = self:getCurrentId()
 
@@ -49,7 +49,7 @@ local EventHandler = {
         self.useCase:addZapros(idStock, "buy", 5)
     end,
 
-    -- купить на 10% выше
+    -- РєСѓРїРёС‚СЊ РЅР° 10% РІС‹С€Рµ
     buy10 = function(self, event)
         local idStock = self:getCurrentId()
 
@@ -60,7 +60,7 @@ local EventHandler = {
         self.useCase:addZapros(idStock, "buy", 10)
     end,
 
-    -- купить на 5% ниже
+    -- РєСѓРїРёС‚СЊ РЅР° 5% РЅРёР¶Рµ
     buy105 = function(self, event)
         local idStock = self:getCurrentId()
 
@@ -71,7 +71,7 @@ local EventHandler = {
         self.useCase:addZapros(idStock, "buy", 105)
     end,
 
-    -- купить на 10% ниже
+    -- РєСѓРїРёС‚СЊ РЅР° 10% РЅРёР¶Рµ
     buy110 = function(self, event)
         local idStock = self:getCurrentId()
 
@@ -82,7 +82,7 @@ local EventHandler = {
         self.useCase:addZapros(idStock, "buy", 110)
     end,
 
-    -- продать на 0%
+    -- РїСЂРѕРґР°С‚СЊ РЅР° 0%
     sell0 = function(self, event)
         local idStock = self:getCurrentId()
 
@@ -93,7 +93,7 @@ local EventHandler = {
         self.useCase:addZapros(idStock, "sell", 0)
     end,
 
-    -- продать на 5% ниже
+    -- РїСЂРѕРґР°С‚СЊ РЅР° 5% РЅРёР¶Рµ
     sell5 = function(self, event)
         local idStock = self:getCurrentId()
 
@@ -104,7 +104,7 @@ local EventHandler = {
         self.useCase:addZapros(idStock, "sell", 5)
     end,
 
-    -- продать на 10% ниже
+    -- РїСЂРѕРґР°С‚СЊ РЅР° 10% РЅРёР¶Рµ
     sell10 = function(self, event)
         local idStock = self:getCurrentId()
 
@@ -115,7 +115,7 @@ local EventHandler = {
         self.useCase:addZapros(idStock, "sell", 10)
     end,
 
-    -- продать на 5% выше
+    -- РїСЂРѕРґР°С‚СЊ РЅР° 5% РІС‹С€Рµ
     sell105 = function(self, event)
         local idStock = self:getCurrentId()
 
@@ -126,7 +126,7 @@ local EventHandler = {
         self.useCase:addZapros(idStock, "sell", 105)
     end,
 
-    -- продать на 10% выше
+    -- РїСЂРѕРґР°С‚СЊ РЅР° 10% РІС‹С€Рµ
     sell110 = function(self, event)
         local idStock = self:getCurrentId()
 

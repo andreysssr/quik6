@@ -1,4 +1,4 @@
---- Action IndicatorPanelTrade обновляет индикатор в торгвой панели
+--- Action IndicatorPanelTrade РѕР±РЅРѕРІР»СЏРµС‚ РёРЅРґРёРєР°С‚РѕСЂ РІ С‚РѕСЂРіРІРѕР№ РїР°РЅРµР»Рё
 
 local Action = {
     --
@@ -27,7 +27,7 @@ local Action = {
         self.timerPause = container:get("config").timerIndicatorPanelTrade.timerPause
         self.panelTrade = container:get("Panels_PanelTrade")
 
-        -- запускаем таймер
+        -- Р·Р°РїСѓСЃРєР°РµРј С‚Р°Р№РјРµСЂ
         self.timer:set(self.timerName, self.timerPause)
 
         return self
@@ -35,7 +35,7 @@ local Action = {
 
     --
     handle = function(self, event)
-        -- обновление происходит с частотой записанной в конфиге (basePrice.timerPause)
+        -- РѕР±РЅРѕРІР»РµРЅРёРµ РїСЂРѕРёСЃС…РѕРґРёС‚ СЃ С‡Р°СЃС‚РѕС‚РѕР№ Р·Р°РїРёСЃР°РЅРЅРѕР№ РІ РєРѕРЅС„РёРіРµ (basePrice.timerPause)
         if self.timer:allows(self.timerName) then
 
             if self.mode == "on" then
@@ -46,7 +46,7 @@ local Action = {
 
             self.panelTrade:updateIndicator(self.mode)
 
-            -- снова устанавливаем таймер
+            -- СЃРЅРѕРІР° СѓСЃС‚Р°РЅР°РІР»РёРІР°РµРј С‚Р°Р№РјРµСЂ
             self.timer:set(self.timerName, self.timerPause)
         end
     end,

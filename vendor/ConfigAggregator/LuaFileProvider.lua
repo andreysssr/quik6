@@ -1,4 +1,4 @@
--- сбор всех файлов конфигураций в указанной директории
+-- СЃР±РѕСЂ РІСЃРµС… С„Р°Р№Р»РѕРІ РєРѕРЅС„РёРіСѓСЂР°С†РёР№ РІ СѓРєР°Р·Р°РЅРЅРѕР№ РґРёСЂРµРєС‚РѕСЂРёРё
 
 local LuaFileProvider = {
 
@@ -10,7 +10,7 @@ local LuaFileProvider = {
         return self
     end,
 
-    -- возвращает файлы
+    -- РІРѕР·РІСЂР°С‰Р°РµС‚ С„Р°Р№Р»С‹
     get = function(self, dirPath)
         return Dir:getListFiles(dirPath)
     end,

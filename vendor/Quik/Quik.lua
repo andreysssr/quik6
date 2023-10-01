@@ -1,4 +1,4 @@
--- класс для работы с Quik
+-- РєР»Р°СЃСЃ РґР»СЏ СЂР°Р±РѕС‚С‹ СЃ Quik
 
 local Quik = {
     --
@@ -9,21 +9,21 @@ local Quik = {
         return self
     end,
 
-    -- проверка преданного id - тикера инструмента
+    -- РїСЂРѕРІРµСЂРєР° РїСЂРµРґР°РЅРЅРѕРіРѕ id - С‚РёРєРµСЂР° РёРЅСЃС‚СЂСѓРјРµРЅС‚Р°
     checkingId = function(self, id)
         if not_string(id) then
-            error("\r\n" .. "Error: Id (бумаги) должен быть (строкой). Получено: (" .. type(id) .. ") - (" .. tostring(id) .. ")", 3)
+            error("\r\n" .. "Error: Id (Р±СѓРјР°РіРё) РґРѕР»Р¶РµРЅ Р±С‹С‚СЊ (СЃС‚СЂРѕРєРѕР№). РџРѕР»СѓС‡РµРЅРѕ: (" .. type(id) .. ") - (" .. tostring(id) .. ")", 3)
         end
     end,
 
-    -- проверка переданного класса
+    -- РїСЂРѕРІРµСЂРєР° РїРµСЂРµРґР°РЅРЅРѕРіРѕ РєР»Р°СЃСЃР°
     checkingClass = function(self, class)
         if not_string(class) then
-            error("\r\n" .. "Error: Class (бумаги) должен быть (строкой). Получено: (" .. type(class) .. ") - (" .. tostring(class) .. ")", 3)
+            error("\r\n" .. "Error: Class (Р±СѓРјР°РіРё) РґРѕР»Р¶РµРЅ Р±С‹С‚СЊ (СЃС‚СЂРѕРєРѕР№). РџРѕР»СѓС‡РµРЅРѕ: (" .. type(class) .. ") - (" .. tostring(class) .. ")", 3)
         end
     end,
 
-    -- вернуть стоимость шага для фьючерсов
+    -- РІРµСЂРЅСѓС‚СЊ СЃС‚РѕРёРјРѕСЃС‚СЊ С€Р°РіР° РґР»СЏ С„СЊСЋС‡РµСЂСЃРѕРІ
     getStepPrice = function(self, id, class)
         self:checkingId(id)
         self:checkingClass(class)
@@ -32,7 +32,7 @@ local Quik = {
         return tonumber(stepPrice)
     end,
 
-    -- вернуть минимальный шаг инструмента
+    -- РІРµСЂРЅСѓС‚СЊ РјРёРЅРёРјР°Р»СЊРЅС‹Р№ С€Р°Рі РёРЅСЃС‚СЂСѓРјРµРЅС‚Р°
     getStepSize = function(self, id, class)
         self:checkingId(id)
         self:checkingClass(class)
@@ -40,16 +40,16 @@ local Quik = {
         local status, retval = pcall(getSecurityInfo, class, id)
 
         if is_nil(retval) then
-            error("\n\n" .. "Error: для инструмента (" .. id .. "), class - (" .. class .. ") нет данных о размере шага. \n" ..
-                "- если это (акция) или (валюта) - возможно была опечатка в названии тикера \n" ..
-                "- если это (фьючерс) - возможно истекла дата экспирации и нужно в (homework.csv) заменить название тикера"
+            error("\n\n" .. "Error: РґР»СЏ РёРЅСЃС‚СЂСѓРјРµРЅС‚Р° (" .. id .. "), class - (" .. class .. ") РЅРµС‚ РґР°РЅРЅС‹С… Рѕ СЂР°Р·РјРµСЂРµ С€Р°РіР°. \n" ..
+                "- РµСЃР»Рё СЌС‚Рѕ (Р°РєС†РёСЏ) РёР»Рё (РІР°Р»СЋС‚Р°) - РІРѕР·РјРѕР¶РЅРѕ Р±С‹Р»Р° РѕРїРµС‡Р°С‚РєР° РІ РЅР°Р·РІР°РЅРёРё С‚РёРєРµСЂР° \n" ..
+                "- РµСЃР»Рё СЌС‚Рѕ (С„СЊСЋС‡РµСЂСЃ) - РІРѕР·РјРѕР¶РЅРѕ РёСЃС‚РµРєР»Р° РґР°С‚Р° СЌРєСЃРїРёСЂР°С†РёРё Рё РЅСѓР¶РЅРѕ РІ (homework.csv) Р·Р°РјРµРЅРёС‚СЊ РЅР°Р·РІР°РЅРёРµ С‚РёРєРµСЂР°"
             )
         end
 
         return getSecurityInfo(class, id).min_price_step
     end,
 
-    -- вернуть размер лота
+    -- РІРµСЂРЅСѓС‚СЊ СЂР°Р·РјРµСЂ Р»РѕС‚Р°
     getLotSize = function(self, id, class)
         self:checkingId(id)
         self:checkingClass(class)
@@ -57,7 +57,7 @@ local Quik = {
         return getSecurityInfo(class, id).lot_size
     end,
 
-    -- вернуть наименование инструмента
+    -- РІРµСЂРЅСѓС‚СЊ РЅР°РёРјРµРЅРѕРІР°РЅРёРµ РёРЅСЃС‚СЂСѓРјРµРЅС‚Р°
     getName = function(self, id, class)
         self:checkingId(id)
         self:checkingClass(class)
@@ -65,7 +65,7 @@ local Quik = {
         return getSecurityInfo(class, id).name
     end,
 
-    -- вернуть короткое наименование инструмента
+    -- РІРµСЂРЅСѓС‚СЊ РєРѕСЂРѕС‚РєРѕРµ РЅР°РёРјРµРЅРѕРІР°РЅРёРµ РёРЅСЃС‚СЂСѓРјРµРЅС‚Р°
     getNameShort = function(self, id, class)
         self:checkingId(id)
         self:checkingClass(class)
@@ -73,7 +73,7 @@ local Quik = {
         return getSecurityInfo(class, id).short_name
     end,
 
-    -- вернуть дату погашения
+    -- РІРµСЂРЅСѓС‚СЊ РґР°С‚Сѓ РїРѕРіР°С€РµРЅРёСЏ
     getNameShort = function(self, id, class)
         self:checkingId(id)
         self:checkingClass(class)

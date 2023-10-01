@@ -49,7 +49,7 @@ local UseCase = {
     removeStop = function(self, idStock, idNum)
         self.validator:checkId(idStock)
 
-        -- получаем класс инструмента
+        -- РїРѕР»СѓС‡Р°РµРј РєР»Р°СЃСЃ РёРЅСЃС‚СЂСѓРјРµРЅС‚Р°
         local class = self.storage:getClassToId(idStock)
 
         local order_num = 0
@@ -61,19 +61,19 @@ local UseCase = {
             order_num = self.entityServiceStock:getStop(idStock).order_num
         end
 
-        -- если стопа нет - останавливаем выполнение
+        -- РµСЃР»Рё СЃС‚РѕРїР° РЅРµС‚ - РѕСЃС‚Р°РЅР°РІР»РёРІР°РµРј РІС‹РїРѕР»РЅРµРЅРёРµ
         if not_number(order_num) then
             return
         end
 
-        -- подготавливаем данные для транзакции
+        -- РїРѕРґРіРѕС‚Р°РІР»РёРІР°РµРј РґР°РЅРЅС‹Рµ РґР»СЏ С‚СЂР°РЅР·Р°РєС†РёРё
         local stopOrder = {
             trans_id = self.nextId:getId(),
             class = class,
             order_num = order_num,
         }
 
-        -- отправляем транзакцию в диспетчер
+        -- РѕС‚РїСЂР°РІР»СЏРµРј С‚СЂР°РЅР·Р°РєС†РёСЋ РІ РґРёСЃРїРµС‚С‡РµСЂ
         self.dispatcher:StopOrderDelete(stopOrder.trans_id, stopOrder)
     end,
 }

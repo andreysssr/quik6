@@ -49,8 +49,8 @@ local UseCase = {
         return self
     end,
 
-    -- разрешено ли действие с бумагой
-    -- для этого действия бумага должна быть полностью активной, без ограничений
+    -- СЂР°Р·СЂРµС€РµРЅРѕ Р»Рё РґРµР№СЃС‚РІРёРµ СЃ Р±СѓРјР°РіРѕР№
+    -- РґР»СЏ СЌС‚РѕРіРѕ РґРµР№СЃС‚РІРёСЏ Р±СѓРјР°РіР° РґРѕР»Р¶РЅР° Р±С‹С‚СЊ РїРѕР»РЅРѕСЃС‚СЊСЋ Р°РєС‚РёРІРЅРѕР№, Р±РµР· РѕРіСЂР°РЅРёС‡РµРЅРёР№
     allowedAction = function(self, idStock)
         local status = self.entityServiceStock:getStatus(idStock)
 
@@ -67,30 +67,30 @@ local UseCase = {
         self.validator:check_buy_sell(operation)
         self.validator:checkRange(range)
 
-        -- если бумага не активна для данных действий
+        -- РµСЃР»Рё Р±СѓРјР°РіР° РЅРµ Р°РєС‚РёРІРЅР° РґР»СЏ РґР°РЅРЅС‹С… РґРµР№СЃС‚РІРёР№
         if not self:allowedAction(idStock) then
             return
         end
 
-        -- порядковый номер для транзакции
+        -- РїРѕСЂСЏРґРєРѕРІС‹Р№ РЅРѕРјРµСЂ РґР»СЏ С‚СЂР°РЅР·Р°РєС†РёРё
         local idTransact = self.nextId:getId()
 
-        -- получаем класс инструмента
+        -- РїРѕР»СѓС‡Р°РµРј РєР»Р°СЃСЃ РёРЅСЃС‚СЂСѓРјРµРЅС‚Р°
         local class = self.storage:getClassToId(idStock)
 
-        -- получаем последнюю цену
+        -- РїРѕР»СѓС‡Р°РµРј РїРѕСЃР»РµРґРЅСЋСЋ С†РµРЅСѓ
         local lastPrice = self.servicePrices:getLastPrice(idStock, class)
 
-        -- подсчитываем параметры для текущего запроса
+        -- РїРѕРґСЃС‡РёС‚С‹РІР°РµРј РїР°СЂР°РјРµС‚СЂС‹ РґР»СЏ С‚РµРєСѓС‰РµРіРѕ Р·Р°РїСЂРѕСЃР°
         self.entityServiceTradeParams:calculateParams(idStock, operation, range)
 
-        -- получаем параметры цены для запроса
+        -- РїРѕР»СѓС‡Р°РµРј РїР°СЂР°РјРµС‚СЂС‹ С†РµРЅС‹ РґР»СЏ Р·Р°РїСЂРѕСЃР°
         local zapros = self.entityServiceTradeParams:getParamsZapros(idStock)
 
-        -- получаем количество лотов для сделки
+        -- РїРѕР»СѓС‡Р°РµРј РєРѕР»РёС‡РµСЃС‚РІРѕ Р»РѕС‚РѕРІ РґР»СЏ СЃРґРµР»РєРё
         local lots = self.entityServiceStock:getLots(idStock)
 
-        -- подготавливаем данные для транзакции
+        -- РїРѕРґРіРѕС‚Р°РІР»РёРІР°РµРј РґР°РЅРЅС‹Рµ РґР»СЏ С‚СЂР°РЅР·Р°РєС†РёРё
         if operation == "buy" then
 
             if lastPrice >= zapros.price then
@@ -107,10 +107,10 @@ local UseCase = {
                     price = zapros.price,
                 }
 
-                -- отправляем транзакцию в диспетчер
+                -- РѕС‚РїСЂР°РІР»СЏРµРј С‚СЂР°РЅР·Р°РєС†РёСЋ РІ РґРёСЃРїРµС‚С‡РµСЂ
                 self.dispatcher:OrderLimitBuy(order)
 
-                -- добавляем данные
+                -- РґРѕР±Р°РІР»СЏРµРј РґР°РЅРЅС‹Рµ
                 self.entityServiceTransact:create(idTransact, {
                     idStock = idStock,
                     idParams = idTransact,
@@ -134,10 +134,10 @@ local UseCase = {
                     stopPrice = zapros.stopPrice,
                 }
 
-                -- отправляем транзакцию в диспетчер
+                -- РѕС‚РїСЂР°РІР»СЏРµРј С‚СЂР°РЅР·Р°РєС†РёСЋ РІ РґРёСЃРїРµС‚С‡РµСЂ
                 self.dispatcher:StopOrderLimitBuy(stopOrder)
 
-                -- добавляем данные
+                -- РґРѕР±Р°РІР»СЏРµРј РґР°РЅРЅС‹Рµ
                 self.entityServiceTransact:create(idTransact, {
                     idStock = idStock,
                     idParams = idTransact,
@@ -148,7 +148,7 @@ local UseCase = {
             end
         end
 
-        -- подготавливаем данные для транзакции
+        -- РїРѕРґРіРѕС‚Р°РІР»РёРІР°РµРј РґР°РЅРЅС‹Рµ РґР»СЏ С‚СЂР°РЅР·Р°РєС†РёРё
         if operation == "sell" then
 
             if lastPrice <= zapros.price then
@@ -165,10 +165,10 @@ local UseCase = {
                     price = zapros.price,
                 }
 
-                -- отправляем транзакцию в диспетчер
+                -- РѕС‚РїСЂР°РІР»СЏРµРј С‚СЂР°РЅР·Р°РєС†РёСЋ РІ РґРёСЃРїРµС‚С‡РµСЂ
                 self.dispatcher:OrderLimitSell(order)
 
-                -- добавляем данные
+                -- РґРѕР±Р°РІР»СЏРµРј РґР°РЅРЅС‹Рµ
                 self.entityServiceTransact:create(idTransact, {
                     idStock = idStock,
                     idParams = idTransact,
@@ -192,10 +192,10 @@ local UseCase = {
                     stopPrice = zapros.stopPrice,
                 }
 
-                -- отправляем транзакцию в диспетчер
+                -- РѕС‚РїСЂР°РІР»СЏРµРј С‚СЂР°РЅР·Р°РєС†РёСЋ РІ РґРёСЃРїРµС‚С‡РµСЂ
                 self.dispatcher:StopOrderLimitSell(stopOrder)
 
-                -- добавляем данные
+                -- РґРѕР±Р°РІР»СЏРµРј РґР°РЅРЅС‹Рµ
                 self.entityServiceTransact:create(idTransact, {
                     idStock = idStock,
                     idParams = idTransact,

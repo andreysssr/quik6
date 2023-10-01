@@ -1,4 +1,4 @@
---- Action UpdateBasePrice обновляет basePrice для всех инструментов
+--- Action UpdateBasePrice РѕР±РЅРѕРІР»СЏРµС‚ basePrice РґР»СЏ РІСЃРµС… РёРЅСЃС‚СЂСѓРјРµРЅС‚РѕРІ
 
 local Action = {
     --
@@ -26,7 +26,7 @@ local Action = {
         self.pauseTime = container:get("config").basePrice.pauseTime
         self.entityService = container:get("EntityService_BasePrice")
 
-        -- запускаем таймер
+        -- Р·Р°РїСѓСЃРєР°РµРј С‚Р°Р№РјРµСЂ
         self.timer:set(self.nameTimer, self.pauseTime)
 
         return self
@@ -34,22 +34,22 @@ local Action = {
 
     --
     handle = function(self, event)
-        -- если Action вызывается первый раз - тогда не ждём заданный таймаут
+        -- РµСЃР»Рё Action РІС‹Р·С‹РІР°РµС‚СЃСЏ РїРµСЂРІС‹Р№ СЂР°Р· - С‚РѕРіРґР° РЅРµ Р¶РґС‘Рј Р·Р°РґР°РЅРЅС‹Р№ С‚Р°Р№РјР°СѓС‚
         if self.countRun == 1 then
-            -- обновление данных для всех инструментов
+            -- РѕР±РЅРѕРІР»РµРЅРёРµ РґР°РЅРЅС‹С… РґР»СЏ РІСЃРµС… РёРЅСЃС‚СЂСѓРјРµРЅС‚РѕРІ
             self.entityService:checkLevels()
 
-            -- меняем значение запуска
+            -- РјРµРЅСЏРµРј Р·РЅР°С‡РµРЅРёРµ Р·Р°РїСѓСЃРєР°
             self.countRun = 2
         end
 
-        -- обновление происходит с частотой записанной в конфиге (basePrice.pauseTime)
+        -- РѕР±РЅРѕРІР»РµРЅРёРµ РїСЂРѕРёСЃС…РѕРґРёС‚ СЃ С‡Р°СЃС‚РѕС‚РѕР№ Р·Р°РїРёСЃР°РЅРЅРѕР№ РІ РєРѕРЅС„РёРіРµ (basePrice.pauseTime)
         if self.timer:allows(self.nameTimer) then
 
-            -- обновление данных для всех инструментов
+            -- РѕР±РЅРѕРІР»РµРЅРёРµ РґР°РЅРЅС‹С… РґР»СЏ РІСЃРµС… РёРЅСЃС‚СЂСѓРјРµРЅС‚РѕРІ
             self.entityService:checkLevels()
 
-            -- снова устанавливаем таймер
+            -- СЃРЅРѕРІР° СѓСЃС‚Р°РЅР°РІР»РёРІР°РµРј С‚Р°Р№РјРµСЂ
             self.timer:set(self.nameTimer, self.pauseTime)
         end
     end,

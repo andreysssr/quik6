@@ -18,30 +18,30 @@ local EventHandler = {
         return self
     end,
 
-    -- меняем цвет поля в торговой панели
+    -- РјРµРЅСЏРµРј С†РІРµС‚ РїРѕР»СЏ РІ С‚РѕСЂРіРѕРІРѕР№ РїР°РЅРµР»Рё
     handle = function(self, event)
         local idStock = event:getParam("id")
         local condition = event:getParam("stock")
 
         local status = self.entityServiceStock:getStatus(idStock)
 
-        -- при включении - фон закрашиваем активным цветом
+        -- РїСЂРё РІРєР»СЋС‡РµРЅРёРё - С„РѕРЅ Р·Р°РєСЂР°С€РёРІР°РµРј Р°РєС‚РёРІРЅС‹Рј С†РІРµС‚РѕРј
         if condition == "on" then
             self.panelTrade:update(idStock, {
                 stock_condition = "active"
             })
         end
 
-        -- при выключении проверяем в какой цвет закрасить фон
+        -- РїСЂРё РІС‹РєР»СЋС‡РµРЅРёРё РїСЂРѕРІРµСЂСЏРµРј РІ РєР°РєРѕР№ С†РІРµС‚ Р·Р°РєСЂР°СЃРёС‚СЊ С„РѕРЅ
         if condition == "off" then
-            -- если статус бумаги - в дефолтный цвет строки
+            -- РµСЃР»Рё СЃС‚Р°С‚СѓСЃ Р±СѓРјР°РіРё - РІ РґРµС„РѕР»С‚РЅС‹Р№ С†РІРµС‚ СЃС‚СЂРѕРєРё
             if status == "active" then
                 self.panelTrade:update(idStock, {
                     stock_condition = "default"
                 })
             end
 
-            -- если статус бумаги ограниченный - в цвет ограниченной бумаги
+            -- РµСЃР»Рё СЃС‚Р°С‚СѓСЃ Р±СѓРјР°РіРё РѕРіСЂР°РЅРёС‡РµРЅРЅС‹Р№ - РІ С†РІРµС‚ РѕРіСЂР°РЅРёС‡РµРЅРЅРѕР№ Р±СѓРјР°РіРё
             if status == "limitedActive" then
                 self.panelTrade:update(idStock, {
                     stock_condition = "limited"
@@ -56,21 +56,21 @@ local EventHandler = {
         local status = event:getParam("status")
 
 
-        -- если статус бумаги - в дефолтный цвет строки
+        -- РµСЃР»Рё СЃС‚Р°С‚СѓСЃ Р±СѓРјР°РіРё - РІ РґРµС„РѕР»С‚РЅС‹Р№ С†РІРµС‚ СЃС‚СЂРѕРєРё
         if status == "notActive" then
             self.panelTrade:update(idStock, {
                 stock_condition = "disable"
             })
         end
 
-        -- если статус бумаги - в дефолтный цвет строки
+        -- РµСЃР»Рё СЃС‚Р°С‚СѓСЃ Р±СѓРјР°РіРё - РІ РґРµС„РѕР»С‚РЅС‹Р№ С†РІРµС‚ СЃС‚СЂРѕРєРё
         if status == "active" then
             self.panelTrade:update(idStock, {
                 stock_condition = "default"
             })
         end
 
-        -- если статус бумаги ограниченный - в цвет ограниченной бумаги
+        -- РµСЃР»Рё СЃС‚Р°С‚СѓСЃ Р±СѓРјР°РіРё РѕРіСЂР°РЅРёС‡РµРЅРЅС‹Р№ - РІ С†РІРµС‚ РѕРіСЂР°РЅРёС‡РµРЅРЅРѕР№ Р±СѓРјР°РіРё
         if status == "limitedActive" then
             self.panelTrade:update(idStock, {
                 stock_condition = "limited"

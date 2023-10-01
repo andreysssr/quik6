@@ -49,24 +49,24 @@ local UseCase = {
     addStop = function(self, idStock, idParams)
         self.validator:checkId(idStock)
 
-        -- порядковый номер для транзакции
+        -- РїРѕСЂСЏРґРєРѕРІС‹Р№ РЅРѕРјРµСЂ РґР»СЏ С‚СЂР°РЅР·Р°РєС†РёРё
         local idTransact = self.nextId:getId()
 
-        -- получаем параметры стопа
+        -- РїРѕР»СѓС‡Р°РµРј РїР°СЂР°РјРµС‚СЂС‹ СЃС‚РѕРїР°
         local stop = self.entityServiceTradeParams:getParamsStopMove(idStock, idParams)
 
-        -- прверка стопа - чтобы был не пустой
+        -- РїСЂРІРµСЂРєР° СЃС‚РѕРїР° - С‡С‚РѕР±С‹ Р±С‹Р» РЅРµ РїСѓСЃС‚РѕР№
         if empty(stop) then
-            error("\r\n" .. "Error: Получены пустые параметры для (stop), idStock - " .. idStock .. "), idParams - (" .. idParams .. ")")
+            error("\r\n" .. "Error: РџРѕР»СѓС‡РµРЅС‹ РїСѓСЃС‚С‹Рµ РїР°СЂР°РјРµС‚СЂС‹ РґР»СЏ (stop), idStock - " .. idStock .. "), idParams - (" .. idParams .. ")")
         end
 
-        -- устанавливаем направление заявки
+        -- СѓСЃС‚Р°РЅР°РІР»РёРІР°РµРј РЅР°РїСЂР°РІР»РµРЅРёРµ Р·Р°СЏРІРєРё
         local operation = stop.operation
 
-        -- получаем класс инструмента
+        -- РїРѕР»СѓС‡Р°РµРј РєР»Р°СЃСЃ РёРЅСЃС‚СЂСѓРјРµРЅС‚Р°
         local class = self.storage:getClassToId(idStock)
 
-        -- подготавливаем данные для транзакции
+        -- РїРѕРґРіРѕС‚Р°РІР»РёРІР°РµРј РґР°РЅРЅС‹Рµ РґР»СЏ С‚СЂР°РЅР·Р°РєС†РёРё
         if operation == "buy" then
 
             local stopOrder = {
@@ -84,10 +84,10 @@ local UseCase = {
                 stopPrice = stop.stopPrice,
             }
 
-            -- отправляем транзакцию в диспетчер
+            -- РѕС‚РїСЂР°РІР»СЏРµРј С‚СЂР°РЅР·Р°РєС†РёСЋ РІ РґРёСЃРїРµС‚С‡РµСЂ
             self.dispatcher:StopOrderMarketBuy(stopOrder)
 
-            -- добавляем данные
+            -- РґРѕР±Р°РІР»СЏРµРј РґР°РЅРЅС‹Рµ
             self.entityServiceTransact:create(idTransact, {
                 idStock = idStock,
                 idParams = idTransact,
@@ -116,10 +116,10 @@ local UseCase = {
                 stopPrice = stop.stopPrice,
             }
 
-            -- отправляем транзакцию в диспетчер
+            -- РѕС‚РїСЂР°РІР»СЏРµРј С‚СЂР°РЅР·Р°РєС†РёСЋ РІ РґРёСЃРїРµС‚С‡РµСЂ
             self.dispatcher:StopOrderMarketSell(stopOrder)
 
-            -- добавляем данные
+            -- РґРѕР±Р°РІР»СЏРµРј РґР°РЅРЅС‹Рµ
             self.entityServiceTransact:create(idTransact, {
                 idStock = idStock,
                 idParams = idTransact,

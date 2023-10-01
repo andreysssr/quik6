@@ -1,13 +1,13 @@
 ---
 
--- получаем конфигурацию - по схеме Laminas
+-- РїРѕР»СѓС‡Р°РµРј РєРѕРЅС„РёРіСѓСЂР°С†РёСЋ - РїРѕ СЃС…РµРјРµ Laminas
 local config = Autoload:get("configFramework_config")
 
 local dependencies = config['dependencies']
 config["dependencies"] = nil
 dependencies['services']['config'] = config
 
--- создаём контейнер с зависимостями
+-- СЃРѕР·РґР°С‘Рј РєРѕРЅС‚РµР№РЅРµСЂ СЃ Р·Р°РІРёСЃРёРјРѕСЃС‚СЏРјРё
 local container = Autoload:get("ServiceManager"):new(dependencies)
 
 return container

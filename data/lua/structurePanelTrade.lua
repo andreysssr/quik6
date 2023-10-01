@@ -1,9 +1,9 @@
--- структура для панели торговли
+-- СЃС‚СЂСѓРєС‚СѓСЂР° РґР»СЏ РїР°РЅРµР»Рё С‚РѕСЂРіРѕРІР»Рё
 
 return {
     {
         header = {
-            title = "[ Инструмент ]",
+            title = "[ РРЅСЃС‚СЂСѓРјРµРЅС‚ ]",
             width = 19
         },
         body = {
@@ -19,7 +19,7 @@ return {
     },
     {
         header = {
-            title = "Направление",
+            title = "РќР°РїСЂР°РІР»РµРЅРёРµ",
             width = 30
         },
         body = {
@@ -50,7 +50,7 @@ return {
     },
     {
         header = {
-            title = "Позиция",
+            title = "РџРѕР·РёС†РёСЏ",
             width = 9
         },
         body = {
@@ -80,7 +80,7 @@ return {
     },
     {
         header = {
-            title = "Шорт",
+            title = "РЁРѕСЂС‚",
             width = 6
         },
         body = {
@@ -110,7 +110,7 @@ return {
     },
     {
         header = {
-            title = "Заявки",
+            title = "Р—Р°СЏРІРєРё",
             width = 8
         },
         body = {
@@ -139,7 +139,7 @@ return {
     },
     {
         header = {
-            title = "Цена",
+            title = "Р¦РµРЅР°",
             width = 8
         },
         body = {
@@ -273,7 +273,7 @@ return {
     },
     {
         header = {
-            title = "Инт-л",
+            title = "РРЅС‚-Р»",
             width = 7
         },
         body = {
@@ -519,7 +519,7 @@ return {
     },
     {
         header = {
-            title = "Max. Лотов",
+            title = "Max. Р›РѕС‚РѕРІ",
             width = 13
         },
         body = {
@@ -534,7 +534,7 @@ return {
     },
     {
         header = {
-            title = "Лотов",
+            title = "Р›РѕС‚РѕРІ",
             width = 8
         },
         body = {
@@ -564,7 +564,7 @@ return {
     },
     {
         header = {
-            title = "Див | Экс",
+            title = "Р”РёРІ | Р­РєСЃ",
             width = 10
         },
         body = {

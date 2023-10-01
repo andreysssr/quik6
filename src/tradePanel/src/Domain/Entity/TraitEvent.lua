@@ -8,7 +8,7 @@ local Trait = {
         return self
     end,
 
-    -- добавить событие
+    -- РґРѕР±Р°РІРёС‚СЊ СЃРѕР±С‹С‚РёРµ
     registerEvent = function(self, eventName, eventParams)
         local event = {
             eventName = eventName,
@@ -18,7 +18,7 @@ local Trait = {
         self.events[#self.events + 1] = event
     end,
 
-    -- вернуть события
+    -- РІРµСЂРЅСѓС‚СЊ СЃРѕР±С‹С‚РёСЏ
     releaseEvents = function(self)
         local _events = copy(self.events)
 

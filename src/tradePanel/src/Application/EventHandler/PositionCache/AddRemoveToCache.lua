@@ -1,4 +1,4 @@
---- EventHandler AddRemoveToCache - описание
+--- EventHandler AddRemoveToCache - РѕРїРёСЃР°РЅРёРµ
 
 local EventHandler = {
     --
@@ -26,14 +26,14 @@ local EventHandler = {
         return self
     end,
 
-    -- добавить кеш
+    -- РґРѕР±Р°РІРёС‚СЊ РєРµС€
     addCache = function(self, event)
         local idStock = event:getParam("idStock")
         --local idParams = event:getParam("idParams")
 
         local params = self.entityServiceParams:getParams(idStock)
 
-        -- конвертируем таблицу в строку
+        -- РєРѕРЅРІРµСЂС‚РёСЂСѓРµРј С‚Р°Р±Р»РёС†Сѓ РІ СЃС‚СЂРѕРєСѓ
         local strParams = serializeTable(params)
 
         local key = idStock .. "_params"
@@ -41,7 +41,7 @@ local EventHandler = {
         self.cache:set(key, strParams)
     end,
 
-    -- удалить кеш
+    -- СѓРґР°Р»РёС‚СЊ РєРµС€
     removeCache = function(self, event)
         local idStock = event:getParam("idStock")
         local key = idStock .. "_params"

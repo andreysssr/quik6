@@ -8,11 +8,11 @@ local Search = {
         return self
     end,
 
-    -- образец метода поиска активной заявки
+    -- РѕР±СЂР°Р·РµС† РјРµС‚РѕРґР° РїРѕРёСЃРєР° Р°РєС‚РёРІРЅРѕР№ Р·Р°СЏРІРєРё
     -- https://forum.quik.ru/forum10/topic3348/
     search = function(self)
         function myFind(F)
-            return (bit.band(F, 0x1) ~= 0)    -- вернёт true если значение не равно 0
+            return (bit.band(F, 0x1) ~= 0)    -- РІРµСЂРЅС‘С‚ true РµСЃР»Рё Р·РЅР°С‡РµРЅРёРµ РЅРµ СЂР°РІРЅРѕ 0
         end
 
         local ord = "orders"

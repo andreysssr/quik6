@@ -9,90 +9,90 @@ local AppService = {
         return self
     end,
 
-    -- значение не должно быть nil
+    -- Р·РЅР°С‡РµРЅРёРµ РЅРµ РґРѕР»Р¶РЅРѕ Р±С‹С‚СЊ nil
     checkParamNotNil = function(self, val, name)
         if is_nil(val) then
-            error("Error: Ошибка: параметр (" .. name .. ") не передан.", 3)
+            error("Error: РћС€РёР±РєР°: РїР°СЂР°РјРµС‚СЂ (" .. name .. ") РЅРµ РїРµСЂРµРґР°РЅ.", 3)
         end
     end,
 
-    -- значение не должно быть nil
+    -- Р·РЅР°С‡РµРЅРёРµ РЅРµ РґРѕР»Р¶РЅРѕ Р±С‹С‚СЊ nil
     checkParamNumber = function(self, value, name)
         if not_number(value) then
-            error("Error: Ошибка: параметр (" .. name .. ") должен быть числом. " ..
-                "Получено: (" .. type(value) .. ") - " .. tostring(value), 3)
+            error("Error: РћС€РёР±РєР°: РїР°СЂР°РјРµС‚СЂ (" .. name .. ") РґРѕР»Р¶РµРЅ Р±С‹С‚СЊ С‡РёСЃР»РѕРј. " ..
+                "РџРѕР»СѓС‡РµРЅРѕ: (" .. type(value) .. ") - " .. tostring(value), 3)
         end
     end,
 
-    -- значение не должно быть nil
+    -- Р·РЅР°С‡РµРЅРёРµ РЅРµ РґРѕР»Р¶РЅРѕ Р±С‹С‚СЊ nil
     checkParamString = function(self, value, name)
         if not_string(value) then
-            error("Error: Ошибка: параметр (" .. name .. ") должен быть строкой. " ..
-                "Получено: (" .. type(value) .. ") - " .. tostring(value), 3)
+            error("Error: РћС€РёР±РєР°: РїР°СЂР°РјРµС‚СЂ (" .. name .. ") РґРѕР»Р¶РµРЅ Р±С‹С‚СЊ СЃС‚СЂРѕРєРѕР№. " ..
+                "РџРѕР»СѓС‡РµРЅРѕ: (" .. type(value) .. ") - " .. tostring(value), 3)
         end
     end,
 
-    -- значение не должно быть nil
+    -- Р·РЅР°С‡РµРЅРёРµ РЅРµ РґРѕР»Р¶РЅРѕ Р±С‹С‚СЊ nil
     checkParamBoolean = function(self, value, name)
         if not_boolean(value) then
-            error("Error: Ошибка: параметр (" .. name .. ") должен быть boolean значением. " ..
-                "Получено: (" .. type(value) .. ") - " .. tostring(value), 3)
+            error("Error: РћС€РёР±РєР°: РїР°СЂР°РјРµС‚СЂ (" .. name .. ") РґРѕР»Р¶РµРЅ Р±С‹С‚СЊ boolean Р·РЅР°С‡РµРЅРёРµРј. " ..
+                "РџРѕР»СѓС‡РµРЅРѕ: (" .. type(value) .. ") - " .. tostring(value), 3)
         end
     end,
 
-    -- значение должно быть: "limit" или "market" - иначе ошибка
+    -- Р·РЅР°С‡РµРЅРёРµ РґРѕР»Р¶РЅРѕ Р±С‹С‚СЊ: "limit" РёР»Рё "market" - РёРЅР°С‡Рµ РѕС€РёР±РєР°
     checkId = function(self, value)
         if not_string(value) then
-            error("\r\n\r\n" .. "Error: id должен быть строкой. " ..
-                "Получено: (" .. type(value) .. ") - " .. tostring(value), 3)
+            error("\r\n\r\n" .. "Error: id РґРѕР»Р¶РµРЅ Р±С‹С‚СЊ СЃС‚СЂРѕРєРѕР№. " ..
+                "РџРѕР»СѓС‡РµРЅРѕ: (" .. type(value) .. ") - " .. tostring(value), 3)
         end
     end,
 
-    -- значение должно быть: "limit" или "market" - иначе ошибка
+    -- Р·РЅР°С‡РµРЅРёРµ РґРѕР»Р¶РЅРѕ Р±С‹С‚СЊ: "limit" РёР»Рё "market" - РёРЅР°С‡Рµ РѕС€РёР±РєР°
     checkClass = function(self, value)
         if not_string(value) then
-            error("\r\n\r\n" .. "Error: class должен быть строкой. " ..
-                "Получено: (" .. type(value) .. ") - " .. tostring(value), 3)
+            error("\r\n\r\n" .. "Error: class РґРѕР»Р¶РµРЅ Р±С‹С‚СЊ СЃС‚СЂРѕРєРѕР№. " ..
+                "РџРѕР»СѓС‡РµРЅРѕ: (" .. type(value) .. ") - " .. tostring(value), 3)
         end
     end,
 
-    -- значение должно быть: "limit" или "market" - иначе ошибка
+    -- Р·РЅР°С‡РµРЅРёРµ РґРѕР»Р¶РЅРѕ Р±С‹С‚СЊ: "limit" РёР»Рё "market" - РёРЅР°С‡Рµ РѕС€РёР±РєР°
     checkPrice = function(self, value)
         if not_number(value) then
-            error("\r\n\r\n" .. "Error: Цена должна быть числом " ..
-                "Получено: (" .. type(value) .. ") - " .. tostring(value), 3)
+            error("\r\n\r\n" .. "Error: Р¦РµРЅР° РґРѕР»Р¶РЅР° Р±С‹С‚СЊ С‡РёСЃР»РѕРј " ..
+                "РџРѕР»СѓС‡РµРЅРѕ: (" .. type(value) .. ") - " .. tostring(value), 3)
         end
     end,
 
-    -- значение должно быть: "limit" или "market" - иначе ошибка
+    -- Р·РЅР°С‡РµРЅРёРµ РґРѕР»Р¶РЅРѕ Р±С‹С‚СЊ: "limit" РёР»Рё "market" - РёРЅР°С‡Рµ РѕС€РёР±РєР°
     check_limit_market = function(self, value)
         if value ~= "limit" and value ~= "market" then
-            error("\r\n\r\n" .. "Error: Значение (typeOrder) должно быть (limit) или (market). " ..
-                "Получено: (" .. type(value) .. ") - " .. tostring(value), 3)
+            error("\r\n\r\n" .. "Error: Р—РЅР°С‡РµРЅРёРµ (typeOrder) РґРѕР»Р¶РЅРѕ Р±С‹С‚СЊ (limit) РёР»Рё (market). " ..
+                "РџРѕР»СѓС‡РµРЅРѕ: (" .. type(value) .. ") - " .. tostring(value), 3)
         end
     end,
 
-    -- значение должно быть: "buy" или "sell" - иначе ошибка
+    -- Р·РЅР°С‡РµРЅРёРµ РґРѕР»Р¶РЅРѕ Р±С‹С‚СЊ: "buy" РёР»Рё "sell" - РёРЅР°С‡Рµ РѕС€РёР±РєР°
     check_buy_sell = function(self, value)
         if value ~= "buy" and value ~= "sell" then
-            error("\r\n\r\n" .. "Error: Значение (operation) должно быть (buy) или (sell)." ..
-                "Получено: (" .. type(value) .. ") - " .. tostring(value), 3)
+            error("\r\n\r\n" .. "Error: Р—РЅР°С‡РµРЅРёРµ (operation) РґРѕР»Р¶РЅРѕ Р±С‹С‚СЊ (buy) РёР»Рё (sell)." ..
+                "РџРѕР»СѓС‡РµРЅРѕ: (" .. type(value) .. ") - " .. tostring(value), 3)
         end
     end,
 
-    -- значение должно быть: 0, или 5, или 10 - иначе ошибка
+    -- Р·РЅР°С‡РµРЅРёРµ РґРѕР»Р¶РЅРѕ Р±С‹С‚СЊ: 0, РёР»Рё 5, РёР»Рё 10 - РёРЅР°С‡Рµ РѕС€РёР±РєР°
     checkRange = function(self, value)
         if value ~= 0 and value ~= 5 and value ~= 10 and value ~= 105 and value ~= 110 then
-            error("\r\n\r\n" .. "Error: Значение (range) должно быть (0) или (5) или (10)." ..
-                "Получено: (" .. type(value) .. ") - " .. tostring(value), 3)
+            error("\r\n\r\n" .. "Error: Р—РЅР°С‡РµРЅРёРµ (range) РґРѕР»Р¶РЅРѕ Р±С‹С‚СЊ (0) РёР»Рё (5) РёР»Рё (10)." ..
+                "РџРѕР»СѓС‡РµРЅРѕ: (" .. type(value) .. ") - " .. tostring(value), 3)
         end
     end,
 
-    -- значение должно быть: 20, или 30, или 40, или 50, или 60, или 70 - иначе ошибка
+    -- Р·РЅР°С‡РµРЅРёРµ РґРѕР»Р¶РЅРѕ Р±С‹С‚СЊ: 20, РёР»Рё 30, РёР»Рё 40, РёР»Рё 50, РёР»Рё 60, РёР»Рё 70 - РёРЅР°С‡Рµ РѕС€РёР±РєР°
     checkTake = function(self, value)
         if value ~= 2 and value ~= 3 and value ~= 4 and value ~= 5 and value ~= 6 and value ~= 7 and value ~= 8 and value ~= 9 and value ~= 10 then
-            error("\r\n\r\n" .. "Error: Значение (тейка) должно быть (2) или (3) или (4) или (5) или (6)." ..
-                "Получено: (" .. type(value) .. ") - " .. tostring(value), 3)
+            error("\r\n\r\n" .. "Error: Р—РЅР°С‡РµРЅРёРµ (С‚РµР№РєР°) РґРѕР»Р¶РЅРѕ Р±С‹С‚СЊ (2) РёР»Рё (3) РёР»Рё (4) РёР»Рё (5) РёР»Рё (6)." ..
+                "РџРѕР»СѓС‡РµРЅРѕ: (" .. type(value) .. ") - " .. tostring(value), 3)
         end
     end,
 }

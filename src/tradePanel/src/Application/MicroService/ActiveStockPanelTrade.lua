@@ -1,4 +1,4 @@
---- MicroService ActiveStockPanelTrade - Управляет активным инструментом в торговой панели
+--- MicroService ActiveStockPanelTrade - РЈРїСЂР°РІР»СЏРµС‚ Р°РєС‚РёРІРЅС‹Рј РёРЅСЃС‚СЂСѓРјРµРЅС‚РѕРј РІ С‚РѕСЂРіРѕРІРѕР№ РїР°РЅРµР»Рё
 
 local MicroService = {
     --
@@ -13,10 +13,10 @@ local MicroService = {
     --
     eventSender = {},
 
-    -- массив в котором ключами являются idStock - для проверки полученного idStock
+    -- РјР°СЃСЃРёРІ РІ РєРѕС‚РѕСЂРѕРј РєР»СЋС‡Р°РјРё СЏРІР»СЏСЋС‚СЃСЏ idStock - РґР»СЏ РїСЂРѕРІРµСЂРєРё РїРѕР»СѓС‡РµРЅРЅРѕРіРѕ idStock
     arrayIdStock = {},
 
-    -- хранит текущий и предыдущий idStock
+    -- С…СЂР°РЅРёС‚ С‚РµРєСѓС‰РёР№ Рё РїСЂРµРґС‹РґСѓС‰РёР№ idStock
     dataActive = {
         current = "",
         prev = "",
@@ -33,7 +33,7 @@ local MicroService = {
         return self
     end,
 
-    -- подготавливает массив - где ключами являются idStock
+    -- РїРѕРґРіРѕС‚Р°РІР»РёРІР°РµС‚ РјР°СЃСЃРёРІ - РіРґРµ РєР»СЋС‡Р°РјРё СЏРІР»СЏСЋС‚СЃСЏ idStock
     prepareArrayIdStock = function(self)
         local arrayStock = self.container:get("Storage"):getHomeworkId()
 
@@ -42,7 +42,7 @@ local MicroService = {
         end
     end,
 
-    -- проверка текущего инструмента дна доступность
+    -- РїСЂРѕРІРµСЂРєР° С‚РµРєСѓС‰РµРіРѕ РёРЅСЃС‚СЂСѓРјРµРЅС‚Р° РґРЅР° РґРѕСЃС‚СѓРїРЅРѕСЃС‚СЊ
     checkCurrentStock = function(self)
         if self.dataActive.current ~= "" then
             local idStock = self.dataActive.current
@@ -50,42 +50,42 @@ local MicroService = {
             if not self.entityService:isActive(idStock) then
                 self.dataActive.prev = self.dataActive.current
 
-                -- текущий id очищаем
+                -- С‚РµРєСѓС‰РёР№ id РѕС‡РёС‰Р°РµРј
                 self.dataActive.current = ""
             end
         end
     end,
 
-    -- переключение текущего в дефолтное состояние
+    -- РїРµСЂРµРєР»СЋС‡РµРЅРёРµ С‚РµРєСѓС‰РµРіРѕ РІ РґРµС„РѕР»С‚РЅРѕРµ СЃРѕСЃС‚РѕСЏРЅРёРµ
     resetCurrent = function(self)
         local actions = {}
 
-        --	если был включен любой id
+        --	РµСЃР»Рё Р±С‹Р» РІРєР»СЋС‡РµРЅ Р»СЋР±РѕР№ id
         if self.dataActive.current ~= "" then
-            -- переносим текущий инструмент в предыдущий
+            -- РїРµСЂРµРЅРѕСЃРёРј С‚РµРєСѓС‰РёР№ РёРЅСЃС‚СЂСѓРјРµРЅС‚ РІ РїСЂРµРґС‹РґСѓС‰РёР№
             self.dataActive.prev = self.dataActive.current
 
-            -- добавляем id для выключение
+            -- РґРѕР±Р°РІР»СЏРµРј id РґР»СЏ РІС‹РєР»СЋС‡РµРЅРёРµ
             actions.off = self.dataActive.prev
 
-            -- очищаем текущий id
+            -- РѕС‡РёС‰Р°РµРј С‚РµРєСѓС‰РёР№ id
             self.dataActive.current = ""
 
-            -- применяем изменения
+            -- РїСЂРёРјРµРЅСЏРµРј РёР·РјРµРЅРµРЅРёСЏ
             self:commit(actions)
         end
     end,
 
-    -- переключение на предыдущую бумагу
+    -- РїРµСЂРµРєР»СЋС‡РµРЅРёРµ РЅР° РїСЂРµРґС‹РґСѓС‰СѓСЋ Р±СѓРјР°РіСѓ
     reversCurrent = function(self)
         local actions = {}
 
-        -- если (текущий не пустой) и (предыдущий не пустой)
-        --	если был включен любой id
+        -- РµСЃР»Рё (С‚РµРєСѓС‰РёР№ РЅРµ РїСѓСЃС‚РѕР№) Рё (РїСЂРµРґС‹РґСѓС‰РёР№ РЅРµ РїСѓСЃС‚РѕР№)
+        --	РµСЃР»Рё Р±С‹Р» РІРєР»СЋС‡РµРЅ Р»СЋР±РѕР№ id
         if self.dataActive.current ~= "" and self.dataActive.prev ~= "" then
 
-            -- если предыдущая бумага не разрешена к торговле
-            -- тогда выключаем текущую бумагу
+            -- РµСЃР»Рё РїСЂРµРґС‹РґСѓС‰Р°СЏ Р±СѓРјР°РіР° РЅРµ СЂР°Р·СЂРµС€РµРЅР° Рє С‚РѕСЂРіРѕРІР»Рµ
+            -- С‚РѕРіРґР° РІС‹РєР»СЋС‡Р°РµРј С‚РµРєСѓС‰СѓСЋ Р±СѓРјР°РіСѓ
             if not self:allowedAction(self.dataActive.prev) then
                 self:resetCurrent()
 
@@ -94,47 +94,47 @@ local MicroService = {
 
             local newActiveStock = self.dataActive.prev
 
-            -- переносим текущий инструмент в предыдущий
+            -- РїРµСЂРµРЅРѕСЃРёРј С‚РµРєСѓС‰РёР№ РёРЅСЃС‚СЂСѓРјРµРЅС‚ РІ РїСЂРµРґС‹РґСѓС‰РёР№
             self.dataActive.prev = self.dataActive.current
 
-            -- добавляем id для выключение
+            -- РґРѕР±Р°РІР»СЏРµРј id РґР»СЏ РІС‹РєР»СЋС‡РµРЅРёРµ
             actions.off = self.dataActive.prev
 
-            -- включаем текущий id
+            -- РІРєР»СЋС‡Р°РµРј С‚РµРєСѓС‰РёР№ id
             self.dataActive.current = newActiveStock
 
-            -- добавляем id для включения
+            -- РґРѕР±Р°РІР»СЏРµРј id РґР»СЏ РІРєР»СЋС‡РµРЅРёСЏ
             actions.on = self.dataActive.current
 
-            -- применяем изменения
+            -- РїСЂРёРјРµРЅСЏРµРј РёР·РјРµРЅРµРЅРёСЏ
             self:commit(actions)
 
             return
         end
 
-        -- если (текущий не пустой), а (предыдущий пустой)
+        -- РµСЃР»Рё (С‚РµРєСѓС‰РёР№ РЅРµ РїСѓСЃС‚РѕР№), Р° (РїСЂРµРґС‹РґСѓС‰РёР№ РїСѓСЃС‚РѕР№)
         if self.dataActive.current ~= "" and self.dataActive.prev == "" then
             self.dataActive.prev = self.dataActive.current
 
-            -- добавляем id для выключение
+            -- РґРѕР±Р°РІР»СЏРµРј id РґР»СЏ РІС‹РєР»СЋС‡РµРЅРёРµ
             actions.off = self.dataActive.prev
 
-            -- очищаем текущий
+            -- РѕС‡РёС‰Р°РµРј С‚РµРєСѓС‰РёР№
             self.dataActive.current = ""
 
-            -- применяем изменения
+            -- РїСЂРёРјРµРЅСЏРµРј РёР·РјРµРЅРµРЅРёСЏ
             self:commit(actions)
 
             return
         end
 
-        -- если (текущий пустой), а (предыдущий не пустой)
+        -- РµСЃР»Рё (С‚РµРєСѓС‰РёР№ РїСѓСЃС‚РѕР№), Р° (РїСЂРµРґС‹РґСѓС‰РёР№ РЅРµ РїСѓСЃС‚РѕР№)
         if self.dataActive.current == "" and self.dataActive.prev ~= "" then
 
-            -- если предыдущая бумага не разрешена к торговле
-            -- тогда выключаем текущую бумагу
+            -- РµСЃР»Рё РїСЂРµРґС‹РґСѓС‰Р°СЏ Р±СѓРјР°РіР° РЅРµ СЂР°Р·СЂРµС€РµРЅР° Рє С‚РѕСЂРіРѕРІР»Рµ
+            -- С‚РѕРіРґР° РІС‹РєР»СЋС‡Р°РµРј С‚РµРєСѓС‰СѓСЋ Р±СѓРјР°РіСѓ
             if not self:allowedAction(self.dataActive.prev) then
-                -- очищаем предыдущий
+                -- РѕС‡РёС‰Р°РµРј РїСЂРµРґС‹РґСѓС‰РёР№
                 self.dataActive.prev = ""
 
                 return
@@ -142,20 +142,20 @@ local MicroService = {
 
             self.dataActive.current = self.dataActive.prev
 
-            -- добавляем id для выключение
+            -- РґРѕР±Р°РІР»СЏРµРј id РґР»СЏ РІС‹РєР»СЋС‡РµРЅРёРµ
             actions.on = self.dataActive.current
 
-            -- очищаем предыдущий
+            -- РѕС‡РёС‰Р°РµРј РїСЂРµРґС‹РґСѓС‰РёР№
             self.dataActive.prev = ""
 
-            -- применяем изменения
+            -- РїСЂРёРјРµРЅСЏРµРј РёР·РјРµРЅРµРЅРёСЏ
             self:commit(actions)
 
             return
         end
     end,
 
-    -- разрешено ли включение бумаги
+    -- СЂР°Р·СЂРµС€РµРЅРѕ Р»Рё РІРєР»СЋС‡РµРЅРёРµ Р±СѓРјР°РіРё
     allowedAction = function(self, idStock)
         local status = self.entityService:getStatus(idStock)
 
@@ -166,13 +166,13 @@ local MicroService = {
         return false
     end,
 
-    -- изменить активный инструмент
+    -- РёР·РјРµРЅРёС‚СЊ Р°РєС‚РёРІРЅС‹Р№ РёРЅСЃС‚СЂСѓРјРµРЅС‚
     changeActive = function(self, idStock)
         if isset(self.arrayIdStock[idStock]) then
-            -- кликнули на (ДОСТУПНЫЙ к торговле) id
+            -- РєР»РёРєРЅСѓР»Рё РЅР° (Р”РћРЎРўРЈРџРќР«Р™ Рє С‚РѕСЂРіРѕРІР»Рµ) id
             if self:allowedAction(idStock) then
-                -- 1 панель не активна - кликаем
-                --		текущий пустой,
+                -- 1 РїР°РЅРµР»СЊ РЅРµ Р°РєС‚РёРІРЅР° - РєР»РёРєР°РµРј
+                --		С‚РµРєСѓС‰РёР№ РїСѓСЃС‚РѕР№,
                 if self.dataActive.current == "" then
                     local actions = {}
 
@@ -180,66 +180,66 @@ local MicroService = {
 
                     self.dataActive.current = idStock
 
-                    -- добавляем id для включения
+                    -- РґРѕР±Р°РІР»СЏРµРј id РґР»СЏ РІРєР»СЋС‡РµРЅРёСЏ
                     actions.on = self.dataActive.current
 
-                    -- применяем изменения
+                    -- РїСЂРёРјРµРЅСЏРµРј РёР·РјРµРЅРµРЅРёСЏ
                     self:commit(actions)
 
                     return
                 end
 
-                -- 2 панель активна - кликаем на другой
-                --		текущий не пустой,
+                -- 2 РїР°РЅРµР»СЊ Р°РєС‚РёРІРЅР° - РєР»РёРєР°РµРј РЅР° РґСЂСѓРіРѕР№
+                --		С‚РµРєСѓС‰РёР№ РЅРµ РїСѓСЃС‚РѕР№,
                 if self.dataActive.current ~= "" and self.dataActive.current ~= idStock then
                     local actions = {}
 
                     self.dataActive.prev = self.dataActive.current
 
-                    -- выключаем тот что был включённым
+                    -- РІС‹РєР»СЋС‡Р°РµРј С‚РѕС‚ С‡С‚Рѕ Р±С‹Р» РІРєР»СЋС‡С‘РЅРЅС‹Рј
                     actions.off = self.dataActive.prev
 
-                    -- в текущий записываем тот по которому кликнули
+                    -- РІ С‚РµРєСѓС‰РёР№ Р·Р°РїРёСЃС‹РІР°РµРј С‚РѕС‚ РїРѕ РєРѕС‚РѕСЂРѕРјСѓ РєР»РёРєРЅСѓР»Рё
                     self.dataActive.current = idStock
 
-                    -- добавляем id для включения
+                    -- РґРѕР±Р°РІР»СЏРµРј id РґР»СЏ РІРєР»СЋС‡РµРЅРёСЏ
                     actions.on = self.dataActive.current
 
-                    -- применяем изменения
+                    -- РїСЂРёРјРµРЅСЏРµРј РёР·РјРµРЅРµРЅРёСЏ
                     self:commit(actions)
 
                     return
                 end
             end
 
-            -- кликнули на (НЕ ДОСТУПНЫЙ к торговле) id
+            -- РєР»РёРєРЅСѓР»Рё РЅР° (РќР• Р”РћРЎРўРЈРџРќР«Р™ Рє С‚РѕСЂРіРѕРІР»Рµ) id
             if not self:allowedAction(idStock) then
                 local actions = {}
 
-                --	если был включен любой id
+                --	РµСЃР»Рё Р±С‹Р» РІРєР»СЋС‡РµРЅ Р»СЋР±РѕР№ id
                 if self.dataActive.current ~= "" then
-                    -- переносим текущий инстурмент в предыдущий
+                    -- РїРµСЂРµРЅРѕСЃРёРј С‚РµРєСѓС‰РёР№ РёРЅСЃС‚СѓСЂРјРµРЅС‚ РІ РїСЂРµРґС‹РґСѓС‰РёР№
                     self.dataActive.prev = self.dataActive.current
 
-                    -- добавляем id для выключение
+                    -- РґРѕР±Р°РІР»СЏРµРј id РґР»СЏ РІС‹РєР»СЋС‡РµРЅРёРµ
                     actions.off = self.dataActive.prev
 
                     --
                     self.dataActive.current = ""
 
-                    -- применяем изменения
+                    -- РїСЂРёРјРµРЅСЏРµРј РёР·РјРµРЅРµРЅРёСЏ
                     self:commit(actions)
                 end
             end
         end
     end,
 
-    -- возвращает текущую активную бумагу если есть иначер вернёт: ""
+    -- РІРѕР·РІСЂР°С‰Р°РµС‚ С‚РµРєСѓС‰СѓСЋ Р°РєС‚РёРІРЅСѓСЋ Р±СѓРјР°РіСѓ РµСЃР»Рё РµСЃС‚СЊ РёРЅР°С‡РµСЂ РІРµСЂРЅС‘С‚: ""
     getCurrentIdStock = function(self)
         return self.dataActive.current
     end,
 
-    -- создаёт событие
+    -- СЃРѕР·РґР°С‘С‚ СЃРѕР±С‹С‚РёРµ
     commitAction = function(self, action, id)
         self.eventSender:send("MicroService_ChangedActiveStock", {
             id = id,
@@ -247,7 +247,7 @@ local MicroService = {
         })
     end,
 
-    -- фиксирует изменения
+    -- С„РёРєСЃРёСЂСѓРµС‚ РёР·РјРµРЅРµРЅРёСЏ
     commit = function(self, actions)
         for action, id in pairs(actions) do
             self:commitAction(action, id)

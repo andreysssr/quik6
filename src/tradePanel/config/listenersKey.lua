@@ -1,6 +1,6 @@
--- смена активного инструмента в торговой панели
+-- СЃРјРµРЅР° Р°РєС‚РёРІРЅРѕРіРѕ РёРЅСЃС‚СЂСѓРјРµРЅС‚Р° РІ С‚РѕСЂРіРѕРІРѕР№ РїР°РЅРµР»Рё
 
--- отключить активный инструмент
+-- РѕС‚РєР»СЋС‡РёС‚СЊ Р°РєС‚РёРІРЅС‹Р№ РёРЅСЃС‚СЂСѓРјРµРЅС‚
 app:attachKey("0", "EventHandler_Key_SelectActiveStock@numberOff")
 
 app:attachKey("1", "EventHandler_Key_SelectActiveStock@numberSelect")
@@ -13,65 +13,65 @@ app:attachKey("7", "EventHandler_Key_SelectActiveStock@numberSelect")
 app:attachKey("8", "EventHandler_Key_SelectActiveStock@numberSelect")
 app:attachKey("9", "EventHandler_Key_SelectActiveStock@numberSelect")
 
--- реверс между последним и предпоследним инструментом
+-- СЂРµРІРµСЂСЃ РјРµР¶РґСѓ РїРѕСЃР»РµРґРЅРёРј Рё РїСЂРµРґРїРѕСЃР»РµРґРЅРёРј РёРЅСЃС‚СЂСѓРјРµРЅС‚РѕРј
 app:attachKey("Shift", "EventHandler_Key_SelectActiveStock@revers")
 
--- стрелка вверх - 38
+-- СЃС‚СЂРµР»РєР° РІРІРµСЂС… - 38
 app:attachKey("NumPad 8", "EventHandler_Key_SelectActiveStock@upDown")
 
--- стрелка вниз - 40
+-- СЃС‚СЂРµР»РєР° РІРЅРёР· - 40
 app:attachKey("NumPad 2", "EventHandler_Key_SelectActiveStock@upDown")
 
--- отправить лимитный запрос
-app:attachKey("Q", "EventHandler_Key_ZaprosLimit@buy0")		 -- купить 0
-app:attachKey("W", "EventHandler_Key_ZaprosLimit@buy5")		 -- купить 5
-app:attachKey("E", "EventHandler_Key_ZaprosLimit@buy10")	 -- купить 10
+-- РѕС‚РїСЂР°РІРёС‚СЊ Р»РёРјРёС‚РЅС‹Р№ Р·Р°РїСЂРѕСЃ
+app:attachKey("Q", "EventHandler_Key_ZaprosLimit@buy0")		 -- РєСѓРїРёС‚СЊ 0
+app:attachKey("W", "EventHandler_Key_ZaprosLimit@buy5")		 -- РєСѓРїРёС‚СЊ 5
+app:attachKey("E", "EventHandler_Key_ZaprosLimit@buy10")	 -- РєСѓРїРёС‚СЊ 10
 
-app:attachKey("Z", "EventHandler_Key_ZaprosLimit@sell0")	-- продать 0
-app:attachKey("X", "EventHandler_Key_ZaprosLimit@sell5")	-- продать 5
-app:attachKey("C", "EventHandler_Key_ZaprosLimit@sell10")	-- продать 10
+app:attachKey("Z", "EventHandler_Key_ZaprosLimit@sell0")	-- РїСЂРѕРґР°С‚СЊ 0
+app:attachKey("X", "EventHandler_Key_ZaprosLimit@sell5")	-- РїСЂРѕРґР°С‚СЊ 5
+app:attachKey("C", "EventHandler_Key_ZaprosLimit@sell10")	-- РїСЂРѕРґР°С‚СЊ 10
 
--- удалить лимитный запрос
+-- СѓРґР°Р»РёС‚СЊ Р»РёРјРёС‚РЅС‹Р№ Р·Р°РїСЂРѕСЃ
 app:attachKey("A", "EventHandler_Key_RemoveZapros@removeZapros")
 
--- удалить все order и stopOrder
+-- СѓРґР°Р»РёС‚СЊ РІСЃРµ order Рё stopOrder
 app:attachKey("D", "EventHandler_Key_DeleteOrdersAndStopOrders@delete")
 
--- мягкое закрытие позиции
+-- РјСЏРіРєРѕРµ Р·Р°РєСЂС‹С‚РёРµ РїРѕР·РёС†РёРё
 app:attachKey("G", "EventHandler_Key_ClosePositionLimit@closePosition")
--- закрытие позиции по рынку
+-- Р·Р°РєСЂС‹С‚РёРµ РїРѕР·РёС†РёРё РїРѕ СЂС‹РЅРєСѓ
 app:attachKey("Space", "EventHandler_Key_ClosePositionMarket@closePosition")
 
--- мягкое открытие позиции по лучшей цене в стакане
-app:attachKey("Y", "EventHandler_Key_OpenPositionLimit@openPositionSell")	-- продать
-app:attachKey("B", "EventHandler_Key_OpenPositionLimit@openPositionBuy")	-- купить
+-- РјСЏРіРєРѕРµ РѕС‚РєСЂС‹С‚РёРµ РїРѕР·РёС†РёРё РїРѕ Р»СѓС‡С€РµР№ С†РµРЅРµ РІ СЃС‚Р°РєР°РЅРµ
+app:attachKey("Y", "EventHandler_Key_OpenPositionLimit@openPositionSell")	-- РїСЂРѕРґР°С‚СЊ
+app:attachKey("B", "EventHandler_Key_OpenPositionLimit@openPositionBuy")	-- РєСѓРїРёС‚СЊ
 
--- открытие позиции по цене вчерашнего hi и low
-app:attachKey("R", "EventHandler_Key_ZaprosLimitHiLow@buy")	-- купить по цене hi
-app:attachKey("V", "EventHandler_Key_ZaprosLimitHiLow@sell")	-- продать по цене low
+-- РѕС‚РєСЂС‹С‚РёРµ РїРѕР·РёС†РёРё РїРѕ С†РµРЅРµ РІС‡РµСЂР°С€РЅРµРіРѕ hi Рё low
+app:attachKey("R", "EventHandler_Key_ZaprosLimitHiLow@buy")	-- РєСѓРїРёС‚СЊ РїРѕ С†РµРЅРµ hi
+app:attachKey("V", "EventHandler_Key_ZaprosLimitHiLow@sell")	-- РїСЂРѕРґР°С‚СЊ РїРѕ С†РµРЅРµ low
 
--- открытие позиции по рынку
-app:attachKey("NumPad *", "EventHandler_Key_OpenPositionMarket@openPositionSell")	-- продать по рынку
-app:attachKey("NumPad .", "EventHandler_Key_OpenPositionMarket@openPositionBuy")	-- купить по рынку
+-- РѕС‚РєСЂС‹С‚РёРµ РїРѕР·РёС†РёРё РїРѕ СЂС‹РЅРєСѓ
+app:attachKey("NumPad *", "EventHandler_Key_OpenPositionMarket@openPositionSell")	-- РїСЂРѕРґР°С‚СЊ РїРѕ СЂС‹РЅРєСѓ
+app:attachKey("NumPad .", "EventHandler_Key_OpenPositionMarket@openPositionBuy")	-- РєСѓРїРёС‚СЊ РїРѕ СЂС‹РЅРєСѓ
 
--- восстановление стопа после случайного удаления
+-- РІРѕСЃСЃС‚Р°РЅРѕРІР»РµРЅРёРµ СЃС‚РѕРїР° РїРѕСЃР»Рµ СЃР»СѓС‡Р°Р№РЅРѕРіРѕ СѓРґР°Р»РµРЅРёСЏ
 app:attachKey("K", "EventHandler_Key_RecoveryStop@recoveryStop")
 
--- восстановление стопа если при сделке он не выставился
+-- РІРѕСЃСЃС‚Р°РЅРѕРІР»РµРЅРёРµ СЃС‚РѕРїР° РµСЃР»Рё РїСЂРё СЃРґРµР»РєРµ РѕРЅ РЅРµ РІС‹СЃС‚Р°РІРёР»СЃСЏ
 app:attachKey("L", "EventHandler_Key_RecoveryStop@recoveryStopLast")
 
--- вызвать пересчёт максимальных лотов для бумаг
+-- РІС‹Р·РІР°С‚СЊ РїРµСЂРµСЃС‡С‘С‚ РјР°РєСЃРёРјР°Р»СЊРЅС‹С… Р»РѕС‚РѕРІ РґР»СЏ Р±СѓРјР°Рі
 app:attachKey("I", "Action_CalculateMaxLotsEntityStock")
 
--- выключение/включение маркера уровни базовой цены
+-- РІС‹РєР»СЋС‡РµРЅРёРµ/РІРєР»СЋС‡РµРЅРёРµ РјР°СЂРєРµСЂР° СѓСЂРѕРІРЅРё Р±Р°Р·РѕРІРѕР№ С†РµРЅС‹
 app:attachKey("P", "EventHandler_ViewBasePriceToChart")
 
--- скрывает/показывает  все линии баров дневок
+-- СЃРєСЂС‹РІР°РµС‚/РїРѕРєР°Р·С‹РІР°РµС‚  РІСЃРµ Р»РёРЅРёРё Р±Р°СЂРѕРІ РґРЅРµРІРѕРє
 app:attachKey("[", "EventHandler_ViewHiLowCloseDayBarAll")
 
--- скрывает/показывает  все линии баров часовщиков (первый час)
--- 10 для акций, 9-10 для фьючерсов
+-- СЃРєСЂС‹РІР°РµС‚/РїРѕРєР°Р·С‹РІР°РµС‚  РІСЃРµ Р»РёРЅРёРё Р±Р°СЂРѕРІ С‡Р°СЃРѕРІС‰РёРєРѕРІ (РїРµСЂРІС‹Р№ С‡Р°СЃ)
+-- 10 РґР»СЏ Р°РєС†РёР№, 9-10 РґР»СЏ С„СЊСЋС‡РµСЂСЃРѕРІ
 app:attachKey("]", "EventHandler_ViewHiLowHour1BarAll")
 
--- выключение/включение маркера тренда для инструментов у которых не пустой комментарий
+-- РІС‹РєР»СЋС‡РµРЅРёРµ/РІРєР»СЋС‡РµРЅРёРµ РјР°СЂРєРµСЂР° С‚СЂРµРЅРґР° РґР»СЏ РёРЅСЃС‚СЂСѓРјРµРЅС‚РѕРІ Сѓ РєРѕС‚РѕСЂС‹С… РЅРµ РїСѓСЃС‚РѕР№ РєРѕРјРјРµРЅС‚Р°СЂРёР№
 app:attachKey("'", "EventHandler_MarkerTrendToChartOnOff")

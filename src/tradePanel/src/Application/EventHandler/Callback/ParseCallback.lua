@@ -14,20 +14,20 @@ local EventHandler = {
         return self
     end,
 
-    -- для order и stopOrder
+    -- РґР»СЏ order Рё stopOrder
     parseOrderAndStopOrder = function(self, event)
         local data = event:getParams()
 
-        -- если есть транзакция с (order_num) - тогда меняем у ней статус
+        -- РµСЃР»Рё РµСЃС‚СЊ С‚СЂР°РЅР·Р°РєС†РёСЏ СЃ (order_num) - С‚РѕРіРґР° РјРµРЅСЏРµРј Сѓ РЅРµР№ СЃС‚Р°С‚СѓСЃ
         if self.serviceTransact:has(data.order_num) then
             self.serviceTransact:changeStatus(data.order_num, data.status)
 
             return
         end
 
-        -- ищем транзакцию по (trans_id)
+        -- РёС‰РµРј С‚СЂР°РЅР·Р°РєС†РёСЋ РїРѕ (trans_id)
         if self.serviceTransact:has(data.trans_id) then
-            -- получаем сохранённые параметры
+            -- РїРѕР»СѓС‡Р°РµРј СЃРѕС…СЂР°РЅС‘РЅРЅС‹Рµ РїР°СЂР°РјРµС‚СЂС‹
             local params = self.serviceTransact:getParams(data.trans_id)
 
             local transact = {
@@ -38,27 +38,27 @@ local EventHandler = {
                 typeSending = data.typeSending,
             }
 
-            -- создаём новую транзакцию с параметрами (order_num)
+            -- СЃРѕР·РґР°С‘Рј РЅРѕРІСѓСЋ С‚СЂР°РЅР·Р°РєС†РёСЋ СЃ РїР°СЂР°РјРµС‚СЂР°РјРё (order_num)
             self.serviceTransact:create(data.order_num, transact)
 
-            -- применяем изменения
+            -- РїСЂРёРјРµРЅСЏРµРј РёР·РјРµРЅРµРЅРёСЏ
             self.serviceTransact:changeStatus(data.order_num, data.status)
         end
     end,
 
-    -- разбор стоп-ордера со связанной заявкой
+    -- СЂР°Р·Р±РѕСЂ СЃС‚РѕРї-РѕСЂРґРµСЂР° СЃРѕ СЃРІСЏР·Р°РЅРЅРѕР№ Р·Р°СЏРІРєРѕР№
     parseStopOrderLinked = function(self, event)
         local data = event:getParams()
-        -- если есть транзакция с (order_num) - тогда меняем у ней статус
+        -- РµСЃР»Рё РµСЃС‚СЊ С‚СЂР°РЅР·Р°РєС†РёСЏ СЃ (order_num) - С‚РѕРіРґР° РјРµРЅСЏРµРј Сѓ РЅРµР№ СЃС‚Р°С‚СѓСЃ
         if self.serviceTransact:has(data.order_num) then
             self.serviceTransact:changeStatus(data.order_num, data.status)
 
             return
         end
 
-        -- ищем транзакцию по (trans_id)
+        -- РёС‰РµРј С‚СЂР°РЅР·Р°РєС†РёСЋ РїРѕ (trans_id)
         if self.serviceTransact:has(data.trans_id) then
-            -- получаем сохранённые параметры
+            -- РїРѕР»СѓС‡Р°РµРј СЃРѕС…СЂР°РЅС‘РЅРЅС‹Рµ РїР°СЂР°РјРµС‚СЂС‹
             local params = self.serviceTransact:getParams(data.trans_id)
             local transactStopOrder = {
                 order_num = data.order_num,
@@ -69,10 +69,10 @@ local EventHandler = {
                 typeSending = data.typeSending,
             }
 
-            -- создаём новую транзакцию с параметрами (order_num)
+            -- СЃРѕР·РґР°С‘Рј РЅРѕРІСѓСЋ С‚СЂР°РЅР·Р°РєС†РёСЋ СЃ РїР°СЂР°РјРµС‚СЂР°РјРё (order_num)
             self.serviceTransact:create(data.order_num, transactStopOrder)
 
-            -- применяем изменения
+            -- РїСЂРёРјРµРЅСЏРµРј РёР·РјРµРЅРµРЅРёСЏ
             self.serviceTransact:changeStatus(data.order_num, data.status)
         end
     end,

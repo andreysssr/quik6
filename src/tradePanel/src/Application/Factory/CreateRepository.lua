@@ -1,4 +1,4 @@
---- Factory CreateRepository фабрика для создания репозиториев и добавления их в контейнер
+--- Factory CreateRepository С„Р°Р±СЂРёРєР° РґР»СЏ СЃРѕР·РґР°РЅРёСЏ СЂРµРїРѕР·РёС‚РѕСЂРёРµРІ Рё РґРѕР±Р°РІР»РµРЅРёСЏ РёС… РІ РєРѕРЅС‚РµР№РЅРµСЂ
 
 local Factory = {
     --
@@ -15,10 +15,10 @@ local Factory = {
     end,
 
     createRepository = function(self, nameRepository)
-        -- получаем экземпляр нового репозитория
+        -- РїРѕР»СѓС‡Р°РµРј СЌРєР·РµРјРїР»СЏСЂ РЅРѕРІРѕРіРѕ СЂРµРїРѕР·РёС‚РѕСЂРёСЏ
         local repository = self.container:get("Repository_Interface"):newChild(nameRepository)
 
-        -- добавление репозитория в контейнер
+        -- РґРѕР±Р°РІР»РµРЅРёРµ СЂРµРїРѕР·РёС‚РѕСЂРёСЏ РІ РєРѕРЅС‚РµР№РЅРµСЂ
         self.container:setService(nameRepository, repository)
     end,
 }

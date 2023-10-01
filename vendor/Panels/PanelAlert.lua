@@ -4,16 +4,16 @@ local PanelAlert = {
     --
     name = "Panels_PanelAlert",
 
-    -- структура панели для построения колонок панели
+    -- СЃС‚СЂСѓРєС‚СѓСЂР° РїР°РЅРµР»Рё РґР»СЏ РїРѕСЃС‚СЂРѕРµРЅРёСЏ РєРѕР»РѕРЅРѕРє РїР°РЅРµР»Рё
     structure = {},
 
-    -- цвета которые могут использоваться
+    -- С†РІРµС‚Р° РєРѕС‚РѕСЂС‹Рµ РјРѕРіСѓС‚ РёСЃРїРѕР»СЊР·РѕРІР°С‚СЊСЃСЏ
     panelColors = {},
 
-    -- настройки панели - размеры, расположение
+    -- РЅР°СЃС‚СЂРѕР№РєРё РїР°РЅРµР»Рё - СЂР°Р·РјРµСЂС‹, СЂР°СЃРїРѕР»РѕР¶РµРЅРёРµ
     settings = {},
 
-    -- номер панели в системе Quik
+    -- РЅРѕРјРµСЂ РїР°РЅРµР»Рё РІ СЃРёСЃС‚РµРјРµ Quik
     panelId = 0,
 
     --
@@ -45,20 +45,20 @@ local PanelAlert = {
         return self
     end,
 
-    -- возвращает массив данных из файла
+    -- РІРѕР·РІСЂР°С‰Р°РµС‚ РјР°СЃСЃРёРІ РґР°РЅРЅС‹С… РёР· С„Р°Р№Р»Р°
     structure = function(self, dataPath)
         local name = Autoload:getPathFile(dataPath)
         return dofile(name)
     end,
 
-    -- добавляет пустые строки в таблицу
+    -- РґРѕР±Р°РІР»СЏРµС‚ РїСѓСЃС‚С‹Рµ СЃС‚СЂРѕРєРё РІ С‚Р°Р±Р»РёС†Сѓ
     addLineInTable = function(self)
         for i = 1, #self.dom do
             self.view:addLine(self.panelId)
         end
     end,
 
-    -- создание структуры таблицы (колонки)
+    -- СЃРѕР·РґР°РЅРёРµ СЃС‚СЂСѓРєС‚СѓСЂС‹ С‚Р°Р±Р»РёС†С‹ (РєРѕР»РѕРЅРєРё)
     createStructure = function(self)
         for i = 1, #self.structure do
             AddColumn(self.panelId,
@@ -71,18 +71,18 @@ local PanelAlert = {
         end
     end,
 
-    -- показать панель
+    -- РїРѕРєР°Р·Р°С‚СЊ РїР°РЅРµР»СЊ
     show = function(self)
-        -- получаем id для создания таблицы
+        -- РїРѕР»СѓС‡Р°РµРј id РґР»СЏ СЃРѕР·РґР°РЅРёСЏ С‚Р°Р±Р»РёС†С‹
         self.panelId = self.view:idTableCreate()
 
-        -- создаём заголовки панели и вставляем их его в таблицу
+        -- СЃРѕР·РґР°С‘Рј Р·Р°РіРѕР»РѕРІРєРё РїР°РЅРµР»Рё Рё РІСЃС‚Р°РІР»СЏРµРј РёС… РµРіРѕ РІ С‚Р°Р±Р»РёС†Сѓ
         self:createStructure()
 
-        -- выводим таблицу в программе и добавляем Title
+        -- РІС‹РІРѕРґРёРј С‚Р°Р±Р»РёС†Сѓ РІ РїСЂРѕРіСЂР°РјРјРµ Рё РґРѕР±Р°РІР»СЏРµРј Title
         self.view:showTable(self.panelId, self.settings.title)
 
-        -- устанавливаем положение и размеры
+        -- СѓСЃС‚Р°РЅР°РІР»РёРІР°РµРј РїРѕР»РѕР¶РµРЅРёРµ Рё СЂР°Р·РјРµСЂС‹
         self.view:setPosition(
             self.panelId,
             self.settings.location.left,
@@ -92,30 +92,30 @@ local PanelAlert = {
         )
     end,
 
-    -- возвращает id панели
+    -- РІРѕР·РІСЂР°С‰Р°РµС‚ id РїР°РЅРµР»Рё
     getId = function(self)
         return self.panelId
     end,
 
-    -- возвращает название панели
+    -- РІРѕР·РІСЂР°С‰Р°РµС‚ РЅР°Р·РІР°РЅРёРµ РїР°РЅРµР»Рё
     getName = function(self)
         return self.settings.name
     end,
 
-    -- вернуть дефолтный цвет по номеру строки
+    -- РІРµСЂРЅСѓС‚СЊ РґРµС„РѕР»С‚РЅС‹Р№ С†РІРµС‚ РїРѕ РЅРѕРјРµСЂСѓ СЃС‚СЂРѕРєРё
     getDefaultColorToRow = function(self, row)
         if row % 2 ~= 0 then
-            -- не чётная строка: 1, 3, 5
+            -- РЅРµ С‡С‘С‚РЅР°СЏ СЃС‚СЂРѕРєР°: 1, 3, 5
             --return "gray_2"
             return self.theme.line1
         else
-            -- чётная строка: 2, 4, 6
+            -- С‡С‘С‚РЅР°СЏ СЃС‚СЂРѕРєР°: 2, 4, 6
             --return "gray_1"
             return self.theme.line2
         end
     end,
 
-    -- добавить сообщение в панель оповещений
+    -- РґРѕР±Р°РІРёС‚СЊ СЃРѕРѕР±С‰РµРЅРёРµ РІ РїР°РЅРµР»СЊ РѕРїРѕРІРµС‰РµРЅРёР№
     addAlert = function(self, alert)
         local textTime = os.date("%H:%M:%S")
         local textName = alert.name
@@ -124,25 +124,25 @@ local PanelAlert = {
 
         local color = alert.color
 
-        -- добавить в панель строку
+        -- РґРѕР±Р°РІРёС‚СЊ РІ РїР°РЅРµР»СЊ СЃС‚СЂРѕРєСѓ
         self.view:addLine(self.panelId)
 
-        -- получаем номер этой строки
+        -- РїРѕР»СѓС‡Р°РµРј РЅРѕРјРµСЂ СЌС‚РѕР№ СЃС‚СЂРѕРєРё
         local rowNum = self.view:getLastRow(self.panelId)
 
-        -- получаем дефолтный цвет для строки
+        -- РїРѕР»СѓС‡Р°РµРј РґРµС„РѕР»С‚РЅС‹Р№ С†РІРµС‚ РґР»СЏ СЃС‚СЂРѕРєРё
         local defaultColor = self:getDefaultColorToRow(rowNum)
 
-        -- добавить дефолтный цвет (зебра)
+        -- РґРѕР±Р°РІРёС‚СЊ РґРµС„РѕР»С‚РЅС‹Р№ С†РІРµС‚ (Р·РµР±СЂР°)
         self.view:setColor(self.panelId, rowNum, "all", self.colorScheme:get(defaultColor))
 
-        -- добавить сообщение
+        -- РґРѕР±Р°РІРёС‚СЊ СЃРѕРѕР±С‰РµРЅРёРµ
         self.view:setValue(self.panelId, rowNum, 1, textTime)
         self.view:setValue(self.panelId, rowNum, 2, textName)
         self.view:setValue(self.panelId, rowNum, 3, textIdStock)
         self.view:setValue(self.panelId, rowNum, 4, textMessage)
 
-        -- установить цвет сообщения - если он требуется
+        -- СѓСЃС‚Р°РЅРѕРІРёС‚СЊ С†РІРµС‚ СЃРѕРѕР±С‰РµРЅРёСЏ - РµСЃР»Рё РѕРЅ С‚СЂРµР±СѓРµС‚СЃСЏ
         if color ~= "default" then
             self.view:setColor(self.panelId, rowNum, "all", self.colorScheme:get(self.panelColors[color]))
         end

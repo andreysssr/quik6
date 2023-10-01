@@ -1,40 +1,40 @@
 --- Bootstrap App
 
--- функции для работы с переменными
+-- С„СѓРЅРєС†РёРё РґР»СЏ СЂР°Р±РѕС‚С‹ СЃ РїРµСЂРµРјРµРЅРЅС‹РјРё
 dofile( basePath .. "vendor\\LuaExtensions\\Variable.lua" );
 
--- класс для проверки данных
+-- РєР»Р°СЃСЃ РґР»СЏ РїСЂРѕРІРµСЂРєРё РґР°РЅРЅС‹С…
 dofile( basePath .. "vendor\\LuaExtensions\\Assert.lua" );
 
--- функции для отладки
+-- С„СѓРЅРєС†РёРё РґР»СЏ РѕС‚Р»Р°РґРєРё
 dofile( basePath .. "vendor\\LuaExtensions\\Debugging.lua" );
 
--- функции для работы с разными типами
+-- С„СѓРЅРєС†РёРё РґР»СЏ СЂР°Р±РѕС‚С‹ СЃ СЂР°Р·РЅС‹РјРё С‚РёРїР°РјРё
 dofile( basePath .. "vendor\\LuaExtensions\\General.lua" );
 
--- функции для работы с массивами
+-- С„СѓРЅРєС†РёРё РґР»СЏ СЂР°Р±РѕС‚С‹ СЃ РјР°СЃСЃРёРІР°РјРё
 dofile( basePath .. "vendor\\LuaExtensions\\Array.lua" );
 
--- функции для работы с числами
+-- С„СѓРЅРєС†РёРё РґР»СЏ СЂР°Р±РѕС‚С‹ СЃ С‡РёСЃР»Р°РјРё
 dofile( basePath .. "vendor\\LuaExtensions\\Number.lua" );
 
--- функции для работы со строками
+-- С„СѓРЅРєС†РёРё РґР»СЏ СЂР°Р±РѕС‚С‹ СЃРѕ СЃС‚СЂРѕРєР°РјРё
 dofile( basePath .. "vendor\\LuaExtensions\\String.lua" );
 
--- функции для проверки работы с классами
+-- С„СѓРЅРєС†РёРё РґР»СЏ РїСЂРѕРІРµСЂРєРё СЂР°Р±РѕС‚С‹ СЃ РєР»Р°СЃСЃР°РјРё
 dofile( basePath .. "vendor\\LuaExtensions\\Class.lua" );
 
--- функции для работы с файлами
+-- С„СѓРЅРєС†РёРё РґР»СЏ СЂР°Р±РѕС‚С‹ СЃ С„Р°Р№Р»Р°РјРё
 dofile( basePath .. "vendor\\LuaExtensions\\File.lua" );
 
--- функции для работы с директориями
+-- С„СѓРЅРєС†РёРё РґР»СЏ СЂР°Р±РѕС‚С‹ СЃ РґРёСЂРµРєС‚РѕСЂРёСЏРјРё
 dofile( basePath .. "vendor\\LuaExtensions\\Dir.lua" );
 
--- функции для работы с битами - проверка
+-- С„СѓРЅРєС†РёРё РґР»СЏ СЂР°Р±РѕС‚С‹ СЃ Р±РёС‚Р°РјРё - РїСЂРѕРІРµСЂРєР°
 dofile( basePath .. "vendor\\LuaExtensions\\Bit.lua" );
 
--- Создаём автолоад загрузчик
+-- РЎРѕР·РґР°С‘Рј Р°РІС‚РѕР»РѕР°Рґ Р·Р°РіСЂСѓР·С‡РёРє
 Autoload = dofile(basePath .. "config\\autoload.lua")
 
--- создаём контейнер
+-- СЃРѕР·РґР°С‘Рј РєРѕРЅС‚РµР№РЅРµСЂ
 Container = Autoload:get("configFramework_container")

@@ -21,7 +21,7 @@ local EventHandler = {
         return self
     end,
 
-    -- меняем цвет поля в торговой панели
+    -- РјРµРЅСЏРµРј С†РІРµС‚ РїРѕР»СЏ РІ С‚РѕСЂРіРѕРІРѕР№ РїР°РЅРµР»Рё
     handle = function(self, event)
         --dd(event)
 

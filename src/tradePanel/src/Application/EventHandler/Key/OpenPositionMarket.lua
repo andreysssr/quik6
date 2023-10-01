@@ -22,12 +22,12 @@ local EventHandler = {
         return self
     end,
 
-    -- получить активный инструмент
+    -- РїРѕР»СѓС‡РёС‚СЊ Р°РєС‚РёРІРЅС‹Р№ РёРЅСЃС‚СЂСѓРјРµРЅС‚
     getCurrentId = function(self)
         return self.microservice:getCurrentIdStock()
     end,
 
-    -- открыть позицию по лучщей цене
+    -- РѕС‚РєСЂС‹С‚СЊ РїРѕР·РёС†РёСЋ РїРѕ Р»СѓС‡С‰РµР№ С†РµРЅРµ
     openPositionSell = function(self, event)
         local id = self:getCurrentId()
 
@@ -38,7 +38,7 @@ local EventHandler = {
         self.useCase:openPosition(id, "sell")
     end,
 
-    -- открыть позицию по лучщей цене
+    -- РѕС‚РєСЂС‹С‚СЊ РїРѕР·РёС†РёСЋ РїРѕ Р»СѓС‡С‰РµР№ С†РµРЅРµ
     openPositionBuy = function(self, event)
         local id = self:getCurrentId()
 

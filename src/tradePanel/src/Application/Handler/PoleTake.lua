@@ -33,7 +33,7 @@ local Handler = {
 
         if statusTake then
             result = {
-                -- записываем все в дефолтный цвет строки
+                -- Р·Р°РїРёСЃС‹РІР°РµРј РІСЃРµ РІ РґРµС„РѕР»С‚РЅС‹Р№ С†РІРµС‚ СЃС‚СЂРѕРєРё
                 take2_condition = "default",
                 take3_condition = "default",
                 take4_condition = "default",
@@ -42,12 +42,12 @@ local Handler = {
                 take7_condition = "default",
                 take8_condition = "default",
 
-                -- выбранный размер переписываем в включённый
+                -- РІС‹Р±СЂР°РЅРЅС‹Р№ СЂР°Р·РјРµСЂ РїРµСЂРµРїРёСЃС‹РІР°РµРј РІ РІРєР»СЋС‡С‘РЅРЅС‹Р№
                 [nameOn] = "on"
             }
         else
             result = {
-                -- записываем все в дефолтный цвет строки
+                -- Р·Р°РїРёСЃС‹РІР°РµРј РІСЃРµ РІ РґРµС„РѕР»С‚РЅС‹Р№ С†РІРµС‚ СЃС‚СЂРѕРєРё
                 take2_condition = "off",
                 take3_condition = "off",
                 take4_condition = "off",

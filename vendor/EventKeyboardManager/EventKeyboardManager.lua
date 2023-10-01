@@ -4,16 +4,16 @@ local EventKeyboardManager = {
     --
     name = "EventKeyboardManager",
 
-    -- карта кодов и их значений
+    -- РєР°СЂС‚Р° РєРѕРґРѕРІ Рё РёС… Р·РЅР°С‡РµРЅРёР№
     dataKeys = {},
 
-    -- подписчики на клики клавиатуры
+    -- РїРѕРґРїРёСЃС‡РёРєРё РЅР° РєР»РёРєРё РєР»Р°РІРёР°С‚СѓСЂС‹
     listeners = {},
 
     --
     resolver = {},
 
-    -- конструктор
+    -- РєРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ
     new = function(self, container)
         self.resolver = container:get("Resolver")
 
@@ -24,7 +24,7 @@ local EventKeyboardManager = {
         return self
     end,
 
-    -- прикрепить подписчика
+    -- РїСЂРёРєСЂРµРїРёС‚СЊ РїРѕРґРїРёСЃС‡РёРєР°
     attach = function(self, key, handler)
         self.listeners[key] = handler
     end,
@@ -35,14 +35,14 @@ local EventKeyboardManager = {
         local event = {}
 
         if isset(self.listeners[key]) then
-            -- если подписаны на цифровой код
+            -- РµСЃР»Рё РїРѕРґРїРёСЃР°РЅС‹ РЅР° С†РёС„СЂРѕРІРѕР№ РєРѕРґ
             handler = self.listeners[key]
             event.code = key
             event.attachKey = self.dataKeys[key]
 
             return self.resolver:resolve(handler, event)
         else
-            -- если подписаны на строковый код - значение цифрового
+            -- РµСЃР»Рё РїРѕРґРїРёСЃР°РЅС‹ РЅР° СЃС‚СЂРѕРєРѕРІС‹Р№ РєРѕРґ - Р·РЅР°С‡РµРЅРёРµ С†РёС„СЂРѕРІРѕРіРѕ
             local _key = self.dataKeys[key]
 
             if isset(self.listeners[_key]) then

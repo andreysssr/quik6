@@ -10,7 +10,7 @@ local Action = {
     --
     storage = {},
 
-    -- сервис отчистки графика от всех меток и линий размещёных ранее
+    -- СЃРµСЂРІРёСЃ РѕС‚С‡РёСЃС‚РєРё РіСЂР°С„РёРєР° РѕС‚ РІСЃРµС… РјРµС‚РѕРє Рё Р»РёРЅРёР№ СЂР°Р·РјРµС‰С‘РЅС‹С… СЂР°РЅРµРµ
     serviceClean = {},
 
     -- microservice
@@ -42,37 +42,37 @@ local Action = {
         return self
     end,
 
-    -- добавление уровней на графики
+    -- РґРѕР±Р°РІР»РµРЅРёРµ СѓСЂРѕРІРЅРµР№ РЅР° РіСЂР°С„РёРєРё
     handle = function(self)
         local arrayStock = self.storage:getHomeworkId()
 
         for i = 1, #arrayStock do
-            -- при первом запуске - очищаем график
+            -- РїСЂРё РїРµСЂРІРѕРј Р·Р°РїСѓСЃРєРµ - РѕС‡РёС‰Р°РµРј РіСЂР°С„РёРє
             self.serviceClean:clean(arrayStock[i])
 
-            -- добавляем на график уровни и линии
+            -- РґРѕР±Р°РІР»СЏРµРј РЅР° РіСЂР°С„РёРє СѓСЂРѕРІРЅРё Рё Р»РёРЅРёРё
             self.levelsToChart:addLevelToId(arrayStock[i])
 
-            -- добавляем на график линию basePrice и линии 5% и 10% по краям от базовой линии
+            -- РґРѕР±Р°РІР»СЏРµРј РЅР° РіСЂР°С„РёРє Р»РёРЅРёСЋ basePrice Рё Р»РёРЅРёРё 5% Рё 10% РїРѕ РєСЂР°СЏРј РѕС‚ Р±Р°Р·РѕРІРѕР№ Р»РёРЅРёРё
             self.basePriceToChart:addBasePriceToId(arrayStock[i])
         end
 
-        -- обновление 1 раз в 4 минуты
+        -- РѕР±РЅРѕРІР»РµРЅРёРµ 1 СЂР°Р· РІ 4 РјРёРЅСѓС‚С‹
         self.timer:set(self.timerName, self.timerPause)
 
     end,
 
-    -- перерисовка (сдвиг линий в право)
+    -- РїРµСЂРµСЂРёСЃРѕРІРєР° (СЃРґРІРёРі Р»РёРЅРёР№ РІ РїСЂР°РІРѕ)
     updateLocation = function(self)
-        -- таймер
+        -- С‚Р°Р№РјРµСЂ
         if self.timer:allows(self.timerName) then
-            -- обновить уровни
+            -- РѕР±РЅРѕРІРёС‚СЊ СѓСЂРѕРІРЅРё
             self.levelsToChart:updateLocation()
 
-            -- обновить линию basePrice и прилегающие линии на графике
+            -- РѕР±РЅРѕРІРёС‚СЊ Р»РёРЅРёСЋ basePrice Рё РїСЂРёР»РµРіР°СЋС‰РёРµ Р»РёРЅРёРё РЅР° РіСЂР°С„РёРєРµ
             self.basePriceToChart:updateLocation()
 
-            -- обновление 1 раз в 4 минуты
+            -- РѕР±РЅРѕРІР»РµРЅРёРµ 1 СЂР°Р· РІ 4 РјРёРЅСѓС‚С‹
             self.timer:set(self.timerName, self.timerPause)
         end
     end,

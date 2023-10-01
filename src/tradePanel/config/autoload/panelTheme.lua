@@ -1,10 +1,10 @@
 ---
 
 return {
-    -- цвета для colorSchemePath
+    -- С†РІРµС‚Р° РґР»СЏ colorSchemePath
     colorSchemePath = "data_lua_colors.lua",
 
-    -- светлая тема - Торговой панели
+    -- СЃРІРµС‚Р»Р°СЏ С‚РµРјР° - РўРѕСЂРіРѕРІРѕР№ РїР°РЅРµР»Рё
     theme = {
         line1 = "gray_2",
         line2 = "gray_1",
@@ -17,7 +17,7 @@ return {
         colorHighlight = RGB(253, 126, 20),
     },
 
-    -- тёмная тема - Торговой панели
+    -- С‚С‘РјРЅР°СЏ С‚РµРјР° - РўРѕСЂРіРѕРІРѕР№ РїР°РЅРµР»Рё
     --theme = {
     --	line1 = "gray_5",
     --	line2 = "gray_4",

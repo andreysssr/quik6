@@ -32,14 +32,14 @@ local DomainService = {
         return self
     end,
 
-    -- вернуть максимальное колличество лотов для покупки
+    -- РІРµСЂРЅСѓС‚СЊ РјР°РєСЃРёРјР°Р»СЊРЅРѕРµ РєРѕР»Р»РёС‡РµСЃС‚РІРѕ Р»РѕС‚РѕРІ РґР»СЏ РїРѕРєСѓРїРєРё
     getMaxLots = function(self, id, class, operation)
         local _id = id
         local _class = class
         local lastPrice = self.lastPrice:getPrice(_id, _class)
 
-        -- направление расчёта операции
-        -- true - на покупку, false - на продажу
+        -- РЅР°РїСЂР°РІР»РµРЅРёРµ СЂР°СЃС‡С‘С‚Р° РѕРїРµСЂР°С†РёРё
+        -- true - РЅР° РїРѕРєСѓРїРєСѓ, false - РЅР° РїСЂРѕРґР°Р¶Сѓ
         local calculateOperation = true
 
         if operation == "sell" then

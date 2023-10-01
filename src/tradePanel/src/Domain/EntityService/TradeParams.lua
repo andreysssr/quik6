@@ -18,71 +18,71 @@ local EntityService = {
         return self
     end,
 
-    -- восстановить данные из кеша в entity под номером 1
+    -- РІРѕСЃСЃС‚Р°РЅРѕРІРёС‚СЊ РґР°РЅРЅС‹Рµ РёР· РєРµС€Р° РІ entity РїРѕРґ РЅРѕРјРµСЂРѕРј 1
     recoveryParams = function(self, idStock, params)
-        -- получаем из репозитория нужный Entity
+        -- РїРѕР»СѓС‡Р°РµРј РёР· СЂРµРїРѕР·РёС‚РѕСЂРёСЏ РЅСѓР¶РЅС‹Р№ Entity
         local entity = self.repository:get(idStock)
 
         entity:recoveryParams(params)
     end,
 
-    -- рассчитать данные по базовой цене
+    -- СЂР°СЃСЃС‡РёС‚Р°С‚СЊ РґР°РЅРЅС‹Рµ РїРѕ Р±Р°Р·РѕРІРѕР№ С†РµРЅРµ
     calculateParams = function(self, idStock, operation, range)
-        -- получаем из репозитория нужный Entity
+        -- РїРѕР»СѓС‡Р°РµРј РёР· СЂРµРїРѕР·РёС‚РѕСЂРёСЏ РЅСѓР¶РЅС‹Р№ Entity
         local entity = self.repository:get(idStock)
 
         entity:calculateParams(operation, range)
 
-        -- получаем события из Entity и передаём их в диспетчер событий
+        -- РїРѕР»СѓС‡Р°РµРј СЃРѕР±С‹С‚РёСЏ РёР· Entity Рё РїРµСЂРµРґР°С‘Рј РёС… РІ РґРёСЃРїРµС‚С‡РµСЂ СЃРѕР±С‹С‚РёР№
         self.dispatcher:dispatchEvents(entity:releaseEvents())
     end,
 
-    -- рассчитать данные по переданной цене
+    -- СЂР°СЃСЃС‡РёС‚Р°С‚СЊ РґР°РЅРЅС‹Рµ РїРѕ РїРµСЂРµРґР°РЅРЅРѕР№ С†РµРЅРµ
     calculateParamsToPrice = function(self, idStock, operation, price)
-        -- получаем из репозитория нужный Entity
+        -- РїРѕР»СѓС‡Р°РµРј РёР· СЂРµРїРѕР·РёС‚РѕСЂРёСЏ РЅСѓР¶РЅС‹Р№ Entity
         local entity = self.repository:get(idStock)
 
         entity:calculateParamsToPrice(operation, price)
 
-        -- получаем события из Entity и передаём их в диспетчер событий
+        -- РїРѕР»СѓС‡Р°РµРј СЃРѕР±С‹С‚РёСЏ РёР· Entity Рё РїРµСЂРµРґР°С‘Рј РёС… РІ РґРёСЃРїРµС‚С‡РµСЂ СЃРѕР±С‹С‚РёР№
         self.dispatcher:dispatchEvents(entity:releaseEvents())
     end,
 
-    -- вернуть параметры для id
+    -- РІРµСЂРЅСѓС‚СЊ РїР°СЂР°РјРµС‚СЂС‹ РґР»СЏ id
     getParams = function(self, idStock, idParams)
-        -- получаем из репозитория нужный Entity
+        -- РїРѕР»СѓС‡Р°РµРј РёР· СЂРµРїРѕР·РёС‚РѕСЂРёСЏ РЅСѓР¶РЅС‹Р№ Entity
         local entity = self.repository:get(idStock)
 
         return entity:getParams(idParams)
     end,
 
-    -- вернуть параметры под id
+    -- РІРµСЂРЅСѓС‚СЊ РїР°СЂР°РјРµС‚СЂС‹ РїРѕРґ id
     getParamsZapros = function(self, idStock, idParams)
-        -- получаем из репозитория нужный Entity
+        -- РїРѕР»СѓС‡Р°РµРј РёР· СЂРµРїРѕР·РёС‚РѕСЂРёСЏ РЅСѓР¶РЅС‹Р№ Entity
         local entity = self.repository:get(idStock)
 
         return entity:getParamsZapros(idParams)
     end,
 
-    -- вернуть параметры под id
+    -- РІРµСЂРЅСѓС‚СЊ РїР°СЂР°РјРµС‚СЂС‹ РїРѕРґ id
     getParamsStop = function(self, idStock, idParams)
-        -- получаем из репозитория нужный Entity
+        -- РїРѕР»СѓС‡Р°РµРј РёР· СЂРµРїРѕР·РёС‚РѕСЂРёСЏ РЅСѓР¶РЅС‹Р№ Entity
         local entity = self.repository:get(idStock)
 
         return entity:getParamsStop(idParams)
     end,
 
-    -- вернуть параметры под id
+    -- РІРµСЂРЅСѓС‚СЊ РїР°СЂР°РјРµС‚СЂС‹ РїРѕРґ id
     getParamsStopMove = function(self, idStock, idParams)
-        -- получаем из репозитория нужный Entity
+        -- РїРѕР»СѓС‡Р°РµРј РёР· СЂРµРїРѕР·РёС‚РѕСЂРёСЏ РЅСѓР¶РЅС‹Р№ Entity
         local entity = self.repository:get(idStock)
 
         return entity:getParamsStopMove(idParams)
     end,
 
-    -- вернуть параметры take для id
+    -- РІРµСЂРЅСѓС‚СЊ РїР°СЂР°РјРµС‚СЂС‹ take РґР»СЏ id
     getParamsTake = function(self, idStock, idParams)
-        -- получаем из репозитория нужный Entity
+        -- РїРѕР»СѓС‡Р°РµРј РёР· СЂРµРїРѕР·РёС‚РѕСЂРёСЏ РЅСѓР¶РЅС‹Р№ Entity
         local entity = self.repository:get(idStock)
 
         return entity:getParamsTake(idParams)

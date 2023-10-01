@@ -1,7 +1,7 @@
 ---
 
 Dir = {
-    -- Проверка существования папки
+    -- РџСЂРѕРІРµСЂРєР° СЃСѓС‰РµСЃС‚РІРѕРІР°РЅРёСЏ РїР°РїРєРё
     exists = function(self, directory)
         if os.rename(directory, directory) then
             return true
@@ -9,24 +9,24 @@ Dir = {
         return false
     end,
 
-    -- создать папку
+    -- СЃРѕР·РґР°С‚СЊ РїР°РїРєСѓ
     create = function(self, dirPath)
         os.execute("mkdir " .. dirPath)
     end,
 
-    -- вернуть список файлов директории
+    -- РІРµСЂРЅСѓС‚СЊ СЃРїРёСЃРѕРє С„Р°Р№Р»РѕРІ РґРёСЂРµРєС‚РѕСЂРёРё
     getListFiles = function(self, dirPath)
         local listFiles = {}
 
-        -- читаем директорию
+        -- С‡РёС‚Р°РµРј РґРёСЂРµРєС‚РѕСЂРёСЋ
         local dir = io.popen('chcp 1251|dir /a-d /b "' .. dirPath .. '"', "r")
 
-        -- перебираем все строки
+        -- РїРµСЂРµР±РёСЂР°РµРј РІСЃРµ СЃС‚СЂРѕРєРё
         for line in dir:lines() do
             listFiles[#listFiles + 1] = dirPath .. "\\" .. line
         end
 
-        -- закрываем открытый файл (директории)
+        -- Р·Р°РєСЂС‹РІР°РµРј РѕС‚РєСЂС‹С‚С‹Р№ С„Р°Р№Р» (РґРёСЂРµРєС‚РѕСЂРёРё)
         dir:close()
 
         return listFiles

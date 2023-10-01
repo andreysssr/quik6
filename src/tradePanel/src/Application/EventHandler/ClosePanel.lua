@@ -1,4 +1,4 @@
---- EventHandler ClosePanel - закрывает панели
+--- EventHandler ClosePanel - Р·Р°РєСЂС‹РІР°РµС‚ РїР°РЅРµР»Рё
 
 local EventHandler = {
     --

@@ -1,4 +1,4 @@
---- EntityService DsD - описание
+--- EntityService DsD - РѕРїРёСЃР°РЅРёРµ
 
 local EntityService = {
     --
@@ -18,53 +18,53 @@ local EntityService = {
         return self
     end,
 
-    -- удаляет источник данных, отписывается от получения данных
+    -- СѓРґР°Р»СЏРµС‚ РёСЃС‚РѕС‡РЅРёРє РґР°РЅРЅС‹С…, РѕС‚РїРёСЃС‹РІР°РµС‚СЃСЏ РѕС‚ РїРѕР»СѓС‡РµРЅРёСЏ РґР°РЅРЅС‹С…
     removeDs = function(self, idStock)
         local entity = self.repository:get(idStock)
 
         entity:removeDs()
     end,
 
-    -- вернуть hi, low, close предыдущего дня
+    -- РІРµСЂРЅСѓС‚СЊ hi, low, close РїСЂРµРґС‹РґСѓС‰РµРіРѕ РґРЅСЏ
     getHiLowClosePreviousBar = function(self, idStock)
         local entity = self.repository:get(idStock)
 
         return entity:getHiLowClosePreviousBar()
     end,
 
-    -- вернуть Гэп
-    -- (вчерашнее закрытие) - (сегодняшнее открытие)
-    -- абсолютная величина
+    -- РІРµСЂРЅСѓС‚СЊ Р“СЌРї
+    -- (РІС‡РµСЂР°С€РЅРµРµ Р·Р°РєСЂС‹С‚РёРµ) - (СЃРµРіРѕРґРЅСЏС€РЅРµРµ РѕС‚РєСЂС‹С‚РёРµ)
+    -- Р°Р±СЃРѕР»СЋС‚РЅР°СЏ РІРµР»РёС‡РёРЅР°
     getGap = function(self, idStock)
         local entity = self.repository:get(idStock)
 
         return entity:getGap()
     end,
 
-    -- ATR от вчерашнего закрытия
-    -- (вчерашнее закрытие) - (текущая цена)
+    -- ATR РѕС‚ РІС‡РµСЂР°С€РЅРµРіРѕ Р·Р°РєСЂС‹С‚РёСЏ
+    -- (РІС‡РµСЂР°С€РЅРµРµ Р·Р°РєСЂС‹С‚РёРµ) - (С‚РµРєСѓС‰Р°СЏ С†РµРЅР°)
     getAtrClose = function(self, idStock)
         local entity = self.repository:get(idStock)
 
         return entity:getAtrClose()
     end,
 
-    -- (цена открытия) - (текущая цена)
+    -- (С†РµРЅР° РѕС‚РєСЂС‹С‚РёСЏ) - (С‚РµРєСѓС‰Р°СЏ С†РµРЅР°)
     getAtrOpen = function(self, idStock)
         local entity = self.repository:get(idStock)
 
         return entity:getAtrOpen()
     end,
 
-    -- (цена открытия) - (текущая цена)
+    -- (С†РµРЅР° РѕС‚РєСЂС‹С‚РёСЏ) - (С‚РµРєСѓС‰Р°СЏ С†РµРЅР°)
     getAtrOpen = function(self, idStock)
         local entity = self.repository:get(idStock)
 
         return entity:getAtrOpen()
     end,
 
-    -- вернуть полный Atr текущего дневного бара
-    -- (текущий Hi) - (текущий Low)
+    -- РІРµСЂРЅСѓС‚СЊ РїРѕР»РЅС‹Р№ Atr С‚РµРєСѓС‰РµРіРѕ РґРЅРµРІРЅРѕРіРѕ Р±Р°СЂР°
+    -- (С‚РµРєСѓС‰РёР№ Hi) - (С‚РµРєСѓС‰РёР№ Low)
     getAtrFull = function(self, idStock)
         local entity = self.repository:get(idStock)
 

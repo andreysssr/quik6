@@ -22,44 +22,44 @@ local EntityService = {
         return self
     end,
 
-    -- проверка уровней
+    -- РїСЂРѕРІРµСЂРєР° СѓСЂРѕРІРЅРµР№
     checkLevel = function(self, id)
-        -- получаем из репозитория нужный Entity
+        -- РїРѕР»СѓС‡Р°РµРј РёР· СЂРµРїРѕР·РёС‚РѕСЂРёСЏ РЅСѓР¶РЅС‹Р№ Entity
         local entity = self.repository:get(id)
 
-        -- вызываем проверку
+        -- РІС‹Р·С‹РІР°РµРј РїСЂРѕРІРµСЂРєСѓ
         entity:checkLevel()
 
-        -- получаем события из Entity и передаём их в диспетчер событий
+        -- РїРѕР»СѓС‡Р°РµРј СЃРѕР±С‹С‚РёСЏ РёР· Entity Рё РїРµСЂРµРґР°С‘Рј РёС… РІ РґРёСЃРїРµС‚С‡РµСЂ СЃРѕР±С‹С‚РёР№
         self.dispatcher:dispatchEvents(entity:releaseEvents())
     end,
 
-    -- вызываем проверку уровней
+    -- РІС‹Р·С‹РІР°РµРј РїСЂРѕРІРµСЂРєСѓ СѓСЂРѕРІРЅРµР№
     checkLevels = function(self)
         for i = 1, #self.idTickers do
             self:checkLevel(self.idTickers[i])
         end
     end,
 
-    -- вернуть построенную структуру
+    -- РІРµСЂРЅСѓС‚СЊ РїРѕСЃС‚СЂРѕРµРЅРЅСѓСЋ СЃС‚СЂСѓРєС‚СѓСЂСѓ
     getData = function(self, id)
-        -- получаем из репозитория нужный Entity
+        -- РїРѕР»СѓС‡Р°РµРј РёР· СЂРµРїРѕР·РёС‚РѕСЂРёСЏ РЅСѓР¶РЅС‹Р№ Entity
         local entity = self.repository:get(id)
 
         return entity:getData()
     end,
 
-    -- вернуть базовую цену
+    -- РІРµСЂРЅСѓС‚СЊ Р±Р°Р·РѕРІСѓСЋ С†РµРЅСѓ
     getPrice = function(self, id)
-        -- получаем из репозитория нужный Entity
+        -- РїРѕР»СѓС‡Р°РµРј РёР· СЂРµРїРѕР·РёС‚РѕСЂРёСЏ РЅСѓР¶РЅС‹Р№ Entity
         local entity = self.repository:get(id)
 
         return entity:getPrice()
     end,
 
-    -- возвращает массив текущих данных basePrice
+    -- РІРѕР·РІСЂР°С‰Р°РµС‚ РјР°СЃСЃРёРІ С‚РµРєСѓС‰РёС… РґР°РЅРЅС‹С… basePrice
     getBasePrice = function(self, id)
-        -- получаем из репозитория нужный Entity
+        -- РїРѕР»СѓС‡Р°РµРј РёР· СЂРµРїРѕР·РёС‚РѕСЂРёСЏ РЅСѓР¶РЅС‹Р№ Entity
         local entity = self.repository:get(id)
 
         return entity:getBasePrice()

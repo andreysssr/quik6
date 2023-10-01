@@ -24,32 +24,32 @@ local Action = {
 
     --
     handle = function(self)
-        -- выводим формируем таблицу, показываем
+        -- РІС‹РІРѕРґРёРј С„РѕСЂРјРёСЂСѓРµРј С‚Р°Р±Р»РёС†Сѓ, РїРѕРєР°Р·С‹РІР°РµРј
         self.panelTrade:show()
 
-        -- регистрируем обработчик кликов
+        -- СЂРµРіРёСЃС‚СЂРёСЂСѓРµРј РѕР±СЂР°Р±РѕС‚С‡РёРє РєР»РёРєРѕРІ
         self:registerClickHandler(self.panelTrade)
 
 
-        -- создаём событие - Торговая панель создана
+        -- СЃРѕР·РґР°С‘Рј СЃРѕР±С‹С‚РёРµ - РўРѕСЂРіРѕРІР°СЏ РїР°РЅРµР»СЊ СЃРѕР·РґР°РЅР°
         self.eventSender:send("CreatedPanelTrade", {})
     end,
 
-    -- регистрация обработчика кликов для каждой панели
+    -- СЂРµРіРёСЃС‚СЂР°С†РёСЏ РѕР±СЂР°Р±РѕС‚С‡РёРєР° РєР»РёРєРѕРІ РґР»СЏ РєР°Р¶РґРѕР№ РїР°РЅРµР»Рё
     registerClickHandler = function(self, panel)
         local panelClickHandler = function(table_id, typeClick, row, col)
-            --- обработка кликов мышью по ячейки панели (таблицы)
-            -- один клик левой кнопкой или двойной клик левой кнопкой миши
+            --- РѕР±СЂР°Р±РѕС‚РєР° РєР»РёРєРѕРІ РјС‹С€СЊСЋ РїРѕ СЏС‡РµР№РєРё РїР°РЅРµР»Рё (С‚Р°Р±Р»РёС†С‹)
+            -- РѕРґРёРЅ РєР»РёРє Р»РµРІРѕР№ РєРЅРѕРїРєРѕР№ РёР»Рё РґРІРѕР№РЅРѕР№ РєР»РёРє Р»РµРІРѕР№ РєРЅРѕРїРєРѕР№ РјРёС€Рё
             if typeClick == QTABLE_LBUTTONDBLCLK or typeClick == QTABLE_LBUTTONDOWN then
                 panel:clickHandler(row, col)
             end
 
-            --- обработка закрытия панели - обработать через событие
+            --- РѕР±СЂР°Р±РѕС‚РєР° Р·Р°РєСЂС‹С‚РёСЏ РїР°РЅРµР»Рё - РѕР±СЂР°Р±РѕС‚Р°С‚СЊ С‡РµСЂРµР· СЃРѕР±С‹С‚РёРµ
             if typeClick == QTABLE_CLOSE then
                 self.eventSender:send("ClosedPanelTrade", { panelName = panel:getName() })
             end
 
-            --- обработка кликов клавиатуры QTABLE_VKEY
+            --- РѕР±СЂР°Р±РѕС‚РєР° РєР»РёРєРѕРІ РєР»Р°РІРёР°С‚СѓСЂС‹ QTABLE_VKEY
             if typeClick == QTABLE_VKEY then
                 self.eventKeyboardManager:trigger(col)
             end

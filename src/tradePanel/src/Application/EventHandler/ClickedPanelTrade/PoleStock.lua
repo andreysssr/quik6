@@ -21,7 +21,7 @@ local EventHandler = {
     handle = function(self, event)
         local idStock = event:getParam("id")
 
-        -- в микросервисе меняем активную бумагу
+        -- РІ РјРёРєСЂРѕСЃРµСЂРІРёСЃРµ РјРµРЅСЏРµРј Р°РєС‚РёРІРЅСѓСЋ Р±СѓРјР°РіСѓ
         self.microservice:changeActive(idStock)
     end,
 }

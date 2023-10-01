@@ -1,4 +1,4 @@
---- Middleware CreateEventCallback -- создаёт события из сообщений обратного вызова
+--- Middleware CreateEventCallback -- СЃРѕР·РґР°С‘С‚ СЃРѕР±С‹С‚РёСЏ РёР· СЃРѕРѕР±С‰РµРЅРёР№ РѕР±СЂР°С‚РЅРѕРіРѕ РІС‹Р·РѕРІР°
 
 local Middleware = {
     --
@@ -33,8 +33,8 @@ local Middleware = {
                 operation = request.data.operation,
                 price = request.data.price,
 
-                trans_id = request.data.trans_id, -- номер транзакции
-                order_num = request.data.order_num, -- номер заявки
+                trans_id = request.data.trans_id, -- РЅРѕРјРµСЂ С‚СЂР°РЅР·Р°РєС†РёРё
+                order_num = request.data.order_num, -- РЅРѕРјРµСЂ Р·Р°СЏРІРєРё
             }
 
             self.sender:send("Callback_OrderAndStopOrder", data)
@@ -51,8 +51,8 @@ local Middleware = {
                 operation = request.data.operation,
                 qty = request.data.qty,
 
-                trans_id = request.data.trans_id, -- номер транзакции
-                order_num = request.data.order_num, -- номер заявки
+                trans_id = request.data.trans_id, -- РЅРѕРјРµСЂ С‚СЂР°РЅР·Р°РєС†РёРё
+                order_num = request.data.order_num, -- РЅРѕРјРµСЂ Р·Р°СЏРІРєРё
             }
 
             self.sender:send("Callback_Trade", data)

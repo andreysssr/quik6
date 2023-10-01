@@ -22,12 +22,12 @@ local EventHandler = {
         return self
     end,
 
-    -- получить активный инструмент
+    -- РїРѕР»СѓС‡РёС‚СЊ Р°РєС‚РёРІРЅС‹Р№ РёРЅСЃС‚СЂСѓРјРµРЅС‚
     getCurrentId = function(self)
         return self.microservice:getCurrentIdStock()
     end,
 
-    -- купить на 0%
+    -- РєСѓРїРёС‚СЊ РЅР° 0%
     removeZapros = function(self, event)
         local id = self:getCurrentId()
 

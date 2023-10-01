@@ -24,10 +24,10 @@ local Action = {
 
     --
     handle = function(self)
-        -- получаем массив тикеров по домашке
+        -- РїРѕР»СѓС‡Р°РµРј РјР°СЃСЃРёРІ С‚РёРєРµСЂРѕРІ РїРѕ РґРѕРјР°С€РєРµ
         local arrayTickers = self.storage:getHomeworkId()
 
-        -- в цикле вызываем создание Entity BasePrice
+        -- РІ С†РёРєР»Рµ РІС‹Р·С‹РІР°РµРј СЃРѕР·РґР°РЅРёРµ Entity BasePrice
         for i = 1, #arrayTickers do
             self.entityServiceStock:calculateMaxLots(arrayTickers[i])
         end

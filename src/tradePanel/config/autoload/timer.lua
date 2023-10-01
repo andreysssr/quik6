@@ -1,124 +1,124 @@
 ---
 
 return {
-    -- обновление линий на графиках - для сдвига в право
-    -- перерисовка всех линий на всех графиках - Action_AddLevelsToChart
+    -- РѕР±РЅРѕРІР»РµРЅРёРµ Р»РёРЅРёР№ РЅР° РіСЂР°С„РёРєР°С… - РґР»СЏ СЃРґРІРёРіР° РІ РїСЂР°РІРѕ
+    -- РїРµСЂРµСЂРёСЃРѕРІРєР° РІСЃРµС… Р»РёРЅРёР№ РЅР° РІСЃРµС… РіСЂР°С„РёРєР°С… - Action_AddLevelsToChart
     chartTimer = {
         timerName = "ChartUpdateLocation",
-        timerPause = 240, -- обновление 1 раз в 4 минуты
+        timerPause = 240, -- РѕР±РЅРѕРІР»РµРЅРёРµ 1 СЂР°Р· РІ 4 РјРёРЅСѓС‚С‹
     },
 
-    -- обновление поля level в торговой панели
+    -- РѕР±РЅРѕРІР»РµРЅРёРµ РїРѕР»СЏ level РІ С‚РѕСЂРіРѕРІРѕР№ РїР°РЅРµР»Рё
     timerUpdatePoleLevel = {
         timerName = "panelTradePoleLevel",
-        timerPause = 10, -- в секундах
+        timerPause = 10, -- РІ СЃРµРєСѓРЅРґР°С…
     },
 
-    -- обновление поля strong в торговой панели
+    -- РѕР±РЅРѕРІР»РµРЅРёРµ РїРѕР»СЏ strong РІ С‚РѕСЂРіРѕРІРѕР№ РїР°РЅРµР»Рё
     timerUpdatePoleStrong = {
         timerName = "panelTradePoleStrong",
-        timerPause = 10, -- в секундах
+        timerPause = 10, -- РІ СЃРµРєСѓРЅРґР°С…
     },
 
-    -- обновление поля center в торговой панели
+    -- РѕР±РЅРѕРІР»РµРЅРёРµ РїРѕР»СЏ center РІ С‚РѕСЂРіРѕРІРѕР№ РїР°РЅРµР»Рё
     timerUpdatePoleCenter = {
         timerName = "panelTradePoleCenter",
-        timerPause = 10, -- в секундах
+        timerPause = 10, -- РІ СЃРµРєСѓРЅРґР°С…
     },
 
-    -- обновление поля line в торговой панели
+    -- РѕР±РЅРѕРІР»РµРЅРёРµ РїРѕР»СЏ line РІ С‚РѕСЂРіРѕРІРѕР№ РїР°РЅРµР»Рё
     timerUpdatePoleLine = {
         timerName = "panelTradePoleLine",
-        timerPause = 10, -- в секундах
+        timerPause = 10, -- РІ СЃРµРєСѓРЅРґР°С…
     },
 
-    -- обновление поля line в торговой панели
+    -- РѕР±РЅРѕРІР»РµРЅРёРµ РїРѕР»СЏ line РІ С‚РѕСЂРіРѕРІРѕР№ РїР°РЅРµР»Рё
     timerUpdatePoleBarLimit = {
         timerName = "panelTradePoleBarLimit",
-        timerPause = 10, -- в секундах
+        timerPause = 10, -- РІ СЃРµРєСѓРЅРґР°С…
     },
 
-    -- обновление поля line в торговой панели
+    -- РѕР±РЅРѕРІР»РµРЅРёРµ РїРѕР»СЏ line РІ С‚РѕСЂРіРѕРІРѕР№ РїР°РЅРµР»Рё
     timerUpdatePoleVolume = {
         timerName = "panelTradePoleVolume",
-        timerPause = 10, -- в секундах
+        timerPause = 10, -- РІ СЃРµРєСѓРЅРґР°С…
     },
 
-    -- обновление поля center в торговой панели
+    -- РѕР±РЅРѕРІР»РµРЅРёРµ РїРѕР»СЏ center РІ С‚РѕСЂРіРѕРІРѕР№ РїР°РЅРµР»Рё
     timerUpdatePoleLastPrice = {
         timerName = "panelTradePoleLastPrice",
-        timerPause = 10, -- в секундах
+        timerPause = 10, -- РІ СЃРµРєСѓРЅРґР°С…
     },
 
-    -- обновление поля barCurrent в торговой панели
+    -- РѕР±РЅРѕРІР»РµРЅРёРµ РїРѕР»СЏ barCurrent РІ С‚РѕСЂРіРѕРІРѕР№ РїР°РЅРµР»Рё
     timerUpdatePoleBarCurrent = {
         timerName = "panelTradeBarCurrent",
-        timerPause = 9, -- в секундах
+        timerPause = 9, -- РІ СЃРµРєСѓРЅРґР°С…
     },
 
-    -- обновление поля barCurrent в торговой панели
+    -- РѕР±РЅРѕРІР»РµРЅРёРµ РїРѕР»СЏ barCurrent РІ С‚РѕСЂРіРѕРІРѕР№ РїР°РЅРµР»Рё
     timerUpdatePoleBarPrevious = {
         timerName = "panelTradeBarPrevious",
-        timerPause = 31, -- в секундах
+        timerPause = 31, -- РІ СЃРµРєСѓРЅРґР°С…
     },
 
-    -- обновление поля barCurrent в торговой панели
+    -- РѕР±РЅРѕРІР»РµРЅРёРµ РїРѕР»СЏ barCurrent РІ С‚РѕСЂРіРѕРІРѕР№ РїР°РЅРµР»Рё
     timerUpdatePoleAtrClose = {
         timerName = "panelTradeAtrClose",
-        timerPause = 9, -- в секундах
+        timerPause = 9, -- РІ СЃРµРєСѓРЅРґР°С…
     },
 
-    -- обновление поля barCurrent в торговой панели
+    -- РѕР±РЅРѕРІР»РµРЅРёРµ РїРѕР»СЏ barCurrent РІ С‚РѕСЂРіРѕРІРѕР№ РїР°РЅРµР»Рё
     timerUpdatePoleAtrOpen = {
         timerName = "panelTradeAtrOpen",
-        timerPause = 9, -- в секундах
+        timerPause = 9, -- РІ СЃРµРєСѓРЅРґР°С…
     },
 
-    -- обновление поля barCurrent в торговой панели
+    -- РѕР±РЅРѕРІР»РµРЅРёРµ РїРѕР»СЏ barCurrent РІ С‚РѕСЂРіРѕРІРѕР№ РїР°РЅРµР»Рё
     timerUpdatePoleAtrFull = {
         timerName = "panelTradeAtrFull",
-        timerPause = 9, -- в секундах
+        timerPause = 9, -- РІ СЃРµРєСѓРЅРґР°С…
     },
 
-    -- обновление поля barCurrent в торговой панели
+    -- РѕР±РЅРѕРІР»РµРЅРёРµ РїРѕР»СЏ barCurrent РІ С‚РѕСЂРіРѕРІРѕР№ РїР°РЅРµР»Рё
     timerIndicatorPanelTrade = {
         timerName = "timerIndicatorPanelTrade",
-        timerPause = 1, -- в секундах
+        timerPause = 1, -- РІ СЃРµРєСѓРЅРґР°С…
     },
 
-    -- обновление текста тренда на графике раз в 10 минут
+    -- РѕР±РЅРѕРІР»РµРЅРёРµ С‚РµРєСЃС‚Р° С‚СЂРµРЅРґР° РЅР° РіСЂР°С„РёРєРµ СЂР°Р· РІ 10 РјРёРЅСѓС‚
     timerUpdateTrendToChart = {
         timerName = "timerUpdateTrendToChart",
-        timerPause = 600, -- в секундах 600
+        timerPause = 600, -- РІ СЃРµРєСѓРЅРґР°С… 600
     },
 
-    -- обновление уровней вчерашнего дневного бара
+    -- РѕР±РЅРѕРІР»РµРЅРёРµ СѓСЂРѕРІРЅРµР№ РІС‡РµСЂР°С€РЅРµРіРѕ РґРЅРµРІРЅРѕРіРѕ Р±Р°СЂР°
     timerUpdateBarLinesToChart = {
         timerName = "timerUpdateBarLinesToChart",
-        timerPause = 60, -- в секундах 600
+        timerPause = 60, -- РІ СЃРµРєСѓРЅРґР°С… 600
     },
 
-    -- обновление уровней вчерашнего дневного бара
+    -- РѕР±РЅРѕРІР»РµРЅРёРµ СѓСЂРѕРІРЅРµР№ РІС‡РµСЂР°С€РЅРµРіРѕ РґРЅРµРІРЅРѕРіРѕ Р±Р°СЂР°
     timerUpdateBarHourLinesToChart = {
         timerName = "timerUpdateBarHourLinesToChart",
-        timerPause = 60, -- в секундах 600
+        timerPause = 60, -- РІ СЃРµРєСѓРЅРґР°С… 600
     },
 
-    -- обновление уровней вчерашнего дневного бара
+    -- РѕР±РЅРѕРІР»РµРЅРёРµ СѓСЂРѕРІРЅРµР№ РІС‡РµСЂР°С€РЅРµРіРѕ РґРЅРµРІРЅРѕРіРѕ Р±Р°СЂР°
     timerUpdateMirrorLinesToChart = {
         timerName = "timerUpdateMirrorLinesToChart",
-        timerPause = 60, -- в секундах 600
+        timerPause = 60, -- РІ СЃРµРєСѓРЅРґР°С… 600
     },
 
-    -- обновление уровней вчерашнего дневного бара
+    -- РѕР±РЅРѕРІР»РµРЅРёРµ СѓСЂРѕРІРЅРµР№ РІС‡РµСЂР°С€РЅРµРіРѕ РґРЅРµРІРЅРѕРіРѕ Р±Р°СЂР°
     timerViewLevelsToChart = {
         timerName = "timerViewLevelsToChart",
-        timerPause = 300, -- в секундах 600
+        timerPause = 300, -- РІ СЃРµРєСѓРЅРґР°С… 600
     },
 
-    -- обновление уровней вчерашнего дневного бара
+    -- РѕР±РЅРѕРІР»РµРЅРёРµ СѓСЂРѕРІРЅРµР№ РІС‡РµСЂР°С€РЅРµРіРѕ РґРЅРµРІРЅРѕРіРѕ Р±Р°СЂР°
     timerViewBasePriceToChart = {
         timerName = "timerViewBasePriceToChart",
-        timerPause = 60, -- в секундах 600
+        timerPause = 60, -- РІ СЃРµРєСѓРЅРґР°С… 600
     },
 }

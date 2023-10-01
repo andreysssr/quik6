@@ -25,23 +25,23 @@ local Handler = {
             barLimit_condition = "default"
         }
 
-        -- значения hi и low последних 3 баров
+        -- Р·РЅР°С‡РµРЅРёСЏ hi Рё low РїРѕСЃР»РµРґРЅРёС… 3 Р±Р°СЂРѕРІ
         local params = self.entityServiceDs:getHiLow(idStock)
 
         if params == "notBar" then
             return result
         end
 
-        -- цена базового активного уровня
+        -- С†РµРЅР° Р±Р°Р·РѕРІРѕРіРѕ Р°РєС‚РёРІРЅРѕРіРѕ СѓСЂРѕРІРЅСЏ
         local price = self.entityServiceBasePrice:getBasePrice(idStock).price
 
-        -- если цена коснулась уровня (дошла до текущего активного уровня/линии)
+        -- РµСЃР»Рё С†РµРЅР° РєРѕСЃРЅСѓР»Р°СЃСЊ СѓСЂРѕРІРЅСЏ (РґРѕС€Р»Р° РґРѕ С‚РµРєСѓС‰РµРіРѕ Р°РєС‚РёРІРЅРѕРіРѕ СѓСЂРѕРІРЅСЏ/Р»РёРЅРёРё)
         if price == params.bar1.hi or price == params.bar1.low then
             result.barLimit_data = "B - L"
             result.barLimit_condition = "touchColor"
         end
 
-        -- если обнаружены лимитные бары (три подряд) или (два последние и 4-й от них)
+        -- РµСЃР»Рё РѕР±РЅР°СЂСѓР¶РµРЅС‹ Р»РёРјРёС‚РЅС‹Рµ Р±Р°СЂС‹ (С‚СЂРё РїРѕРґСЂСЏРґ) РёР»Рё (РґРІР° РїРѕСЃР»РµРґРЅРёРµ Рё 4-Р№ РѕС‚ РЅРёС…)
         if price == params.bar1.hi and price == params.bar2.hi and (price == params.bar3.hi or price == params.bar4.hi) then
             result.barLimit_data = "L"
             result.barLimit_condition = "limitColor"

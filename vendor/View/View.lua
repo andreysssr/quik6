@@ -1,7 +1,7 @@
 -- View
 
 local View = {
-    -- название класса
+    -- РЅР°Р·РІР°РЅРёРµ РєР»Р°СЃСЃР°
     name = "View",
 
     --
@@ -11,17 +11,17 @@ local View = {
         return self
     end,
 
-    -- создание id таблицы
+    -- СЃРѕР·РґР°РЅРёРµ id С‚Р°Р±Р»РёС†С‹
     idTableCreate = function(self)
         return AllocTable()
     end,
 
-    -- создание структуры таблицы (колонки)
+    -- СЃРѕР·РґР°РЅРёРµ СЃС‚СЂСѓРєС‚СѓСЂС‹ С‚Р°Р±Р»РёС†С‹ (РєРѕР»РѕРЅРєРё)
     createStructure = function(self, idTable, header)
 
         for i = 1, #header, 1 do
             if not isset(self.typeParam[header[i]["type"]]) then
-                error("такого типа данных в таблице нет" .. header[i]["type"])
+                error("С‚Р°РєРѕРіРѕ С‚РёРїР° РґР°РЅРЅС‹С… РІ С‚Р°Р±Р»РёС†Рµ РЅРµС‚" .. header[i]["type"])
             end
 
             AddColumn(idTable,
@@ -34,39 +34,39 @@ local View = {
         end
     end,
 
-    -- отобразить таблицу в программе с заголовком
+    -- РѕС‚РѕР±СЂР°Р·РёС‚СЊ С‚Р°Р±Р»РёС†Сѓ РІ РїСЂРѕРіСЂР°РјРјРµ СЃ Р·Р°РіРѕР»РѕРІРєРѕРј
     showTable = function(self, idTable, title)
         CreateWindow(idTable)
         SetWindowCaption(idTable, title);
     end,
 
-    -- установить положение таблицы в программе
+    -- СѓСЃС‚Р°РЅРѕРІРёС‚СЊ РїРѕР»РѕР¶РµРЅРёРµ С‚Р°Р±Р»РёС†С‹ РІ РїСЂРѕРіСЂР°РјРјРµ
     setPosition = function(self, idTable, margin_left, margin_top, width_table, height_table)
         return SetWindowPos(idTable, margin_left, margin_top, width_table, height_table)
     end,
 
-    -- проверить закрыта ли таблица
+    -- РїСЂРѕРІРµСЂРёС‚СЊ Р·Р°РєСЂС‹С‚Р° Р»Рё С‚Р°Р±Р»РёС†Р°
     isClosed = function(self, idTable)
         return IsWindowClosed(idTable)
     end,
 
-    -- очистить все строки таблицы
+    -- РѕС‡РёСЃС‚РёС‚СЊ РІСЃРµ СЃС‚СЂРѕРєРё С‚Р°Р±Р»РёС†С‹
     clearRows = function(self, idTable)
         return Clear(idTable)
     end,
 
-    -- добавить строку в структуру таблицы
+    -- РґРѕР±Р°РІРёС‚СЊ СЃС‚СЂРѕРєСѓ РІ СЃС‚СЂСѓРєС‚СѓСЂСѓ С‚Р°Р±Р»РёС†С‹
     addLine = function(self, idTable)
         return InsertRow(idTable, -1)
     end,
 
-    -- Установить значение в ячейке. Пустое значение очищает ячейку
+    -- РЈСЃС‚Р°РЅРѕРІРёС‚СЊ Р·РЅР°С‡РµРЅРёРµ РІ СЏС‡РµР№РєРµ. РџСѓСЃС‚РѕРµ Р·РЅР°С‡РµРЅРёРµ РѕС‡РёС‰Р°РµС‚ СЏС‡РµР№РєСѓ
     setValue = function(self, idTable, row, col, data)
         local _data = data or ""
         return SetCell(idTable, row, col, tostring(_data))
     end,
 
-    -- установить цветовые параметры для ячейки
+    -- СѓСЃС‚Р°РЅРѕРІРёС‚СЊ С†РІРµС‚РѕРІС‹Рµ РїР°СЂР°РјРµС‚СЂС‹ РґР»СЏ СЏС‡РµР№РєРё
     setColor = function(self, idTable, row, col, fon_color, text_color, selected_fon_color, selected_text_color)
         local _row = 1
         local _col = 1
@@ -86,21 +86,21 @@ local View = {
         SetColor(idTable, _row, _col, fon_color, text_color, selected_fon_color, selected_text_color)
     end,
 
-    -- плавное затухание в миллисекундах
+    -- РїР»Р°РІРЅРѕРµ Р·Р°С‚СѓС…Р°РЅРёРµ РІ РјРёР»Р»РёСЃРµРєСѓРЅРґР°С…
     setFlash = function(self, idTable, row, col, fon_color, text_color, timeMs)
         local time_ms = timeMs or 500
 
         return Highlight(idTable, row, col, fon_color, text_color, time_ms)
     end,
 
-    -- вернуть номер последней строки
+    -- РІРµСЂРЅСѓС‚СЊ РЅРѕРјРµСЂ РїРѕСЃР»РµРґРЅРµР№ СЃС‚СЂРѕРєРё
     getLastRow = function(self, idTable)
         local rows, cols = GetTableSize(idTable)
 
         return rows
     end,
 
-    -- Удалить таблицу
+    -- РЈРґР°Р»РёС‚СЊ С‚Р°Р±Р»РёС†Сѓ
     delete = function(self, idTable)
         return DestroyTable(idTable)
     end

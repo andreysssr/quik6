@@ -1,7 +1,7 @@
---- Resolver создаёт обработчик из строки (listeners - подписчики)
+--- Resolver СЃРѕР·РґР°С‘С‚ РѕР±СЂР°Р±РѕС‚С‡РёРє РёР· СЃС‚СЂРѕРєРё (listeners - РїРѕРґРїРёСЃС‡РёРєРё)
 
 local Resolver = {
-    -- название класса
+    -- РЅР°Р·РІР°РЅРёРµ РєР»Р°СЃСЃР°
     name = "Resolver",
 
     container = {},
@@ -12,7 +12,7 @@ local Resolver = {
         return self
     end,
 
-    -- создание обработчика из строки, функции, массива и передача ему события для обработки
+    -- СЃРѕР·РґР°РЅРёРµ РѕР±СЂР°Р±РѕС‚С‡РёРєР° РёР· СЃС‚СЂРѕРєРё, С„СѓРЅРєС†РёРё, РјР°СЃСЃРёРІР° Рё РїРµСЂРµРґР°С‡Р° РµРјСѓ СЃРѕР±С‹С‚РёСЏ РґР»СЏ РѕР±СЂР°Р±РѕС‚РєРё
     resolve = function(self, handler, ...)
         local args = { ... }
 
@@ -33,35 +33,35 @@ local Resolver = {
 
     --
     createHandler = function(self, handler, params1, params2, params3)
-        -- разделяем имя объекта на имя и метод (если метод прописан через @)
-        -- например EventHandler_Logger			- будет вызван метод handle
-        -- например EventHandler_Logger@write	- будет вызван метод write
+        -- СЂР°Р·РґРµР»СЏРµРј РёРјСЏ РѕР±СЉРµРєС‚Р° РЅР° РёРјСЏ Рё РјРµС‚РѕРґ (РµСЃР»Рё РјРµС‚РѕРґ РїСЂРѕРїРёСЃР°РЅ С‡РµСЂРµР· @)
+        -- РЅР°РїСЂРёРјРµСЂ EventHandler_Logger			- Р±СѓРґРµС‚ РІС‹Р·РІР°РЅ РјРµС‚РѕРґ handle
+        -- РЅР°РїСЂРёРјРµСЂ EventHandler_Logger@write	- Р±СѓРґРµС‚ РІС‹Р·РІР°РЅ РјРµС‚РѕРґ write
         local names = explode("@", handler)
 
-        local handlerName = names[1]    -- имя объекта
-        local methodName = names[2]        -- метод объекта
+        local handlerName = names[1]    -- РёРјСЏ РѕР±СЉРµРєС‚Р°
+        local methodName = names[2]        -- РјРµС‚РѕРґ РѕР±СЉРµРєС‚Р°
 
-        -- получаем объект из контейнера
+        -- РїРѕР»СѓС‡Р°РµРј РѕР±СЉРµРєС‚ РёР· РєРѕРЅС‚РµР№РЅРµСЂР°
         local handlerObj = self.container:get(handlerName)
 
-        -- объект не вернул себя из метода (new)
+        -- РѕР±СЉРµРєС‚ РЅРµ РІРµСЂРЅСѓР» СЃРµР±СЏ РёР· РјРµС‚РѕРґР° (new)
         if not handlerObj then
-            error("\r\n\r\n" .. "Error: Объект (" .. tostring(handler) .. ") не вернул себя из метода (new), в методе отсутствует [return self]")
+            error("\r\n\r\n" .. "Error: РћР±СЉРµРєС‚ (" .. tostring(handler) .. ") РЅРµ РІРµСЂРЅСѓР» СЃРµР±СЏ РёР· РјРµС‚РѕРґР° (new), РІ РјРµС‚РѕРґРµ РѕС‚СЃСѓС‚СЃС‚РІСѓРµС‚ [return self]")
         end
 
-        -- если был задан метод после символа @
+        -- РµСЃР»Рё Р±С‹Р» Р·Р°РґР°РЅ РјРµС‚РѕРґ РїРѕСЃР»Рµ СЃРёРјРІРѕР»Р° @
         if not_nil(methodName) then
-            -- проверяем наличие метода у объекта
+            -- РїСЂРѕРІРµСЂСЏРµРј РЅР°Р»РёС‡РёРµ РјРµС‚РѕРґР° Сѓ РѕР±СЉРµРєС‚Р°
             if not_method_exists(handlerObj, methodName) then
-                error("\r\n\r\n" .. "Error: У объекта (" .. handlerName .. ") отсутствует метод (" .. methodName .. ")", 2)
+                error("\r\n\r\n" .. "Error: РЈ РѕР±СЉРµРєС‚Р° (" .. handlerName .. ") РѕС‚СЃСѓС‚СЃС‚РІСѓРµС‚ РјРµС‚РѕРґ (" .. methodName .. ")", 2)
             end
 
             return handlerObj[methodName](handlerObj, params1, params2, params3)
         end
 
-        -- проверяем наличие метода (handle) у объекта
+        -- РїСЂРѕРІРµСЂСЏРµРј РЅР°Р»РёС‡РёРµ РјРµС‚РѕРґР° (handle) Сѓ РѕР±СЉРµРєС‚Р°
         if not_method_exists(handlerObj, "handle") then
-            error("\r\n\r\n" .. "Error: У объекта (" .. handlerName .. ") отсутствует метод (handle)", 2)
+            error("\r\n\r\n" .. "Error: РЈ РѕР±СЉРµРєС‚Р° (" .. handlerName .. ") РѕС‚СЃСѓС‚СЃС‚РІСѓРµС‚ РјРµС‚РѕРґ (handle)", 2)
         end
 
         return handlerObj:handle(params1, params2, params3)

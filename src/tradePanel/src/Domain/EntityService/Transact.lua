@@ -22,25 +22,25 @@ local EntityService = {
         return self
     end,
 
-    -- создать entity
+    -- СЃРѕР·РґР°С‚СЊ entity
     create = function(self, idTransact, params)
         local entity = self.entityClass:newChild(params)
 
         self.repository:save(entity, idTransact)
     end,
 
-    -- проверка существования транзакции с номером
-    -- номером может быть (idTransact) или (order_num)
+    -- РїСЂРѕРІРµСЂРєР° СЃСѓС‰РµСЃС‚РІРѕРІР°РЅРёСЏ С‚СЂР°РЅР·Р°РєС†РёРё СЃ РЅРѕРјРµСЂРѕРј
+    -- РЅРѕРјРµСЂРѕРј РјРѕР¶РµС‚ Р±С‹С‚СЊ (idTransact) РёР»Рё (order_num)
     has = function(self, id)
         return self.repository:has(id)
     end,
 
-    -- вернуть транзакцию
+    -- РІРµСЂРЅСѓС‚СЊ С‚СЂР°РЅР·Р°РєС†РёСЋ
     getParams = function(self, id)
         return self.repository:get(id)
     end,
 
-    -- изменить состояние транзакции
+    -- РёР·РјРµРЅРёС‚СЊ СЃРѕСЃС‚РѕСЏРЅРёРµ С‚СЂР°РЅР·Р°РєС†РёРё
     changeStatus = function(self, order_num, params)
 
         if self.repository:has(order_num) then
@@ -48,13 +48,13 @@ local EntityService = {
 
             entity:changeStatus(params)
 
-            -- получаем события из Entity и передаём их в диспетчер событий
+            -- РїРѕР»СѓС‡Р°РµРј СЃРѕР±С‹С‚РёСЏ РёР· Entity Рё РїРµСЂРµРґР°С‘Рј РёС… РІ РґРёСЃРїРµС‚С‡РµСЂ СЃРѕР±С‹С‚РёР№
             self.dispatcher:dispatchEvents(entity:releaseEvents())
 
             return
         end
 
-        error("\r\n" .. "Error: EntityTransact с таким order_num - (" .. order_num .. ") не существует", 2)
+        error("\r\n" .. "Error: EntityTransact СЃ С‚Р°РєРёРј order_num - (" .. order_num .. ") РЅРµ СЃСѓС‰РµСЃС‚РІСѓРµС‚", 2)
     end,
 }
 

@@ -17,7 +17,7 @@ local EventHandler = {
         return self
     end,
 
-    -- вызывает изменение позиций в (EntityStock)
+    -- РІС‹Р·С‹РІР°РµС‚ РёР·РјРµРЅРµРЅРёРµ РїРѕР·РёС†РёР№ РІ (EntityStock)
     changePosition = function(self, event)
         local data = event:getParams()
 

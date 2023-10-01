@@ -15,25 +15,25 @@ local Action = {
     end,
 
     handle = function(self)
-        -- создать репозиторий для BasePrice
+        -- СЃРѕР·РґР°С‚СЊ СЂРµРїРѕР·РёС‚РѕСЂРёР№ РґР»СЏ BasePrice
         self.container:get("Factory_CreateRepository"):createRepository("Repository_BasePrice")
 
-        -- создать репозиторий для EntityStock
+        -- СЃРѕР·РґР°С‚СЊ СЂРµРїРѕР·РёС‚РѕСЂРёР№ РґР»СЏ EntityStock
         self.container:get("Factory_CreateRepository"):createRepository("Repository_Stock")
 
-        -- создать репозиторий для EntityTransact
+        -- СЃРѕР·РґР°С‚СЊ СЂРµРїРѕР·РёС‚РѕСЂРёР№ РґР»СЏ EntityTransact
         self.container:get("Factory_CreateRepository"):createRepository("Repository_Transact")
 
-        -- создать репозиторий для EntityTradeParams
+        -- СЃРѕР·РґР°С‚СЊ СЂРµРїРѕР·РёС‚РѕСЂРёР№ РґР»СЏ EntityTradeParams
         self.container:get("Factory_CreateRepository"):createRepository("Repository_TradeParams")
 
-        -- создать репозиторий для иссточников данных пятиминуток
+        -- СЃРѕР·РґР°С‚СЊ СЂРµРїРѕР·РёС‚РѕСЂРёР№ РґР»СЏ РёСЃСЃС‚РѕС‡РЅРёРєРѕРІ РґР°РЅРЅС‹С… РїСЏС‚РёРјРёРЅСѓС‚РѕРє
         self.container:get("Factory_CreateRepository"):createRepository("Repository_Ds5M")
 
-        -- создать репозиторий для иссточников данных дневок
+        -- СЃРѕР·РґР°С‚СЊ СЂРµРїРѕР·РёС‚РѕСЂРёР№ РґР»СЏ РёСЃСЃС‚РѕС‡РЅРёРєРѕРІ РґР°РЅРЅС‹С… РґРЅРµРІРѕРє
         self.container:get("Factory_CreateRepository"):createRepository("Repository_DsD")
 
-        -- создать репозиторий для иссточников данных часовиков
+        -- СЃРѕР·РґР°С‚СЊ СЂРµРїРѕР·РёС‚РѕСЂРёР№ РґР»СЏ РёСЃСЃС‚РѕС‡РЅРёРєРѕРІ РґР°РЅРЅС‹С… С‡Р°СЃРѕРІРёРєРѕРІ
         self.container:get("Factory_CreateRepository"):createRepository("Repository_DsH1")
     end,
 

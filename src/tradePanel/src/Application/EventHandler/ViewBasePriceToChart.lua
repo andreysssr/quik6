@@ -39,7 +39,7 @@ local EventHandler = {
 
     --
     showAll = function(self)
-        -- обновить уровни
+        -- РѕР±РЅРѕРІРёС‚СЊ СѓСЂРѕРІРЅРё
         self.basePriceToChart:updateLocation()
     end,
 
@@ -61,25 +61,25 @@ local EventHandler = {
         end
     end,
 
-    -- перерисовка (сдвиг линий в право)
+    -- РїРµСЂРµСЂРёСЃРѕРІРєР° (СЃРґРІРёРі Р»РёРЅРёР№ РІ РїСЂР°РІРѕ)
     updateLocation = function(self)
-        -- таймер
+        -- С‚Р°Р№РјРµСЂ
         if self.timer:allows(self.timerName) and self.status then
-            -- обновление 1 раз в уставновленное время
+            -- РѕР±РЅРѕРІР»РµРЅРёРµ 1 СЂР°Р· РІ СѓСЃС‚Р°РІРЅРѕРІР»РµРЅРЅРѕРµ РІСЂРµРјСЏ
             self.timer:set(self.timerName, self.timerPause)
 
-            -- обновить уровни
+            -- РѕР±РЅРѕРІРёС‚СЊ СѓСЂРѕРІРЅРё
             self.basePriceToChart:updateLocation()
         end
     end,
 
-    -- обновление положения basePrice при получении события об изменении базовой цены
+    -- РѕР±РЅРѕРІР»РµРЅРёРµ РїРѕР»РѕР¶РµРЅРёСЏ basePrice РїСЂРё РїРѕР»СѓС‡РµРЅРёРё СЃРѕР±С‹С‚РёСЏ РѕР± РёР·РјРµРЅРµРЅРёРё Р±Р°Р·РѕРІРѕР№ С†РµРЅС‹
     eventUpdateLocation = function(self, event)
         if self.status then
-            -- получаем id из события
+            -- РїРѕР»СѓС‡Р°РµРј id РёР· СЃРѕР±С‹С‚РёСЏ
             local id = event:getParam("id")
 
-            -- меняем положение линии basePrice
+            -- РјРµРЅСЏРµРј РїРѕР»РѕР¶РµРЅРёРµ Р»РёРЅРёРё basePrice
             self.basePriceToChart:updateLocationToId(id)
         end
     end,

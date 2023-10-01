@@ -22,12 +22,12 @@ local EventHandler = {
         return self
     end,
 
-    -- получить активный инструмент
+    -- РїРѕР»СѓС‡РёС‚СЊ Р°РєС‚РёРІРЅС‹Р№ РёРЅСЃС‚СЂСѓРјРµРЅС‚
     getCurrentId = function(self)
         return self.microservice:getCurrentIdStock()
     end,
 
-    -- купить на 0%
+    -- РєСѓРїРёС‚СЊ РЅР° 0%
     buy0 = function(self, event)
         local id = self:getCurrentId()
 
@@ -38,7 +38,7 @@ local EventHandler = {
         self.useCase:addZapros(id, "buy", 0)
     end,
 
-    -- купить на 5%
+    -- РєСѓРїРёС‚СЊ РЅР° 5%
     buy5 = function(self, event)
         local id = self:getCurrentId()
 
@@ -49,7 +49,7 @@ local EventHandler = {
         self.useCase:addZapros(id, "buy", 5)
     end,
 
-    -- купить на 10%
+    -- РєСѓРїРёС‚СЊ РЅР° 10%
     buy10 = function(self, event)
         local id = self:getCurrentId()
 
@@ -60,7 +60,7 @@ local EventHandler = {
         self.useCase:addZapros(id, "buy", 10)
     end,
 
-    -- продать на 0%
+    -- РїСЂРѕРґР°С‚СЊ РЅР° 0%
     sell0 = function(self, event)
         local id = self:getCurrentId()
 
@@ -71,7 +71,7 @@ local EventHandler = {
         self.useCase:addZapros(id, "sell", 0)
     end,
 
-    -- продать на 5%
+    -- РїСЂРѕРґР°С‚СЊ РЅР° 5%
     sell5 = function(self, event)
         local id = self:getCurrentId()
 
@@ -82,7 +82,7 @@ local EventHandler = {
         self.useCase:addZapros(id, "sell", 5)
     end,
 
-    -- продать на 10%
+    -- РїСЂРѕРґР°С‚СЊ РЅР° 10%
     sell10 = function(self, event)
         local id = self:getCurrentId()
 

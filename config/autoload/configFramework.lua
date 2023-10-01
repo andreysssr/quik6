@@ -2,24 +2,24 @@
 
 return {
     dependencies = {
-        -- по умолчанию использовать уже загруженные сервисы
+        -- РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ РёСЃРїРѕР»СЊР·РѕРІР°С‚СЊ СѓР¶Рµ Р·Р°РіСЂСѓР¶РµРЅРЅС‹Рµ СЃРµСЂРІРёСЃС‹
         shared_by_default = true,
 
-        -- фабрики
+        -- С„Р°Р±СЂРёРєРё
         factories = {
-            -- приложение
+            -- РїСЂРёР»РѕР¶РµРЅРёРµ
             --["Application"] = {
             --	"EventManager",
             --	"EventKeyboardManager"
             --},
 
-            -- обработчик событий
+            -- РѕР±СЂР°Р±РѕС‚С‡РёРє СЃРѕР±С‹С‚РёР№
             --["EventManager"] = {
             --	"Resolver",
             --	"EventManager_Event"
             --},
 
-            -- обработчик нажатий на клавиатуру
+            -- РѕР±СЂР°Р±РѕС‚С‡РёРє РЅР°Р¶Р°С‚РёР№ РЅР° РєР»Р°РІРёР°С‚СѓСЂСѓ
             --["EventKeyboardManager"] = {
             --	"Resolver",
             --	"EventKeyboardManager_dataKeyboardKeys"
@@ -30,34 +30,34 @@ return {
             --	return container:load("EventKeyboardManager_dataKeyboardKeys")
             --end,
 
-            -- отправка событий
+            -- РѕС‚РїСЂР°РІРєР° СЃРѕР±С‹С‚РёР№
             --["EventSender"] = "Application",
 
-            -- цветовые схемы
+            -- С†РІРµС‚РѕРІС‹Рµ СЃС…РµРјС‹
             --["ColorScheme"] = "ColorScheme_dataColors",
 
             --["ColorScheme_dataColors"] = function(container)
             --	return container:load("ColorScheme_dataColors")
             --end,
 
-            -- диспетчер событий в Entity
+            -- РґРёСЃРїРµС‚С‡РµСЂ СЃРѕР±С‹С‚РёР№ РІ Entity
             --["EventDispatcher"] = "EventSender",
 
         },
 
-        -- алиасы
+        -- Р°Р»РёР°СЃС‹
         aliases = {
             --["App"] = "Application"
         },
 
-        -- сервисы
+        -- СЃРµСЂРІРёСЃС‹
         services = {
             --ff = function()
-            --	dd("отработала функция из контейнера")
+            --	dd("РѕС‚СЂР°Р±РѕС‚Р°Р»Р° С„СѓРЅРєС†РёСЏ РёР· РєРѕРЅС‚РµР№РЅРµСЂР°")
             --end
         },
 
-        -- false - при каждом вызове сервиса загружать его заново
+        -- false - РїСЂРё РєР°Р¶РґРѕРј РІС‹Р·РѕРІРµ СЃРµСЂРІРёСЃР° Р·Р°РіСЂСѓР¶Р°С‚СЊ РµРіРѕ Р·Р°РЅРѕРІРѕ
         shared = {
             ["Queue"] = false,
             --["Repository_Interface"] = false,
@@ -65,15 +65,15 @@ return {
         },
     },
 
-    -- пути
+    -- РїСѓС‚Рё
     dirPath = {
-        -- параметры для кеширования
+        -- РїР°СЂР°РјРµС‚СЂС‹ РґР»СЏ РєРµС€РёСЂРѕРІР°РЅРёСЏ
         cacheParams = {
             dir = "var_cache",
             ext = "lua"
         },
 
-        -- параметры для логирования
+        -- РїР°СЂР°РјРµС‚СЂС‹ РґР»СЏ Р»РѕРіРёСЂРѕРІР°РЅРёСЏ
         logParams = {
             dir = "var_logs",
             ext = "csv"

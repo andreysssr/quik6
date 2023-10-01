@@ -1,11 +1,11 @@
 ---
 
--- наследование объекта
+-- РЅР°СЃР»РµРґРѕРІР°РЅРёРµ РѕР±СЉРµРєС‚Р°
 function extended(child, parent)
     setmetatable(child, { __index = parent })
 end
 
--- клонирование объекта
+-- РєР»РѕРЅРёСЂРѕРІР°РЅРёРµ РѕР±СЉРµРєС‚Р°
 function clone(obj, seen)
     -- Handle non-tables and previously-seen tables.
     if type(obj) ~= 'table' then

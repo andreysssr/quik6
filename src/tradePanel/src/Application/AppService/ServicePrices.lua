@@ -1,4 +1,4 @@
---- AppService - возвращает параметры цены
+--- AppService - РІРѕР·РІСЂР°С‰Р°РµС‚ РїР°СЂР°РјРµС‚СЂС‹ С†РµРЅС‹
 
 local AppService = {
     --
@@ -22,21 +22,21 @@ local AppService = {
         return self
     end,
 
-    -- проверка преданного idStock - тикера инструмента
+    -- РїСЂРѕРІРµСЂРєР° РїСЂРµРґР°РЅРЅРѕРіРѕ idStock - С‚РёРєРµСЂР° РёРЅСЃС‚СЂСѓРјРµРЅС‚Р°
     checkingId = function(self, idStock)
         if not_string(idStock) then
-            error("\r\n" .. "Error: Id (бумаги) должен быть (строкой). Получено: (" .. type(idStock) .. ") - (" .. tostring(idStock) .. ")", 3)
+            error("\r\n" .. "Error: Id (Р±СѓРјР°РіРё) РґРѕР»Р¶РµРЅ Р±С‹С‚СЊ (СЃС‚СЂРѕРєРѕР№). РџРѕР»СѓС‡РµРЅРѕ: (" .. type(idStock) .. ") - (" .. tostring(idStock) .. ")", 3)
         end
     end,
 
-    -- проверка переданного класса
+    -- РїСЂРѕРІРµСЂРєР° РїРµСЂРµРґР°РЅРЅРѕРіРѕ РєР»Р°СЃСЃР°
     checkingClass = function(self, class)
         if not_string(class) then
-            error("\r\n" .. "Error: Class (бумаги) должен быть (строкой). Получено: (" .. type(class) .. ") - (" .. tostring(class) .. ")", 3)
+            error("\r\n" .. "Error: Class (Р±СѓРјР°РіРё) РґРѕР»Р¶РµРЅ Р±С‹С‚СЊ (СЃС‚СЂРѕРєРѕР№). РџРѕР»СѓС‡РµРЅРѕ: (" .. type(class) .. ") - (" .. tostring(class) .. ")", 3)
         end
     end,
 
-    -- вернуть лучшие цены покупки и продажи
+    -- РІРµСЂРЅСѓС‚СЊ Р»СѓС‡С€РёРµ С†РµРЅС‹ РїРѕРєСѓРїРєРё Рё РїСЂРѕРґР°Р¶Рё
     getGoodPrices = function(self, idStock, class)
         self:checkingId(idStock)
         self:checkingClass(class)
@@ -49,7 +49,7 @@ local AppService = {
         return prices
     end,
 
-    -- вернуть минимальную и максимальную цену
+    -- РІРµСЂРЅСѓС‚СЊ РјРёРЅРёРјР°Р»СЊРЅСѓСЋ Рё РјР°РєСЃРёРјР°Р»СЊРЅСѓСЋ С†РµРЅСѓ
     getMinMaxPrices = function(self, idStock, class)
         self:checkingId(idStock)
         self:checkingClass(class)
@@ -68,7 +68,7 @@ local AppService = {
         return prices
     end,
 
-    -- вернуть последнюю цену инструмента
+    -- РІРµСЂРЅСѓС‚СЊ РїРѕСЃР»РµРґРЅСЋСЋ С†РµРЅСѓ РёРЅСЃС‚СЂСѓРјРµРЅС‚Р°
     getLastPrice = function(self, idStock, class)
         self:checkingId(idStock)
         self:checkingClass(class)
@@ -76,7 +76,7 @@ local AppService = {
         return d0(tonumber(getParamEx(class, idStock, "last").param_value))
     end,
 
-    -- вернуть цену hi low предыдущего дня
+    -- РІРµСЂРЅСѓС‚СЊ С†РµРЅСѓ hi low РїСЂРµРґС‹РґСѓС‰РµРіРѕ РґРЅСЏ
     getPricesHiLow = function(self, idStock)
         self:checkingId(idStock)
 

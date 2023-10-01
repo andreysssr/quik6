@@ -17,7 +17,7 @@ local ColorScheme = {
             return colors.white, colors.gray_5, colors.white, colors.gray_5
         end,
 
-        -- цветовые схемы по bootstrap
+        -- С†РІРµС‚РѕРІС‹Рµ СЃС…РµРјС‹ РїРѕ bootstrap
         -- blue
         blue_1 = function(colors)
             return colors.blue_1, colors.black, colors.blue_1, colors.black
@@ -97,7 +97,7 @@ local ColorScheme = {
             return colors.blue_5, colors.white, colors.blue_5, colors.white
         end,
 
-        -- indigo светло-фиолетовый
+        -- indigo СЃРІРµС‚Р»Рѕ-С„РёРѕР»РµС‚РѕРІС‹Р№
         indigo_1 = function(colors)
             return colors.indigo_1, colors.black, colors.indigo_1, colors.black
         end,
@@ -176,7 +176,7 @@ local ColorScheme = {
             return colors.indigo_5, colors.white, colors.indigo_5, colors.white
         end,
 
-        -- purple фиолетовый
+        -- purple С„РёРѕР»РµС‚РѕРІС‹Р№
         purple_1 = function(colors)
             return colors.purple_1, colors.black, colors.purple_1, colors.black
         end,
@@ -255,7 +255,7 @@ local ColorScheme = {
             return colors.purple_5, colors.white, colors.purple_5, colors.white
         end,
 
-        -- pink - светло-красный
+        -- pink - СЃРІРµС‚Р»Рѕ-РєСЂР°СЃРЅС‹Р№
         pink_1 = function(colors)
             return colors.pink_1, colors.black, colors.pink_1, colors.black
         end,
@@ -650,7 +650,7 @@ local ColorScheme = {
             return colors.green_5, colors.white, colors.green_5, colors.white
         end,
 
-        -- teal светло-зелёный
+        -- teal СЃРІРµС‚Р»Рѕ-Р·РµР»С‘РЅС‹Р№
         teal_1 = function(colors)
             return colors.teal_1, colors.black, colors.teal_1, colors.black
         end,
@@ -729,7 +729,7 @@ local ColorScheme = {
             return colors.teal_5, colors.white, colors.teal_5, colors.white
         end,
 
-        -- cyan светло-синий
+        -- cyan СЃРІРµС‚Р»Рѕ-СЃРёРЅРёР№
         cyan_1 = function(colors)
             return colors.cyan_1, colors.black, colors.cyan_1, colors.black
         end,

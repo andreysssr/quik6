@@ -30,7 +30,7 @@ local EventHandler = {
         self.timerName = container:get("config").timerUpdatePoleBarLimit.timerName
         self.timerPause = container:get("config").timerUpdatePoleBarLimit.timerPause
 
-        -- запускаем таймер
+        -- Р·Р°РїСѓСЃРєР°РµРј С‚Р°Р№РјРµСЂ
         self.timer:set(self.timerName, self.timerPause)
 
         return self
@@ -46,19 +46,19 @@ local EventHandler = {
         self.panelTrade:update(idStock, dto)
     end,
 
-    -- меняем цвет поля в торговой панели
+    -- РјРµРЅСЏРµРј С†РІРµС‚ РїРѕР»СЏ РІ С‚РѕСЂРіРѕРІРѕР№ РїР°РЅРµР»Рё
     handle = function(self, event)
-        -- обновление происходит с частотой записанной в конфиге (updatePoleLine.timerPause)
+        -- РѕР±РЅРѕРІР»РµРЅРёРµ РїСЂРѕРёСЃС…РѕРґРёС‚ СЃ С‡Р°СЃС‚РѕС‚РѕР№ Р·Р°РїРёСЃР°РЅРЅРѕР№ РІ РєРѕРЅС„РёРіРµ (updatePoleLine.timerPause)
         if self.timer:allows(self.timerName) then
-            -- получаем массив тикеров по домашке
+            -- РїРѕР»СѓС‡Р°РµРј РјР°СЃСЃРёРІ С‚РёРєРµСЂРѕРІ РїРѕ РґРѕРјР°С€РєРµ
             local arrayTickers = self.storage:getHomeworkId()
 
-            -- в цикле вызываем создание Entity BasePrice
+            -- РІ С†РёРєР»Рµ РІС‹Р·С‹РІР°РµРј СЃРѕР·РґР°РЅРёРµ Entity BasePrice
             for i = 1, #arrayTickers do
                 self:updatePole(arrayTickers[i])
             end
 
-            -- запускаем таймер
+            -- Р·Р°РїСѓСЃРєР°РµРј С‚Р°Р№РјРµСЂ
             self.timer:set(self.timerName, self.timerPause)
         end
     end,

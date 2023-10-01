@@ -1,4 +1,4 @@
---- EventHandler MarkerTrendToChartOnOff - включает и выключает текст тренда на графике
+--- EventHandler MarkerTrendToChartOnOff - РІРєР»СЋС‡Р°РµС‚ Рё РІС‹РєР»СЋС‡Р°РµС‚ С‚РµРєСЃС‚ С‚СЂРµРЅРґР° РЅР° РіСЂР°С„РёРєРµ
 
 local EventHandler = {
     --
@@ -29,7 +29,7 @@ local EventHandler = {
         return self
     end,
 
-    -- меняем значение в панели
+    -- РјРµРЅСЏРµРј Р·РЅР°С‡РµРЅРёРµ РІ РїР°РЅРµР»Рё
     updatePanelPole = function(self, idStock)
         local dto = {}
 
@@ -40,7 +40,7 @@ local EventHandler = {
         self.panelTrade:update(idStock, dto)
     end,
 
-    -- добавляем тренд на график бумаги при изминении нажатия на (markerTrend)
+    -- РґРѕР±Р°РІР»СЏРµРј С‚СЂРµРЅРґ РЅР° РіСЂР°С„РёРє Р±СѓРјР°РіРё РїСЂРё РёР·РјРёРЅРµРЅРёРё РЅР°Р¶Р°С‚РёСЏ РЅР° (markerTrend)
     addMarkerToChart = function(self, idStock)
         self.microserviceMarkerTrendToChart:addMarkerToChart(idStock)
     end,
@@ -74,7 +74,7 @@ local EventHandler = {
         end
     end,
 
-    -- показать линии для всех бумаг
+    -- РїРѕРєР°Р·Р°С‚СЊ Р»РёРЅРёРё РґР»СЏ РІСЃРµС… Р±СѓРјР°Рі
     resetAll = function(self)
         local listHomework = self.storage:getHomeworkId()
 

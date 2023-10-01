@@ -22,43 +22,43 @@ local Entity = {
         return self
     end,
 
-    -- вернуть id
+    -- РІРµСЂРЅСѓС‚СЊ id
     getId = function(self)
         return self.id
     end,
 
-    -- удаляет источник данных, отписывается от получения данных
+    -- СѓРґР°Р»СЏРµС‚ РёСЃС‚РѕС‡РЅРёРє РґР°РЅРЅС‹С…, РѕС‚РїРёСЃС‹РІР°РµС‚СЃСЏ РѕС‚ РїРѕР»СѓС‡РµРЅРёСЏ РґР°РЅРЅС‹С…
     removeDs = function(self)
         self.ds:Close()
     end,
 
-    -- вернуть посчитанное значение в % от интервала
+    -- РІРµСЂРЅСѓС‚СЊ РїРѕСЃС‡РёС‚Р°РЅРЅРѕРµ Р·РЅР°С‡РµРЅРёРµ РІ % РѕС‚ РёРЅС‚РµСЂРІР°Р»Р°
     getRangeInterval = function(self, offsetPrice)
         local result = offsetPrice / (self.interval / 100)
         return dCrop(result, 1)
     end,
 
-    -- вернуть посчитанное значение в % от интервала
+    -- РІРµСЂРЅСѓС‚СЊ РїРѕСЃС‡РёС‚Р°РЅРЅРѕРµ Р·РЅР°С‡РµРЅРёРµ РІ % РѕС‚ РёРЅС‚РµСЂРІР°Р»Р°
     getRangeDay = function(self, offsetPrice)
         local result = offsetPrice / ((self.interval / 2) / 100)
         return dCrop(result, 1)
     end,
 
-    -- проверяет - обновился ли бар
-    -- если бар обновился - создаётся событие
+    -- РїСЂРѕРІРµСЂСЏРµС‚ - РѕР±РЅРѕРІРёР»СЃСЏ Р»Рё Р±Р°СЂ
+    -- РµСЃР»Рё Р±Р°СЂ РѕР±РЅРѕРІРёР»СЃСЏ - СЃРѕР·РґР°С‘С‚СЃСЏ СЃРѕР±С‹С‚РёРµ
     checkNewBar = function(self)
         if self.numLastBar ~= self.ds:Size() then
             self.numLastBar = self.ds:Size()
 
-            -- регистрируем событие - изменение номер текущего бара
+            -- СЂРµРіРёСЃС‚СЂРёСЂСѓРµРј СЃРѕР±С‹С‚РёРµ - РёР·РјРµРЅРµРЅРёРµ РЅРѕРјРµСЂ С‚РµРєСѓС‰РµРіРѕ Р±Р°СЂР°
             self:registerEvent("DS_UpdatedNumBar", {
                 idStock = self.id
             })
         end
     end,
 
-    -- вернуть Atr последнего бара
-    -- (текущий Hi) - (текущий Low)
+    -- РІРµСЂРЅСѓС‚СЊ Atr РїРѕСЃР»РµРґРЅРµРіРѕ Р±Р°СЂР°
+    -- (С‚РµРєСѓС‰РёР№ Hi) - (С‚РµРєСѓС‰РёР№ Low)
     getAtrBarCurrent = function(self)
         local numBar = self.ds:Size()
 
@@ -71,8 +71,8 @@ local Entity = {
         return self:getRangeInterval(atr)
     end,
 
-    -- вернуть Atr предыдущего бара
-    -- (предыдущий Hi) - (предыдущий low)
+    -- РІРµСЂРЅСѓС‚СЊ Atr РїСЂРµРґС‹РґСѓС‰РµРіРѕ Р±Р°СЂР°
+    -- (РїСЂРµРґС‹РґСѓС‰РёР№ Hi) - (РїСЂРµРґС‹РґСѓС‰РёР№ low)
     getAtrBarPrev = function(self)
         local numBar = self.ds:Size() - 1
 
@@ -85,9 +85,9 @@ local Entity = {
         return self:getRangeInterval(atr)
     end,
 
-    -- вернуть Гэп
-    -- (вчерашнее закрытие) - (сегодняшнее открытие)
-    -- абсолютная величина
+    -- РІРµСЂРЅСѓС‚СЊ Р“СЌРї
+    -- (РІС‡РµСЂР°С€РЅРµРµ Р·Р°РєСЂС‹С‚РёРµ) - (СЃРµРіРѕРґРЅСЏС€РЅРµРµ РѕС‚РєСЂС‹С‚РёРµ)
+    -- Р°Р±СЃРѕР»СЋС‚РЅР°СЏ РІРµР»РёС‡РёРЅР°
     getGap = function(self)
         local currentBar = self.ds:Size()
         local prevBar = self.ds:Size() - 1
@@ -103,8 +103,8 @@ local Entity = {
         return self:getRangeDay(gap)
     end,
 
-    -- ATR от вчерашнего закрытия
-    -- (вчерашнее закрытие) - (текущая цена)
+    -- ATR РѕС‚ РІС‡РµСЂР°С€РЅРµРіРѕ Р·Р°РєСЂС‹С‚РёСЏ
+    -- (РІС‡РµСЂР°С€РЅРµРµ Р·Р°РєСЂС‹С‚РёРµ) - (С‚РµРєСѓС‰Р°СЏ С†РµРЅР°)
     getAtrClose = function(self)
         local prevBar = self.ds:Size() - 1
 
@@ -115,19 +115,19 @@ local Entity = {
         local idStock = self.id
         local class = self.storage:getClassToId(idStock)
 
-        -- поучаем текущую цену
+        -- РїРѕСѓС‡Р°РµРј С‚РµРєСѓС‰СѓСЋ С†РµРЅСѓ
         local lastPrice = self.servicePrices:getLastPrice(idStock, class)
 
         local closePrevBar = self.ds:C(prevBar)
 
-        -- находим разницу между вчерашним закрытием и текущей ценой
+        -- РЅР°С…РѕРґРёРј СЂР°Р·РЅРёС†Сѓ РјРµР¶РґСѓ РІС‡РµСЂР°С€РЅРёРј Р·Р°РєСЂС‹С‚РёРµРј Рё С‚РµРєСѓС‰РµР№ С†РµРЅРѕР№
         local atrClose = math.abs(closePrevBar - lastPrice)
 
         return self:getRangeDay(atrClose)
     end,
 
     --
-    -- (цена открытия) - (текущая цена)
+    -- (С†РµРЅР° РѕС‚РєСЂС‹С‚РёСЏ) - (С‚РµРєСѓС‰Р°СЏ С†РµРЅР°)
     getAtrOpen = function(self)
         local idStock = self.id
         local class = self.storage:getClassToId(idStock)
@@ -138,14 +138,14 @@ local Entity = {
 
         local openPrice = self.ds:O(currentBar)
 
-        -- находим разницу между открытием и текущей ценой
+        -- РЅР°С…РѕРґРёРј СЂР°Р·РЅРёС†Сѓ РјРµР¶РґСѓ РѕС‚РєСЂС‹С‚РёРµРј Рё С‚РµРєСѓС‰РµР№ С†РµРЅРѕР№
         local atrOpen = math.abs(openPrice - lastPrice)
 
         return self:getRangeDay(atrOpen)
     end,
 
-    -- вернуть полный Atr текущего дневного бара
-    -- (текущий Hi) - (текущий Low)
+    -- РІРµСЂРЅСѓС‚СЊ РїРѕР»РЅС‹Р№ Atr С‚РµРєСѓС‰РµРіРѕ РґРЅРµРІРЅРѕРіРѕ Р±Р°СЂР°
+    -- (С‚РµРєСѓС‰РёР№ Hi) - (С‚РµРєСѓС‰РёР№ Low)
     getAtrFull = function(self)
         local numBar = self.ds:Size()
 
@@ -158,7 +158,7 @@ local Entity = {
         return self:getRangeDay(atr)
     end,
 
-    -- вернуть hi low последних 3 баров
+    -- РІРµСЂРЅСѓС‚СЊ hi low РїРѕСЃР»РµРґРЅРёС… 3 Р±Р°СЂРѕРІ
     getHiLow = function(self)
         local numBar = self.ds:Size()
 
@@ -188,7 +188,7 @@ local Entity = {
         return result
     end,
 
-    -- вернуть объём последних 3 баров
+    -- РІРµСЂРЅСѓС‚СЊ РѕР±СЉС‘Рј РїРѕСЃР»РµРґРЅРёС… 3 Р±Р°СЂРѕРІ
     getVolume = function(self)
         local numBar = self.ds:Size()
 
@@ -205,7 +205,7 @@ local Entity = {
         return result
     end,
 
-    -- вернуть hi, low, close предыдущего дня
+    -- РІРµСЂРЅСѓС‚СЊ hi, low, close РїСЂРµРґС‹РґСѓС‰РµРіРѕ РґРЅСЏ
     getHiLowClosePreviousBar = function(self)
         local numBar = self.ds:Size() - 1
 
@@ -218,7 +218,7 @@ local Entity = {
         return dto
     end,
 
-    -- для часовика (10 часов - для акций)
+    -- РґР»СЏ С‡Р°СЃРѕРІРёРєР° (10 С‡Р°СЃРѕРІ - РґР»СЏ Р°РєС†РёР№)
     getHiLowBarHour10 = function(self)
         local result = {
             hi = 0,
@@ -237,7 +237,7 @@ local Entity = {
         return result
     end,
 
-    -- для часовика (9 часов - для фьючерсов)
+    -- РґР»СЏ С‡Р°СЃРѕРІРёРєР° (9 С‡Р°СЃРѕРІ - РґР»СЏ С„СЊСЋС‡РµСЂСЃРѕРІ)
     getHiLowBarHour9 = function(self)
         local result = {
             hi = 0,

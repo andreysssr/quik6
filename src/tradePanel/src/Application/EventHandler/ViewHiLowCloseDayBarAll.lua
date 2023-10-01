@@ -80,8 +80,8 @@ local EventHandler = {
 
     --
     reset = function(self, idStock)
-        -- получить значение condition
-        -- если включен - выключить и поменять в панели
+        -- РїРѕР»СѓС‡РёС‚СЊ Р·РЅР°С‡РµРЅРёРµ condition
+        -- РµСЃР»Рё РІРєР»СЋС‡РµРЅ - РІС‹РєР»СЋС‡РёС‚СЊ Рё РїРѕРјРµРЅСЏС‚СЊ РІ РїР°РЅРµР»Рё
         local status = self.microServiceConditionPanelTrade:getMarkerDayBarStatus(idStock)
 
         if status then
@@ -99,7 +99,7 @@ local EventHandler = {
         end
     end,
 
-    -- показать линии для всех бумаг
+    -- РїРѕРєР°Р·Р°С‚СЊ Р»РёРЅРёРё РґР»СЏ РІСЃРµС… Р±СѓРјР°Рі
     resetAll = function(self)
         local listHomework = self.storage:getHomeworkId()
 

@@ -50,22 +50,22 @@ local EventHandler = {
         self.timerName = container:get("config").timerUpdateBarLinesToChart.timerName
         self.timerPause = container:get("config").timerUpdateBarLinesToChart.timerPause
 
-        -- запускаем таймер
+        -- Р·Р°РїСѓСЃРєР°РµРј С‚Р°Р№РјРµСЂ
         self.timer:set(self.timerName, self.timerPause)
 
         return self
     end,
 
 
-    -- меняем цвет поля в торговой панели
+    -- РјРµРЅСЏРµРј С†РІРµС‚ РїРѕР»СЏ РІ С‚РѕСЂРіРѕРІРѕР№ РїР°РЅРµР»Рё
     handle = function(self, event)
-        -- обновление происходит с частотой записанной в конфиге (updatePoleLine.timerPause)
+        -- РѕР±РЅРѕРІР»РµРЅРёРµ РїСЂРѕРёСЃС…РѕРґРёС‚ СЃ С‡Р°СЃС‚РѕС‚РѕР№ Р·Р°РїРёСЃР°РЅРЅРѕР№ РІ РєРѕРЅС„РёРіРµ (updatePoleLine.timerPause)
         if self.timer:allows(self.timerName) then
             self.microserviceMarkerBarDayLineCloseToChart:updateLocation()
             self.microserviceMarkerBarDayLineHiToChart:updateLocation()
             self.microserviceMarkerBarDayLineLowToChart:updateLocation()
 
-            -- запускаем таймер
+            -- Р·Р°РїСѓСЃРєР°РµРј С‚Р°Р№РјРµСЂ
             self.timer:set(self.timerName, self.timerPause)
 
             self.sender:send("ChangedLinesInCharts", { name = self.name })

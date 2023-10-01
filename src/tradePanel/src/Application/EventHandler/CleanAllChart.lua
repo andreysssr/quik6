@@ -1,4 +1,4 @@
---- EventHandler CleanAllChart - удаляет все метки с графиков
+--- EventHandler CleanAllChart - СѓРґР°Р»СЏРµС‚ РІСЃРµ РјРµС‚РєРё СЃ РіСЂР°С„РёРєРѕРІ
 
 local EventHandler = {
     --
@@ -23,7 +23,7 @@ local EventHandler = {
         local arrayStock = self.storage:getHomeworkId()
 
         for i = 1, #arrayStock do
-            -- при первом запуске - очищаем графики
+            -- РїСЂРё РїРµСЂРІРѕРј Р·Р°РїСѓСЃРєРµ - РѕС‡РёС‰Р°РµРј РіСЂР°С„РёРєРё
             self.serviceClean:clean(arrayStock[i])
         end
     end,

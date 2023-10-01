@@ -25,16 +25,16 @@ local Factory = {
         return self
     end,
 
-    -- создание Entity_BasePrice и сохранение его в репозиторий
+    -- СЃРѕР·РґР°РЅРёРµ Entity_BasePrice Рё СЃРѕС…СЂР°РЅРµРЅРёРµ РµРіРѕ РІ СЂРµРїРѕР·РёС‚РѕСЂРёР№
     createEntity = function(self, idStock)
         local class = self.storage:getClassToId(idStock)
 
         local interval = self.storage:getIntervalToId(idStock)
 
-        -- Создаем таблицу со всеми свечами нужного интервала, класса и кода
+        -- РЎРѕР·РґР°РµРј С‚Р°Р±Р»РёС†Сѓ СЃРѕ РІСЃРµРјРё СЃРІРµС‡Р°РјРё РЅСѓР¶РЅРѕРіРѕ РёРЅС‚РµСЂРІР°Р»Р°, РєР»Р°СЃСЃР° Рё РєРѕРґР°
         local ds, error_desc = CreateDataSource(class, idStock, INTERVAL_H1)
 
-        -- получаем источник данных
+        -- РїРѕР»СѓС‡Р°РµРј РёСЃС‚РѕС‡РЅРёРє РґР°РЅРЅС‹С…
         local classEntityDs = self.container:get("Entity_Ds")
 
         local entity = {

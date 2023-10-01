@@ -49,8 +49,8 @@ local UseCase = {
         return self
     end,
 
-    -- разрешено ли действие с бумагой
-    -- для этого действия бумага должна быть полностью активной, без ограничений
+    -- СЂР°Р·СЂРµС€РµРЅРѕ Р»Рё РґРµР№СЃС‚РІРёРµ СЃ Р±СѓРјР°РіРѕР№
+    -- РґР»СЏ СЌС‚РѕРіРѕ РґРµР№СЃС‚РІРёСЏ Р±СѓРјР°РіР° РґРѕР»Р¶РЅР° Р±С‹С‚СЊ РїРѕР»РЅРѕСЃС‚СЊСЋ Р°РєС‚РёРІРЅРѕР№, Р±РµР· РѕРіСЂР°РЅРёС‡РµРЅРёР№
     allowedAction = function(self, idStock)
         local status = self.entityServiceStock:getStatus(idStock)
 
@@ -61,35 +61,35 @@ local UseCase = {
         return false
     end,
 
-    -- открыть позицию по лучшей цене
+    -- РѕС‚РєСЂС‹С‚СЊ РїРѕР·РёС†РёСЋ РїРѕ Р»СѓС‡С€РµР№ С†РµРЅРµ
     openPosition = function(self, idStock, operation)
         self.validator:checkId(idStock)
         self.validator:check_buy_sell(operation)
 
-        -- если бумага не активна для данных действий
+        -- РµСЃР»Рё Р±СѓРјР°РіР° РЅРµ Р°РєС‚РёРІРЅР° РґР»СЏ РґР°РЅРЅС‹С… РґРµР№СЃС‚РІРёР№
         if not self:allowedAction(idStock) then
             return
         end
 
-        -- порядковый номер для транзакции
+        -- РїРѕСЂСЏРґРєРѕРІС‹Р№ РЅРѕРјРµСЂ РґР»СЏ С‚СЂР°РЅР·Р°РєС†РёРё
         local idTransact = self.nextId:getId()
 
-        -- получаем колличество лотов инструмента
+        -- РїРѕР»СѓС‡Р°РµРј РєРѕР»Р»РёС‡РµСЃС‚РІРѕ Р»РѕС‚РѕРІ РёРЅСЃС‚СЂСѓРјРµРЅС‚Р°
         local qty = self.entityServiceStock:getLots(idStock)
 
-        -- получаем класс инструмента
+        -- РїРѕР»СѓС‡Р°РµРј РєР»Р°СЃСЃ РёРЅСЃС‚СЂСѓРјРµРЅС‚Р°
         local class = self.storage:getClassToId(idStock)
 
-        -- получаем последнюю цену
+        -- РїРѕР»СѓС‡Р°РµРј РїРѕСЃР»РµРґРЅСЋСЋ С†РµРЅСѓ
         local lastPrice = self.servicePrices:getLastPrice(idStock, class)
 
-        -- расчитываем данные для запроса, стопа, переносас стопа, тейка
+        -- СЂР°СЃС‡РёС‚С‹РІР°РµРј РґР°РЅРЅС‹Рµ РґР»СЏ Р·Р°РїСЂРѕСЃР°, СЃС‚РѕРїР°, РїРµСЂРµРЅРѕСЃР°СЃ СЃС‚РѕРїР°, С‚РµР№РєР°
         self.entityServiceTradeParams:calculateParamsToPrice(idStock, operation, lastPrice)
 
-        -- получаем максимальную и минимальую цены продажи и покупки по рынку
+        -- РїРѕР»СѓС‡Р°РµРј РјР°РєСЃРёРјР°Р»СЊРЅСѓСЋ Рё РјРёРЅРёРјР°Р»СЊСѓСЋ С†РµРЅС‹ РїСЂРѕРґР°Р¶Рё Рё РїРѕРєСѓРїРєРё РїРѕ СЂС‹РЅРєСѓ
         local MinMaxPrice = self.servicePrices:getMinMaxPrices(idStock, class)
 
-        -- подготавливаем данные для транзакции
+        -- РїРѕРґРіРѕС‚Р°РІР»РёРІР°РµРј РґР°РЅРЅС‹Рµ РґР»СЏ С‚СЂР°РЅР·Р°РєС†РёРё
         if operation == "buy" then
 
             local order = {
@@ -105,10 +105,10 @@ local UseCase = {
                 price = MinMaxPrice.maxPrice,
             }
 
-            -- отправляем транзакцию в диспетчер
+            -- РѕС‚РїСЂР°РІР»СЏРµРј С‚СЂР°РЅР·Р°РєС†РёСЋ РІ РґРёСЃРїРµС‚С‡РµСЂ
             self.dispatcher:OrderMarketBuy(order)
 
-            -- добавляем данные
+            -- РґРѕР±Р°РІР»СЏРµРј РґР°РЅРЅС‹Рµ
             self.entityServiceTransact:create(idTransact, {
                 idStock = idStock,
                 idParams = idTransact,
@@ -118,7 +118,7 @@ local UseCase = {
             })
         end
 
-        -- подготавливаем данные для транзакции
+        -- РїРѕРґРіРѕС‚Р°РІР»РёРІР°РµРј РґР°РЅРЅС‹Рµ РґР»СЏ С‚СЂР°РЅР·Р°РєС†РёРё
         if operation == "sell" then
 
             local order = {
@@ -134,10 +134,10 @@ local UseCase = {
                 price = MinMaxPrice.minPrice,
             }
 
-            -- отправляем транзакцию в диспетчер
+            -- РѕС‚РїСЂР°РІР»СЏРµРј С‚СЂР°РЅР·Р°РєС†РёСЋ РІ РґРёСЃРїРµС‚С‡РµСЂ
             self.dispatcher:OrderMarketSell(order)
 
-            -- добавляем данные
+            -- РґРѕР±Р°РІР»СЏРµРј РґР°РЅРЅС‹Рµ
             self.entityServiceTransact:create(idTransact, {
                 idStock = idStock,
                 idParams = idTransact,

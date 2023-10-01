@@ -1,113 +1,113 @@
---- подписка на события
+--- РїРѕРґРїРёСЃРєР° РЅР° СЃРѕР±С‹С‚РёСЏ
 
--- создаём необходимые репозитории
+-- СЃРѕР·РґР°С‘Рј РЅРµРѕР±С…РѕРґРёРјС‹Рµ СЂРµРїРѕР·РёС‚РѕСЂРёРё
 app:attach("appStarted", "Action_CreateRepositories")
 
--- подписываем источники данных
+-- РїРѕРґРїРёСЃС‹РІР°РµРј РёСЃС‚РѕС‡РЅРёРєРё РґР°РЅРЅС‹С…
 app:attach("appStarted", "Action_CreateDsD")
 app:attach("appStarted", "Action_CreateDsH1")
 
--- создаём Entity BasePrice для инструментов по домашке
+-- СЃРѕР·РґР°С‘Рј Entity BasePrice РґР»СЏ РёРЅСЃС‚СЂСѓРјРµРЅС‚РѕРІ РїРѕ РґРѕРјР°С€РєРµ
 app:attach("appStarted", "Action_CreateEntityBasePrice")
 
--- обновляем расчётные данные для basePrice всех инструментов
+-- РѕР±РЅРѕРІР»СЏРµРј СЂР°СЃС‡С‘С‚РЅС‹Рµ РґР°РЅРЅС‹Рµ РґР»СЏ basePrice РІСЃРµС… РёРЅСЃС‚СЂСѓРјРµРЅС‚РѕРІ
 app:attach("appStarted", "Action_UpdateBasePrice")
 
--- создаём Entity Stock инструменты по домашке
+-- СЃРѕР·РґР°С‘Рј Entity Stock РёРЅСЃС‚СЂСѓРјРµРЅС‚С‹ РїРѕ РґРѕРјР°С€РєРµ
 app:attach("appStarted", "Action_CreateEntityStock")
 
--- вызвать пересчёт максимального количества лотов для всех бумаг
+-- РІС‹Р·РІР°С‚СЊ РїРµСЂРµСЃС‡С‘С‚ РјР°РєСЃРёРјР°Р»СЊРЅРѕРіРѕ РєРѕР»РёС‡РµСЃС‚РІР° Р»РѕС‚РѕРІ РґР»СЏ РІСЃРµС… Р±СѓРјР°Рі
 app:attach("appStarted", "Action_CalculateMaxLotsEntityStock")
 
--- создаём Entity TradeParams для инструментов по домашке
+-- СЃРѕР·РґР°С‘Рј Entity TradeParams РґР»СЏ РёРЅСЃС‚СЂСѓРјРµРЅС‚РѕРІ РїРѕ РґРѕРјР°С€РєРµ
 app:attach("appStarted", "Action_CreateEntityTradeParams")
 
--- добавить уровни и линию basePrice на график
+-- РґРѕР±Р°РІРёС‚СЊ СѓСЂРѕРІРЅРё Рё Р»РёРЅРёСЋ basePrice РЅР° РіСЂР°С„РёРє
 app:attach("appStarted", "Action_AddLevelsToChart")
 
--- обновляем нарисованные линии - сдвигаются в право по времени (каждые 4 минуты)
+-- РѕР±РЅРѕРІР»СЏРµРј РЅР°СЂРёСЃРѕРІР°РЅРЅС‹Рµ Р»РёРЅРёРё - СЃРґРІРёРіР°СЋС‚СЃСЏ РІ РїСЂР°РІРѕ РїРѕ РІСЂРµРјРµРЅРё (РєР°Р¶РґС‹Рµ 4 РјРёРЅСѓС‚С‹)
 app:attach("appRun", "Action_AddLevelsToChart@updateLocation")
 
--- создание панели торговли
+-- СЃРѕР·РґР°РЅРёРµ РїР°РЅРµР»Рё С‚РѕСЂРіРѕРІР»Рё
 app:attach("appStarted", "Action_CreatePanelTrade")
 app:attach("ClosedPanelTrade", "Action_CreatePanelTrade")
 
--- создание панели оповещений
+-- СЃРѕР·РґР°РЅРёРµ РїР°РЅРµР»Рё РѕРїРѕРІРµС‰РµРЅРёР№
 app:attach("appStarted", "Action_CreatePanelAlert")
 app:attach("ClosedPanelAlert", "Action_CreatePanelAlert")
 
--- торговая панель создана - нужно заполнение
+-- С‚РѕСЂРіРѕРІР°СЏ РїР°РЅРµР»СЊ СЃРѕР·РґР°РЅР° - РЅСѓР¶РЅРѕ Р·Р°РїРѕР»РЅРµРЅРёРµ
 app:attach("CreatedPanelTrade", "EventHandler_CompletePanelTrade")
 
--- мигание индикатора на торговой панели
+-- РјРёРіР°РЅРёРµ РёРЅРґРёРєР°С‚РѕСЂР° РЅР° С‚РѕСЂРіРѕРІРѕР№ РїР°РЅРµР»Рё
 app:attach("appRun", "Action_IndicatorPanelTrade")
 
--- отправляем транзакции если они есть
+-- РѕС‚РїСЂР°РІР»СЏРµРј С‚СЂР°РЅР·Р°РєС†РёРё РµСЃР»Рё РѕРЅРё РµСЃС‚СЊ
 app:attach("appRun", "TransactDispatcher@dispatch")
 
--- обновляем расчётные данные для basePrice всех инструментов
+-- РѕР±РЅРѕРІР»СЏРµРј СЂР°СЃС‡С‘С‚РЅС‹Рµ РґР°РЅРЅС‹Рµ РґР»СЏ basePrice РІСЃРµС… РёРЅСЃС‚СЂСѓРјРµРЅС‚РѕРІ
 app:attach("appRun", "Action_UpdateBasePrice")
 
--- обновить поля в торговой панели по таймеру
+-- РѕР±РЅРѕРІРёС‚СЊ РїРѕР»СЏ РІ С‚РѕСЂРіРѕРІРѕР№ РїР°РЅРµР»Рё РїРѕ С‚Р°Р№РјРµСЂСѓ
 app:attach("appRun", "EventHandler_PanelTrade_TimerUpdatePoleLastPrice")
 app:attach("appRun", "EventHandler_PanelTrade_TimerUpdatePoleLevel")
 app:attach("appRun", "EventHandler_PanelTrade_TimerUpdatePoleStrong")
 app:attach("appRun", "EventHandler_PanelTrade_TimerUpdatePoleLine")
 
 --- appStopped
--- удаляет все метки и линии на всех графиках
+-- СѓРґР°Р»СЏРµС‚ РІСЃРµ РјРµС‚РєРё Рё Р»РёРЅРёРё РЅР° РІСЃРµС… РіСЂР°С„РёРєР°С…
 app:attach("appStopped", "EventHandler_CleanAllChart")
 
--- закрываем все источники данных
+-- Р·Р°РєСЂС‹РІР°РµРј РІСЃРµ РёСЃС‚РѕС‡РЅРёРєРё РґР°РЅРЅС‹С…
 app:attach("appStopped", "EventHandler_ClosePanel")
 
 --- ===========================================================
 ---		Domain Events
 --- ===========================================================
--- события обратных функций onOrder, onStopOrder, onTrade
+-- СЃРѕР±С‹С‚РёСЏ РѕР±СЂР°С‚РЅС‹С… С„СѓРЅРєС†РёР№ onOrder, onStopOrder, onTrade
 app:attach("Callback_OrderAndStopOrder", "EventHandler_Callback_ParseCallback@parseOrderAndStopOrder")
 app:attach("Callback_Trade", "EventHandler_Callback_ChangePositionEntityStock@changePosition")
 
--- поменялся статус транзакции
+-- РїРѕРјРµРЅСЏР»СЃСЏ СЃС‚Р°С‚СѓСЃ С‚СЂР°РЅР·Р°РєС†РёРё
 app:attach("EntityTransact_ChangedTransactStatus",	"EventHandler_ChangeConditionEntityStock")
 
--- произошла смена базовой цены инструмента basePrice
--- поменять положение линий базовой цены на графике
+-- РїСЂРѕРёР·РѕС€Р»Р° СЃРјРµРЅР° Р±Р°Р·РѕРІРѕР№ С†РµРЅС‹ РёРЅСЃС‚СЂСѓРјРµРЅС‚Р° basePrice
+-- РїРѕРјРµРЅСЏС‚СЊ РїРѕР»РѕР¶РµРЅРёРµ Р»РёРЅРёР№ Р±Р°Р·РѕРІРѕР№ С†РµРЅС‹ РЅР° РіСЂР°С„РёРєРµ
 app:attach("BasePrice_ChangedBasePrice", "EventHandler_ChangeLocationBasePriceLineOnChart")
 
--- произошла смена активной бумаги в микросервисе
--- обновить состояние инструмента в Торговой панели
+-- РїСЂРѕРёР·РѕС€Р»Р° СЃРјРµРЅР° Р°РєС‚РёРІРЅРѕР№ Р±СѓРјР°РіРё РІ РјРёРєСЂРѕСЃРµСЂРІРёСЃРµ
+-- РѕР±РЅРѕРІРёС‚СЊ СЃРѕСЃС‚РѕСЏРЅРёРµ РёРЅСЃС‚СЂСѓРјРµРЅС‚Р° РІ РўРѕСЂРіРѕРІРѕР№ РїР°РЅРµР»Рё
 app:attach("MicroService_ChangedActiveStock", "EventHandler_PanelTrade_UpdatePoleStock")
 
--- обновить надпись активного инструмента в графике (Active)
+-- РѕР±РЅРѕРІРёС‚СЊ РЅР°РґРїРёСЃСЊ Р°РєС‚РёРІРЅРѕРіРѕ РёРЅСЃС‚СЂСѓРјРµРЅС‚Р° РІ РіСЂР°С„РёРєРµ (Active)
 app:attach("MicroService_ChangedActiveStock", "EventHandler_ChangeChartActive")
 
--- команда на отправку транзакций
+-- РєРѕРјР°РЅРґР° РЅР° РѕС‚РїСЂР°РІРєСѓ С‚СЂР°РЅР·Р°РєС†РёР№
 app:attach("Command_AddStop", "EventHandler_Command_AddStop")
 app:attach("Command_AddStopLinked", "EventHandler_Command_AddStopLinked")
 app:attach("Command_DeleteOrdersAndStopOrders", "EventHandler_Command_DeleteOrdersAndStopOrders")
 
--- открыта позиция - сохранить params в кеше
+-- РѕС‚РєСЂС‹С‚Р° РїРѕР·РёС†РёСЏ - СЃРѕС…СЂР°РЅРёС‚СЊ params РІ РєРµС€Рµ
 app:attach("EntityStock_OpenedPosition", "EventHandler_PositionCache_AddRemoveToCache@addCache")
 app:attach("EntityParams_UpdatedParams", "EventHandler_PositionCache_AddRemoveToCache@addCache")
 app:attach("EntityStock_OpenedPosition", "EventHandler_PanelAlert_AddToPanelAlert@openedPosition")
 
--- закрыта позиция
--- удаляем данные из кеша
+-- Р·Р°РєСЂС‹С‚Р° РїРѕР·РёС†РёСЏ
+-- СѓРґР°Р»СЏРµРј РґР°РЅРЅС‹Рµ РёР· РєРµС€Р°
 app:attach("EntityStock_ClosedPosition", "EventHandler_PositionCache_AddRemoveToCache@removeCache")
 app:attach("EntityStock_ClosedPosition", "EventHandler_PanelAlert_AddToPanelAlert@closedPosition")
 
--- при изменении позиции - обновить поле позиции
+-- РїСЂРё РёР·РјРµРЅРµРЅРёРё РїРѕР·РёС†РёРё - РѕР±РЅРѕРІРёС‚СЊ РїРѕР»Рµ РїРѕР·РёС†РёРё
 app:attach("EntityStock_ChangedPosition", "EventHandler_PanelTrade_UpdatePolePosition")
 
--- при поступлении данных ордеров и стоп-ордеров - обновить поле заявки
+-- РїСЂРё РїРѕСЃС‚СѓРїР»РµРЅРёРё РґР°РЅРЅС‹С… РѕСЂРґРµСЂРѕРІ Рё СЃС‚РѕРї-РѕСЂРґРµСЂРѕРІ - РѕР±РЅРѕРІРёС‚СЊ РїРѕР»Рµ Р·Р°СЏРІРєРё
 app:attach("Callback_OrderAndStopOrder", "EventHandler_PanelTrade_UpdatePoleOrdersAll")
 
 app:attach("Callback_OrderAndStopOrder", "EventHandler_UpdateMaxLots")
 app:attach("EntityStock_ChangedMaxLots", "EventHandler_PanelTrade_UpdatePoleMaxLots")
 app:attach("EntityStock_ChangedStatus", "EventHandler_PanelTrade_UpdatePoleStock@changedStatus")
 
--- кликнули по полю торговой панели
+-- РєР»РёРєРЅСѓР»Рё РїРѕ РїРѕР»СЋ С‚РѕСЂРіРѕРІРѕР№ РїР°РЅРµР»Рё
 app:attach("PanelTrade_Clicked_stock", "EventHandler_ClickedPanelTrade_PoleStock")
 
 app:attach("PanelTrade_Clicked_take2", "EventHandler_ClickedPanelTrade_PoleTake@select2")
@@ -126,61 +126,61 @@ app:attach("PanelTrade_Clicked_comment", "EventHandler_ClickedPanelTrade_PoleCom
 app:attach("PanelTrade_Clicked_lastPrice", "EventHandler_ClickedPanelTrade_PoleLastPrice")
 app:attach("PanelTrade_Clicked_marker1", "EventHandler_ClickedPanelTrade_PoleMarker1")
 
--- меняем значение в панели
+-- РјРµРЅСЏРµРј Р·РЅР°С‡РµРЅРёРµ РІ РїР°РЅРµР»Рё
 app:attach("PanelTrade_Clicked_markerTrend", "EventHandler_ClickedPanelTrade_PoleMarkerTrend")
 
--- добавляем/удаляем тренд на график бумаги при изменении нажатия на (markerTrend)
+-- РґРѕР±Р°РІР»СЏРµРј/СѓРґР°Р»СЏРµРј С‚СЂРµРЅРґ РЅР° РіСЂР°С„РёРє Р±СѓРјР°РіРё РїСЂРё РёР·РјРµРЅРµРЅРёРё РЅР°Р¶Р°С‚РёСЏ РЅР° (markerTrend)
 app:attach("PanelTrade_Clicked_markerTrend", "EventHandler_ClickedPanelTrade_UpdateTrendToChart")
 
--- обновляем значения по таймеру раз в 15 минут включённых в список
+-- РѕР±РЅРѕРІР»СЏРµРј Р·РЅР°С‡РµРЅРёСЏ РїРѕ С‚Р°Р№РјРµСЂСѓ СЂР°Р· РІ 15 РјРёРЅСѓС‚ РІРєР»СЋС‡С‘РЅРЅС‹С… РІ СЃРїРёСЃРѕРє
 app:attach("appRun", "EventHandler_TimerUpdateTrendToChart")
 
--- добавляет маркер тренд на график для бумаг у которых есть комментарий в домашке
+-- РґРѕР±Р°РІР»СЏРµС‚ РјР°СЂРєРµСЂ С‚СЂРµРЅРґ РЅР° РіСЂР°С„РёРє РґР»СЏ Р±СѓРјР°Рі Сѓ РєРѕС‚РѕСЂС‹С… РµСЃС‚СЊ РєРѕРјРјРµРЅС‚Р°СЂРёР№ РІ РґРѕРјР°С€РєРµ
 app:attach("appStarted", "EventHandler_PrepareViewMarkerTrendToChart")
 
--- appStarted если есть сильный уровень - поменять состояние микросервисе состояния
+-- appStarted РµСЃР»Рё РµСЃС‚СЊ СЃРёР»СЊРЅС‹Р№ СѓСЂРѕРІРµРЅСЊ - РїРѕРјРµРЅСЏС‚СЊ СЃРѕСЃС‚РѕСЏРЅРёРµ РјРёРєСЂРѕСЃРµСЂРІРёСЃРµ СЃРѕСЃС‚РѕСЏРЅРёСЏ
 app:attach("appStarted", "EventHandler_PrepareViewStrongLevel")
 
--- меняем значение в панели
+-- РјРµРЅСЏРµРј Р·РЅР°С‡РµРЅРёРµ РІ РїР°РЅРµР»Рё
 app:attach("PanelTrade_Clicked_markerDayBar", "EventHandler_ClickedPanelTrade_PoleMarkerDayBar")
 
--- добавляем/удаляем линию на график бумаги при изменении нажатия на (PoleDayBar)
+-- РґРѕР±Р°РІР»СЏРµРј/СѓРґР°Р»СЏРµРј Р»РёРЅРёСЋ РЅР° РіСЂР°С„РёРє Р±СѓРјР°РіРё РїСЂРё РёР·РјРµРЅРµРЅРёРё РЅР°Р¶Р°С‚РёСЏ РЅР° (PoleDayBar)
 app:attach("PanelTrade_Clicked_markerDayBar", "EventHandler_ClickedPanelTrade_UpdateBarDayLinesToChart")
 
--- показывает уровни вчерашнего дневного бара hi, low, close
+-- РїРѕРєР°Р·С‹РІР°РµС‚ СѓСЂРѕРІРЅРё РІС‡РµСЂР°С€РЅРµРіРѕ РґРЅРµРІРЅРѕРіРѕ Р±Р°СЂР° hi, low, close
 app:attach("appStarted", "EventHandler_PrepareViewHiLowCloseDayBar")
 
--- обновляем значения по таймеру включённых в список
+-- РѕР±РЅРѕРІР»СЏРµРј Р·РЅР°С‡РµРЅРёСЏ РїРѕ С‚Р°Р№РјРµСЂСѓ РІРєР»СЋС‡С‘РЅРЅС‹С… РІ СЃРїРёСЃРѕРє
 app:attach("appRun", "EventHandler_TimerUpdateBarDayLinesToChart")
 
--- обновить уровни  на графике
+-- РѕР±РЅРѕРІРёС‚СЊ СѓСЂРѕРІРЅРё  РЅР° РіСЂР°С„РёРєРµ
 app:attach("ChangedLinesInCharts", "EventHandler_UpdateBaseLinesInCharts")
 
--- меняем значение в панели
+-- РјРµРЅСЏРµРј Р·РЅР°С‡РµРЅРёРµ РІ РїР°РЅРµР»Рё
 app:attach("PanelTrade_Clicked_markerHourBar", "EventHandler_ClickedPanelTrade_PoleMarkerHourBar")
 
--- добавляем/удаляем линию на график бумаги при изменении нажатия на (PoleDayBar)
+-- РґРѕР±Р°РІР»СЏРµРј/СѓРґР°Р»СЏРµРј Р»РёРЅРёСЋ РЅР° РіСЂР°С„РёРє Р±СѓРјР°РіРё РїСЂРё РёР·РјРµРЅРµРЅРёРё РЅР°Р¶Р°С‚РёСЏ РЅР° (PoleDayBar)
 app:attach("PanelTrade_Clicked_markerHourBar", "EventHandler_ClickedPanelTrade_UpdateBarHourLinesToChart")
 
--- обновляем значения по таймеру включённых в список
+-- РѕР±РЅРѕРІР»СЏРµРј Р·РЅР°С‡РµРЅРёСЏ РїРѕ С‚Р°Р№РјРµСЂСѓ РІРєР»СЋС‡С‘РЅРЅС‹С… РІ СЃРїРёСЃРѕРє
 app:attach("appRun", "EventHandler_TimerUpdateBarHourLinesToChart")
 
--- меняем значение в панели
+-- РјРµРЅСЏРµРј Р·РЅР°С‡РµРЅРёРµ РІ РїР°РЅРµР»Рё
 app:attach("PanelTrade_Clicked_markerMirrorLineHiLow", "EventHandler_ClickedPanelTrade_PoleMarkerMirrorLineHiLow")
 
--- добавляем/удаляем линию на график бумаги при изменении нажатия на (PoleDayBar)
+-- РґРѕР±Р°РІР»СЏРµРј/СѓРґР°Р»СЏРµРј Р»РёРЅРёСЋ РЅР° РіСЂР°С„РёРє Р±СѓРјР°РіРё РїСЂРё РёР·РјРµРЅРµРЅРёРё РЅР°Р¶Р°С‚РёСЏ РЅР° (PoleDayBar)
 app:attach("PanelTrade_Clicked_markerMirrorLineHiLow", "EventHandler_ClickedPanelTrade_UpdateMirrorHiLowLinesToChart")
 
--- показывает уровни вчерашнего дневного бара hi, low, close
+-- РїРѕРєР°Р·С‹РІР°РµС‚ СѓСЂРѕРІРЅРё РІС‡РµСЂР°С€РЅРµРіРѕ РґРЅРµРІРЅРѕРіРѕ Р±Р°СЂР° hi, low, close
 app:attach("appStarted", "EventHandler_PrepareViewMarkerMirrorLineHiLow")
 
--- обновляем значения по таймеру включённых в список
+-- РѕР±РЅРѕРІР»СЏРµРј Р·РЅР°С‡РµРЅРёСЏ РїРѕ С‚Р°Р№РјРµСЂСѓ РІРєР»СЋС‡С‘РЅРЅС‹С… РІ СЃРїРёСЃРѕРє
 app:attach("appRun", "EventHandler_TimerUpdateMirrorLinesToChart")
 
--- обновляем значения по таймеру для уровней интервала
+-- РѕР±РЅРѕРІР»СЏРµРј Р·РЅР°С‡РµРЅРёСЏ РїРѕ С‚Р°Р№РјРµСЂСѓ РґР»СЏ СѓСЂРѕРІРЅРµР№ РёРЅС‚РµСЂРІР°Р»Р°
 app:attach("appRun", "EventHandler_ViewLevelsToChart@updateLocation")
 
--- обновляем значения по таймеру для уровней базовой цены
+-- РѕР±РЅРѕРІР»СЏРµРј Р·РЅР°С‡РµРЅРёСЏ РїРѕ С‚Р°Р№РјРµСЂСѓ РґР»СЏ СѓСЂРѕРІРЅРµР№ Р±Р°Р·РѕРІРѕР№ С†РµРЅС‹
 -- BasePrice_ChangedBasePrice
 app:attachKey("appRun", "EventHandler_ViewBasePriceToChart@updateLocation")
 app:attachKey("ChangedLinesInCharts", "EventHandler_ViewBasePriceToChart@updateLocation")

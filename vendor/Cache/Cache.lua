@@ -7,10 +7,10 @@ local Cache = {
     --
     container = {},
 
-    -- базовый путь для кеша
+    -- Р±Р°Р·РѕРІС‹Р№ РїСѓС‚СЊ РґР»СЏ РєРµС€Р°
     dirPath = "",
 
-    --  расширение файлов для кеша
+    --  СЂР°СЃС€РёСЂРµРЅРёРµ С„Р°Р№Р»РѕРІ РґР»СЏ РєРµС€Р°
     ext = "",
 
     --
@@ -22,9 +22,9 @@ local Cache = {
         return self
     end,
 
-    -- получение пути для общего кеша
+    -- РїРѕР»СѓС‡РµРЅРёРµ РїСѓС‚Рё РґР»СЏ РѕР±С‰РµРіРѕ РєРµС€Р°
     init = function(self, dirName)
-        -- название кеша для сегодняшнего дня
+        -- РЅР°Р·РІР°РЅРёРµ РєРµС€Р° РґР»СЏ СЃРµРіРѕРґРЅСЏС€РЅРµРіРѕ РґРЅСЏ
         --local dir = os.date("%d.%m.%Y")
         local dir = "params"
 
@@ -35,7 +35,7 @@ local Cache = {
         local config = self.container:get("config").dirPath.cacheParams
 
         if is_nil(config) then
-            error("\r\n\r\n" .. "Error: Для Cache в (config) нет настроек (dirPath.cacheParams)")
+            error("\r\n\r\n" .. "Error: Р”Р»СЏ Cache РІ (config) РЅРµС‚ РЅР°СЃС‚СЂРѕРµРє (dirPath.cacheParams)")
         end
 
         local dirCacheGeneral = Autoload:getPathDir(config.dir)
@@ -44,7 +44,7 @@ local Cache = {
         self.ext = config.ext
     end,
 
-    -- если директории для сегодняшнего кеша нет - тогда создаём её
+    -- РµСЃР»Рё РґРёСЂРµРєС‚РѕСЂРёРё РґР»СЏ СЃРµРіРѕРґРЅСЏС€РЅРµРіРѕ РєРµС€Р° РЅРµС‚ - С‚РѕРіРґР° СЃРѕР·РґР°С‘Рј РµС‘
     checkDirPath = function(self)
         if not Dir:exists(self.dirPath) then
             Dir:create(self.dirPath)
@@ -55,7 +55,7 @@ local Cache = {
         return self.dirPath .. "\\" .. key .. "." .. self.ext
     end,
 
-    -- подключить файл кеша
+    -- РїРѕРґРєР»СЋС‡РёС‚СЊ С„Р°Р№Р» РєРµС€Р°
     getFile = function(self, key)
         local fileName = self:getKey(key)
 
@@ -66,8 +66,8 @@ local Cache = {
         return nil
     end,
 
-    -- вернуть значение по ключу
-    -- если есть ключ - возвращает данные, иначе вернёт nil
+    -- РІРµСЂРЅСѓС‚СЊ Р·РЅР°С‡РµРЅРёРµ РїРѕ РєР»СЋС‡Сѓ
+    -- РµСЃР»Рё РµСЃС‚СЊ РєР»СЋС‡ - РІРѕР·РІСЂР°С‰Р°РµС‚ РґР°РЅРЅС‹Рµ, РёРЅР°С‡Рµ РІРµСЂРЅС‘С‚ nil
     get = function(self, key)
         local fileName = self:getKey(key)
 
@@ -78,8 +78,8 @@ local Cache = {
         return nil
     end,
 
-    -- вернуть значения по ключу
-    -- если есть ключ - возвращает данные, иначе вернёт nil
+    -- РІРµСЂРЅСѓС‚СЊ Р·РЅР°С‡РµРЅРёСЏ РїРѕ РєР»СЋС‡Сѓ
+    -- РµСЃР»Рё РµСЃС‚СЊ РєР»СЋС‡ - РІРѕР·РІСЂР°С‰Р°РµС‚ РґР°РЅРЅС‹Рµ, РёРЅР°С‡Рµ РІРµСЂРЅС‘С‚ nil
     getAll = function(self, keyArray)
         local result = {}
 
@@ -88,7 +88,7 @@ local Cache = {
         end
     end,
 
-    -- установить значение для ключа
+    -- СѓСЃС‚Р°РЅРѕРІРёС‚СЊ Р·РЅР°С‡РµРЅРёРµ РґР»СЏ РєР»СЋС‡Р°
     set = function(self, key, value)
         local fileName = self:getKey(key)
 
@@ -99,7 +99,7 @@ local Cache = {
         File:writeUpdate(fileName, value)
     end,
 
-    -- удалить ключ
+    -- СѓРґР°Р»РёС‚СЊ РєР»СЋС‡
     delete = function(self, key)
         local fileName = self:getKey(key)
 
@@ -108,14 +108,14 @@ local Cache = {
         end
     end,
 
-    -- удалить все ключи
+    -- СѓРґР°Р»РёС‚СЊ РІСЃРµ РєР»СЋС‡Рё
     deleteAll = function(self, keyArray)
         for i = 1, #keyArray do
             self:delete(keyArray[i])
         end
     end,
 
-    -- очистить кэш
+    -- РѕС‡РёСЃС‚РёС‚СЊ РєСЌС€
     clear = function(self)
         local listAllKey = Dir:getListFiles(self.dirPath)
 
@@ -124,7 +124,7 @@ local Cache = {
         end
     end,
 
-    -- проверить существование ключа
+    -- РїСЂРѕРІРµСЂРёС‚СЊ СЃСѓС‰РµСЃС‚РІРѕРІР°РЅРёРµ РєР»СЋС‡Р°
     has = function(self, key)
         local fileName = self:getKey(key)
 

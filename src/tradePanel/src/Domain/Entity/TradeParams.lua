@@ -4,32 +4,32 @@ local Entity = {
     --
     name = "Entity_Params",
 
-    -- коэффициент для увеличения количества лотов
-    -- при сравнении с максимальным количеством лотов для покупки
+    -- РєРѕСЌС„С„РёС†РёРµРЅС‚ РґР»СЏ СѓРІРµР»РёС‡РµРЅРёСЏ РєРѕР»РёС‡РµСЃС‚РІР° Р»РѕС‚РѕРІ
+    -- РїСЂРё СЃСЂР°РІРЅРµРЅРёРё СЃ РјР°РєСЃРёРјР°Р»СЊРЅС‹Рј РєРѕР»РёС‡РµСЃС‚РІРѕРј Р»РѕС‚РѕРІ РґР»СЏ РїРѕРєСѓРїРєРё
     ratio = 0,
 
-    -- сервис подсчёта максимального количества лотов
+    -- СЃРµСЂРІРёСЃ РїРѕРґСЃС‡С‘С‚Р° РјР°РєСЃРёРјР°Р»СЊРЅРѕРіРѕ РєРѕР»РёС‡РµСЃС‚РІР° Р»РѕС‚РѕРІ
     serviceMaxLots = {},
 
-    -- сервис базовой цены
+    -- СЃРµСЂРІРёСЃ Р±Р°Р·РѕРІРѕР№ С†РµРЅС‹
     serviceBasePrice = {},
 
-    -- сервис коррекции цены
+    -- СЃРµСЂРІРёСЃ РєРѕСЂСЂРµРєС†РёРё С†РµРЅС‹
     serviceCorrectPrice = {},
 
-    -- настройки для запроса
+    -- РЅР°СЃС‚СЂРѕР№РєРё РґР»СЏ Р·Р°РїСЂРѕСЃР°
     settingZapros = {},
 
-    -- настройки для стопа запроса для - StopOrderLimit
+    -- РЅР°СЃС‚СЂРѕР№РєРё РґР»СЏ СЃС‚РѕРїР° Р·Р°РїСЂРѕСЃР° РґР»СЏ - StopOrderLimit
     settingZaprosOffset = {},
 
-    -- настройки для стопа
+    -- РЅР°СЃС‚СЂРѕР№РєРё РґР»СЏ СЃС‚РѕРїР°
     settingStop = {},
 
-    -- настройки для переноса стопа
+    -- РЅР°СЃС‚СЂРѕР№РєРё РґР»СЏ РїРµСЂРµРЅРѕСЃР° СЃС‚РѕРїР°
     settingStopMove = {},
 
-    -- настройки для тейка
+    -- РЅР°СЃС‚СЂРѕР№РєРё РґР»СЏ С‚РµР№РєР°
     settingTake = {},
 
     --
@@ -68,7 +68,7 @@ local Entity = {
 
             events = {},
 
-            -- промежуточные данные расчётов
+            -- РїСЂРѕРјРµР¶СѓС‚РѕС‡РЅС‹Рµ РґР°РЅРЅС‹Рµ СЂР°СЃС‡С‘С‚РѕРІ
             tmpResult = {
                 zapros = {},
                 stop = {},
@@ -82,22 +82,22 @@ local Entity = {
         return object
     end,
 
-    -- вернуть id Entity_Params - "SBER"
+    -- РІРµСЂРЅСѓС‚СЊ id Entity_Params - "SBER"
     getId = function(self)
         return self.id
     end,
 
-    -- вернуть класс
+    -- РІРµСЂРЅСѓС‚СЊ РєР»Р°СЃСЃ
     getClass = function(self)
         return self.class
     end,
 
-    -- восстановить данные после загрузки программы
+    -- РІРѕСЃСЃС‚Р°РЅРѕРІРёС‚СЊ РґР°РЅРЅС‹Рµ РїРѕСЃР»Рµ Р·Р°РіСЂСѓР·РєРё РїСЂРѕРіСЂР°РјРјС‹
     recoveryParams = function(self, params)
         self.data = params
     end,
 
-    -- проверить что параметры не пустые
+    -- РїСЂРѕРІРµСЂРёС‚СЊ С‡С‚Рѕ РїР°СЂР°РјРµС‚СЂС‹ РЅРµ РїСѓСЃС‚С‹Рµ
     hasParams = function(self)
         if not_empty(self.data) then
             return true
@@ -106,57 +106,57 @@ local Entity = {
         return false
     end,
 
-    -- вернуть параметры под id
+    -- РІРµСЂРЅСѓС‚СЊ РїР°СЂР°РјРµС‚СЂС‹ РїРѕРґ id
     getParamsZapros = function(self)
         if self:hasParams() then
             return copy(self.data.zapros)
         end
 
-        -- если данных под таким id нет - вернём пустой массив
+        -- РµСЃР»Рё РґР°РЅРЅС‹С… РїРѕРґ С‚Р°РєРёРј id РЅРµС‚ - РІРµСЂРЅС‘Рј РїСѓСЃС‚РѕР№ РјР°СЃСЃРёРІ
         return {}
     end,
 
-    -- вернуть параметры под id
+    -- РІРµСЂРЅСѓС‚СЊ РїР°СЂР°РјРµС‚СЂС‹ РїРѕРґ id
     getParamsStop = function(self)
         if self:hasParams() then
             return copy(self.data.stop)
         end
 
-        -- если данных нет - вернём пустой массив
+        -- РµСЃР»Рё РґР°РЅРЅС‹С… РЅРµС‚ - РІРµСЂРЅС‘Рј РїСѓСЃС‚РѕР№ РјР°СЃСЃРёРІ
         return {}
     end,
 
-    -- вернуть параметры под
+    -- РІРµСЂРЅСѓС‚СЊ РїР°СЂР°РјРµС‚СЂС‹ РїРѕРґ
     getParamsStopMove = function(self)
         if self:hasParams() then
             return copy(self.data.stopMove)
         end
 
-        -- если данных нет - вернём пустой массив
+        -- РµСЃР»Рё РґР°РЅРЅС‹С… РЅРµС‚ - РІРµСЂРЅС‘Рј РїСѓСЃС‚РѕР№ РјР°СЃСЃРёРІ
         return {}
     end,
 
-    -- вернуть параметры под
+    -- РІРµСЂРЅСѓС‚СЊ РїР°СЂР°РјРµС‚СЂС‹ РїРѕРґ
     getParamsTake = function(self)
         if self:hasParams() then
             return copy(self.data.take)
         end
 
-        -- если данных нет - вернём пустой массив
+        -- РµСЃР»Рё РґР°РЅРЅС‹С… РЅРµС‚ - РІРµСЂРЅС‘Рј РїСѓСЃС‚РѕР№ РјР°СЃСЃРёРІ
         return {}
     end,
 
-    -- вернуть параметры для
+    -- РІРµСЂРЅСѓС‚СЊ РїР°СЂР°РјРµС‚СЂС‹ РґР»СЏ
     getParams = function(self)
         if self:hasParams() then
             return copy(self.data)
         end
 
-        -- если данных нет - вернём пустой массив
+        -- РµСЃР»Рё РґР°РЅРЅС‹С… РЅРµС‚ - РІРµСЂРЅС‘Рј РїСѓСЃС‚РѕР№ РјР°СЃСЃРёРІ
         return {}
     end,
 
-    -- возвращает противоположное значение операции
+    -- РІРѕР·РІСЂР°С‰Р°РµС‚ РїСЂРѕС‚РёРІРѕРїРѕР»РѕР¶РЅРѕРµ Р·РЅР°С‡РµРЅРёРµ РѕРїРµСЂР°С†РёРё
     getReverseOperation = function(self, operation)
         self.validator:check_buy_sell(operation)
 
@@ -171,32 +171,32 @@ local Entity = {
         return operation
     end,
 
-    -- обновляет базовую цену для расчёта
-    -- используется в (updateParams) - перед расчётом
+    -- РѕР±РЅРѕРІР»СЏРµС‚ Р±Р°Р·РѕРІСѓСЋ С†РµРЅСѓ РґР»СЏ СЂР°СЃС‡С‘С‚Р°
+    -- РёСЃРїРѕР»СЊР·СѓРµС‚СЃСЏ РІ (updateParams) - РїРµСЂРµРґ СЂР°СЃС‡С‘С‚РѕРј
     updateBasePrice = function(self)
         self.basePrice = self.serviceBasePrice:getBasePrice(self.id)
 
         if empty(self.basePrice) then
-            error("\r\n" .. "Error: Отсутствуют параметры (BasePrice) для инструмента (" .. self.id .. ")")
+            error("\r\n" .. "Error: РћС‚СЃСѓС‚СЃС‚РІСѓСЋС‚ РїР°СЂР°РјРµС‚СЂС‹ (BasePrice) РґР»СЏ РёРЅСЃС‚СЂСѓРјРµРЅС‚Р° (" .. self.id .. ")")
         end
     end,
 
-    -- рассчитать параметры для запроса
+    -- СЂР°СЃСЃС‡РёС‚Р°С‚СЊ РїР°СЂР°РјРµС‚СЂС‹ РґР»СЏ Р·Р°РїСЂРѕСЃР°
     -- range = 0, 5, 10,
     calculateParamsZapros = function(self, operation, range)
         self.validator:check_buy_sell(operation)
         self.validator:checkRange(range)
 
-        -- получаем десятую часть шага интервала
+        -- РїРѕР»СѓС‡Р°РµРј РґРµСЃСЏС‚СѓСЋ С‡Р°СЃС‚СЊ С€Р°РіР° РёРЅС‚РµСЂРІР°Р»Р°
         local partStepInterval = self.basePrice.interval / 8 / 10
 
-        -- получаем стоп-цену согласно настройкам
+        -- РїРѕР»СѓС‡Р°РµРј СЃС‚РѕРї-С†РµРЅСѓ СЃРѕРіР»Р°СЃРЅРѕ РЅР°СЃС‚СЂРѕР№РєР°Рј
         local price = self.basePrice.price + (partStepInterval * self.settingZapros[operation][range])
         local stopPrice = self.basePrice.price + (partStepInterval * self.settingZaprosOffset[operation][range])
 
         local marketPrice = 0
 
-        -- корректируем цену по шагу инструмента
+        -- РєРѕСЂСЂРµРєС‚РёСЂСѓРµРј С†РµРЅСѓ РїРѕ С€Р°РіСѓ РёРЅСЃС‚СЂСѓРјРµРЅС‚Р°
         if operation == "buy" then
             price = self.serviceCorrectPrice:getPriceBuy(self.id, self.class, price)
             stopPrice = self.serviceCorrectPrice:getPriceBuy(self.id, self.class, stopPrice)
@@ -211,26 +211,26 @@ local Entity = {
             marketPrice = self.serviceCorrectPrice:getPriceSell(self.id, self.class, marketPrice)
         end
 
-        -- добавляем параметры
+        -- РґРѕР±Р°РІР»СЏРµРј РїР°СЂР°РјРµС‚СЂС‹
         self.tmpResult.zapros.price = d0(price)
         self.tmpResult.zapros.stopPrice = d0(stopPrice)
         self.tmpResult.zapros.marketPrice = d0(marketPrice)
         self.tmpResult.zapros.operation = operation
     end,
 
-    -- рассчитать параметры для стопа
+    -- СЂР°СЃСЃС‡РёС‚Р°С‚СЊ РїР°СЂР°РјРµС‚СЂС‹ РґР»СЏ СЃС‚РѕРїР°
     calculateParamStop = function(self, operation, range)
-        -- получаем десятую часть шага интервала
+        -- РїРѕР»СѓС‡Р°РµРј РґРµСЃСЏС‚СѓСЋ С‡Р°СЃС‚СЊ С€Р°РіР° РёРЅС‚РµСЂРІР°Р»Р°
         local partStepInterval = self.basePrice.interval / 8 / 10
 
-        -- получаем стоп-цену согласно настройкам
+        -- РїРѕР»СѓС‡Р°РµРј СЃС‚РѕРї-С†РµРЅСѓ СЃРѕРіР»Р°СЃРЅРѕ РЅР°СЃС‚СЂРѕР№РєР°Рј
         local stopPrice = self.basePrice.price + (partStepInterval * self.settingStop[operation][range])
         local price = 0
 
-        -- операция стопа противоположна открытию
+        -- РѕРїРµСЂР°С†РёСЏ СЃС‚РѕРїР° РїСЂРѕС‚РёРІРѕРїРѕР»РѕР¶РЅР° РѕС‚РєСЂС‹С‚РёСЋ
         local _operation = self:getReverseOperation(operation)
 
-        -- корректируем цену по шагу инструмента
+        -- РєРѕСЂСЂРµРєС‚РёСЂСѓРµРј С†РµРЅСѓ РїРѕ С€Р°РіСѓ РёРЅСЃС‚СЂСѓРјРµРЅС‚Р°
         if _operation == "buy" then
             stopPrice = self.serviceCorrectPrice:getPriceBuy(self.id, self.class, stopPrice)
 
@@ -243,25 +243,25 @@ local Entity = {
             price = self.serviceCorrectPrice:getPriceSell(self.id, self.class, price)
         end
 
-        -- добавляем параметры
+        -- РґРѕР±Р°РІР»СЏРµРј РїР°СЂР°РјРµС‚СЂС‹
         self.tmpResult.stop.stopPrice = d0(stopPrice)
         self.tmpResult.stop.price = d0(price)
         self.tmpResult.stop.operation = _operation
     end,
 
-    -- рассчитать параметры для переноса стопа
+    -- СЂР°СЃСЃС‡РёС‚Р°С‚СЊ РїР°СЂР°РјРµС‚СЂС‹ РґР»СЏ РїРµСЂРµРЅРѕСЃР° СЃС‚РѕРїР°
     calculateParamStopMove = function(self, operation, range)
-        -- получаем десятую часть шага интервала
+        -- РїРѕР»СѓС‡Р°РµРј РґРµСЃСЏС‚СѓСЋ С‡Р°СЃС‚СЊ С€Р°РіР° РёРЅС‚РµСЂРІР°Р»Р°
         local partStepInterval = self.basePrice.interval / 8 / 10
 
-        -- получаем стоп-цену согласно настройкам
+        -- РїРѕР»СѓС‡Р°РµРј СЃС‚РѕРї-С†РµРЅСѓ СЃРѕРіР»Р°СЃРЅРѕ РЅР°СЃС‚СЂРѕР№РєР°Рј
         local stopPrice = self.basePrice.price + (partStepInterval * self.settingStopMove[operation][range])
         local price = 0
 
-        -- операция стопа противоположна открытию
+        -- РѕРїРµСЂР°С†РёСЏ СЃС‚РѕРїР° РїСЂРѕС‚РёРІРѕРїРѕР»РѕР¶РЅР° РѕС‚РєСЂС‹С‚РёСЋ
         local _operation = self:getReverseOperation(operation)
 
-        -- корректируем цену по шагу инструмента
+        -- РєРѕСЂСЂРµРєС‚РёСЂСѓРµРј С†РµРЅСѓ РїРѕ С€Р°РіСѓ РёРЅСЃС‚СЂСѓРјРµРЅС‚Р°
         if _operation == "buy" then
             stopPrice = self.serviceCorrectPrice:getPriceBuy(self.id, self.class, stopPrice)
 
@@ -274,31 +274,31 @@ local Entity = {
             price = self.serviceCorrectPrice:getPriceSell(self.id, self.class, price)
         end
 
-        -- добавляем параметры
+        -- РґРѕР±Р°РІР»СЏРµРј РїР°СЂР°РјРµС‚СЂС‹
         self.tmpResult.stopMove.stopPrice = d0(stopPrice)
         self.tmpResult.stopMove.price = d0(price)
         self.tmpResult.stopMove.operation = _operation
     end,
 
-    -- рассчитать параметры для тейка
+    -- СЂР°СЃСЃС‡РёС‚Р°С‚СЊ РїР°СЂР°РјРµС‚СЂС‹ РґР»СЏ С‚РµР№РєР°
     calculateParamTake = function(self, operation)
-        -- получаем шаг интервала
+        -- РїРѕР»СѓС‡Р°РµРј С€Р°Рі РёРЅС‚РµСЂРІР°Р»Р°
         local stepInterval = self.basePrice.interval / 8
 
-        -- получаем часть шага интервала
+        -- РїРѕР»СѓС‡Р°РµРј С‡Р°СЃС‚СЊ С€Р°РіР° РёРЅС‚РµСЂРІР°Р»Р°
         local partStepInterval = self.basePrice.interval / 8 / 10
 
-        -- получаем стоп-цену согласно настройкам
+        -- РїРѕР»СѓС‡Р°РµРј СЃС‚РѕРї-С†РµРЅСѓ СЃРѕРіР»Р°СЃРЅРѕ РЅР°СЃС‚СЂРѕР№РєР°Рј
         local price = {}
 
         for i = 2, 10 do
             price[i] = self.basePrice.price + (stepInterval * self.settingTake[operation][i])
         end
 
-        -- операция тейка противоположна открытию
+        -- РѕРїРµСЂР°С†РёСЏ С‚РµР№РєР° РїСЂРѕС‚РёРІРѕРїРѕР»РѕР¶РЅР° РѕС‚РєСЂС‹С‚РёСЋ
         local _operation = self:getReverseOperation(operation)
 
-        -- корректируем цену по шагу инструмента
+        -- РєРѕСЂСЂРµРєС‚РёСЂСѓРµРј С†РµРЅСѓ РїРѕ С€Р°РіСѓ РёРЅСЃС‚СЂСѓРјРµРЅС‚Р°
         if _operation == "buy" then
             for i = 2, 10 do
                 price[i] = self.serviceCorrectPrice:getPriceBuy(self.id, self.class, price[i] + (partStepInterval * self.settingTake.offsetPartStepInterval))
@@ -309,18 +309,18 @@ local Entity = {
             end
         end
 
-        -- обрезаем лишние нули для дробных чисел
-        -- обрезаем нули для целых чисел
+        -- РѕР±СЂРµР·Р°РµРј Р»РёС€РЅРёРµ РЅСѓР»Рё РґР»СЏ РґСЂРѕР±РЅС‹С… С‡РёСЃРµР»
+        -- РѕР±СЂРµР·Р°РµРј РЅСѓР»Рё РґР»СЏ С†РµР»С‹С… С‡РёСЃРµР»
         for i = 2, 10 do
             price[i] = d0(price[i])
         end
 
-        -- добавляем параметры
+        -- РґРѕР±Р°РІР»СЏРµРј РїР°СЂР°РјРµС‚СЂС‹
         self.tmpResult.take.price = price
         self.tmpResult.take.operation = _operation
     end,
 
-    -- сохранить результаты расчётов под переданным idParams
+    -- СЃРѕС…СЂР°РЅРёС‚СЊ СЂРµР·СѓР»СЊС‚Р°С‚С‹ СЂР°СЃС‡С‘С‚РѕРІ РїРѕРґ РїРµСЂРµРґР°РЅРЅС‹Рј idParams
     _saveResult = function(self, idParams)
         self.data[idParams] = copy(self.tmpResult)
 
@@ -332,7 +332,7 @@ local Entity = {
         }
     end,
 
-    -- сохранить результаты расчётов под переданным idParams
+    -- СЃРѕС…СЂР°РЅРёС‚СЊ СЂРµР·СѓР»СЊС‚Р°С‚С‹ СЂР°СЃС‡С‘С‚РѕРІ РїРѕРґ РїРµСЂРµРґР°РЅРЅС‹Рј idParams
     saveResult = function(self)
         self.data = copy(self.tmpResult)
 
@@ -348,59 +348,59 @@ local Entity = {
         })
     end,
 
-    -- удалить данные
+    -- СѓРґР°Р»РёС‚СЊ РґР°РЅРЅС‹Рµ
     resetResult = function(self)
         self.data = {}
     end,
 
-    -- рассчитать данные по базовой цене
+    -- СЂР°СЃСЃС‡РёС‚Р°С‚СЊ РґР°РЅРЅС‹Рµ РїРѕ Р±Р°Р·РѕРІРѕР№ С†РµРЅРµ
     -- operation - "buy", "sell
     -- range - 0, 5, 10
     calculateParams = function(self, operation, range)
-        -- проверить idParams
+        -- РїСЂРѕРІРµСЂРёС‚СЊ idParams
         self.validator:check_buy_sell(operation)
         self.validator:checkRange(range)
 
-        -- обновляем параметры (basePrice) для расчётов
+        -- РѕР±РЅРѕРІР»СЏРµРј РїР°СЂР°РјРµС‚СЂС‹ (basePrice) РґР»СЏ СЂР°СЃС‡С‘С‚РѕРІ
         self:updateBasePrice()
 
-        -- buy, 5 (купить)
-        -- рассчитать параметры для запроса
+        -- buy, 5 (РєСѓРїРёС‚СЊ)
+        -- СЂР°СЃСЃС‡РёС‚Р°С‚СЊ РїР°СЂР°РјРµС‚СЂС‹ РґР»СЏ Р·Р°РїСЂРѕСЃР°
         self:calculateParamsZapros(operation, range)
 
-        -- sell, 5 (продать ниже)
-        -- рассчитать параметры для стопа
+        -- sell, 5 (РїСЂРѕРґР°С‚СЊ РЅРёР¶Рµ)
+        -- СЂР°СЃСЃС‡РёС‚Р°С‚СЊ РїР°СЂР°РјРµС‚СЂС‹ РґР»СЏ СЃС‚РѕРїР°
         self:calculateParamStop(operation, range)
 
-        -- sell, 5 (продать чуть выше)
-        -- рассчитать параметры для переноса стопа
+        -- sell, 5 (РїСЂРѕРґР°С‚СЊ С‡СѓС‚СЊ РІС‹С€Рµ)
+        -- СЂР°СЃСЃС‡РёС‚Р°С‚СЊ РїР°СЂР°РјРµС‚СЂС‹ РґР»СЏ РїРµСЂРµРЅРѕСЃР° СЃС‚РѕРїР°
         self:calculateParamStopMove(operation, range)
 
-        -- sell, (продать выше на размер тейка)
-        -- рассчитать и записываем параметры в take
+        -- sell, (РїСЂРѕРґР°С‚СЊ РІС‹С€Рµ РЅР° СЂР°Р·РјРµСЂ С‚РµР№РєР°)
+        -- СЂР°СЃСЃС‡РёС‚Р°С‚СЊ Рё Р·Р°РїРёСЃС‹РІР°РµРј РїР°СЂР°РјРµС‚СЂС‹ РІ take
         self:calculateParamTake(operation)
 
-        -- сохранить результаты расчёта под idParams
+        -- СЃРѕС…СЂР°РЅРёС‚СЊ СЂРµР·СѓР»СЊС‚Р°С‚С‹ СЂР°СЃС‡С‘С‚Р° РїРѕРґ idParams
         self:saveResult()
     end,
 
-    -- рассчитать параметры для запроса по переданной цене запроса
-    -- для рыночной цены - последняя цена сделки
-    -- для лучшей цены сделки - лучшие цены по стакану (цена ask, bid)
+    -- СЂР°СЃСЃС‡РёС‚Р°С‚СЊ РїР°СЂР°РјРµС‚СЂС‹ РґР»СЏ Р·Р°РїСЂРѕСЃР° РїРѕ РїРµСЂРµРґР°РЅРЅРѕР№ С†РµРЅРµ Р·Р°РїСЂРѕСЃР°
+    -- РґР»СЏ СЂС‹РЅРѕС‡РЅРѕР№ С†РµРЅС‹ - РїРѕСЃР»РµРґРЅСЏСЏ С†РµРЅР° СЃРґРµР»РєРё
+    -- РґР»СЏ Р»СѓС‡С€РµР№ С†РµРЅС‹ СЃРґРµР»РєРё - Р»СѓС‡С€РёРµ С†РµРЅС‹ РїРѕ СЃС‚Р°РєР°РЅСѓ (С†РµРЅР° ask, bid)
     calculateParamsZaprosToPrice = function(self, operation, price)
         self.validator:check_buy_sell(operation)
 
-        -- получаем десятую часть шага интервала
+        -- РїРѕР»СѓС‡Р°РµРј РґРµСЃСЏС‚СѓСЋ С‡Р°СЃС‚СЊ С€Р°РіР° РёРЅС‚РµСЂРІР°Р»Р°
         local partStepInterval = self.basePrice.interval / 8 / 10
 
-        -- получаем стоп-цену согласно настройкам
+        -- РїРѕР»СѓС‡Р°РµРј СЃС‚РѕРї-С†РµРЅСѓ СЃРѕРіР»Р°СЃРЅРѕ РЅР°СЃС‚СЂРѕР№РєР°Рј
         local stopPrice = price + (partStepInterval * self.settingZaprosOffset.offset[operation])
 
         local marketPrice = 0
 
         local priceLoc
 
-        -- корректируем цену по шагу инструмента
+        -- РєРѕСЂСЂРµРєС‚РёСЂСѓРµРј С†РµРЅСѓ РїРѕ С€Р°РіСѓ РёРЅСЃС‚СЂСѓРјРµРЅС‚Р°
         if operation == "buy" then
             priceLoc = self.serviceCorrectPrice:getPriceBuy(self.id, self.class, price)
             stopPrice = self.serviceCorrectPrice:getPriceBuy(self.id, self.class, stopPrice)
@@ -415,29 +415,29 @@ local Entity = {
             marketPrice = self.serviceCorrectPrice:getPriceSell(self.id, self.class, marketPrice)
         end
 
-        -- добавляем параметры
+        -- РґРѕР±Р°РІР»СЏРµРј РїР°СЂР°РјРµС‚СЂС‹
         self.tmpResult.zapros.price = d0(priceLoc)
         self.tmpResult.zapros.stopPrice = d0(stopPrice)
         self.tmpResult.zapros.marketPrice = d0(marketPrice)
         self.tmpResult.zapros.operation = operation
     end,
 
-    -- рассчитать параметры для стопа по переданной цене запроса
+    -- СЂР°СЃСЃС‡РёС‚Р°С‚СЊ РїР°СЂР°РјРµС‚СЂС‹ РґР»СЏ СЃС‚РѕРїР° РїРѕ РїРµСЂРµРґР°РЅРЅРѕР№ С†РµРЅРµ Р·Р°РїСЂРѕСЃР°
     calculateParamStopToPrice = function(self, operation, priceZapros)
-        -- стоп отличается на 7% от цены запроса в противоположную сторону
+        -- СЃС‚РѕРї РѕС‚Р»РёС‡Р°РµС‚СЃСЏ РЅР° 7% РѕС‚ С†РµРЅС‹ Р·Р°РїСЂРѕСЃР° РІ РїСЂРѕС‚РёРІРѕРїРѕР»РѕР¶РЅСѓСЋ СЃС‚РѕСЂРѕРЅСѓ
 
-        -- получаем десятую часть шага интервала
+        -- РїРѕР»СѓС‡Р°РµРј РґРµСЃСЏС‚СѓСЋ С‡Р°СЃС‚СЊ С€Р°РіР° РёРЅС‚РµСЂРІР°Р»Р°
         local partStepInterval = self.basePrice.interval / 8 / 10
 
-        -- для запроса buy - будет price - 11%, sell
-        -- для запроса sell - будет price + 11%, buy
+        -- РґР»СЏ Р·Р°РїСЂРѕСЃР° buy - Р±СѓРґРµС‚ price - 11%, sell
+        -- РґР»СЏ Р·Р°РїСЂРѕСЃР° sell - Р±СѓРґРµС‚ price + 11%, buy
         local stopPrice = priceZapros + (partStepInterval * self.settingStop["size"][operation])
         local price = 0
 
-        -- операция стопа противоположна открытию
+        -- РѕРїРµСЂР°С†РёСЏ СЃС‚РѕРїР° РїСЂРѕС‚РёРІРѕРїРѕР»РѕР¶РЅР° РѕС‚РєСЂС‹С‚РёСЋ
         local _operation = self:getReverseOperation(operation)
 
-        -- корректируем цену по шагу инструмента
+        -- РєРѕСЂСЂРµРєС‚РёСЂСѓРµРј С†РµРЅСѓ РїРѕ С€Р°РіСѓ РёРЅСЃС‚СЂСѓРјРµРЅС‚Р°
         if _operation == "buy" then
             stopPrice = self.serviceCorrectPrice:getPriceBuy(self.id, self.class, stopPrice)
 
@@ -450,29 +450,29 @@ local Entity = {
             price = self.serviceCorrectPrice:getPriceSell(self.id, self.class, price)
         end
 
-        -- добавляем параметры
+        -- РґРѕР±Р°РІР»СЏРµРј РїР°СЂР°РјРµС‚СЂС‹
         self.tmpResult.stop.stopPrice = d0(stopPrice)
         self.tmpResult.stop.price = d0(price)
         self.tmpResult.stop.operation = _operation
     end,
 
-    -- рассчитать параметры для переноса стопа по переданной цене запроса
-    -- используется для переноса в безубыток
+    -- СЂР°СЃСЃС‡РёС‚Р°С‚СЊ РїР°СЂР°РјРµС‚СЂС‹ РґР»СЏ РїРµСЂРµРЅРѕСЃР° СЃС‚РѕРїР° РїРѕ РїРµСЂРµРґР°РЅРЅРѕР№ С†РµРЅРµ Р·Р°РїСЂРѕСЃР°
+    -- РёСЃРїРѕР»СЊР·СѓРµС‚СЃСЏ РґР»СЏ РїРµСЂРµРЅРѕСЃР° РІ Р±РµР·СѓР±С‹С‚РѕРє
     calculateParamStopMoveToPrice = function(self, operation, priceZapros)
-        -- стоп отличается на 2% от цены запроса в ту же сторону
+        -- СЃС‚РѕРї РѕС‚Р»РёС‡Р°РµС‚СЃСЏ РЅР° 2% РѕС‚ С†РµРЅС‹ Р·Р°РїСЂРѕСЃР° РІ С‚Сѓ Р¶Рµ СЃС‚РѕСЂРѕРЅСѓ
 
-        -- получаем десятую часть шага интервала
+        -- РїРѕР»СѓС‡Р°РµРј РґРµСЃСЏС‚СѓСЋ С‡Р°СЃС‚СЊ С€Р°РіР° РёРЅС‚РµСЂРІР°Р»Р°
         local partStepInterval = self.basePrice.interval / 8 / 10
 
-        -- для запроса buy - будет price + 2%, sell
-        -- для запроса sell - будет price - 2%, buy
+        -- РґР»СЏ Р·Р°РїСЂРѕСЃР° buy - Р±СѓРґРµС‚ price + 2%, sell
+        -- РґР»СЏ Р·Р°РїСЂРѕСЃР° sell - Р±СѓРґРµС‚ price - 2%, buy
         local stopPrice = priceZapros + (partStepInterval * self.settingStopMove["size"][operation])
         local price = 0
 
-        -- операция стопа противоположна открытию
+        -- РѕРїРµСЂР°С†РёСЏ СЃС‚РѕРїР° РїСЂРѕС‚РёРІРѕРїРѕР»РѕР¶РЅР° РѕС‚РєСЂС‹С‚РёСЋ
         local _operation = self:getReverseOperation(operation)
 
-        -- корректируем цену по шагу инструмента
+        -- РєРѕСЂСЂРµРєС‚РёСЂСѓРµРј С†РµРЅСѓ РїРѕ С€Р°РіСѓ РёРЅСЃС‚СЂСѓРјРµРЅС‚Р°
         if _operation == "buy" then
             stopPrice = self.serviceCorrectPrice:getPriceBuy(self.id, self.class, stopPrice)
 
@@ -485,31 +485,31 @@ local Entity = {
             price = self.serviceCorrectPrice:getPriceSell(self.id, self.class, price)
         end
 
-        -- добавляем параметры
+        -- РґРѕР±Р°РІР»СЏРµРј РїР°СЂР°РјРµС‚СЂС‹
         self.tmpResult.stopMove.stopPrice = d0(stopPrice)
         self.tmpResult.stopMove.price = d0(price)
         self.tmpResult.stopMove.operation = _operation
     end,
 
-    -- рассчитать параметры для тейка по переданной цене запроса
+    -- СЂР°СЃСЃС‡РёС‚Р°С‚СЊ РїР°СЂР°РјРµС‚СЂС‹ РґР»СЏ С‚РµР№РєР° РїРѕ РїРµСЂРµРґР°РЅРЅРѕР№ С†РµРЅРµ Р·Р°РїСЂРѕСЃР°
     calculateParamTakeToPrice = function(self, operation, priceZapros)
-        -- получаем шаг интервала
+        -- РїРѕР»СѓС‡Р°РµРј С€Р°Рі РёРЅС‚РµСЂРІР°Р»Р°
         local stepInterval = self.basePrice.interval / 8
 
-        -- получаем десятую часть шага интервала
+        -- РїРѕР»СѓС‡Р°РµРј РґРµСЃСЏС‚СѓСЋ С‡Р°СЃС‚СЊ С€Р°РіР° РёРЅС‚РµСЂРІР°Р»Р°
         local partStepInterval = self.basePrice.interval / 8 / 10
 
-        -- получаем стоп-цену согласно настройкам
+        -- РїРѕР»СѓС‡Р°РµРј СЃС‚РѕРї-С†РµРЅСѓ СЃРѕРіР»Р°СЃРЅРѕ РЅР°СЃС‚СЂРѕР№РєР°Рј
         local price = {}
 
         for i = 2, 10 do
             price[i] = priceZapros + (stepInterval * self.settingTake[operation][i])
         end
 
-        -- операция тейка противоположна открытию
+        -- РѕРїРµСЂР°С†РёСЏ С‚РµР№РєР° РїСЂРѕС‚РёРІРѕРїРѕР»РѕР¶РЅР° РѕС‚РєСЂС‹С‚РёСЋ
         local _operation = self:getReverseOperation(operation)
 
-        -- корректируем цену по шагу инструмента
+        -- РєРѕСЂСЂРµРєС‚РёСЂСѓРµРј С†РµРЅСѓ РїРѕ С€Р°РіСѓ РёРЅСЃС‚СЂСѓРјРµРЅС‚Р°
         if _operation == "buy" then
             for i = 2, 10 do
                 price[i] = self.serviceCorrectPrice:getPriceBuy(self.id, self.class, price[i] + (partStepInterval * self.settingTake.offsetPartStepInterval))
@@ -520,40 +520,40 @@ local Entity = {
             end
         end
 
-        -- обрезаем лишние нули для дробных чисел
-        -- обрезаем нули для целых чисел
+        -- РѕР±СЂРµР·Р°РµРј Р»РёС€РЅРёРµ РЅСѓР»Рё РґР»СЏ РґСЂРѕР±РЅС‹С… С‡РёСЃРµР»
+        -- РѕР±СЂРµР·Р°РµРј РЅСѓР»Рё РґР»СЏ С†РµР»С‹С… С‡РёСЃРµР»
         for i = 2, 10 do
             price[i] = d0(price[i])
         end
 
-        -- добавляем параметры
+        -- РґРѕР±Р°РІР»СЏРµРј РїР°СЂР°РјРµС‚СЂС‹
         self.tmpResult.take.price = price
         self.tmpResult.take.operation = _operation
     end,
 
-    -- рассчитать данные по переданной цене
+    -- СЂР°СЃСЃС‡РёС‚Р°С‚СЊ РґР°РЅРЅС‹Рµ РїРѕ РїРµСЂРµРґР°РЅРЅРѕР№ С†РµРЅРµ
     calculateParamsToPrice = function(self, operation, price)
-        -- проверяем полученные параметры
+        -- РїСЂРѕРІРµСЂСЏРµРј РїРѕР»СѓС‡РµРЅРЅС‹Рµ РїР°СЂР°РјРµС‚СЂС‹
 
-        -- обновляем параметры (basePrice) для расчётов
+        -- РѕР±РЅРѕРІР»СЏРµРј РїР°СЂР°РјРµС‚СЂС‹ (basePrice) РґР»СЏ СЂР°СЃС‡С‘С‚РѕРІ
         self:updateBasePrice()
 
         -- buy, 5
-        -- рассчитать параметры для запроса по переданной цене запроса
+        -- СЂР°СЃСЃС‡РёС‚Р°С‚СЊ РїР°СЂР°РјРµС‚СЂС‹ РґР»СЏ Р·Р°РїСЂРѕСЃР° РїРѕ РїРµСЂРµРґР°РЅРЅРѕР№ С†РµРЅРµ Р·Р°РїСЂРѕСЃР°
         self:calculateParamsZaprosToPrice(operation, price)
 
         -- sell, 5
-        -- рассчитать параметры для стопа по переданной цене запроса
+        -- СЂР°СЃСЃС‡РёС‚Р°С‚СЊ РїР°СЂР°РјРµС‚СЂС‹ РґР»СЏ СЃС‚РѕРїР° РїРѕ РїРµСЂРµРґР°РЅРЅРѕР№ С†РµРЅРµ Р·Р°РїСЂРѕСЃР°
         self:calculateParamStopToPrice(operation, price)
 
-        -- рассчитать параметры для переноса стопа по переданной цене запроса
+        -- СЂР°СЃСЃС‡РёС‚Р°С‚СЊ РїР°СЂР°РјРµС‚СЂС‹ РґР»СЏ РїРµСЂРµРЅРѕСЃР° СЃС‚РѕРїР° РїРѕ РїРµСЂРµРґР°РЅРЅРѕР№ С†РµРЅРµ Р·Р°РїСЂРѕСЃР°
         self:calculateParamStopMoveToPrice(operation, price)
 
         -- sell, 5
-        -- рассчитать параметры для тейка по переданной цене запроса
+        -- СЂР°СЃСЃС‡РёС‚Р°С‚СЊ РїР°СЂР°РјРµС‚СЂС‹ РґР»СЏ С‚РµР№РєР° РїРѕ РїРµСЂРµРґР°РЅРЅРѕР№ С†РµРЅРµ Р·Р°РїСЂРѕСЃР°
         self:calculateParamTakeToPrice(operation, price)
 
-        -- сохранить результаты расчёта под idParams
+        -- СЃРѕС…СЂР°РЅРёС‚СЊ СЂРµР·СѓР»СЊС‚Р°С‚С‹ СЂР°СЃС‡С‘С‚Р° РїРѕРґ idParams
         self:saveResult()
     end,
 

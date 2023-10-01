@@ -49,8 +49,8 @@ local UseCase = {
         return self
     end,
 
-    -- разрешено ли действие с бумагой
-    -- для этого действия бумага должна быть активной или ограниченой
+    -- СЂР°Р·СЂРµС€РµРЅРѕ Р»Рё РґРµР№СЃС‚РІРёРµ СЃ Р±СѓРјР°РіРѕР№
+    -- РґР»СЏ СЌС‚РѕРіРѕ РґРµР№СЃС‚РІРёСЏ Р±СѓРјР°РіР° РґРѕР»Р¶РЅР° Р±С‹С‚СЊ Р°РєС‚РёРІРЅРѕР№ РёР»Рё РѕРіСЂР°РЅРёС‡РµРЅРѕР№
     allowedAction = function(self, idStock)
         local status = self.entityServiceStock:getStatus(idStock)
 
@@ -61,38 +61,38 @@ local UseCase = {
         return false
     end,
 
-    -- закрыть позицию по рынку
+    -- Р·Р°РєСЂС‹С‚СЊ РїРѕР·РёС†РёСЋ РїРѕ СЂС‹РЅРєСѓ
     closePosition = function(self, idStock)
         self.validator:checkId(idStock)
 
-        -- если бумага не активна для данных действий
+        -- РµСЃР»Рё Р±СѓРјР°РіР° РЅРµ Р°РєС‚РёРІРЅР° РґР»СЏ РґР°РЅРЅС‹С… РґРµР№СЃС‚РІРёР№
         if not self:allowedAction(idStock) then
             return
         end
 
-        -- порядковый номер для транзакции
+        -- РїРѕСЂСЏРґРєРѕРІС‹Р№ РЅРѕРјРµСЂ РґР»СЏ С‚СЂР°РЅР·Р°РєС†РёРё
         local idTransact = self.nextId:getId()
 
-        -- получаем колличество лотов инструмента
+        -- РїРѕР»СѓС‡Р°РµРј РєРѕР»Р»РёС‡РµСЃС‚РІРѕ Р»РѕС‚РѕРІ РёРЅСЃС‚СЂСѓРјРµРЅС‚Р°
         local position = self.entityServiceStock:getPositionParams(idStock)
 
-        -- получаем абсолютное значение позиий (без минуса)
+        -- РїРѕР»СѓС‡Р°РµРј Р°Р±СЃРѕР»СЋС‚РЅРѕРµ Р·РЅР°С‡РµРЅРёРµ РїРѕР·РёРёР№ (Р±РµР· РјРёРЅСѓСЃР°)
         local qty = self:getAbsoluteQty(position.qty)
 
         if qty == 0 then
             return
         end
 
-        -- operation противоположен позиции
+        -- operation РїСЂРѕС‚РёРІРѕРїРѕР»РѕР¶РµРЅ РїРѕР·РёС†РёРё
         local operation = self:getReverseOperation(position.operation)
 
-        -- получаем класс инструмента
+        -- РїРѕР»СѓС‡Р°РµРј РєР»Р°СЃСЃ РёРЅСЃС‚СЂСѓРјРµРЅС‚Р°
         local class = self.storage:getClassToId(idStock)
 
-        -- получаем минимальную и максимально - возможные цены
+        -- РїРѕР»СѓС‡Р°РµРј РјРёРЅРёРјР°Р»СЊРЅСѓСЋ Рё РјР°РєСЃРёРјР°Р»СЊРЅРѕ - РІРѕР·РјРѕР¶РЅС‹Рµ С†РµРЅС‹
         local MinMaxPrice = self.servicePrices:getMinMaxPrices(idStock, class)
 
-        -- подготавливаем данные для транзакции
+        -- РїРѕРґРіРѕС‚Р°РІР»РёРІР°РµРј РґР°РЅРЅС‹Рµ РґР»СЏ С‚СЂР°РЅР·Р°РєС†РёРё
         if operation == "buy" then
 
             local order = {
@@ -106,14 +106,14 @@ local UseCase = {
 
                 qty = qty,
                 --price = MinMaxPrice.maxPrice,
-                -- максимальную цену уменьшаем на шаг цены
+                -- РјР°РєСЃРёРјР°Р»СЊРЅСѓСЋ С†РµРЅСѓ СѓРјРµРЅСЊС€Р°РµРј РЅР° С€Р°Рі С†РµРЅС‹
                 price = self.serviceCorrectPrice:getPriceSell(idStock, class, MinMaxPrice.maxPrice)
             }
 
-            -- отправляем транзакцию в диспетчер
+            -- РѕС‚РїСЂР°РІР»СЏРµРј С‚СЂР°РЅР·Р°РєС†РёСЋ РІ РґРёСЃРїРµС‚С‡РµСЂ
             self.dispatcher:OrderMarketBuy(order)
 
-            -- добавляем данные
+            -- РґРѕР±Р°РІР»СЏРµРј РґР°РЅРЅС‹Рµ
             self.entityServiceTransact:create(idTransact, {
                 idStock = idStock,
                 idParams = idTransact,
@@ -123,7 +123,7 @@ local UseCase = {
             })
         end
 
-        -- подготавливаем данные для транзакции
+        -- РїРѕРґРіРѕС‚Р°РІР»РёРІР°РµРј РґР°РЅРЅС‹Рµ РґР»СЏ С‚СЂР°РЅР·Р°РєС†РёРё
         if operation == "sell" then
 
             local order = {
@@ -137,14 +137,14 @@ local UseCase = {
 
                 qty = qty,
 
-                -- минимальную цену увеличиваем на шаг цены
+                -- РјРёРЅРёРјР°Р»СЊРЅСѓСЋ С†РµРЅСѓ СѓРІРµР»РёС‡РёРІР°РµРј РЅР° С€Р°Рі С†РµРЅС‹
                 price = self.serviceCorrectPrice:getPriceBuy(idStock, class, MinMaxPrice.minPrice)
             }
 
-            -- отправляем транзакцию в диспетчер
+            -- РѕС‚РїСЂР°РІР»СЏРµРј С‚СЂР°РЅР·Р°РєС†РёСЋ РІ РґРёСЃРїРµС‚С‡РµСЂ
             self.dispatcher:OrderMarketSell(order)
 
-            -- добавляем данные
+            -- РґРѕР±Р°РІР»СЏРµРј РґР°РЅРЅС‹Рµ
             self.entityServiceTransact:create(idTransact, {
                 idStock = idStock,
                 idParams = idTransact,

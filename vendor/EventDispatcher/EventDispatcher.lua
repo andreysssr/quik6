@@ -1,20 +1,20 @@
---- EventDispatcher диспетчер событий Entity
+--- EventDispatcher РґРёСЃРїРµС‚С‡РµСЂ СЃРѕР±С‹С‚РёР№ Entity
 
 local EventDispatcher = {
     --
     name = "EventDispatcher",
 
-    -- обработчик событий
+    -- РѕР±СЂР°Р±РѕС‚С‡РёРє СЃРѕР±С‹С‚РёР№
     eventSender = {},
 
-    -- конструктор
+    -- РєРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ
     new = function(self, container)
         self.eventSender = container:get("AppService_EventSender")
 
         return self
     end,
 
-    -- поочерёдно вызываем события и передаём в них данные
+    -- РїРѕРѕС‡РµСЂС‘РґРЅРѕ РІС‹Р·С‹РІР°РµРј СЃРѕР±С‹С‚РёСЏ Рё РїРµСЂРµРґР°С‘Рј РІ РЅРёС… РґР°РЅРЅС‹Рµ
     dispatchEvents = function(self, arrayEvents)
         for i = 1, #arrayEvents do
             self.eventSender:send(arrayEvents[i].eventName, arrayEvents[i].params)

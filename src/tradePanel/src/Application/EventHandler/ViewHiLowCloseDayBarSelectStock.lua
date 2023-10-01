@@ -74,7 +74,7 @@ local EventHandler = {
         --
         local interval = self.storage:getIntervalToId(idStock)
 
-        -- шаг интервала
+        -- С€Р°Рі РёРЅС‚РµСЂРІР°Р»Р°
         local stepInterval = interval / 6
 
         local paramsBarDay = self.entityServiceDSD:getHiLowClosePreviousBar(idStock)
@@ -95,8 +95,8 @@ local EventHandler = {
 
     --
     reset = function(self, idStock)
-        -- получить значение condition
-        -- если включен - выключить и поменять в панели
+        -- РїРѕР»СѓС‡РёС‚СЊ Р·РЅР°С‡РµРЅРёРµ condition
+        -- РµСЃР»Рё РІРєР»СЋС‡РµРЅ - РІС‹РєР»СЋС‡РёС‚СЊ Рё РїРѕРјРµРЅСЏС‚СЊ РІ РїР°РЅРµР»Рё
         local status = self.microServiceConditionPanelTrade:getMarkerDayBarStatus(idStock)
 
         if status then

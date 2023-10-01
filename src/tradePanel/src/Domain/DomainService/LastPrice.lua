@@ -14,7 +14,7 @@ local DomainService = {
         return self
     end,
 
-    -- возвращает последнюю цену инструмента
+    -- РІРѕР·РІСЂР°С‰Р°РµС‚ РїРѕСЃР»РµРґРЅСЋСЋ С†РµРЅСѓ РёРЅСЃС‚СЂСѓРјРµРЅС‚Р°
     getPrice = function(self, id, class)
         return self.quik:getLastPrice(id, class)
     end

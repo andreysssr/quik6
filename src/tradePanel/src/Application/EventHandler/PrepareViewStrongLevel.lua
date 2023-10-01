@@ -28,7 +28,7 @@ local EventHandler = {
 
     --
     prepare = function(self, idStock)
-        -- если есть сильный уровень тогда меняем значение
+        -- РµСЃР»Рё РµСЃС‚СЊ СЃРёР»СЊРЅС‹Р№ СѓСЂРѕРІРµРЅСЊ С‚РѕРіРґР° РјРµРЅСЏРµРј Р·РЅР°С‡РµРЅРёРµ
         if self.storage:hasStrongLevel(idStock) then
             self.microserviceMarkerStrongLineToChart:addMarkerToChart(idStock)
         end

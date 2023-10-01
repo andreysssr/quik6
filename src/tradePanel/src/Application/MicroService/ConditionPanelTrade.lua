@@ -292,18 +292,18 @@ local MicroService = {
         local dto = {}
 
         if self.data[idStock].commentView == false then
-            -- выключенный параметр кнопки
+            -- РІС‹РєР»СЋС‡РµРЅРЅС‹Р№ РїР°СЂР°РјРµС‚СЂ РєРЅРѕРїРєРё
             dto.commentView_condition = "default"
 
-            -- текст комментария
+            -- С‚РµРєСЃС‚ РєРѕРјРјРµРЅС‚Р°СЂРёСЏ
             dto.comment_data = self.storage:getCommentToId(idStock)
             dto.comment_condition = "default"
 
         else
-            -- включенный параметр кнопки
+            -- РІРєР»СЋС‡РµРЅРЅС‹Р№ РїР°СЂР°РјРµС‚СЂ РєРЅРѕРїРєРё
             dto.commentView_condition = "active"
 
-            -- пустой текст
+            -- РїСѓСЃС‚РѕР№ С‚РµРєСЃС‚
             dto.comment_data = ""
             dto.comment_condition = "active"
         end
@@ -327,10 +327,10 @@ local MicroService = {
         local dto = {}
 
         if self.data[idStock].comment == false then
-            -- выключенный параметр поля
+            -- РІС‹РєР»СЋС‡РµРЅРЅС‹Р№ РїР°СЂР°РјРµС‚СЂ РїРѕР»СЏ
             dto.comment_condition = "default"
         else
-            -- включенный параметр поля
+            -- РІРєР»СЋС‡РµРЅРЅС‹Р№ РїР°СЂР°РјРµС‚СЂ РїРѕР»СЏ
             dto.comment_condition = "select"
         end
 
@@ -353,10 +353,10 @@ local MicroService = {
         local dto = {}
 
         if self.data[idStock].lastPrice == false then
-            -- выключенный параметр поля
+            -- РІС‹РєР»СЋС‡РµРЅРЅС‹Р№ РїР°СЂР°РјРµС‚СЂ РїРѕР»СЏ
             dto.lastPrice_condition = "default"
         else
-            -- включенный параметр поля
+            -- РІРєР»СЋС‡РµРЅРЅС‹Р№ РїР°СЂР°РјРµС‚СЂ РїРѕР»СЏ
             dto.lastPrice_condition = "active"
         end
 

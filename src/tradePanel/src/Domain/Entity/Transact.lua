@@ -17,21 +17,21 @@ local Entity = {
         return self
     end,
 
-    -- создать новый Entity_Transact,
+    -- СЃРѕР·РґР°С‚СЊ РЅРѕРІС‹Р№ Entity_Transact,
     newChild = function(self, params)
         self.validator:checkParamNotNil(params.idStock, "idStock")
         self.validator:checkParamNotNil(params.idParams, "idParams")
         self.validator:checkParamNotNil(params.role, "role")
         self.validator:checkParamNotNil(params.typeSending, "typeSending")
 
-        -- создаём новый объект
+        -- СЃРѕР·РґР°С‘Рј РЅРѕРІС‹Р№ РѕР±СЉРµРєС‚
         local object = {
             events = {},
 
             status = "new",
 
-            -- если создавался в useCase - будет 0
-            -- если в парсере callback - присвоит полученный order_num
+            -- РµСЃР»Рё СЃРѕР·РґР°РІР°Р»СЃСЏ РІ useCase - Р±СѓРґРµС‚ 0
+            -- РµСЃР»Рё РІ РїР°СЂСЃРµСЂРµ callback - РїСЂРёСЃРІРѕРёС‚ РїРѕР»СѓС‡РµРЅРЅС‹Р№ order_num
             order_num = params.order_num or 0,
 
             idStock = params.idStock,
@@ -46,23 +46,23 @@ local Entity = {
         return object
     end,
 
-    -- поменять статус
+    -- РїРѕРјРµРЅСЏС‚СЊ СЃС‚Р°С‚СѓСЃ
     changeStatus = function(self, status)
         self.validator:checkParamNotNil(status, "status")
 
         if status ~= "posted" and status ~= "executed" and status ~= "deleted" then
-            error("\r\n" .. "Error: Не верный тип (сататуса) объекта (Entity_Transact). Получено: (" .. type(status) .. ") - " .. tostring(status), 2)
+            error("\r\n" .. "Error: РќРµ РІРµСЂРЅС‹Р№ С‚РёРї (СЃР°С‚Р°С‚СѓСЃР°) РѕР±СЉРµРєС‚Р° (Entity_Transact). РџРѕР»СѓС‡РµРЅРѕ: (" .. type(status) .. ") - " .. tostring(status), 2)
         end
 
-        -- если статус другой тогда обрабатываем дальше
+        -- РµСЃР»Рё СЃС‚Р°С‚СѓСЃ РґСЂСѓРіРѕР№ С‚РѕРіРґР° РѕР±СЂР°Р±Р°С‚С‹РІР°РµРј РґР°Р»СЊС€Рµ
         if self.status == status then
             return
         end
 
-        -- меняем статус
+        -- РјРµРЅСЏРµРј СЃС‚Р°С‚СѓСЃ
         self.status = status
 
-        -- регистрируем событие - смена статуса
+        -- СЂРµРіРёСЃС‚СЂРёСЂСѓРµРј СЃРѕР±С‹С‚РёРµ - СЃРјРµРЅР° СЃС‚Р°С‚СѓСЃР°
         self:registerEvent("EntityTransact_ChangedTransactStatus", {
             idStock = self.idStock,
             params = {

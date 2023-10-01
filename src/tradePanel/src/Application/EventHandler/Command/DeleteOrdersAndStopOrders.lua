@@ -17,7 +17,7 @@ local EventHandler = {
         return self
     end,
 
-    -- открыть позицию по лучшей цене
+    -- РѕС‚РєСЂС‹С‚СЊ РїРѕР·РёС†РёСЋ РїРѕ Р»СѓС‡С€РµР№ С†РµРЅРµ
     handle = function(self, event)
         local idStock = event:getParam("idStock")
 

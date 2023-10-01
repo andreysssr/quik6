@@ -1,4 +1,4 @@
---- DomainService CorrectPrice - округляет цену до шага инструмента
+--- DomainService CorrectPrice - РѕРєСЂСѓРіР»СЏРµС‚ С†РµРЅСѓ РґРѕ С€Р°РіР° РёРЅСЃС‚СЂСѓРјРµРЅС‚Р°
 
 local DomainService = {
     --
@@ -14,14 +14,14 @@ local DomainService = {
         return self
     end,
 
-    -- вернуть цену скорректированную для покупки
+    -- РІРµСЂРЅСѓС‚СЊ С†РµРЅСѓ СЃРєРѕСЂСЂРµРєС‚РёСЂРѕРІР°РЅРЅСѓСЋ РґР»СЏ РїРѕРєСѓРїРєРё
     getPriceBuy = function(self, id, class, price)
         local step = self.quik:getStepSize(id, class)
 
         return d0(price + (price % step))
     end,
 
-    -- вернуть цену скорректированную для продажи
+    -- РІРµСЂРЅСѓС‚СЊ С†РµРЅСѓ СЃРєРѕСЂСЂРµРєС‚РёСЂРѕРІР°РЅРЅСѓСЋ РґР»СЏ РїСЂРѕРґР°Р¶Рё
     getPriceSell = function(self, id, class, price)
         local step = self.quik:getStepSize(id, class)
 

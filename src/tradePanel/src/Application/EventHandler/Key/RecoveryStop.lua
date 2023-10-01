@@ -35,17 +35,17 @@ local EventHandler = {
         self.microservice = container:get("MicroService_ActiveStockPanelTrade")
         self.useCaseStop = container:get("UseCase_AddStop")
         self.useCaseStopLinked = container:get("UseCase_AddStopLinked")
-        self.cache = container:get("Cache") -- написать, папка хранилища постоянная
+        self.cache = container:get("Cache") -- РЅР°РїРёСЃР°С‚СЊ, РїР°РїРєР° С…СЂР°РЅРёР»РёС‰Р° РїРѕСЃС‚РѕСЏРЅРЅР°СЏ
 
         return self
     end,
 
-    -- получить активный инструмент
+    -- РїРѕР»СѓС‡РёС‚СЊ Р°РєС‚РёРІРЅС‹Р№ РёРЅСЃС‚СЂСѓРјРµРЅС‚
     getCurrentId = function(self)
         return self.microservice:getCurrentIdStock()
     end,
 
-    -- восстановить стоп который был нечаянно удалён
+    -- РІРѕСЃСЃС‚Р°РЅРѕРІРёС‚СЊ СЃС‚РѕРї РєРѕС‚РѕСЂС‹Р№ Р±С‹Р» РЅРµС‡Р°СЏРЅРЅРѕ СѓРґР°Р»С‘РЅ
     recoveryStop = function(self, event)
         local idStock = self:getCurrentId()
 
@@ -62,12 +62,12 @@ local EventHandler = {
         end
     end,
 
-    -- восстановить параметры последней открытой позиции
+    -- РІРѕСЃСЃС‚Р°РЅРѕРІРёС‚СЊ РїР°СЂР°РјРµС‚СЂС‹ РїРѕСЃР»РµРґРЅРµР№ РѕС‚РєСЂС‹С‚РѕР№ РїРѕР·РёС†РёРё
     recoveryStopLast = function(self)
         local idStock = self:getCurrentId()
 
-        -- проверить кеш - если есть запись - востановить
-        -- восстановить данные если есть открытые позиции по бумаге
+        -- РїСЂРѕРІРµСЂРёС‚СЊ РєРµС€ - РµСЃР»Рё РµСЃС‚СЊ Р·Р°РїРёСЃСЊ - РІРѕСЃС‚Р°РЅРѕРІРёС‚СЊ
+        -- РІРѕСЃСЃС‚Р°РЅРѕРІРёС‚СЊ РґР°РЅРЅС‹Рµ РµСЃР»Рё РµСЃС‚СЊ РѕС‚РєСЂС‹С‚С‹Рµ РїРѕР·РёС†РёРё РїРѕ Р±СѓРјР°РіРµ
         if self.entityServiceStock:hasPosition(idStock) then
             if not self.cache:has(idStock .. "_params") then
                 return
@@ -78,7 +78,7 @@ local EventHandler = {
 
             local statusTake = self.entityServiceStock:isActiveTake(idStock)
 
-            -- при восстановлении записывается под номером 1 (idParams == 1)
+            -- РїСЂРё РІРѕСЃСЃС‚Р°РЅРѕРІР»РµРЅРёРё Р·Р°РїРёСЃС‹РІР°РµС‚СЃСЏ РїРѕРґ РЅРѕРјРµСЂРѕРј 1 (idParams == 1)
             if statusTake then
                 self.useCaseStopLinked:addStop(idStock)
             else

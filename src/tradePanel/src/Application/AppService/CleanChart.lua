@@ -1,4 +1,4 @@
---- AppService CleanChart - отчищает график от всех меток
+--- AppService CleanChart - РѕС‚С‡РёС‰Р°РµС‚ РіСЂР°С„РёРє РѕС‚ РІСЃРµС… РјРµС‚РѕРє
 
 local AppService = {
     --
@@ -14,12 +14,12 @@ local AppService = {
         return self
     end,
 
-    -- очищаем график от всех лниий и меток
+    -- РѕС‡РёС‰Р°РµРј РіСЂР°С„РёРє РѕС‚ РІСЃРµС… Р»РЅРёРёР№ Рё РјРµС‚РѕРє
     clean = function(self, idStock)
-        -- получаем id графика
+        -- РїРѕР»СѓС‡Р°РµРј id РіСЂР°С„РёРєР°
         local tag = self.storage:getIdChart(idStock)
 
-        -- очищаем график от всех линий и меток
+        -- РѕС‡РёС‰Р°РµРј РіСЂР°С„РёРє РѕС‚ РІСЃРµС… Р»РёРЅРёР№ Рё РјРµС‚РѕРє
         DelAllLabels(tag)
     end,
 

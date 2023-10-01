@@ -1,12 +1,12 @@
 ---
 
--- получаем список namespace фреймворка
+-- РїРѕР»СѓС‡Р°РµРј СЃРїРёСЃРѕРє namespace С„СЂРµР№РјРІРѕСЂРєР°
 local psr0 = dofile(basePath .. "config\\psr0.lua")
 
--- получаем путь к файлу namespace приложения
+-- РїРѕР»СѓС‡Р°РµРј РїСѓС‚СЊ Рє С„Р°Р№Р»Сѓ namespace РїСЂРёР»РѕР¶РµРЅРёСЏ
 local path_psr0_app = basePath .. "src\\" .. appDir .. "config\\psr0.lua"
 
--- если такой файл есть, то объединяем namespace приложения с namespace фреймворка
+-- РµСЃР»Рё С‚Р°РєРѕР№ С„Р°Р№Р» РµСЃС‚СЊ, С‚Рѕ РѕР±СЉРµРґРёРЅСЏРµРј namespace РїСЂРёР»РѕР¶РµРЅРёСЏ СЃ namespace С„СЂРµР№РјРІРѕСЂРєР°
 if File:exists(path_psr0_app) then
     local psr0_app = File:get(path_psr0_app)
 

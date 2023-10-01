@@ -4,7 +4,7 @@ return {
     -- panels
     panels = {
         alert = {
-            title = "Оповещение",
+            title = "РћРїРѕРІРµС‰РµРЅРёРµ",
             name = "alert",
             size = {
                 width = 980,
@@ -16,7 +16,7 @@ return {
             },
         },
         system = {
-            title = "Системные настойки",
+            title = "РЎРёСЃС‚РµРјРЅС‹Рµ РЅР°СЃС‚РѕР№РєРё",
             name = "system",
             size = {
                 width = 300,
@@ -28,7 +28,7 @@ return {
             },
         },
         trade = {
-            title = "Торговая панель",
+            title = "РўРѕСЂРіРѕРІР°СЏ РїР°РЅРµР»СЊ",
             name = "trade",
             size = {
                 width = 1920,
@@ -38,7 +38,7 @@ return {
                 left = 0,
                 top = 350,
             },
-            -- количество графиков на 1 мониторе
+            -- РєРѕР»РёС‡РµСЃС‚РІРѕ РіСЂР°С„РёРєРѕРІ РЅР° 1 РјРѕРЅРёС‚РѕСЂРµ
             numberGraphs = 12,
             indicator = {
                 row = 1,
